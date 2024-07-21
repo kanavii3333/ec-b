@@ -1,0 +1,112 @@
+@startuml
+
+skinparam shadowing false
+
+package "データベース : fullness_ec" as target_system <<Database>> {
+
+    entity employee_account<<社員アカウント>> {
+        + id serial [PK]
+        ..
+        # employee_id integer [FK]
+        ..
+        name varchar(20)
+        password varchar(200)
+    }
+
+    entity employee<<社員>> {
+        + id serial [PK]
+        ..
+        # department_id integer [FK]
+        ..
+        name varchar(100)
+        name_kana varchar(100)
+    }
+
+    entity department<<部署>>{
+        + id serial [PK]
+        ..
+        name varchar(100)
+    }
+
+    entity product_category<<商品カテゴリ>> {
+        + id serial [PK]
+        --
+        name varchar(20)
+    }
+
+    entity product<<商品>> {
+            + id serial [PK]
+            ..
+            # product_category_id integer [FK]
+            ..
+            name varchar(20)
+            price integer
+            image_url varchar(200)
+            delete_flag integer
+    }
+
+    entity product_stock<<商品在庫>> {
+        + id serial [PK]
+        ..
+        # product_id integer [FK]
+        ..
+        quantity integer
+    }
+
+    entity order_status<<注文ステータス>> {
+        + id serial [PK]
+        ..
+        name varchar(100)
+    }
+
+    entity customer<<顧客>> {
+        + id serial [PK]
+        ..
+        name varchar(20)
+        name_kana varchar(20)
+        address1 varchar(100)
+        address2 varchar(100)
+        phone_number varchar(20)
+        mail_address varchar(200)
+        username varchar(30)
+        password varchar(200)
+        register_date timestamp
+    }
+    entity orders<<注文>> {
+        + id serial [PK]
+        ..
+        # customer_id integer [FK]
+        # order_status_id integer [FK]
+        # payment_method_id integer [FK]
+        ..
+        order_date timestamp
+        amount_total integer
+    }
+    note right: orderは予約語なので\nordersと複数形
+
+    entity payment_method<<支払い方法>>{
+        + id serial [PK]
+        ..
+        name varchar(100)
+    }
+
+    entity order_detail<<注文明細>> {
+        + id serial [PK]
+        ..
+        # order_id integer [FK]
+        # product_id integer [FK]
+        # customer_id integer [FK]
+        ..
+        count integer
+    }
+
+department||--|{employee
+orders ||--|{ order_detail
+product ||--|| product_stock
+employee ||--|| employee_account
+product }|--|| product_category
+customer ||--|{ orders
+orders }|--|| order_status
+orders }|--|| payment_method
+
+@enduml
