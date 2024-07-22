@@ -1,0 +1,14 @@
+@startuml
+
+!theme plain
+hide empty members
+left to right direction
+
+package config {
+
+ 
+    class Config {
+      +
+   }
+
+@enduml
