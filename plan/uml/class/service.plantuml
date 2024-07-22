@@ -1,47 +1,33 @@
 @startuml
 title サービス層のクラス図
 package service{
-	package front{
-		class CustmerService{
-			+ addCustomer(formCustomer:FormCustomer):void
-		}
-		
-		class CustomerLoginService{
-			+ customerLogin(mailAddress:String, password:String):boolean
-		}
-		
-		class CustomerOrderService{
-			+ buyProduct(productId:int,number:id):void
-			+ cancelOrder(orderId:int):void
-			+ getOrderList(customerId:int):List<FormOrder>
-		}
-		
-		class GetProductListByCategoryService{
-			+ getProductListByCategory():List<FormProduct>
-		}
+	class CustomerService{
+		+ addCustomer(formCustomer:FormCustomer):void
+		+ customerLogin(mailAddress:String, password:String):boolean
 	}
-	package back{
-		class EmployeeService{
+	
+	class OrderService{
+		+ buyProduct(productId:int,number:id):void
+		+ cancelOrder(orderId:int):void
+		+ getOrderList(customerId:int):List<FormOrder>
+		+ getOrderList(orderDate:String,customerId:int):List<FormOrder>
+		+ OrderStatusUpdate(orderStatusId:int):void
+	}
+	
+	class ProductService{
+		+ getProductListByCategoryId(categoryId:int):List<FormProduct>
+		+ productUpdate(formProduct:FormProduct):void
+		+ deleteProduct(productId:int):void
+	}
 
-		}
-		
-		class EmployeeLoginService{
-	
-		}
-		
-		class EmployeeOrderService{
-	
-		}
-		
-		class ProductService{
-	
-		}
-		
-		class ProductCategoryService{
-	
-		}
+
+	class EmployeeService{
+		+ addEmployee(formEmployee:FormEmployee):void
+		+ employeeLogin(name:String,password:String):boolean
 	}
 	
-	
+	class ProductCategoryService{
+		+ addCategory(formCartegory:FormCategory):void
+	}	
 }
 @enduml

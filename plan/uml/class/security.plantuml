@@ -1,0 +1,10 @@
+title セキュリティ層のクラス図
+package security{
+
+		class securityConfig{
+			+ webSecurityCustomizer():WebSecurityCustomizer
+			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
+		}
+	
+}
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+title repository層のクラス図
+hide empty members
+left to right direction
+
+package repository{
+    class CustmerRepository{
+        +insert(custmer:Custmer):void
+        +selectByIdAndPassword(id:Integer,password:String):Custmer
+    }
+
+    class OrderRepository{
+        +insert(order:Order):void
+        +delete(orderId:Integer):void
+        +update(order:Order):void
+        +selectByDateOrUserName(date:String,uerName:String)
+    }
+
+    class ProductRepository{
+        +insert(product:Product):void
+        +delete(productId:Integer):void
+        +update(product:Product):void
+        +selectByCategoryId(categoryId:Integer):Product
+    }
+
+    class EmployeeRepository{
+        +insert(emp:Employee):void
+        +selectByIdAndPassword(id:Integer,password:String):Employee
+    }
+
+    class ProductCategoryRepository{
+        +insert(productCategory:ProductCactegory):void
+    }
+
+    class OrderDetailRepository{
+        +update(orderDetaolStatus:String):void
+    }
+}
+@enduml
