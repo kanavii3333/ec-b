@@ -101,53 +101,39 @@ package repository{
 }
 
 package service{
-	package front{
-		class CustomerService{
-		}
-		
-		class CustomerLoginService{
-		}
-		
-		class CustomerOrderService{
-		}
-		
-		class CustomerProductService{
-		}
-	}
-	
-	package back{
-		class EmployeeService{
-		}
-		
-		class EmployeeLoginService{
-		}
-		
-		class EmployeeOrderService{
-		}
-		
-		class ProductService{
-		}
-		
-		class ProductCategoryService{
-		}
-	}	
+    class CustomerService{
+    }
+    
+    class OrderService{
+    }
+    
+    class ProductService{
+    }
+
+
+    class EmployeeService{
+    }
+    
+    class ProductCategoryService{
+    }
 }
 
+CustomerService --> CustomerConverter
+OrderService --> OrderConverter
+ProductService --> ProductConverter
+EmployeeService --> EmployeeConverter
+
 CustomerService --> CustomerRepository
-CustomerLoginService --> CustomerRepository
-CustomerOrderService --> OrderRepository
-CustomerProductService --> ProductRepository
-EmployeeService --> EmployeeRepository
-EmployeeLoginService --> EmployeeRepository
-EmployeeOrderService --> OrderRepository
+OrderService --> OrderRepository
 ProductService --> ProductRepository
+EmployeeService --> EmployeeRepository
 ProductCategoryService --> ProductCategoryRepository
 
 CustomerRepository --> Customer
 OrderRepository --> Order
 ProductRepository --> Product
 EmployeeRepository --> Employee
-ProductCategoryRepository --> ProductCategory
+ProductCategoryRepository --> ProdCategory
 
 @enduml
 
