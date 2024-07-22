@@ -3,16 +3,5 @@ package aop{
         + aroundAdvice(joinPoint: ProceedingJoinPoint): Object
     }
 
-    class TransactionManagementAspect {
-        - transactionManager: PlatformTransactionManager
-        + aroundAdvice(joinPoint: ProceedingJoinPoint, transactional: Transactional): Object
-    }
-
-    class SecurityAspect {
-        + beforeAdvice(): void
-        - checkUserAccess(): boolean
-    }
-
-
  
 }

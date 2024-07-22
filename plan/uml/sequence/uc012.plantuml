@@ -1,0 +1,28 @@
+@startuml
+
+actor user
+participant ProductController as Controller
+participant FormProduct as Form
+participant ProductService as Service
+participant ProductHelper as Helper
+participant ProductRepository as Repository
+database DB
+
+
+user --> Controller++:input()
+user <-- Controller--:商品修正入力画面
+user --> Controller++:confirm()
+Controller --> Form++:商品情報セット
+Controller <-- Form--:FormProduct
+user <-- Controller--:商品修正確認画面
+user --> Controller++:complete()
+Controller --> Service++:(FormProduct)
+Service --> Helper++:convertToEntity(FormProduct)
+Service <-- Helper--:Product
+Service --> Repository++:productUpdate(Product)
+Repository --> DB++:update(Product)
+Repository <-- DB--:void
+Service <-- Repository--:void
+Controller <-- Service--:void
+user <-- Controller--:商品修正完了画面
+@enduml
