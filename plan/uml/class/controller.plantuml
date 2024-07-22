@@ -1,0 +1,36 @@
+package controller{
+    class ManagerAccountContoroller{
+        -FormEmployee: formEmployee
+        + empinput(): String
+        + empconfirm(): String
+        + empexecute(): String
+        + empcomplete(): String
+        
+    }
+    class NewItemRegistContoroller{
+    	- FormProduct:formProduct
+        + iteminput(): String
+        + itemconfirm(): String
+        + itemexecute(): String
+        + itemcomplete(): String
+    }
+    class ItemSearchContoroller{
+      
+        
+    }
+    class ItemRetouchContoroller{
+        -passwordEncoder: PasswordEncoder
+    }
+    class ItemDeleteContoroller{
+        -passwordEncoder: PasswordEncoder
+    }
+    class ItemCategoryRegistContoroller{
+        -passwordEncoder: PasswordEncoder
+    }
+    class ManagerAccountLoginContoroller{
+        -passwordEncoder: PasswordEncoder
+    }
+    class ManagerAccountLogoutContoroller{
+        -passwordEncoder: PasswordEncoder
+    }
+}
