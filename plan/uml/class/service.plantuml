@@ -24,6 +24,7 @@ package service{
 	class EmployeeService{
 		+ addEmployee(formEmployee:FormEmployee):void
 		+ employeeLogin(name:String,password:String):boolean
+		+ getEmployeeList():List<FormEmployee>
 	}
 	
 	class ProductCategoryService{

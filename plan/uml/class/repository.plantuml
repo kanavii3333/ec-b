@@ -26,6 +26,7 @@ package repository{
     class EmployeeRepository{
         +insert(emp:Employee):void
         +selectByIdAndPassword(id:Integer,password:String):Employee
+        +selectAllEmployee():List<Employee>
     }
 
     class ProductCategoryRepository{

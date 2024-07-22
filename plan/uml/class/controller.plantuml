@@ -1,37 +1,55 @@
 package controller{
     class ManagerAccountContoroller{
         -FormEmployee: formEmployee
-        + empinput(): String
-        + empconfirm(): String
-        + empexecute(): String
-        + empcomplete(): String
+        + empInput(): String
+        + empConfirm(): String
+        + empExecute(): String
+        + empComplete(): String
         
     }
     class NewItemRegistContoroller{
     	- FormProduct:formProduct
-        + iteminput(): String
-        + itemconfirm(): String
-        + itemexecute(): String
-        + itemcomplete(): String
+        + itemInput(): String
+        + itemConfirm(): String
+        + itemExecute(): String
+        + itemComplete(): String
     }
     class ItemSearchContoroller{
-    	-
+    	- FormOrder : formOrder
+    	+ itemSearchList():String
+    	
       
         
     }
     class ItemRetouchContoroller{
-        -passwordEncoder: PasswordEncoder
+        - FormOrder : formOrder
+        + itemRetouchInput():String
+        + itemRetouchConfirm():String
+        + itemRetouchExecute():String
+    	+ itemRetouchComplete():String
+        
     }
     class ItemDeleteContoroller{
-        -passwordEncoder: PasswordEncoder
+    	- FormOrder : formOrder
+        + itemDeleteConfirm():String
+        + itemDeleteExecute():String
+    	+ itemDeleteComplete():String
     }
     class ItemCategoryRegistContoroller{
-        -passwordEncoder: PasswordEncoder
+        - FormOrder : formOrder
+        + itemRegistInput():String
+        + itemRegistConfirm():String
+        + itemRegistExecute():String
+    	+ itemRegistComplete():String
     }
     class ManagerAccountLoginContoroller{
-        -passwordEncoder: PasswordEncoder
+        -FormEmployee: formEmployee
+        + managerAccountLogin():String
+        + menu():String
     }
     class ManagerAccountLogoutContoroller{
-        -passwordEncoder: PasswordEncoder
+        + managerAccountLogout():String
+        + managerAccountLogin():String
+        
     }
 }
