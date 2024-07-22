@@ -88,7 +88,7 @@ create table orders(
   amount_total integer not null,
   customer_id integer not null references customer(id),
   order_status_id integer not null references order_status(id),
-  payment_status_id integer not null references payment_method(id)
+  payment_method_id integer not null references payment_method(id)
 );
 
 -- 注文明細テーブル
