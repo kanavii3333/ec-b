@@ -1,0 +1,43 @@
+@startuml
+
+title カテゴリ別商品検索のシーケンス図
+actor "担当者" as user
+participant "Controller" as controller
+participant "Product\nService" as service
+participant "Form\nCategory" as form
+participant "Product\nConverter" as helper
+participant "ProductCategory\nRepository" as repository1
+participant "Product\nRepository" as repository2
+database "db" as db
+==入力==
+user -> controller++:form()
+controller -> service++:getEmployeeList()
+service -> repository1++:selectAll()
+repository1 -> db++:select
+db -> repository1--:List<ProductCategory>
+repository1 -> service--:List<ProductCategory>
+service -> helper++:convertToForm(ProductCategory)
+service <- helper--:FormProductCategory
+service -> controller--:List<FormProductCategory>
+controller -> controller:Modelにセット\n(プルダウン用)
+controller -> user--:カテゴリ別商品検索入力画面
+== 確認 ==
+user -> controller++:confirm()
+controller -> form++:カテゴリ情報セット
+form -> controller--:FormCategory
+controller -> user--:カテゴリ別商品検索確認画面
+== 完了 ==
+user -> controller++:execute()
+controller -> service++:getProductListByCategoryId(Integer)
+service -> repository2++:+selectByCategoryId(Integer)
+repository2 -> db++:select
+db -> repository2--:List<Product>
+repository2 -> service--:List<Product>
+service -> helper++:convertToForm(Product)
+service <- helper--:FormProduct
+service -> controller--:List<FormProduct>
+controller -> controller:Modelにセット
+controller -> user--:カテゴリ別商品検索完了画面
+
+
+@enduml
