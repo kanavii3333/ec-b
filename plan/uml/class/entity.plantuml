@@ -79,4 +79,12 @@ package entity{
     }
 }
 
+Customer <--> Order
+Order --> OrderStatus
+Order --> OrderDetail
+Order --> Product
+Product --> ProdStock
+Product --> ProdCategory
+Employee --> EmpAccount
+Employee --> Department
 @enduml
