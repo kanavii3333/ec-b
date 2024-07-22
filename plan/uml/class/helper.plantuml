@@ -1,0 +1,27 @@
+@startuml
+
+hide empty members
+left to right direction
+
+package form{
+    class CustmerConverter{
+        +convertToForm():FormCustmer
+        +convertToEntity():Custmer
+    }
+
+    class OrderConverter{
+        +convertToForm():FormOrder
+        +convertToEntity():Order
+    }
+
+    class ProductConverter{
+        +convertToForm():FormProduct
+        +convertToEntity():Product
+    }
+
+    class EmployeeConverter{
+        +convertToForm():FormEmployee
+        +convertToEntity():Employee
+    }
+}
+@enduml
