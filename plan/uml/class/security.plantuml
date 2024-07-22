@@ -6,7 +6,5 @@ package security{
 			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
 		}
 	
-	
-		
 }
 @enduml
