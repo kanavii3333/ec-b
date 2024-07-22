@@ -29,5 +29,10 @@ user -> controller++:execute()
 controller -> service:addAccount(FormEmployee)
 service -> helper:FormからEntityの変換
 helper -> service:Employee
-
+service -> repository:insert(Employee)
+repository -> db:SQL(INSERT)
+db -> repository:void
+repository -> service:void
+service -> controller:void
+controller -> user
 @enduml
