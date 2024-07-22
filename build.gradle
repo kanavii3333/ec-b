@@ -24,8 +24,42 @@ repositories {
 }
 
 dependencies {
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-config'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	
+	//varidation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	runtimeOnly 'org.hibernate.validator:hibernate-validator'
+
+	//web
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// spring-boot
 	implementation 'org.springframework.boot:spring-boot-starter'
+	
+	//lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	// aop
+	implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+	// mybatix psql
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+
+
+	//spring-boot-test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
