@@ -1,9 +1,9 @@
 @startuml
-
+title repository層のクラス図
 hide empty members
 left to right direction
 
-package form{
+package repository{
     class CustmerRepository{
         +insert(custmer:Custmer):void
         +selectByIdAndPassword(id:Integer,password:String):Custmer
