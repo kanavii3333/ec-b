@@ -5,23 +5,23 @@ left to right direction
 
 package helper{
     class CustomerConverter{
-        +convertToForm():FormCustomer
-        +convertToEntity():Customer
+        +convertToForm(customer:Customer):FormCustomer
+        +convertToEntity(formCustomer:FormCustomer):Customer
     }
 
     class OrderConverter{
-        +convertToForm():FormOrder
-        +convertToEntity():Order
+        +convertToForm(order:Order):FormOrder
+        +convertToEntity(formOrder:FormOrder):Order
     }
 
     class ProductConverter{
-        +convertToForm():FormProduct
-        +convertToEntity():Product
+        +convertToForm(product:Product):FormProduct
+        +convertToEntity(formProduct:FormProduct):Product
     }
 
     class EmployeeConverter{
-        +convertToForm():FormEmployee
-        +convertToEntity():Employee
+        +convertToForm(employee:Employee):FormEmployee
+        +convertToEntity(formEmployee:FormEmployee):Employee
     }
 }
 @enduml
