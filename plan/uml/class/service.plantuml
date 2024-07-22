@@ -30,6 +30,7 @@ package service{
 	
 	class ProductCategoryService{
 		+ addCategory(formCartegory:FormCategory):void
+		+ selectAll():List<FormCategory>
 	}	
 }
 @enduml
