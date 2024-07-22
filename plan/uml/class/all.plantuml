@@ -1,5 +1,5 @@
 @startuml
-
+title 全体クラス図
 hide empty members
 left to right direction
 
@@ -122,13 +122,42 @@ package service{
     class ProductService{
     }
 
-
     class EmployeeService{
     }
     
     class ProductCategoryService{
     }
 }
+
+package controller{
+    class ManagerAccountContoroller{
+    }
+    class NewItemRegistContoroller{
+    }
+    class ItemSearchContoroller{
+    }
+    class ItemSearchContoroller{
+    }
+    class ItemRetouchContoroller{
+    }
+    class ItemDeleteContoroller{
+    }
+    class ItemCategoryRegistContoroller{
+    }
+    class ManagerAccountLoginContoroller{
+    }
+    class ManagerAccountLogoutContoroller{
+    }
+}
+
+package aop{
+   class LoggingAroundAdvice {
+   }
+}
+
+package config{
+    class Config{
+    }
 
 CustomerService --> CustomerConverter
 OrderService --> OrderConverter
