@@ -1,4 +1,4 @@
-title セキュリティパッケージのクラス図
+title セキュリティ層のクラス図
 package security{
 
 		class securityConfig{
