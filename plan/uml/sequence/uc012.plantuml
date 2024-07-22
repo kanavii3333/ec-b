@@ -5,7 +5,7 @@ participant ProductController as Controller
 participant FormProduct as Form
 participant ProductService as Service
 participant ProductHelper as Helper
-participant ProductRepository as Repository
+participant ProductCategoryRepository as Repository
 database DB
 
 
@@ -22,8 +22,8 @@ user -> Controller++:execute()
 Controller -> Service++:(FormProduct)
 Service -> Helper++:convertToEntity(FormProduct)
 Service <-- Helper--:Product
-Service -> Repository++:productUpdate(Product)
-Repository -> DB++:update(Product)
+Service -> Repository++:insert(Product)
+Repository -> DB++:insert(Product)
 Repository <-- DB--:void
 Service <-- Repository--:void
 Controller <-- Service--:void
