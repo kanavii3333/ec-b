@@ -1,0 +1,82 @@
+@startuml
+
+hide empty members
+left to right direction
+
+package entity{
+    class Customer{
+        -custmerId: Integer
+        -custmerName: String
+        -custmerNameKana: String
+        -custmerAddress1: String
+        -custmerAddress2: String
+        -custmerPhoneNumber: String
+        -custmerUserName: String
+        -custmerPassword: String
+        -custmerRegisterDate: String
+        -orderList: List<Order>
+    }
+
+    class Order{
+        -orderId: Integer
+        -orderDate: String
+        -amountTotal: Integer
+        -orderDetail: OrderDetail
+        -orderStatus: OrderStatus
+        -payMethod: PayMethod
+        -custmer: Customer
+    }
+
+    class OrderDetail{
+        -orderDetailId: Integer
+        -count: Integer
+        -product: Product
+        -customer: Customer
+    }
+
+    class OrderStatus{
+        orderStatusId: Integer
+        orderStatusName: String
+    }
+
+    class Product{
+        -prodId: Integer
+        -prodName: String
+        -price: Integer
+        -imageUrl: String
+        -prodCategory: ProdCategory
+        -prodStock: ProdStock
+    }
+
+    class ProdCategory{
+        -prodCategoryId: Integer
+        -prodCategoryName: String
+        -prodList: List<Product>
+    }
+
+    class ProdStock{
+        -prodStockId: Integer
+        -quantity: Integer
+    }
+
+    class Employee{
+        -empId: Integer
+        -empName: String
+        -empNameKana: String
+        -department: Department
+        -empAccount: EmpAccount
+    }
+
+    class Department{
+        -deptId: Integer
+        -deptName: String
+    }
+
+    class EmpAccount{
+        -empAccountId: Integer
+        -empAccountName: String
+        -password: String
+    }
+}
+
+@enduml
