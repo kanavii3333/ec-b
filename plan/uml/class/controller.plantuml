@@ -1,5 +1,5 @@
 package controller{
-    class ManagerAccountContoroller{
+    class AddAccountController{
         -FormEmployee: formEmployee
         + empInput(): String
         + empConfirm(): String
@@ -7,47 +7,47 @@ package controller{
         + empComplete(): String
         
     }
-    class NewItemRegistContoroller{
+    class ProductRegistController{
     	- FormProduct:formProduct
-        + itemInput(): String
-        + itemConfirm(): String
-        + itemExecute(): String
-        + itemComplete(): String
+        + productInput(): String
+        + productConfirm(): String
+        + productExecute(): String
+        + productComplete(): String
     }
-    class ItemSearchContoroller{
+    class ProductSearchController{
     	- FormOrder : formOrder
-    	+ itemSearchList():String
+    	+ productSearchList():String
     	
       
         
     }
-    class ItemRetouchContoroller{
+    class ProductUpdateController{
         - FormOrder : formOrder
-        + itemRetouchInput():String
-        + itemRetouchConfirm():String
-        + itemRetouchExecute():String
-    	+ itemRetouchComplete():String
+        + productUpdateInput():String
+        + productUpdateConfirm():String
+        + productUpdateExecute():String
+    	+ productUpdateComplete():String
         
     }
-    class ItemDeleteContoroller{
+    class ProductDeleteController{
     	- FormOrder : formOrder
-        + itemDeleteConfirm():String
-        + itemDeleteExecute():String
-    	+ itemDeleteComplete():String
+        + productDeleteConfirm():String
+        + productDeleteExecute():String
+    	+ productDeleteComplete():String
     }
-    class ItemCategoryRegistContoroller{
+    class ProductCategoryRegistController{
         - FormOrder : formOrder
-        + itemRegistInput():String
-        + itemRegistConfirm():String
-        + itemRegistExecute():String
-    	+ itemRegistComplete():String
+        + productRegistInput():String
+        + productRegistConfirm():String
+        + productRegistExecute():String
+    	+ productRegistComplete():String
     }
-    class ManagerAccountLoginContoroller{
+    class ManagerAccountLoginController{
         -FormEmployee: formEmployee
         + managerAccountLogin():String
         + menu():String
     }
-    class ManagerAccountLogoutContoroller{
+    class ManagerAccountLogoutController{
         + managerAccountLogout():String
         + managerAccountLogin():String
         
