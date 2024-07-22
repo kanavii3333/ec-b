@@ -3,11 +3,13 @@
 title UC009(担当者アカウント登録機能)のシーケンス図
 actor "担当者" as user
 participant "Controller" as controller
-participant "Department\nService" as service
-participant "ConnectManager" as manager
-participant "Department\nDao" as dao
+participant "Form" as form
+participant "Helper" as helper
+participant "Employee\nService" as service
+participant "EmployeeRepository" as reposotory
 database "db" as db
-user -> controller++:
-
+user -> controller++:form()
+controller -> service:getEmployee
+service --> helper 
 
 @enduml
