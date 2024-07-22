@@ -8,6 +8,7 @@ participant "FormEmployee" as form
 participant "EmployeeConverter" as helper
 participant "EmployeeRepository" as repository
 database "db" as db
+ == 入力 ==
 user -> controller++:form()
 controller -> service++:getEmployeeList()
 service -> repository++:selectAllEmployee()
@@ -26,13 +27,16 @@ controller -> controller:バリデート
 controller -> user--:確認画面
  == 完了 ==
 user -> controller++:execute()
-controller -> service:addAccount(FormEmployee)
-service -> helper:FormからEntityの変換
-helper -> service:Employee
-service -> repository:insert(Employee)
-repository -> db:SQL(INSERT)
-db -> repository:void
-repository -> service:void
-service -> controller:void
-controller -> user
+controller -> service++:addAccount(FormEmployee)
+service -> helper++:FormからEntityの変換
+helper -> service--:Employee
+service -> repository++:insert(Employee)
+repository -> db++:SQL(INSERT)
+db -> repository--:void
+repository -> service--:void
+service -> controller--:void
+controller -> user--:リダイレクト
+user -> controller++:complete()
+controller -> controller:セッション破棄
+controller -> user--:完了画面
 @enduml
