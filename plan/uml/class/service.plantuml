@@ -2,7 +2,7 @@
 title サービス層のクラス図
 package service{
 	package front{
-		class CustmerService{
+		class CustomerService{
 			+ addCustomer(formCustomer:FormCustomer):void
 		}
 		
@@ -16,7 +16,7 @@ package service{
 			+ getOrderList(customerId:int):List<FormOrder>
 		}
 		
-		class GetProductListByCategoryService{
+		class ProductService{
 			+ getProductListByCategoryId(categoryId:int):List<FormProduct>
 		}
 	}

@@ -1,2 +1,156 @@
 @startuml
+
+hide empty members
+left to right direction
+
+package entity{
+    class Customer{
+    }
+
+    class Order{
+    }
+
+    class OrderDetail{
+    }
+
+    class OrderStatus{
+    }
+
+    class Product{
+    }
+
+    class ProdCategory{
+    }
+
+    class ProdStock{
+    }
+
+    class Employee{
+    }
+
+    class Department{
+    }
+
+    class EmpAccount{
+    }
+}
+
+Customer <--> Order
+Order --> OrderStatus
+Order --> OrderDetail
+Order --> Product
+Product --> ProdStock
+Product --> ProdCategory
+Employee --> EmpAccount
+Employee --> Department
+
+package form{
+    class FormCustomer{
+    }
+
+    class FormOrder{
+    }
+
+    class FormProduct{
+    }
+
+    class FormEmployee{
+    }
+}
+
+package helper{
+    class CustomerConverter{
+    }
+
+    class OrderConverter{
+    }
+
+    class ProductConverter{
+    }
+
+    class EmployeeConverter{
+    }
+}
+CustomerConverter --> Customer
+CustomerConverter --> FormCustomer
+OrderConverter --> Order
+OrderConverter --> FormOrder
+ProductConverter --> Product
+ProductConverter --> FormProduct
+EmployeeConverter --> Employee
+EmployeeConverter --> FormEmployee
+
+package repository{
+    class CustomerRepository{
+    }
+
+    class OrderRepository{
+    }
+
+    class ProductRepository{
+    }
+
+    class EmployeeRepository{
+    }
+
+    class ProductCategoryRepository{
+    }
+
+    class OrderDetailRepository{
+    }
+}
+
+package service{
+	package front{
+		class CustomerService{
+		}
+		
+		class CustomerLoginService{
+		}
+		
+		class CustomerOrderService{
+		}
+		
+		class CustomerProductService{
+		}
+	}
+	
+	package back{
+		class EmployeeService{
+		}
+		
+		class EmployeeLoginService{
+		}
+		
+		class EmployeeOrderService{
+		}
+		
+		class ProductService{
+		}
+		
+		class ProductCategoryService{
+		}
+	}	
+}
+
+CustomerService --> CustomerRepository
+CustomerLoginService --> CustomerRepository
+CustomerOrderService --> OrderRepository
+CustomerProductService --> ProductRepository
+EmployeeService --> EmployeeRepository
+EmployeeLoginService --> EmployeeRepository
+EmployeeOrderService --> OrderRepository
+ProductService --> ProductRepository
+ProductCategoryService --> ProductCategoryRepository
+
+CustomerRepository --> Customer
+OrderRepository --> Order
+ProductRepository --> Product
+EmployeeRepository --> Employee
+ProductCategoryRepository --> ProductCategory
+
 @enduml
+
+
+
+

@@ -1,12 +1,12 @@
 @startuml
-
+title helper層のクラス図
 hide empty members
 left to right direction
 
-package form{
-    class CustmerConverter{
-        +convertToForm():FormCustmer
-        +convertToEntity():Custmer
+package helper{
+    class CustomerConverter{
+        +convertToForm():FormCustomer
+        +convertToEntity():Customer
     }
 
     class OrderConverter{

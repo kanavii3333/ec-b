@@ -1,19 +1,19 @@
 @startuml
-
+title form層のクラス図
 hide empty members
 left to right direction
 
 package form{
     class FormCustomer{
-        -custmerId: Integer
-        -custmerName: String
-        -custmerNameKana String
-        -custmerAddress1: String
-        -custmerAddress2: String
-        -custmerPhoneNumber: String
-        -custmerUserName: String
-        -custmerPassword: String
-        -custmerRegisterDate: String
+        -customerId: Integer
+        -customerName: String
+        -customerNameKana String
+        -customerAddress1: String
+        -customerAddress2: String
+        -customerPhoneNumber: String
+        -customerUserName: String
+        -customerPassword: String
+        -customerRegisterDate: String
         -orderList: List<Order>
     }
 
@@ -24,7 +24,7 @@ package form{
         -count: Integer
         -orderStatus: String
         -payMethod: String
-        -custmerName: String
+        -customerName: String
     }
 
     class FormProduct{
