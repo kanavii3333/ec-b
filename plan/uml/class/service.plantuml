@@ -15,6 +15,7 @@ package service{
 	}
 	
 	class ProductService{
+		+ addProduct(formProduct:FormProduct):void
 		+ getProductListByCategoryId(categoryId:int):List<FormProduct>
 		+ productUpdate(formProduct:FormProduct):void
 		+ deleteProduct(productId:int):void
@@ -22,7 +23,7 @@ package service{
 
 
 	class EmployeeService{
-		+ addEmployee(formEmployee:FormEmployee):void
+		+ addAccount(Employee:FormEmployee):void
 		+ employeeLogin(name:String,password:String):boolean
 		+ getEmployeeList():List<FormEmployee>
 	}
