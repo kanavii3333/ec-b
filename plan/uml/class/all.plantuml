@@ -164,7 +164,7 @@ package controller{
     }
     class AccountLoginContoroller{
     }
-    class AccountLogoutContoroller{
+    class  AccountLogoutContoroller{
     }
 }
 
