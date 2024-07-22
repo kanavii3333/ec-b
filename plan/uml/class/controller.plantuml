@@ -44,12 +44,12 @@ package controller{
     }
     class AccountLoginController{
         -FormEmployee: formEmployee
-        + accountLogin():String
+        + login():String
         + menu():String
     }
     class AccountLogoutController{
-        + accountLogout():String
-        + accountLogin():String
+        + logout():String
+        + login():String
         
     }
 }
