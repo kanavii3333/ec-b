@@ -1,55 +1,55 @@
 package controller{
     class AddAccountController{
         -FormEmployee: formEmployee
-        + empInput(): String
-        + empConfirm(): String
-        + empExecute(): String
-        + empComplete(): String
+        + input():String
+        + confirm():String
+        + execute():String
+    	+ complete():String
         
     }
-    class ProductRegistController{
+    class RegisterProductController{
     	- FormProduct:formProduct
-        + productInput(): String
-        + productConfirm(): String
-        + productExecute(): String
-        + productComplete(): String
+        + input():String
+        + confirm():String
+        + execute():String
+    	+ complete():String
     }
-    class ProductSearchController{
+    class SearchProductController{
     	- FormOrder : formOrder
-    	+ productSearchList():String
+    	+ searchList():String
     	
       
         
     }
-    class ProductUpdateController{
+    class UpdateProductController{
         - FormOrder : formOrder
-        + productUpdateInput():String
-        + productUpdateConfirm():String
-        + productUpdateExecute():String
-    	+ productUpdateComplete():String
+     	+ input():String
+        + confirm():String
+        + execute():String
+    	+ complete():String
         
     }
-    class ProductDeleteController{
+    class DeleteProductController{
     	- FormOrder : formOrder
-        + productDeleteConfirm():String
-        + productDeleteExecute():String
-    	+ productDeleteComplete():String
+        + confirm():String
+        + execute():String
+    	+ complete():String
     }
-    class ProductCategoryRegistController{
+    class RegisterProductCategoryController{
         - FormOrder : formOrder
-        + productRegistInput():String
-        + productRegistConfirm():String
-        + productRegistExecute():String
-    	+ productRegistComplete():String
+        + input():String
+        + confirm():String
+        + execute():String
+    	+ complete():String
     }
-    class ManagerAccountLoginController{
+    class AccountLoginController{
         -FormEmployee: formEmployee
-        + managerAccountLogin():String
+        + login():String
         + menu():String
     }
-    class ManagerAccountLogoutController{
-        + managerAccountLogout():String
-        + managerAccountLogin():String
+    class AccountLogoutController{
+        + logout():String
+        + login():String
         
     }
 }
