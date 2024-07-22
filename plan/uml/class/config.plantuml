@@ -1,14 +1,8 @@
-@startuml
-
-!theme plain
-hide empty members
-left to right direction
-
-package config {
+package config{
+    class Config{
+        -passwordEncoder: PasswordEncoder
+  
+    }
 
  
-    class Config {
-      +
-   }
-
-@enduml
+}

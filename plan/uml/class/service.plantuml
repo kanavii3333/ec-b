@@ -17,28 +17,32 @@ package service{
 		}
 		
 		class GetProductListByCategoryService{
-			+ getProductListByCategory():List<FormProduct>
+			+ getProductListByCategoryId(categoryId:int):List<FormProduct>
 		}
 	}
+	
 	package back{
 		class EmployeeService{
-
+			+ addEmployee(formEmployee:FormEmployee):void
 		}
 		
 		class EmployeeLoginService{
-	
+			+ employeeLogin(name:String,password:String):boolean
 		}
 		
 		class EmployeeOrderService{
-	
+			+ getOrderList(orderDate:String,customerId:int):List<FormOrder>
+			+ OrderStatusUpdate(orderStatusId:int):void
 		}
 		
 		class ProductService{
-	
+			+ getProductListByCategoryId(categoryId:int):List<FormProduct>
+			+ productUpdate(formProduct:FormProduct):void
+			+ deleteProduct(productId:int):void
 		}
 		
 		class ProductCategoryService{
-	
+			+ addCategory(formCartegory:FormCategory):void
 		}
 	}
 	
