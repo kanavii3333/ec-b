@@ -1,0 +1,19 @@
+@startuml
+title 商品削除
+actor user
+participant AccountLoginController as Controller
+participant EmployeeService as Service
+participant EmployeeRepository as Repository
+database DB
+
+
+user -> Controller++:login()
+Controller -> Service++:a()
+Service -> Repository++:b()
+Repository -> DB++:SQL(SELECT)
+Repository <- DB:Employee
+Service <- Repository:Employee
+Controller <- Service:boolean
+user <-- Controller--:商品カテゴリ登
+
+@enduml

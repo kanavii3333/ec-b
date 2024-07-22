@@ -154,8 +154,6 @@ package controller{
     }
     class SearchProductContoroller{
     }
-    class SearchProductContoroller{
-    }
     class UpdateProductContoroller{
     }
     class DeleteProductContoroller{
@@ -164,7 +162,7 @@ package controller{
     }
     class AccountLoginContoroller{
     }
-    class  AccountLogoutContoroller{
+    class AccountLogoutContoroller{
     }
 }
 
