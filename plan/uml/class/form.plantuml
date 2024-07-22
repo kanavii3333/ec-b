@@ -1,0 +1,42 @@
+package form{
+    class FormCustomer{
+        -custmerId: Integer
+        -custmerName: String
+        -custmerNameKana String
+        -custmerAddress1: String
+        -custmerAddress2: String
+        -custmerPhoneNumber: String
+        -custmerUserName: String
+        -custmerPassword: String
+        -custmerRegisterDate: String
+        -orderList: List<Order>
+    }
+
+    class FormOrder{
+        -orderId: Integer
+        -orderDate: String
+        -amountTotal: Integer
+        -count: Integer
+        -orderStatus: String
+        -payMethod: String
+        -custmerId: Integer
+    }
+
+    class FormProduct{
+        -prodId: Integer
+        -prodName: String
+        -price: Integer
+        -imageUrl: String
+        -categoryName: String
+        -quantity: Integer
+    }
+
+    class FormEmployee{
+        -empId: Integer
+        -empName: String
+        -empNameKana: String
+        -departmentName: String
+        -empAccountId: String
+        -empAccountPassword: String
+    }
+}
