@@ -1,0 +1,20 @@
+@startuml
+
+actor user
+participant ProductController as Controller
+participant ProductService as Service
+participant ProductHelper as Helper
+participant ProductRepository as Repository
+database DB
+
+user --> Controller++:post
+Controller --> Service++
+Service --> Helper++:convertToEntity(FormProduct)
+Service <-- Helper--:Product
+Service --> Repository++:productUpdate(Product)
+Repository --> DB++:update(Product)
+Repository <-- DB--:void
+Service <-- Repository--:void
+Controller <-- Service--:void
+user <-- Controller--:完了画面
+@enduml
