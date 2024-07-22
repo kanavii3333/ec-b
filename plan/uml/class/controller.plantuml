@@ -1,37 +1,55 @@
 package controller{
-    class ManagerAccountContoroller{
+    class AddAccountController{
         -FormEmployee: formEmployee
-        + empinput(): String
-        + empconfirm(): String
-        + empexecute(): String
-        + empcomplete(): String
+        + empInput(): String
+        + empConfirm(): String
+        + empExecute(): String
+        + empComplete(): String
         
     }
-    class NewItemRegistContoroller{
+    class ProductRegistController{
     	- FormProduct:formProduct
-        + iteminput(): String
-        + itemconfirm(): String
-        + itemexecute(): String
-        + itemcomplete(): String
+        + productInput(): String
+        + productConfirm(): String
+        + productExecute(): String
+        + productComplete(): String
     }
-    class ItemSearchContoroller{
-    	-
+    class ProductSearchController{
+    	- FormOrder : formOrder
+    	+ productSearchList():String
+    	
       
         
     }
-    class ItemRetouchContoroller{
-        -passwordEncoder: PasswordEncoder
+    class ProductUpdateController{
+        - FormOrder : formOrder
+        + productUpdateInput():String
+        + productUpdateConfirm():String
+        + productUpdateExecute():String
+    	+ productUpdateComplete():String
+        
     }
-    class ItemDeleteContoroller{
-        -passwordEncoder: PasswordEncoder
+    class ProductDeleteController{
+    	- FormOrder : formOrder
+        + productDeleteConfirm():String
+        + productDeleteExecute():String
+    	+ productDeleteComplete():String
     }
-    class ItemCategoryRegistContoroller{
-        -passwordEncoder: PasswordEncoder
+    class ProductCategoryRegistController{
+        - FormOrder : formOrder
+        + productRegistInput():String
+        + productRegistConfirm():String
+        + productRegistExecute():String
+    	+ productRegistComplete():String
     }
-    class ManagerAccountLoginContoroller{
-        -passwordEncoder: PasswordEncoder
+    class ManagerAccountLoginController{
+        -FormEmployee: formEmployee
+        + managerAccountLogin():String
+        + menu():String
     }
-    class ManagerAccountLogoutContoroller{
-        -passwordEncoder: PasswordEncoder
+    class ManagerAccountLogoutController{
+        + managerAccountLogout():String
+        + managerAccountLogin():String
+        
     }
 }
