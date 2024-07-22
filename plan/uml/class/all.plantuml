@@ -129,36 +129,6 @@ package service{
     }
 }
 
-package controller{
-    class ManagerAccountContoroller{
-    }
-    class NewItemRegistContoroller{
-    }
-    class ItemSearchContoroller{
-    }
-    class ItemSearchContoroller{
-    }
-    class ItemRetouchContoroller{
-    }
-    class ItemDeleteContoroller{
-    }
-    class ItemCategoryRegistContoroller{
-    }
-    class ManagerAccountLoginContoroller{
-    }
-    class ManagerAccountLogoutContoroller{
-    }
-}
-
-package aop{
-   class LoggingAroundAdvice {
-   }
-}
-
-package config{
-    class Config{
-    }
-
 CustomerService --> CustomerConverter
 OrderService --> OrderConverter
 ProductService --> ProductConverter
@@ -176,6 +146,39 @@ ProductRepository --> Product
 EmployeeRepository --> Employee
 ProductCategoryRepository --> ProdCategory
 
+
+package controller{
+    class AddAccountContoroller{
+    }
+    class RegisterProductContoroller{
+    }
+    class SearchProductContoroller{
+    }
+    class SearchProductContoroller{
+    }
+    class UpdateProductContoroller{
+    }
+    class DeleteProductContoroller{
+    }
+    class RegisterProductCategoryContoroller{
+    }
+    class AccountLoginContoroller{
+    }
+    class AccountLogoutContoroller{
+    }
+}
+
+package aop{
+   class LoggingAroundAdvice {
+   }
+}
+
+package config{
+    class Config{
+    }
+    class WebMvcConfig implements WebMvcConfigurer {
+    }
+}
 @enduml
 
 
