@@ -20,5 +20,9 @@ package helper{
     class EmployeeConverter{
         +convertFormEmployeeRegisterToEmployee(formEmployeeRegister:FormEmployeeRegister):Employee
     }
+    
+    class ImageUploadHelper{
+    	+uploadFile(filename:String,imageByte:byte[]):String
+    }
 }
 @enduml
