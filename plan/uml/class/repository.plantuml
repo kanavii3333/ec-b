@@ -35,7 +35,7 @@ package repository{
     }
 
     class OrderDetailRepository{
-        +update(orderDetaolStatus:String):void
+        +update(orderDetailStatus:String):void
     }
 }
 @enduml
