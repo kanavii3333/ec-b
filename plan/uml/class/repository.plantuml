@@ -11,9 +11,7 @@ package repository{
 
     class OrderRepository{
         +insert(order:Order):void
-        +delete(orderId:Integer):void
-        +update(order:Order):void
-        +selectByDateOrUserName(date:String,uerName:String)
+        +selectByDateOrUserName(date:String,userName:String)
     }
 
     class ProductRepository{
