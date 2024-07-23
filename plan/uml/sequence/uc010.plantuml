@@ -8,16 +8,16 @@ participant ProductHelper as Helper
 participant ProductRepository as Repository
 database DB
 
-
+==入力==
 user -> Controller++:input()
 user <-- Controller--:商品登録入力画面
-==入力==
+==確認==
 user -> Controller++:confirm()
 Controller -> Form++:商品情報セット
 Controller <-- Form--:FormProduct
 Controller -> Controller:バリデート
 user <-- Controller--:商品登録確認画面
-==確認==
+==完了==
 user -> Controller++:execute()
 Controller -> Service++:addProduct(formProduct:FormProduct)
 Service -> Helper++:convertToEntity(FormProduct)
@@ -31,5 +31,5 @@ user <-- Controller--:リダイレクト
 user --> Controller++:complete()
 Controller -> Controller:セッション破棄
 user <-- Controller--:商品登録完了画面
-==完了==
+
 @enduml
