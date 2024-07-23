@@ -24,7 +24,7 @@ package repository{
     }
 
     class EmployeeRepository{
-        +insert(emp:Employee):void
+        +insert(emp:EmployeeAccount):void
         +selectByIdAndPassword(id:Integer,password:String):Employee
         +selectAllEmployee():List<Employee>
     }
@@ -35,7 +35,7 @@ package repository{
     }
 
     class OrderDetailRepository{
-        +update(orderDetailStatus:String):void
+        +update(orderId:Integer, orderDetailStatus:String):void
     }
 }
 @enduml
