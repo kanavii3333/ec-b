@@ -21,9 +21,7 @@ service <- helper--:FormProductCategory
 service -> controller--:List<FormProductCategory>
 controller -> controller:Modelにセット\n(プルダウン用)
 controller -> user--:カテゴリ別商品検索入力画面
-== 確認 ==
-user -> controller++:confirm()
-controller -> user--:カテゴリ別商品検索確認画面
+
 == 完了 ==
 user -> controller++:execute()
 controller -> service++:getProductListByCategoryId(Integer)
