@@ -15,6 +15,9 @@ package entity{
 
     class OrderStatus{
     }
+    
+    class PayMethod{
+    }
 
     class Product{
     }
@@ -38,7 +41,7 @@ package entity{
 Customer <--> Order
 Order --> OrderStatus
 Order --> OrderDetail
-Order --> Product
+Order --> PayMethod
 Product --> ProdStock
 Product --> ProdCategory
 Employee --> EmpAccount
@@ -81,6 +84,9 @@ package helper{
     }
 
     class EmployeeConverter{
+    }
+    
+    class ImageUploadHelper{
     }
 }
 CustomerConverter --> Customer
@@ -132,50 +138,44 @@ package service{
 CustomerService --> CustomerConverter
 OrderService --> OrderConverter
 ProductService --> ProductConverter
+ProductService --> ImageUploadHelper
 EmployeeService --> EmployeeConverter
 
 CustomerService --> CustomerRepository
 OrderService --> OrderRepository
+OrderService --> OrderDetailRepository
 ProductService --> ProductRepository
 EmployeeService --> EmployeeRepository
 ProductCategoryService --> ProductCategoryRepository
 
 CustomerRepository --> Customer
 OrderRepository --> Order
+OrderDetailRepository --> OrderDetail
 ProductRepository --> Product
 EmployeeRepository --> Employee
 ProductCategoryRepository --> ProdCategory
 
 
 package controller{
-    class AddAccountController{
+    class AddAccountContoroller{
     }
-    class RegisterProductController{
+    class RegisterProductContoroller{
     }
-    class SearchProductController{
+    class SearchProductContoroller{
     }
-    class UpdateProductController{
+    class SearchProductContoroller{
     }
-    class DeleteProductController{
+    class UpdateProductContoroller{
     }
-    class RegisterProductCategoryController{
+    class DeleteProductContoroller{
     }
-    class AccountLoginController{
+    class RegisterProductCategoryContoroller{
     }
-    class AccountLogoutController{
+    class AccountLoginContoroller{
+    }
+    class  AccountLogoutContoroller{
     }
 }
-AddAccountController --> EmployeeService
-RegisterProductController --> FormProduct
-RegisterProductController --> ProductService
-SearchProductController -->	ProductService
-SearchProductController --> FromCategory
-UpdateProductController --> FormProduct
-UpdateProductController --> ProductService
-DeleteProductController --> ProductService
-RegisterProductCategoryController --> FormProduct
-RegisterProductCategoryController --> ProductCategory
-AccountLoginController --> EmployeeService
 
 package aop{
    class LoggingAroundAdvice {
@@ -187,11 +187,6 @@ package config{
     }
     class WebMvcConfig implements WebMvcConfigurer {
     }
-}
-
-package security{
-   class securityConfig{
-   }
 }
 @enduml
 

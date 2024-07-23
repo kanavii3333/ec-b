@@ -4,16 +4,14 @@ hide empty members
 left to right direction
 
 package repository{
-    class CustmerRepository{
+    class CustomerRepository{
         +insert(customer:Customer):void
-        +selectByIdAndPassword(id:Integer,password:String):Customer
+        +selectByIdAndPassword(mailAddress:MailAddress,password:String):Customer
     }
 
     class OrderRepository{
         +insert(order:Order):void
-        +delete(orderId:Integer):void
-        +update(order:Order):void
-        +selectByDateOrUserName(date:String,uerName:String)
+        +selectByDateOrUserName(date:String,userName:String)
     }
 
     class ProductRepository{
