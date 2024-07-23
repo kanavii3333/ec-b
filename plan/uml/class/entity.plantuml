@@ -24,7 +24,7 @@ package entity{
         -orderDetail: OrderDetail
         -orderStatus: OrderStatus
         -payMethod: PayMethod
-        -customerId: Integer
+        -customerIdId: IntegerId
     }
 
     class OrderDetail{
