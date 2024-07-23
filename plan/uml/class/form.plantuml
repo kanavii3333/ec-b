@@ -15,6 +15,7 @@ package form{
         -customerAddress1: String
         -customerAddress2: String
         -customerPhoneNumber: String
+        -customerMailAdress:String
         -customerUserName: String
         -customerPassword: String
         -customerRegisterDate: String
