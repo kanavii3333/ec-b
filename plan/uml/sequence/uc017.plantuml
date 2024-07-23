@@ -3,12 +3,18 @@ title 担当者アカウントログイン
 actor user
 participant AccountLoginController as Controller
 participant EmployeeService as Service
+participant FormEmployeeLogin as Form
+participant EmployeeHelper as Helper
 participant EmployeeRepository as Repository
 database DB
 
-user -> user:アカウント名\nパスワード入力
+user -> Controller++:form()
+user <-- Controller--:ログイン画面
 user -> Controller++:login()
 Controller -> Service++:employeeLogin\n(String name,String password)
+Service -> Form++:new
+Service <-- Form--:FormEmployeeLogin
+Service -> Service:バリデート
 Service -> Repository++:selectByIdAndPassword\n(Integer id,String password)
 Repository -> DB++:SQL(SELECT)
 Repository <-- DB:Employee
