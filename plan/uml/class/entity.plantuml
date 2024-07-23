@@ -15,7 +15,6 @@ package entity{
         -customerUserName: String
         -customerPassword: String
         -customerRegisterDate: String
-        -orderList: List<Order>
     }
 
     class Order{
@@ -52,7 +51,6 @@ package entity{
     class ProdCategory{
         -prodCategoryId: Integer
         -prodCategoryName: String
-        -prodList: List<Product>
     }
 
     class ProdStock{
@@ -74,6 +72,7 @@ package entity{
     }
 
     class EmpAccount{
+    	-empId: Integer
         -empAccountId: Integer
         -empAccountName: String
         -password: String
