@@ -30,12 +30,12 @@ package repository{
     }
 
     class ProductCategoryRepository{
-        +insert(productCategory:ProductCactegory):void
+        +insert(prodCategory:ProdCactegory):void
         +selectAll():List<FormCategory>
     }
 
     class OrderDetailRepository{
-        +update(orderDetaolStatus:String):void
+        +update(orderDetailStatus:String):void
     }
 }
 @enduml
