@@ -9,7 +9,7 @@ participant "Product\nConverter" as helper
 participant "ProductCategory\nRepository" as repository1
 participant "Product\nRepository" as repository2
 database "db" as db
-==入力==
+==表示==
 user -> controller++:input()
 controller -> service++:getEmployeeList()
 service -> repository1++:selectAll()
@@ -21,10 +21,8 @@ service <- helper--:FormProductCategory
 service -> controller--:List<FormProductCategory>
 controller -> controller:Modelにセット\n(プルダウン用)
 controller -> user--:カテゴリ別商品検索入力画面
-== 確認 ==
-user -> controller++:confirm()
-controller -> user--:カテゴリ別商品検索確認画面
-== 完了 ==
+
+== 検索 ==
 user -> controller++:execute()
 controller -> service++:getProductListByCategoryId(Integer)
 service -> repository2++:+selectByCategoryId(Integer)

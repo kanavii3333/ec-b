@@ -11,7 +11,7 @@ package service{
 		+ cancelOrder(orderId:Integer):void
 		+ getOrderList(customerId:Integer):List<FormOrder>
 		+ getOrderList(orderDate:String,customerId:Integer):List<FormOrder>
-		+ OrderStatusUpdate(orderStatusId:Integer):void
+		+ orderStatusUpdate(orderStatusId:Integer):void
 	}
 	
 	class ProductService{
