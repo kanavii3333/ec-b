@@ -8,10 +8,10 @@ participant ProductHelper as Helper
 participant ProductRepository as Repository
 database DB
 
-
+==確認==
 user -> Controller++:confirm()
 user <-- Controller--:商品削除確認画面
-==確認==
+==完了==
 user -> Controller++:execute()
 Controller -> Service++:deleteProduct(Integer:Id)
 Service -> Repository++:productDelete(Integer)
@@ -23,5 +23,5 @@ user <-- Controller--:リダイレクト
 user --> Controller++:complete()
 Controller -> Controller:セッション破棄
 user <-- Controller--:商品削除完了画面
-==完了==
+
 @enduml
