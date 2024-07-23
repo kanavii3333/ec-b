@@ -11,11 +11,11 @@ database DB
 user -> Controller++:form()
 user <-- Controller--:ログイン画面
 user -> Controller++:login()
-Controller -> Service++:employeeLogin\n(String name,String password)
+Controller -> Service++:employeeLogin\n(FormEmployeeLogin)
 Service -> Form++:new
 Service <-- Form--:FormEmployeeLogin
 Service -> Service:バリデート
-Service -> Repository++:selectByIdAndPassword\n(Integer id,String password)
+Service -> Repository++:selectByNameAndPassword\n(String name,String password)
 Repository -> DB++:SQL(SELECT)
 Repository <-- DB:Employee
 Service <-- Repository:Employee
