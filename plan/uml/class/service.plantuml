@@ -7,18 +7,18 @@ package service{
 	}
 	
 	class OrderService{
-		+ buyProduct(productId:int,number:id):void
-		+ cancelOrder(orderId:int):void
-		+ getOrderList(customerId:int):List<FormOrder>
-		+ getOrderList(orderDate:String,customerId:int):List<FormOrder>
-		+ OrderStatusUpdate(orderStatusId:int):void
+		+ buyProduct(productId:Integer,numberId:Integer):void
+		+ cancelOrder(orderId:Integer):void
+		+ getOrderList(customerId:Integer):List<FormOrder>
+		+ getOrderList(orderDate:String,customerId:Integer):List<FormOrder>
+		+ OrderStatusUpdate(orderStatusId:Integer):void
 	}
 	
 	class ProductService{
 		+ addProduct(formProduct:FormProduct):void
-		+ getProductListByCategoryId(categoryId:int):List<FormProduct>
+		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
 		+ productUpdate(formProduct:FormProduct):void
-		+ deleteProduct(productId:int):void
+		+ deleteProduct(productId:Integer):void
 	}
 
 
