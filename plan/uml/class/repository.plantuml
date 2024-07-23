@@ -4,9 +4,9 @@ hide empty members
 left to right direction
 
 package repository{
-    class CustmerRepository{
+    class CustomerRepository{
         +insert(customer:Customer):void
-        +selectByIdAndPassword(id:Integer,password:String):Customer
+        +selectByIdAndPassword(mailAddress:MailAddress,password:String):Customer
     }
 
     class OrderRepository{
