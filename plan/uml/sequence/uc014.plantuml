@@ -19,9 +19,11 @@ Controller -> Controller:バリデート
 user <-- Controller--:商品カテゴリ登録確認画面
 ==確認==
 user -> Controller++:execute()
-Controller -> Service++:addCategory(formCategory:FormCategory)
-Service -> Repository++:addCategory(ProductCategory)
-Repository -> DB++:insert(ProductCategory)
+Controller -> Service++:addCategory(FormCategory)
+Service -> Helper++:convertFormCategoryToEntity(FormCategory)
+Service <- Helper--:ProdCategory
+Service -> Repository++:addCategory(ProdCategory)
+Repository -> DB++:insert(ProdCategory)
 Repository <-- DB--:void
 Service <-- Repository--:void
 Controller <-- Service--:void

@@ -23,8 +23,6 @@ controller -> controller:Modelにセット\n(プルダウン用)
 controller -> user--:カテゴリ別商品検索入力画面
 == 確認 ==
 user -> controller++:confirm()
-controller -> form++:カテゴリ情報セット\n new FormCategory()
-form -> controller--:FormCategory
 controller -> user--:カテゴリ別商品検索確認画面
 == 完了 ==
 user -> controller++:execute()

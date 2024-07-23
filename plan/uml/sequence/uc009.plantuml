@@ -28,7 +28,7 @@ controller -> user--:確認画面
  == 完了 ==
 user -> controller++:execute()
 controller -> service++:addAccount\n(formEmployee:FormEmployee)
-service -> helper++:convertToEntity\n(FormEmployee)
+service -> helper++:convertFormEmployeeRegisterToEmployee\n(FormEmployeeRegister)
 helper -> service--:Employee
 service -> repository++:insert(Employee)
 repository -> db++:SQL(INSERT)
