@@ -24,14 +24,18 @@ package entity{
         -orderDetail: OrderDetail
         -orderStatus: OrderStatus
         -payMethod: PayMethod
-        -customerId: CustomerId
+        -customerIdId: IntegerId
     }
 
     class OrderDetail{
         -orderDetailId: Integer
         -count: Integer
-        -product: Product
-        -customer: Customer
+        -productId: Integer
+    }
+    
+    class PayMethod{
+    	-payMethodId: Integer
+    	-payMethodName: String
     }
 
     class OrderStatus{
@@ -82,7 +86,7 @@ package entity{
 Customer <--> Order
 Order --> OrderStatus
 Order --> OrderDetail
-Order --> Product
+Order --> PayMethod
 Product --> ProdStock
 Product --> ProdCategory
 Employee --> EmpAccount
