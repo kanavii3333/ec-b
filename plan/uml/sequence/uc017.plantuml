@@ -1,0 +1,19 @@
+@startuml
+title 担当者アカウントログイン
+actor user
+participant AccountLoginController as Controller
+participant EmployeeService as Service
+participant EmployeeRepository as Repository
+database DB
+
+user -> user:アカウント名\nパスワード入力
+user -> Controller++:login()
+Controller -> Service++:employeeLogin\n(String name,String password)
+Service -> Repository++:selectByIdAndPassword\n(Integer id,String password)
+Repository -> DB++:SQL(SELECT)
+Repository <-- DB:Employee
+Service <-- Repository:Employee
+Controller <-- Service:boolean
+user <-- Controller--:booleanがfalseだった場合Login,\ntrueだったらMenuにリダイレクト
+
+@enduml

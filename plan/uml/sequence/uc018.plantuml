@@ -1,0 +1,11 @@
+@startuml
+
+title カテゴリ別商品検索のシーケンス図
+actor "担当者" as user
+participant "AccountLogoutControlle" as controller
+user -> controller++:logout()
+controller -> controller:sessionを破棄
+controller -> user--:ログイン画面にリダイレクト
+
+
+@enduml
