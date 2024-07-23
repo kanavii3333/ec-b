@@ -1,7 +1,7 @@
 @startuml
 title 商品削除
 actor user
-participant ProductController as Controller
+participant DeleteProductController as Controller
 participant FormProduct as Form
 participant ProductService as Service
 participant ProductHelper as Helper
@@ -13,7 +13,7 @@ user -> Controller++:confirm()
 user <-- Controller--:商品削除確認画面
 ==確認==
 user -> Controller++:execute()
-Controller -> Service++:()
+Controller -> Service++:deleteProduct(Integer:Id)
 Service -> Repository++:productDelete(Integer)
 Repository -> DB++:delete(Integer)
 Repository <-- DB--:void
