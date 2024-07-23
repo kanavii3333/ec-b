@@ -1,5 +1,5 @@
 @startuml
-title 商品削除
+title 商品カテゴリ登録
 actor user
 participant ProductController as Controller
 participant FormProduct as Form
