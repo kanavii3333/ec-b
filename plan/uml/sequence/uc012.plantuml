@@ -3,13 +3,21 @@ title 商品修正
 actor user
 participant UpdateProductController as Controller
 participant FormProduct as Form
+participant ProductCategoryService as Service1
 participant ProductService as Service
 participant ProductHelper as Helper
 participant ProductCategoryRepository as Repository
+participant ProductRepository as Repository1
 database DB
 
 ==入力==
 user -> Controller++:input()
+Controller -> Service1++:selectAll()
+Service1 -> Repository++:selectAll()
+Repository -> DB++:SQL(SELECT)
+Repository <-- DB--:List<FormCategory>
+Service1 <-- Repository--:List<FormCategory>
+Controller <-- Service1--:List<FormCategory>
 user <-- Controller--:商品修正入力画面
 ==確認==
 user -> Controller++:confirm()
@@ -22,10 +30,10 @@ user -> Controller++:execute()
 Controller -> Service++:productUpdate(formProduct:FormProduct)
 Service -> Helper++:convertToEntity(FormProduct)
 Service <-- Helper--:Product
-Service -> Repository++:insert(Product)
-Repository -> DB++:insert(Product)
-Repository <-- DB--:void
-Service <-- Repository--:void
+Service -> Repository1++:update(product:Product)
+Repository1 -> DB++:update(Product)
+Repository1 <-- DB--:void
+Service <-- Repository1--:void
 Controller <-- Service--:void
 user <-- Controller--:リダイレクト
 user --> Controller++:complete()
