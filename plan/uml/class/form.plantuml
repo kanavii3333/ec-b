@@ -4,17 +4,20 @@ hide empty members
 left to right direction
 
 package form{
-    class FormCustomer{
-        -customerId: Integer
+	class FormCustomerLogin{
+		-customerMailAdress: String
+		-customerPassword: String
+	}
+
+    class FormCustomerRegister{
         -customerName: String
-        -customerNameKana String
+        -customerNameKana: String
         -customerAddress1: String
         -customerAddress2: String
         -customerPhoneNumber: String
         -customerUserName: String
         -customerPassword: String
         -customerRegisterDate: String
-        -orderList: List<Order>
     }
 
     class FormOrder{
@@ -40,15 +43,18 @@ package form{
         -categoryId: Integer
         -categoryName: String
     }
-
-    class FormEmployee{
-        -empId: Integer
-        -empName: String
-        -empNameKana: String
-        -departmentName: String
-        -empAccountId: String
+	
+	class FormEmployeeLogin{
+		-empAccountName: String
         -empAccountPassword: String
-    }
+	}
+	
+	class FormEmployeeRegister{
+		-empId: Integer
+		-empName: String
+		-empAccountName: String
+        -empAccountPassword: String
+	}
     
     class FomrCustomerValidator{
 		+support(clazz:class<?>):boolean
