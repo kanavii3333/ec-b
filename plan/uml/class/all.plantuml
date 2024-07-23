@@ -148,23 +148,34 @@ ProductCategoryRepository --> ProdCategory
 
 
 package controller{
-    class AddAccountContoroller{
+    class AddAccountController{
     }
-    class RegisterProductContoroller{
+    class RegisterProductController{
     }
-    class SearchProductContoroller{
+    class SearchProductController{
     }
-    class UpdateProductContoroller{
+    class UpdateProductController{
     }
-    class DeleteProductContoroller{
+    class DeleteProductController{
     }
-    class RegisterProductCategoryContoroller{
+    class RegisterProductCategoryController{
     }
-    class AccountLoginContoroller{
+    class AccountLoginController{
     }
-    class AccountLogoutContoroller{
+    class AccountLogoutController{
     }
 }
+AddAccountController --> EmployeeService
+RegisterProductController --> FormProduct
+RegisterProductController --> ProductService
+SearchProductController -->	ProductService
+SearchProductController --> FromCategory
+UpdateProductController --> FormProduct
+UpdateProductController --> ProductService
+DeleteProductController --> ProductService
+RegisterProductCategoryController --> FormProduct
+RegisterProductCategoryController --> ProductCategory
+AccountLoginController --> EmployeeService
 
 package aop{
    class LoggingAroundAdvice {
@@ -176,6 +187,11 @@ package config{
     }
     class WebMvcConfig implements WebMvcConfigurer {
     }
+}
+
+package security{
+   class securityConfig{
+   }
 }
 @enduml
 

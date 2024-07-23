@@ -35,6 +35,11 @@ package form{
         -categoryName: String
         -quantity: Integer
     }
+    
+    class FormCategory{
+        -categoryId: Integer
+        -categoryName: String
+    }
 
     class FormEmployee{
         -empId: Integer
