@@ -2,14 +2,14 @@
 
 title UC009(担当者アカウント登録機能)のシーケンス図
 actor "担当者" as user
-participant "Controller" as controller
+participant "AddAccountController" as controller
 participant "Employee\nService" as service
 participant "FormEmployee" as form
 participant "Employee\nConverter" as helper
 participant "Employee\nRepository" as repository
 database "db" as db
  == 入力 ==
-user -> controller++:form()
+user -> controller++:input()
 controller -> service++:getEmployeeList()
 service -> repository++:selectAllEmployee()
 repository -> db++:SQL(SELECT EMPLOYEES)
@@ -21,13 +21,13 @@ controller -> user--:入力画面
 user -> user:アカウント入力 
  == 確認 ==
 user -> controller++:confirm()
-controller -> form++:アカウント情報セット
+controller -> form++:addAccount
 form -> controller--:FormEmployee
 controller -> controller:バリデート
 controller -> user--:確認画面
  == 完了 ==
 user -> controller++:execute()
-controller -> service++:addAccount(FormEmployee)
+controller -> service++:addAccount\n(formEmployee:FormEmployee)
 service -> helper++:convertToEntity\n(FormEmployee)
 helper -> service--:Employee
 service -> repository++:insert(Employee)

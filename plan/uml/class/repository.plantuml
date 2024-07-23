@@ -5,8 +5,8 @@ left to right direction
 
 package repository{
     class CustmerRepository{
-        +insert(custmer:Custmer):void
-        +selectByIdAndPassword(id:Integer,password:String):Custmer
+        +insert(customer:Customer):void
+        +selectByIdAndPassword(id:Integer,password:String):Customer
     }
 
     class OrderRepository{

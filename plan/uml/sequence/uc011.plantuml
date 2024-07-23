@@ -2,7 +2,7 @@
 
 title カテゴリ別商品検索のシーケンス図
 actor "担当者" as user
-participant "Controller" as controller
+participant "SearchProductController" as controller
 participant "Product\nService" as service
 participant "Form\nCategory" as form
 participant "Product\nConverter" as helper
@@ -10,7 +10,7 @@ participant "ProductCategory\nRepository" as repository1
 participant "Product\nRepository" as repository2
 database "db" as db
 ==入力==
-user -> controller++:form()
+user -> controller++:input()
 controller -> service++:getEmployeeList()
 service -> repository1++:selectAll()
 repository1 -> db++:select
@@ -23,7 +23,7 @@ controller -> controller:Modelにセット\n(プルダウン用)
 controller -> user--:カテゴリ別商品検索入力画面
 == 確認 ==
 user -> controller++:confirm()
-controller -> form++:カテゴリ情報セット
+controller -> form++:カテゴリ情報セット\n new FormCategory()
 form -> controller--:FormCategory
 controller -> user--:カテゴリ別商品検索確認画面
 == 完了 ==

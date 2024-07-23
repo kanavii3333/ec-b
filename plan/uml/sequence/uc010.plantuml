@@ -1,7 +1,7 @@
 @startuml
 title 商品登録
 actor user
-participant ProductController as Controller
+participant RegisterProductController as Controller
 participant FormProduct as Form
 participant ProductService as Service
 participant ProductHelper as Helper
@@ -9,7 +9,7 @@ participant ProductRepository as Repository
 database DB
 
 
-user -> Controller++:form()
+user -> Controller++:input()
 user <-- Controller--:商品登録入力画面
 ==入力==
 user -> Controller++:confirm()
@@ -19,7 +19,7 @@ Controller -> Controller:バリデート
 user <-- Controller--:商品登録確認画面
 ==確認==
 user -> Controller++:execute()
-Controller -> Service++:()
+Controller -> Service++:addProduct(formProduct:FormProduct)
 Service -> Helper++:convertToEntity(FormProduct)
 Service <-- Helper--:Product
 Service -> Repository++:addProduct(Product)
