@@ -4,12 +4,8 @@ hide empty members
 left to right direction
 
 package form{
-	class CustomerLoginForm{
-		-customerMailAdress: String
-		-customerPassword: String
-	}
 
-    class CustomerRegisterForm{
+    class CustomerForm{
         -customerName: String
         -customerNameKana: String
         -customerAddress1: String
@@ -45,10 +41,6 @@ package form{
         -categoryName: String
     }
 	
-	class EmployeeLoginForm{
-		-empAccountName: String
-        -empAccountPassword: String
-	}
 	
 	class EmpAccountForm{
 		-empId: Integer

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="jp" xmlsn:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フラグメントパーツ</title>
+</head>
+<body>
+    <div th:fragment="header" id="header">
+        <h3>サイト名</h3>
+        <a href="#"></a>
+        <a href="#"></a>
+        <a href="#"></a>
+        <form><input type="submit" value="ログアウト"></form>
+    </div>
+
+    <div th:fragment="footer" id="footer">
+        XXX株式会社 All rights reserved.
+    </div>
+</body>
+</html>
