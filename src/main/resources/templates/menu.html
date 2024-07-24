@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>メニュー</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
     <div th:replace="fragment::header"></div>
-    <h1> メニュー </h1>
-    <img src="/plan/img/Shop_Img1.jpeg">
+    <div>
+        <h1> メニュー </h1>
+        <img src="/img/Shop_Img1.jpeg">
+    </div>
     <div th:replace="fragment::footer"></div>
 </body>
 </html>

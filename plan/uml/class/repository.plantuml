@@ -37,5 +37,9 @@ package repository{
     class OrderDetailRepository{
         +update(orderId:Integer, orderDetailStatus:String):void
     }
-}
+    
+    class StockRepository{
+    	+insert(prodId:Integer, quantity:Integer):void
+    	+update(prodId:Integer, quantity:Integer):void
+	}
 @enduml

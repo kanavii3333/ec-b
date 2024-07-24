@@ -1,0 +1,21 @@
+div{
+    text-align: center;
+}
+
+#header{
+    width:100%;
+    top:0;
+    text-align:center;
+    border-bottom:2px solid black;
+    padding-bottom: 10px;
+}
+
+#footer{
+    position:fixed;
+    width:100%;
+    bottom:0;
+    text-align:center;
+    border-top:2px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
