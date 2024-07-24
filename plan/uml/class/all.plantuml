@@ -48,34 +48,34 @@ Employee --> EmpAccount
 Employee --> Department
 
 package form{
-    class FormCustomerLogin{
+    class CustomerLoginForm{
     }
     
-    class FormCustomerRegister{
+    class CustomerRegisterForm{
     }
 
-    class FormOrder{
+    class OrderForm{
     }
 
-    class FormProduct{
+    class ProductForm{
     }
 
-    class FormEmployee{
+    class EmployeeForm{
     }
     
-    class FormEmpAccount{
+    class EmpAccountForm{
     }
     
-    class FomrCustomerValidator{
+    class CustomerFormValidator{
     }
     
-    class FomrOrderValidator{
+    class OrderFormValidator{
     }
     
-    class FomrPruductValidator{
+    class PruductFormValidator{
     }
     
-    class FomrEmployeeValidator{
+    class EmployeeFormValidator{
     }
 }
 
@@ -96,13 +96,13 @@ package helper{
     }
 }
 CustomerConverter --> Customer
-CustomerConverter --> FormCustomerRegister
+CustomerConverter --> CustomerRegisterForm
 OrderConverter --> Order
-OrderConverter --> FormOrder
+OrderConverter --> OrderForm
 ProductConverter --> Product
-ProductConverter --> FormProduct
+ProductConverter --> ProductForm
 EmployeeConverter --> EmpAccount
-EmployeeConverter --> FormEmpAccount
+EmployeeConverter --> EmpAccountForm
 
 package repository{
     class CustomerRepository{

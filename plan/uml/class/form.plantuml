@@ -72,17 +72,17 @@ package form{
 		+validator(target:Object,errors:Errors):void
     }
     
-    class PruductValidatorForm{
+    class PruductFormValidator{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
     
-    class EmployeeLoginValidatorForm{
+    class EmployeeLoginFormValidator{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
 
-    class EmployeeRegisterValidatorForm{
+    class EmployeeRegisterFormValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }

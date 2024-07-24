@@ -31,12 +31,8 @@ public class AccountLoginController {
         return "login";
     }
 
-    @PostMapping("menu")
+    @GetMapping("menu")
     public String login(@Validated @ModelAttribute("formEmployeeLogin")FormEmployeeLogin formEmployeeLogin, BindingResult bindingResult, Model model){
-        if(employeeService.employeeLogin(formEmployeeLogin)){
-            return "menu";
-        } else {
-            return "login";
-        }
+        return "redirect:/menu";
     }
 }
