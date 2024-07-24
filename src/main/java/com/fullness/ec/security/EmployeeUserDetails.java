@@ -5,13 +5,13 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fullness.ec.entity.Account;
+import com.fullness.ec.entity.EmpAccount;
 
-public class AccountUserDetails implements UserDetails {
-    private final Account account;
+public class EmployeeUserDetails implements UserDetails {
+    private final EmpAccount employee;
     private final Collection<GrantedAuthority> authorities;
-    public AccountUserDetails(Account account, Collection<GrantedAuthority> authorities){
-        this.account=account;
+    public EmployeeUserDetails(EmpAccount employee, Collection<GrantedAuthority> authorities){
+        this.employee=employee;
         this.authorities=authorities;
     }
 
@@ -22,22 +22,12 @@ public class AccountUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return account.getPassword();
+        return employee.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return account.getName();
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
+        return employee.getName();
     }
 
     @Override
@@ -47,6 +37,16 @@ public class AccountUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
         return true;
     }
     

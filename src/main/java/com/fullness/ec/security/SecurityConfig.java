@@ -22,7 +22,7 @@ import jakarta.servlet.DispatcherType;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    @Autowired private AccountUserDetailsService service; 
+    @Autowired private EmployeeUserDetailsService service; 
     @Autowired private PasswordEncoder encoder;
 
     @Bean
