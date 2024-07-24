@@ -8,6 +8,7 @@ participant ProductService as Service
 participant ProductConverter as Helper
 participant ProductCategoryRepository as Repository
 participant ProductRepository as Repository1
+participant StockRepository as Repository2
 database DB
 
 ==入力==
@@ -31,9 +32,13 @@ Controller -> Service++:productUpdate(formProduct:FormProduct)
 Service -> Helper++:convertToEntity(FormProduct)
 Service <-- Helper--:Product
 Service -> Repository1++:update(product:Product)
-Repository1 -> DB++:update(Product)
+Repository1 -> DB++:SQL(UPDATE)
 Repository1 <-- DB--:void
 Service <-- Repository1--:void
+Service -> Repository2++:update\n(prodId:Integer,quantity:Integer)
+Repository2 -> DB++:SQL(UPDATE)
+Repository2 <-- DB--:void
+Service <-- Repository2--:void
 Controller <-- Service--:void
 user <-- Controller--:リダイレクト
 user --> Controller++:complete()

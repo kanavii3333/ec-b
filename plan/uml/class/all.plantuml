@@ -120,6 +120,9 @@ package repository{
 
     class OrderDetailRepository{
     }
+    
+    class StockRepository{
+    }
 }
 
 package service{
