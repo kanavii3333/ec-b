@@ -11,22 +11,16 @@
         </association>
         <association property="empAccount" javaType="EmpAccount">
             <id property="empAccountId" column="empAccountId" />
-            <result property="empAccountName" column="empAccountName" />
+            <result property="name" column="empAccountName" />
+            <result property="password" column="password" />
         </association>
     </resultMap>
-
-    <select id="selectByNameAndPassword" resultType="EmpAccount">
-        select 
-            id as empAccountId
-            name as empAccountName
-        from employee_account
-        where nama=#{param1} AND password=#{param2}
-    </select>
 
     <select id="selectByUsername" resultType="EmpAccount">
         select 
             id as empAccountId
-            name as empAccountName
+            name as name
+            password
         from employee_account
         where nama=#{username}
     </select>

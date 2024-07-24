@@ -6,7 +6,7 @@ left to right direction
 package repository{
     class CustomerRepository{
         +insert(customer:Customer):void
-        +selectByIdAndPassword(mailAddress:MailAddress,password:String):Customer
+        +selectByMailAndPassword(mailAddress:String,password:String):Customer
         +selectByUsername(username:String):Customer
     }
 
@@ -17,7 +17,7 @@ package repository{
 
     class ProductRepository{
         +insert(product:Product):void
-        +delete(productId:Integer):void
+		+updateDeleteFlag(prodId:Integer):void
         +update(product:Product):void
         +selectByCategoryId(categoryId:Integer):Product
     }
