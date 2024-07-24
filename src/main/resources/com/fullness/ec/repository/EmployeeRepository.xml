@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fullness.ec.repository.EmployeeRepository">
+    <resultMap type="Employee" id="empResult">
+        <id property="empId" column="id" />
+        <result property="empName" column="empName" />
+        <result property="empNameKana" column="empNameKana" />
+        <association property="department" javaType="Department">
+            <id property="deptId" column="deptId" />
+            <result property="deptName" column="deptName" />
+        </association>
+        <association property="empAccount" javaType="EmpAccount">
+            <id property="empAccountId" column="empAccountId" />
+            <result property="empAccountName" column="empAccountName" />
+        </association>
+    </resultMap>
+
+    <select id="selectByNameAndPassword" resultMap="empResult">
+        select 
+            e.id as empId
+            e.name as empName
+        from employee_account ea join employee e on ea.employeeId=e.id
+        where nama=#{param1} AND password=#{param2}
+    </select>
+</mapper>

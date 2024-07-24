@@ -57,7 +57,12 @@ package form{
         -empAccountPassword: String
 	}
     
-    class FomrCustomerValidator{
+    class FomrCustomerLoginValidator{
+		+support(clazz:class<?>):boolean
+		+validator(target:Object,errors:Errors):void
+    }
+
+    class FomrCustomerRegisterValidator{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
@@ -72,7 +77,12 @@ package form{
 		+validator(target:Object,errors:Errors):void
     }
     
-    class FomrEmployeeValidator{
+    class FomrEmployeeLoginValidator{
+		+support(clazz:class<?>):boolean
+		+validator(target:Object,errors:Errors):void
+    }
+
+    class FomrEmployeeRegisterValidator{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
