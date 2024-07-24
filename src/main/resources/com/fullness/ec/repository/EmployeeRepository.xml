@@ -15,11 +15,19 @@
         </association>
     </resultMap>
 
-    <select id="selectByNameAndPassword" resultMap="empResult">
+    <select id="selectByNameAndPassword" resultType="EmpAccount">
         select 
-            e.id as empId
-            e.name as empName
-        from employee_account ea join employee e on ea.employeeId=e.id
+            id as empAccountId
+            name as empAccountName
+        from employee_account
         where nama=#{param1} AND password=#{param2}
+    </select>
+
+    <select id="selectByUsername" resultType="EmpAccount">
+        select 
+            id as empAccountId
+            name as empAccountName
+        from employee_account
+        where nama=#{username}
     </select>
 </mapper>

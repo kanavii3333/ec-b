@@ -7,6 +7,7 @@ package repository{
     class CustomerRepository{
         +insert(customer:Customer):void
         +selectByIdAndPassword(mailAddress:MailAddress,password:String):Customer
+        +selectByUsername(username:String):Customer
     }
 
     class OrderRepository{
@@ -23,8 +24,9 @@ package repository{
 
     class EmployeeRepository{
         +insert(emp:EmployeeAccount):void
-        +selectByIdAndPassword(id:Integer,password:String):Employee
+        +selectByIdAndPassword(id:Integer,password:String):EmployeeLogin
         +selectAllEmployee():List<Employee>
+        +selectByUsername(username:String):EmployeeAccount
     }
 
     class ProductCategoryRepository{
