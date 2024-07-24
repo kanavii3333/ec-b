@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>フラグメントパーツ</title>
+    
 </head>
 
 <body>
-    <div th:fragment="header" id="header" style="position:fixed;width:100%;top:0;text-align:center;border-bottom:2px solid black;">
+    <div th:fragment="header" id="header">
         <h3>文具/雑貨販売システム</h3>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
             <a href="#">商品情報メンテナンス</a>
@@ -20,7 +21,7 @@
         </div>
     </div>
 
-    <div th:fragment="footer" id="footer" style="position:fixed;width:100%;bottom:0;text-align:center;border-top:2px solid black;">
+    <div th:fragment="footer" id="footer">
         Fullness Stationary社
     </div>
 </body>
