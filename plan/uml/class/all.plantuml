@@ -48,7 +48,10 @@ Employee --> EmpAccount
 Employee --> Department
 
 package form{
-    class FormCustomer{
+    class FormCustomerLogin{
+    }
+    
+    class FormCustomerRegister{
     }
 
     class FormOrder{
@@ -58,6 +61,9 @@ package form{
     }
 
     class FormEmployee{
+    }
+    
+    class FormEmpAccount{
     }
     
     class FomrCustomerValidator{
@@ -90,13 +96,13 @@ package helper{
     }
 }
 CustomerConverter --> Customer
-CustomerConverter --> FormCustomer
+CustomerConverter --> FormCustomerRegister
 OrderConverter --> Order
 OrderConverter --> FormOrder
 ProductConverter --> Product
 ProductConverter --> FormProduct
-EmployeeConverter --> Employee
-EmployeeConverter --> FormEmployee
+EmployeeConverter --> EmpAccount
+EmployeeConverter --> FormEmpAccount
 
 package repository{
     class CustomerRepository{

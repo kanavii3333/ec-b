@@ -4,12 +4,12 @@ hide empty members
 left to right direction
 
 package form{
-	class FormCustomerLogin{
+	class CustomerLoginForm{
 		-customerMailAdress: String
 		-customerPassword: String
 	}
 
-    class FormCustomerRegister{
+    class CustomerRegisterForm{
         -customerName: String
         -customerNameKana: String
         -customerAddress1: String
@@ -21,7 +21,7 @@ package form{
         -customerRegisterDate: String
     }
 
-    class FormOrder{
+    class OrderForm{
         -orderId: Integer
         -orderDate: String
         -amountTotal: Integer
@@ -31,7 +31,7 @@ package form{
         -customerName: String
     }
 
-    class FormProduct{
+    class ProductForm{
         -prodId: Integer
         -prodName: String
         -price: Integer
@@ -40,49 +40,49 @@ package form{
         -quantity: Integer
     }
     
-    class FormCategory{
+    class CategoryForm{
         -categoryId: Integer
         -categoryName: String
     }
 	
-	class FormEmployeeLogin{
+	class EmployeeLoginForm{
 		-empAccountName: String
         -empAccountPassword: String
 	}
 	
-	class FormEmployeeRegister{
+	class EmpAccountForm{
 		-empId: Integer
 		-empName: String
 		-empAccountName: String
         -empAccountPassword: String
 	}
     
-    class FomrCustomerLoginValidator{
+    class CustomerLoginValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
 
-    class FomrCustomerRegisterValidator{
+    class CustomerRegisterValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
     
-    class FomrOrderValidator{
+    class OrderValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
     
-    class FomrPruductValidator{
+    class PruductValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
     
-    class FomrEmployeeLoginValidator{
+    class EmployeeLoginValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
 
-    class FomrEmployeeRegisterValidator{
+    class EmployeeRegisterValidatorForm{
 		+support(clazz:class<?>):boolean
 		+validator(target:Object,errors:Errors):void
     }
