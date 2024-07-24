@@ -33,7 +33,7 @@ package entity{
         -productId: Integer
     }
     
-    class PayMethod{
+    class PaymentMethod{
     	-payMethodId: Integer
     	-payMethodName: String
     }
@@ -52,12 +52,12 @@ package entity{
         -prodStock: ProdStock
     }
 
-    class ProdCategory{
+    class ProductCategory{
         -prodCategoryId: Integer
         -prodCategoryName: String
     }
 
-    class ProdStock{
+    class ProductStock{
         -prodStockId: Integer
         -quantity: Integer
     }
@@ -75,7 +75,7 @@ package entity{
         -deptName: String
     }
 
-    class EmpAccount{
+    class EmployeeAccount{
     	-empId: Integer
         -empAccountId: Integer
         -empAccountName: String
