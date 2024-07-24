@@ -1,25 +1,28 @@
 @startuml
 title 担当者アカウントログイン
 actor user
-participant AccountLoginController as Controller
-participant EmployeeService as Service
-participant FormEmployeeLogin as Form
-participant EmployeeHelper as Helper
-participant EmployeeRepository as Repository
-database DB
+participant "Account\nLoginController" as controller
+participant "SecurityConfig" as security
+participant "AccountUser\nDetailsService" as service
+participant "Employee\nRepository" as repository
+participant "Account\nUserDetails" as details
+database DB as db
 
-user -> Controller++:form()
-user <-- Controller--:ログイン画面
-user -> Controller++:login()
-Controller -> Service++:employeeLogin\n(FormEmployeeLogin)
-Service -> Form++:new
-Service <-- Form--:FormEmployeeLogin
-Service -> Service:バリデート
-Service -> Repository++:selectByNameAndPassword\n(String name,String password)
-Repository -> DB++:SQL(SELECT)
-Repository <-- DB:Employee
-Service <-- Repository:Employee
-Controller <-- Service:boolean
-user <-- Controller--:booleanがfalseだった場合Login,\ntrueだったらMenuにリダイレクト
+user -> controller++:login()
+controller -> user--:ログイン画面
+user -> security++:/auth POST(username, password)
+security -> service++:loadUserByUsername\n(username)
+service -> repository++:selectByUsername\n(username)
+repository -> db++:SELECT文
+db --> repository--:Account
+repository --> service--:Account
+service -> details++:new
+details --> service--:AccountUserDetails
+service -> security--:AccountUserDetails
+security -> security:認証
+security -> security:セッションに格納
+security --> user--:メニューへリダイレクト
+user -> controller++:menu()
+controller -> user--:メニュー画面
 
 @enduml
