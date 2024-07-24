@@ -4,7 +4,7 @@ title UC009(担当者アカウント登録機能)のシーケンス図
 actor "担当者" as user
 participant "AddAccountController" as controller
 participant "Employee\nService" as service
-participant "FormEmployee" as form
+participant "EmployeeForm" as form
 participant "Employee\nConverter" as helper
 participant "Employee\nRepository" as repository
 database "db" as db

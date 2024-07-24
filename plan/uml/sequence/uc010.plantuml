@@ -2,7 +2,7 @@
 title 商品登録
 actor user
 participant RegisterProductController as Controller
-participant FormProduct as Form
+participant ProductForm as Form
 participant ProductCategoryService as Service1
 participant ProductService as Service
 participant ImageUploadHelper as Helper

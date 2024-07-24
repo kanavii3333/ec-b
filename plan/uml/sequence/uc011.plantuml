@@ -4,7 +4,7 @@ title カテゴリ別商品検索のシーケンス図
 actor "担当者" as user
 participant "SearchProductController" as controller
 participant "Product\nService" as service
-participant "Form\nCategory" as form
+participant "CategoryForm" as form
 participant "Product\nConverter" as helper
 participant "ProductCategory\nRepository" as repository1
 participant "Product\nRepository" as repository2

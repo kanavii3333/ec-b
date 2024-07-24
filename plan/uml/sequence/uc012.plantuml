@@ -2,7 +2,7 @@
 title 商品修正
 actor user
 participant UpdateProductController as Controller
-participant FormProduct as Form
+participant ProductForm as Form
 participant ProductCategoryService as Service1
 participant ProductService as Service
 participant ProductConverter as Helper
