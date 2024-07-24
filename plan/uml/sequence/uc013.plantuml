@@ -2,9 +2,8 @@
 title 商品削除
 actor user
 participant DeleteProductController as Controller
-participant FormProduct as Form
+
 participant ProductService as Service
-participant ProductHelper as Helper
 participant ProductRepository as Repository
 database DB
 
@@ -15,7 +14,7 @@ user <-- Controller--:商品削除確認画面
 user -> Controller++:execute()
 Controller -> Service++:deleteProduct(Integer:Id)
 Service -> Repository++:productDelete(Integer)
-Repository -> DB++:delete(Integer)
+Repository -> DB++:updateDeleteFlag(Integer)
 Repository <-- DB--:void
 Service <-- Repository--:void
 Controller <-- Service--:void
