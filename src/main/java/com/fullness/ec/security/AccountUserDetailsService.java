@@ -20,20 +20,18 @@ public class AccountUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Account account = repository.selectByUsername(username);
         if(account==null) throw new UsernameNotFoundException("ユーザーが存在しません");
-        return new AccountUserDetails(account, this.getAuthorities(account.getRole().getName())) {
+        return new AccountUserDetails(account, this.getAuthorities(account.getClass().getName())) {
         };
     }
-    // private Collection<GrantedAuthority> getAuthorities(String role) {
-    //     switch(role){
-    //         case "admin":
-    //             return AuthorityUtils.createAuthorityList("ROLE_ADMIN","ROLE_USER","ROLE_GUEST");
-    //         case "user":
-    //             return AuthorityUtils.createAuthorityList("ROLE_USER","ROLE_GUEST");
-    //         case "guest":
-    //             return AuthorityUtils.createAuthorityList("ROLE_GUEST");
-    //         default:
-    //             return null;
-    //     }
-    // }
+    private Collection<GrantedAuthority> getAuthorities(String className) {
+        switch(className){
+            case "com.fullness.ec.entity.EmployeeAccount":
+                return AuthorityUtils.createAuthorityList("Employee");
+            case "com.fullness.ec.entity.Customer":
+                return AuthorityUtils.createAuthorityList("Customer");
+            default:
+                return AuthorityUtils.createAuthorityList("Guest");
+        }
+    }
     
 }
