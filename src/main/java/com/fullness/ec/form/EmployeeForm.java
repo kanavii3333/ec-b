@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class FormEmployee {
+public class EmployeeForm {
     @NotBlank
     @Min(5)
     @Max(20)

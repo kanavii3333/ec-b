@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,9 @@
 </head>
 <body>
     <h1>ログイン</h1>
-    <form action="menu" method="post" th:object="${formEmployeeLogin}">
-        アカウント名<input type="text" th:field="*{name}">
-        パスワード<input type="password" th:field="*{password}">
+    <form th:action="@{/auth_employee}" method="post">
+        アカウント名<input type="text" name="username">
+        パスワード<input type="password" name="password">
         <input type="submit" value="ログイン">
     </form>
 </body>

@@ -5,6 +5,19 @@ package security{
 			+ webSecurityCustomizer():WebSecurityCustomizer
 			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
 		}
+		class AccountUserDetailsService{
+			loadUserByUsername(String):UserDetails
+			getAuthorities(String):Collection<GrantedAuthority>
+		}
+		class AccountUserDetails{
+			+getAuthorities():Collection<? extends GrantedAuthority>
+			+getPassword():String
+			+getUsername():String
+			+isAccountNonExpired():boolean
+			+isAccountNonLocked():boolean
+			+isCredentialsNonExpired():boolean
+			+isEnabled():boolean
+		}
 	
 }
 @enduml

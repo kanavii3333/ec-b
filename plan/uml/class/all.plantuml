@@ -48,28 +48,32 @@ Employee --> EmpAccount
 Employee --> Department
 
 package form{
-    class FormCustomer{
+    
+    class CustomerForm{
     }
 
-    class FormOrder{
+    class OrderForm{
     }
 
-    class FormProduct{
+    class ProductForm{
     }
 
-    class FormEmployee{
+    class EmployeeForm{
     }
     
-    class FomrCustomerValidator{
+    class EmpAccountForm{
     }
     
-    class FomrOrderValidator{
+    class CustomerFormValidator{
     }
     
-    class FomrPruductValidator{
+    class OrderFormValidator{
     }
     
-    class FomrEmployeeValidator{
+    class PruductFormValidator{
+    }
+    
+    class EmployeeFormValidator{
     }
 }
 
@@ -90,13 +94,13 @@ package helper{
     }
 }
 CustomerConverter --> Customer
-CustomerConverter --> FormCustomer
+CustomerConverter --> CustomerForm
 OrderConverter --> Order
-OrderConverter --> FormOrder
+OrderConverter --> OrderForm
 ProductConverter --> Product
-ProductConverter --> FormProduct
-EmployeeConverter --> Employee
-EmployeeConverter --> FormEmployee
+ProductConverter --> ProductForm
+EmployeeConverter --> EmpAccount
+EmployeeConverter --> EmpAccountForm
 
 package repository{
     class CustomerRepository{
@@ -163,8 +167,6 @@ package controller{
     }
     class SearchProductContoroller{
     }
-    class SearchProductContoroller{
-    }
     class UpdateProductContoroller{
     }
     class DeleteProductContoroller{
@@ -176,6 +178,13 @@ package controller{
     class  AccountLogoutContoroller{
     }
 }
+AddAccountContoroller --> EmployeeService
+RegisterProductContoroller --> ProductService
+SearchProductContoroller --> ProductService
+UpdateProductContoroller --> ProductService
+DeleteProductContoroller --> ProductService
+RegisterProductCategoryContoroller --> ProductService
+AccountLoginContoroller --> EmployeeService
 
 package aop{
    class LoggingAroundAdvice {
@@ -187,6 +196,28 @@ package config{
     }
     class WebMvcConfig implements WebMvcConfigurer {
     }
+}
+
+package security{
+
+		class securityConfig{
+			+ webSecurityCustomizer():WebSecurityCustomizer
+			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
+		}
+		class AccountUserDetailsService{
+			loadUserByUsername(String):UserDetails
+			getAuthorities(String):Collection<GrantedAuthority>
+		}
+		class AccountUserDetails{
+			+getAuthorities():Collection<? extends GrantedAuthority>
+			+getPassword():String
+			+getUsername():String
+			+isAccountNonExpired():boolean
+			+isAccountNonLocked():boolean
+			+isCredentialsNonExpired():boolean
+			+isEnabled():boolean
+		}
+	
 }
 @enduml
 
