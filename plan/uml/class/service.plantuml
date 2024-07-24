@@ -23,7 +23,7 @@ package service{
 
 
 	class EmployeeService{
-		+ addAccount(formEmployee:FormEmployee):void
+		+ addAccount(formEmployeeAccount:FormEmployeeAccount):void
 		+ employeeLogin(name:String,password:String):boolean
 		+ getEmployeeList():List<FormEmployee>
 	}
