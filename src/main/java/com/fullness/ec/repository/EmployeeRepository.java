@@ -5,6 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.fullness.ec.entity.Employee;
 
 @Mapper
-public interface EmployeeRepository {
+public interface EmployeeRepository extends AccountRepository{
     public Employee selectByNameAndPassward(String name,String password);
 }
