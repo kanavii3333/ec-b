@@ -41,8 +41,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.formLogin(login->login.loginProcessingUrl("/auth").loginPage("/login")
-        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/login").permitAll());
+        // http.formLogin(login->login.loginProcessingUrl("/auth_customer").loginPage("/loginCustomer")
+        // .usernameParameter("mailAddress").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/login").permitAll());
+
+        http.formLogin(login->login.loginProcessingUrl("/auth_employee").loginPage("/loginEmployee")
+        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/loginEmployee").permitAll());
 
         http.logout(logout->logout.logoutUrl("/logout").logoutSuccessUrl("/login").invalidateHttpSession(true)
         .deleteCookies("JSESSONID").clearAuthentication(true).permitAll());

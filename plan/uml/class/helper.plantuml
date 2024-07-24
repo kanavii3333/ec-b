@@ -5,20 +5,20 @@ left to right direction
 
 package helper{
     class CustomerConverter{
-        +convertFormCustomerRegisterToCustomer(formCustomerRegister:FormCustomerRegister):Customer
+        +convertFormCustomerRegisterToCustomer(formCustomerRegister:CustomerRegisterForm):Customer
     }
 
     class OrderConverter{
-        +convertToEntity(formOrder:FormOrder):Order
+        +convertToEntity(formOrder:OrderForm):Order
     }
 
     class ProductConverter{
-        +convertToEntity(formProduct:FormProduct):Product
-        +convertFormCategoryToEntity(formCategory:FormCategory):ProdCategory
+        +convertToEntity(formProduct:ProductForm):Product
+        +convertFormCategoryToEntity(formCategory:CategoryForm):ProdCategory
     }
 
     class EmployeeConverter{
-        +convertFormEmployeeRegisterToEmployee(formEmployeeRegister:FormEmployeeRegister):Employee
+        +convertFormEmpAccountToEmployee(formEmpAccount:EmpAccountForm):EmpAccount
     }
     
     class ImageUploadHelper{

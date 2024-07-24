@@ -23,10 +23,10 @@ package repository{
     }
 
     class EmployeeRepository{
-        +insert(emp:EmployeeAccount):void
+        +insert(empAccount:EmpAccount):void
         +selectByIdAndPassword(id:Integer,password:String):EmployeeLogin
         +selectAllEmployee():List<Employee>
-        +selectByUsername(username:String):EmployeeAccount
+        +selectByUsername(username:String):EmpAccount
     }
 
     class ProductCategoryRepository{
