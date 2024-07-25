@@ -52,3 +52,9 @@ package controller{
         + menu():String
     
 }
+
+    class PageController{
+     	+ list():String
+    }
+
+}
