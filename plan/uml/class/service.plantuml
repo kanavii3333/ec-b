@@ -21,6 +21,7 @@ package service{
 		+ getProductByProductId(productId:Integer)Product
 		+ productUpdate(formProduct:FormProduct):void
 		+ deleteProduct(productId:Integer):void
+		+ selectProductByPage(pageable: Pageable):page<Product>
 	}
 
 
