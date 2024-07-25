@@ -32,7 +32,7 @@ package form{
         -prodName: String
         -price: Integer
         -imageUrl: MultipartFile
-        -categoryName: String
+        -categoryId: Integer
         -quantity: Integer
     }
     
