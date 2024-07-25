@@ -13,8 +13,8 @@ database DB
 
 ==入力==
 user -> Controller++:input()
-Controller -> Service++:updateProduct(productId:Integer)
-Service -> Repository1++:update(prodId:Integer)
+Controller -> Service++:getProductByProductId(productId:Integer)
+Service -> Repository1++:selectByProductId(productId:Integer)
 Repository1 -> DB++:SQL(SELECT)
 Repository1 <-- DB--:Product
 Service <-- Repository1--:Product
