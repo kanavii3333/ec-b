@@ -1,18 +1,16 @@
 package com.fullness.ec.controller;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fullness.ec.service.EmployeeService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping
@@ -27,5 +25,10 @@ public class AccountLoginController {
     @GetMapping("menu")
     public String login(){
         return "menu";
+    }
+
+    @GetMapping("logoutEmployee")
+    public String logout() {
+        return "redirect:menu";
     }
 }
