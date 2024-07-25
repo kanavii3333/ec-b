@@ -17,8 +17,8 @@ package service{
 	class ProductService implements SomeService{
 		+ addProduct(formProduct:FormProduct):void
 		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
+		+ getProductByProductId(productId:Integer)Product
 		+ productUpdate(formProduct:FormProduct):void
-		+ updateProduct(productId:Integer):void
 		+ deleteProduct(productId:Integer):void
 	}
 
