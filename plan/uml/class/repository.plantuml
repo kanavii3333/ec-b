@@ -18,7 +18,7 @@ package repository{
     class ProductRepository{
         +insert(product:Product):void
 		+updateDeleteFlag(prodId:Integer):void
-        +update(product:Product):void
+        +update(prodId:Integer):Product
         +selectByCategoryId(categoryId:Integer):Product
     }
 
