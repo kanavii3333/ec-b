@@ -5,7 +5,6 @@ actor "担当者" as user
 participant "SearchProductController" as controller
 participant "ProductCategory\nService" as service
 participant "Product\nService" as service1
-participant "CategoryForm" as form
 participant "Product\nConverter" as helper
 participant "ProductCategory\nRepository" as repository1
 participant "Product\nRepository" as repository2
