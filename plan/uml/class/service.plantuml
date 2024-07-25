@@ -18,6 +18,7 @@ package service{
 		+ addProduct(formProduct:FormProduct):void
 		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
 		+ productUpdate(formProduct:FormProduct):void
+		+ updateProduct(productId:Integer):void
 		+ deleteProduct(productId:Integer):void
 	}
 
