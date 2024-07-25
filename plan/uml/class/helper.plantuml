@@ -18,7 +18,7 @@ package helper{
     }
 
     class EmployeeConverter{
-        +convertFormEmpAccountToEmployee(formEmpAccount:EmpAccountForm):EmpAccount
+        +convertFormEmpAccountToEmployee(EmpAccountform:EmpAccountForm):EmpAccount
     }
     
     class ImageUploadHelper{
