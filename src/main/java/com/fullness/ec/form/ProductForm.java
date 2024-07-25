@@ -18,8 +18,13 @@ public class ProductForm {
     @Min(2)
     @Max(20)
     private String productName;
+    @NotBlank
+    @Min(0)
     private Integer price;
     private MultipartFile file;
     private Integer categoryId;
+    @NotBlank
+    @Min(0)
+    @Max(1000000)
     private Integer quantity; 
 }
