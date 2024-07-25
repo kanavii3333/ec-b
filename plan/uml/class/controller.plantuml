@@ -47,8 +47,8 @@ package controller{
         + login():String
         + menu():String
         + logout():String
-        + post():String
-        + redirect():String
     }
+    class MenuController{
+        + menu():String
     
 }
