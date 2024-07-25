@@ -1,18 +1,15 @@
-
+package com.fullness.ec.helper;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
-import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.ProductForm;
 
 public class ProductConverter {
     public static Product convertToEntity(ProductForm productForm){
         Product product = new Product();
-        ProductCategory productCategory = new ProductCategory();
-        ProductStock productStock = new ProductStock();
         product.setProductName(productForm.getProductName());
         product.setPrice(productForm.getPrice());
-        product.setImageUrl(productForm.getFile());
+        //product.setImageUrl(productForm.getFile());
         product.getProductCategory().setProductCategoryId(productForm.getCategoryId());
         product.getProductStock().setQuantity(productForm.getQuantity());
         return product;
