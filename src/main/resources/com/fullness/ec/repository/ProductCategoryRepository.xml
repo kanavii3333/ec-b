@@ -7,7 +7,7 @@
     <select id="selectAll" resultType="ProductCategory">
         select 
             id as productCategoryId,
-            name
+            name as productCategoryName
         from product_category
     </select>
     <insert id="insert" parameterType="com.fullness.ec.entity.ProductCategory">
