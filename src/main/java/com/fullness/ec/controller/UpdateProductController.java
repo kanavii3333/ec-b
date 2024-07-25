@@ -2,6 +2,7 @@ package com.fullness.ec.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.form.ProductForm;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @SessionAttributes({"productForm","categoryList"})
 @RequestMapping("admin/updateproduct")
@@ -38,7 +38,7 @@ public class UpdateProductController {
     // }
     
     @PostMapping("confirm")
-	public String confirm(@Validated @ModelAttribute("productForm") ProductForm, BindingResult bindingResult,productForm Model model){
+	public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) return"input";
         model.addAttribute("productForm",productForm);
         return "confirm";
