@@ -5,7 +5,6 @@ actor "担当者" as user
 participant "SearchProductController" as controller
 participant "ProductCategory\nService" as service
 participant "Product\nService" as service1
-participant "CategoryForm" as form
 participant "Product\nConverter" as helper
 participant "ProductCategory\nRepository" as repository1
 participant "Product\nRepository" as repository2
@@ -15,17 +14,15 @@ user -> controller++:input()
 controller -> service1++:getProductList()
 service1 -> repository2++:selectAll()
 repository2 -> db++:SQL(SELECT)
-repository2<-- db--:List<ProductForm> 
-service1 <-- repository2--:List<ProductForm>
-controller <-- service1--:List<ProductForm>
+repository2<- db--:List<Product> 
+service1 <- repository2--:List<Product>
+controller <- service1--:List<ProductForm>
 controller -> service++:selectAll()
 service -> repository1++:selectAll()
 repository1 -> db++:SQL(SELECT)
 db -> repository1--:List<ProductCategory>
 repository1 -> service--:List<ProductCategory>
-service -> helper++:convertFromCategoryToEntity(FromCategory)
-service <- helper--:ProductCategory
-service -> controller--:List<ProductCategoryForm>
+service -> controller--:List<ProductCategory>
 controller -> controller:Modelにセット\n(プルダウン用)
 controller -> user--:カテゴリ別商品検索入力画面
 
