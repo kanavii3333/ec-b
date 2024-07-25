@@ -42,7 +42,7 @@ package form{
     }
 	
 	
-	class EmpAccountForm{
+	class EmployeeForm{
 		-empId: Integer
 		-empName: String
 		-empAccountName: String
