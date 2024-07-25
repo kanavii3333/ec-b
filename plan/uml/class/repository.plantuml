@@ -18,8 +18,9 @@ package repository{
     class ProductRepository{
         +insert(product:Product):void
 		+updateDeleteFlag(prodId:Integer):void
-        +update(product:Product):void
+        +selectByProductId(productId:Integer):Product
         +selectByCategoryId(categoryId:Integer):Product
+        +selectAll():List<ProductForm>    
     }
 
     class EmployeeRepository{
@@ -31,7 +32,7 @@ package repository{
 
     class ProductCategoryRepository{
         +insert(prodCategory:ProdCactegory):void
-        +selectAll():List<FormCategory>
+        +selectAll():List<CategoryForm>
     }
 
     class OrderDetailRepository{
