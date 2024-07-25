@@ -15,9 +15,11 @@ user -> controller++:input()
 controller -> service1++:getProductList()
 service1 -> repository2++:selectAll()
 repository2 -> db++:SQL(SELECT)
-repository2<-- db--:List<ProductForm> 
-service1 <-- repository2--:List<ProductForm>
-controller <-- service1--:List<ProductForm>
+repository2<- db--:List<ProductForm> 
+service1 <- repository2--:List<ProductForm>
+service1 -> helper++:convertToEntity(formProduct:ProductForm)
+service1 <- helper--:Product
+controller <- service1--:List<ProductForm>
 controller -> service++:selectAll()
 service -> repository1++:selectAll()
 repository1 -> db++:SQL(SELECT)
