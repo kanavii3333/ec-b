@@ -12,6 +12,6 @@ import com.fullness.ec.repository.ProductCategoryRepository;
 public class ProductCategoryService {
     @Autowired ProductCategoryRepository productCategoryRepository;
     public List<ProductCategory> selectAll(){
-        return null;//productCategoryRepository.selectAll();
+        return productCategoryRepository.selectAll();
     }
 }
