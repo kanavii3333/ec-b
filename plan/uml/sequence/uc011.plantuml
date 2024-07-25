@@ -11,6 +11,13 @@ participant "Product\nRepository" as repository2
 database "db" as db
 ==表示==
 user -> controller++:input()
+controller -> service1++:selectProductByPage(pageable: Pageable)
+service1 -> repository2++:selectByPage(pageable:Pageable)
+repository2 -> db++:SQL(SELECT(count)
+db -> repository2--:List<Product>
+repository2 -> service1--:List<Product>
+service1 -> controller--:page<Product>
+
 controller -> service1++:getProductList()
 service1 -> repository2++:selectAll()
 repository2 -> db++:SQL(SELECT)
