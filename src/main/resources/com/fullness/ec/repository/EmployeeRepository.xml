@@ -18,10 +18,10 @@
 
     <select id="selectByUsername" resultType="EmpAccount">
         select 
-            id as empAccountId
-            name as name
+            id as empAccountId,
+            name,
             password
         from employee_account
-        where nama=#{username}
+        where name=#{username}
     </select>
 </mapper>

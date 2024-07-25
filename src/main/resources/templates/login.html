@@ -23,6 +23,7 @@
                     <td style="text-align:left;"><input type="password" name="password"></td>
                 </tr>
             </table>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <input type="submit" value="ログイン">
         </form>
     </div>

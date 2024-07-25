@@ -11,10 +11,12 @@
     <div th:fragment="header" id="header">
         <h3>文具/雑貨販売システム</h3>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <a href="#">商品情報メンテナンス</a>
-            <a href="#">商品カテゴリ登録</a>
-            <a href="#">アカウント登録</a>
-            <form><input type="submit" value="ログアウト"></form>
+            <form th:action="logoutemployee" method="get">
+                <a href="#">商品情報メンテナンス</a>
+                <a href="#">商品カテゴリ登録</a>
+                <a href="#">アカウント登録</a>
+                <input type="submit" value="ログアウト">
+            </form>
         </div>
         <div th:if="${not #authorization.expression('isAuthenticated()')}">
             <a href="loginEmployee">ログイン</a>
