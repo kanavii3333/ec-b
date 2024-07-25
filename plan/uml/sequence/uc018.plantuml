@@ -3,10 +3,11 @@
 title 担当者アカウントログアウト機能のシーケンス図
 actor "担当者" as user
 participant "AccountLoginControlle" as controller
+participant "MenuControlle" as controller1
 user -> controller++:logout()
 controller -> controller:sessionを破棄
-controller -> user--:ログイン画面にリダイレクト
-user -> controller:redirect()
-controller -> user:
+controller --> user--:ログイン前メニュー画面に\nリダイレクト
+user -> controller1++:menu()
+controller1 -> user--:ログイン前メニュー画面
 
 @enduml
