@@ -86,9 +86,9 @@ package entity{
 Customer <--> Order
 Order --> OrderStatus
 Order --> OrderDetail
-Order --> PayMethod
-Product --> ProdStock
-Product --> ProdCategory
-Employee --> EmpAccount
+Order --> PaymentMethod
+Product --> ProductStock
+Product --> ProductCategory
+Employee --> EmployeeAccount
 Employee --> Department
 @enduml

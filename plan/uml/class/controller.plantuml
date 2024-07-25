@@ -17,7 +17,7 @@ package controller{
     class SearchProductController{
     	- FormOrder : formOrder
     	+ searchList():String
-    	
+    	+ list():String
       
         
     }
@@ -51,4 +51,8 @@ package controller{
     class MenuController{
         + menu():String
     
+}
+
+ 
+
 }
