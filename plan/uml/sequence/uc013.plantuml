@@ -9,6 +9,12 @@ database DB
 
 ==確認==
 user -> Controller++:confirm()
+Controller -> Service++:getProductByProductId(productId:Integer)
+Service -> Repository++:selectByProductId(productId:Integer)
+Repository -> DB++:SQL(SELECT)
+Repository <-- DB--:Product
+Service <-- Repository--:Product
+Controller <-- Service--:Product
 user <-- Controller--:商品削除確認画面
 ==完了==
 user -> Controller++:execute()
