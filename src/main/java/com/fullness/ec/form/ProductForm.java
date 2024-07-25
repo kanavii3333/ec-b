@@ -20,6 +20,6 @@ public class ProductForm {
     private String productName;
     private Integer price;
     private MultipartFile file;
-    private String categoryName;
+    private Integer categoryId;
     private Integer quantity; 
 }
