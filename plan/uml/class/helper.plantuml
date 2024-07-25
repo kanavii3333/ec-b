@@ -13,8 +13,8 @@ package helper{
     }
 
     class ProductConverter{
-        +convertToEntity(formProduct:ProductForm):Product
-        +convertFormCategoryToEntity(formCategory:CategoryForm):ProdCategory
+        +convertToEntity(productform:ProductForm):Product
+        +convertFormCategoryToEntity(categoryForm:CategoryForm):ProdCategory
     }
 
     class EmployeeConverter{
