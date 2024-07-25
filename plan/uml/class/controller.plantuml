@@ -46,10 +46,9 @@ package controller{
         -FormEmployee: formEmployee
         + login():String
         + menu():String
-    }
-    class AccountLogoutController{
         + logout():String
-        + login():String
-        
+        + post():String
+        + redirect():String
     }
+    
 }

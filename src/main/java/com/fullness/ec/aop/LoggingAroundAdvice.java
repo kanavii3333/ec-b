@@ -15,7 +15,7 @@ public class LoggingAroundAdvice {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
   
-    @Around("execution(* com.example.demo.di.*.*(..))")
+    @Around("execution(* com.fullness.ec.*.*(..))")
     public Object aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
       logger.info("▼▼▼▼▼▼▼▼▼▼"+joinPoint.getSignature().getDeclaringTypeName()+"."+joinPoint.getSignature().getName()+"()"+"▼▼▼▼▼▼▼▼▼▼");
       Arrays.stream(joinPoint.getArgs()).forEach( arg -> logger.info("引数の値:" + arg) );
