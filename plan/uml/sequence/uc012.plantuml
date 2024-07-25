@@ -13,6 +13,12 @@ database DB
 
 ==入力==
 user -> Controller++:input()
+Controller -> Service++:updateProduct(productId:Integer)
+Service -> Repository1++:update(prodId:Integer)
+Repository1 -> DB++:SQL(SELECT)
+Repository1 <-- DB--:Product
+Service <-- Repository1--:Product
+Controller <-- Service--:Product
 Controller -> Service1++:selectAll()
 Service1 -> Repository++:selectAll()
 Repository -> DB++:SQL(SELECT)
