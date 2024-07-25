@@ -1,5 +1,7 @@
 package com.fullness.ec.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
 
@@ -17,7 +19,7 @@ public class ProductForm {
     @Max(20)
     private String productName;
     private Integer price;
-    private String imageUrl;
+    private MultipartFile file;
     private String categoryName;
     private Integer quantity; 
 }
