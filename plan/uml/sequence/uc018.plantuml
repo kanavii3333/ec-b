@@ -2,7 +2,7 @@
 
 title 担当者アカウントログアウト機能のシーケンス図
 actor "担当者" as user
-participant "AccountLogoutControlle" as controller
+participant "AccountLoginControlle" as controller
 user -> controller++:logout()
 controller -> controller:sessionを破棄
 controller -> user--:ログイン画面にリダイレクト
