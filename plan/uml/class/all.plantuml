@@ -16,16 +16,16 @@ package entity{
     class OrderStatus{
     }
     
-    class PayMethod{
+    class PaymentMethod{
     }
 
     class Product{
     }
 
-    class ProdCategory{
+    class ProductCategory{
     }
 
-    class ProdStock{
+    class ProductStock{
     }
 
     class Employee{
@@ -61,7 +61,7 @@ package form{
     class EmployeeForm{
     }
     
-    class EmpAccountForm{
+    class EmployeeAccountForm{
     }
     
     class CustomerFormValidator{

@@ -23,7 +23,7 @@ package entity{
         -amountTotal: Integer
         -orderDetail: OrderDetail
         -orderStatus: OrderStatus
-        -payMethod: PayMethod
+        -payMethod: PaymentMethod
         -customerIdId: IntegerId
     }
 
@@ -48,8 +48,8 @@ package entity{
         -prodName: String
         -price: Integer
         -imageUrl: String
-        -prodCategory: ProdCategory
-        -prodStock: ProdStock
+        -prodCategory: ProductCategory
+        -prodStock: ProduckStock
     }
 
     class ProductCategory{
@@ -67,7 +67,7 @@ package entity{
         -empName: String
         -empNameKana: String
         -department: Department
-        -empAccount: EmpAccount
+        -empAccount: EmployeeAccount
     }
 
     class Department{
