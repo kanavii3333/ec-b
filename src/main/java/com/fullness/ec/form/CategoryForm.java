@@ -7,9 +7,10 @@ import lombok.Data;
 
 @Data
 public class CategoryForm {
+    
+    private Integer productCategoryId;
     @NotBlank
     @Min(2)
     @Max(20)
-    private Integer productCategoryId;
     private String productCategoryName; 
 }
