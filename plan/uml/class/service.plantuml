@@ -25,7 +25,7 @@ package service{
 	}
 
 
-	class EmployeeSerimplementsvice implements SomeService{
+	class EmployeeService implements SomeService{
 		+ addAccount(formEmployeeAccount:FormEmployeeAccount):void
 		+ employeeLogin(name:String,password:String):boolean
 		+ getEmployeeList():List<FormEmployee>
