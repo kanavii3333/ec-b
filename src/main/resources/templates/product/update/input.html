@@ -3,26 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新商品登録（入力）</title>
+    <title>商品修正（入力）</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
     <div th:replace="fragment::header"></div>
     <div>
-        <h1>新商品登録（入力）</h1>
-        <form th:action="@{/registerproduct/confirm}" method="post" th:object="${productForm}" enctype="multipart/form-data">
+        <h1>商品修正（入力）</h1>
+        <form th:action="@{/registerProduct/confirm}" method="post" th:object="${product}" enctype="multipart/form-data">
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:center;">商品名</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{productName}"></td>
+                    <td style="text-align:left;"><input type="text" th:value="*{productName}" th:field="*{productName}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">単価</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{price}"></td>
+                    <td style="text-align:left;"><input type="text" th:value="*{price}" th:field="*{price}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{quantity}"></td>
+                    <td style="text-align:left;"><input type="text" th:value="*{quantity}" th:field="*{quantity}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
@@ -33,12 +33,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align:center;">画像</td>
+                    <td></td>
                     <td style="text-align:left;"><input type="file" th:field="*{file}" accept=".jpg, .jpeg, .png"></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">画像</td>
+                    <td><img th:src="@{/img/__*{imageUrl}__}"></td>
                 </tr>
             </table>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <input type="submit" value="確認">
+            <a href="/menu">キャンセル</a>
+            <input type="submit" value="完了">
         </form>
     </div>
     <div th:replace="fragment::footer"></div>

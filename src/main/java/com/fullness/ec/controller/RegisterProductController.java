@@ -22,7 +22,7 @@ import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
 @Controller
-@RequestMapping("registerProduct")
+@RequestMapping("registerproduct")
 @SessionAttributes({ "productForm", "imageByte", "productCategory" })
 public class RegisterProductController {
     @ModelAttribute("productForm")
