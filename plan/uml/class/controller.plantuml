@@ -46,7 +46,6 @@ package controller{
         -FormEmployee: formEmployee
         + login():String
         + menu():String
-        + logout():String
     }
     class MenuController{
         + menu():String
