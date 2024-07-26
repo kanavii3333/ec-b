@@ -36,7 +36,7 @@ public class SearchProductController {
     public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
         
         Page<Product> products = service.selectProductByPage(pageable, form.getProductCategoryId());
-        model.addAttribute("pageUrl", "/product/productlist?");
+        model.addAttribute("pageUrl", "/productlist?");
         model.addAttribute("products", products);
         model.addAttribute("next", pageable.getPageNumber() + 2);
         model.addAttribute("prev", pageable.getPageNumber());
