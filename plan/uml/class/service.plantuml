@@ -1,12 +1,13 @@
+service.plantuml
 @startuml
 title サービス層のクラス図
 package service{
-	class CustomerService implements CustomerServiceImpl{
+	class CustomerServiceImpl implements CustomerService{
 		+ addCustomer(formCustomer:FormCustomer):void
 		+ customerLogin(mailAddress:String, password:String):boolean
 	}
 	
-	class OrderService implements OrderServiceImpl{
+	class OrderServiceImpl implements OrderService{
 		+ buyProduct(productId:Integer,numberId:Integer):void
 		+ cancelOrder(orderId:Integer):void
 		+ getOrderList(customerId:Integer):List<FormOrder>
@@ -14,24 +15,24 @@ package service{
 		+ orderStatusUpdate(orderStatusId:Integer):void
 	}
 	
-	class ProductService implements ProductServiceImpl{
+	class ProductServiceImpl implements ProductService{
 		+ addProduct(formProduct:FormProduct):void
 		+ getProductList():List<Product>
 		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
 		+ getProductByProductId(productId:Integer)Product
-		+ productUpdate(formProduct:FormProduct):void
+		+ updateProduct(formProduct:FormProduct):void
 		+ deleteProduct(productId:Integer):void
 		+ selectProductByPage(pageable: Pageable):page<Product>
 	}
 
 
-	class EmployeeService implements EmployeeServiceImpl{
+	class EmployeeServiceImpl implements EmployeeService{
 		+ addAccount(formEmployeeAccount:FormEmployeeAccount):void
 		+ employeeLogin(name:String,password:String):boolean
 		+ getEmployeeList():List<FormEmployee>
 	}
 	
-	class ProductCategoryService implements ProductCategoryServiceImpl{
+	class ProductCategoryServiceImpl implements ProductCategoryService{
 		+ addCategory(formCartegory:FormCategory):void
 		+ selectAll():List<FormCategory>
 	}	
