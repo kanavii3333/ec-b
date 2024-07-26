@@ -20,7 +20,7 @@ import com.fullness.ec.service.ProductServiceImpl;
 
 @Controller
 @RequestMapping
-@SessionAttributes("categoryList")
+@SessionAttributes({"categoryList","products"})
 public class SearchProductController {
     @ModelAttribute("categoryForm")
     public CategoryForm setUpForm() {
@@ -34,7 +34,7 @@ public class SearchProductController {
 
     @GetMapping("productlist")
     public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
-        
+
         Page<Product> products = service.selectProductByPage(pageable, form.getProductCategoryId());
         model.addAttribute("pageUrl", "/productlist?");
         model.addAttribute("products", products);
