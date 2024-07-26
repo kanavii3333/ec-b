@@ -1,4 +1,3 @@
-service.plantuml
 @startuml
 title サービス層のクラス図
 package service{
