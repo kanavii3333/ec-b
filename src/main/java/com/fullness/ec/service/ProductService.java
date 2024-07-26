@@ -33,7 +33,6 @@ public class ProductService implements SomeService{
     public void addProduct(ProductForm productForm, ProductCategory productCategory, byte[] imageByte){
         Product product = ProductConverter.convertToEntity(productForm, imageByte);
         productRepository.insert(product);
-        productCategoryRepository.insert(productCategory);
     }
 
     public void updateProduct(ProductForm productForm, byte[] imageByte){

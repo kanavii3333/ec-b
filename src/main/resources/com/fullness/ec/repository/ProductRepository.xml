@@ -76,10 +76,10 @@
         <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
             select nextval('product_id_seq')
         </selectKey>
-            insert into product values(#{productId}, #{productName}, #{productPrice}, #{imageUrl}, #{productCategoryId}, 0)
+            insert into product values(#{id}, #{productName}, #{price}, #{imageUrl}, #{productCategory.productCategoryId}, 0)
     </insert>
     <update id="update" parameterType="Product">
-        update product set name = #{productName}, price = #{productPrice}, image_url =#{imageUrl}, category_id = #{productCategoryId} where id = #{productId}
+        update product set name = #{productName}, price = #{price}, image_url =#{imageUrl}, category_id = #{productCategory.productCategoryId} where id = #{productId}
     </update>
     <update id="updateDeleteFlag" parameterType="Product">
         update product set delete_flag = 1 where id = #{productId}
