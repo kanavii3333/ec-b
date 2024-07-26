@@ -10,15 +10,23 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1> 商品検索 </h1>
+        <table>
+          <tr>
             <form action="/controller/productlist" method="post" th:object="${categoryForm}">
                 <select th:field="*{productCategoryId}">
                     <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
                 </select>
+          </tr>
+          <tr>
                 <input type="submit" value="カテゴリ検索">
             </form>
+          </tr>
+          <tr>
             <form action="/controller/registerproduct" method="get">
                 <input type="submit" value="商品追加">
             </form>
+          </tr>
+          </table>
             <table border="1">
                 <tr>
                   <th>商品画像</th>
