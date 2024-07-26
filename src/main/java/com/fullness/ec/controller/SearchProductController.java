@@ -20,7 +20,7 @@ import com.fullness.ec.service.ProductService;
 
 
 @Controller
-@RequestMapping("product")
+@RequestMapping
 @SessionAttributes("categoryList")
 public class SearchProductController {
     @ModelAttribute("categoryForm")

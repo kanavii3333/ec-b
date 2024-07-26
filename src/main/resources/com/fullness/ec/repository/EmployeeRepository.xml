@@ -9,14 +9,14 @@
             <id property="deptId" column="deptId" />
             <result property="deptName" column="deptName" />
         </association>
-        <association property="empAccount" javaType="EmpAccount">
+        <association property="empAccount" javaType="EmployeeAccount">
             <id property="empAccountId" column="empAccountId" />
             <result property="name" column="empAccountName" />
             <result property="password" column="password" />
         </association>
     </resultMap>
 
-    <select id="selectByUsername" resultType="EmpAccount">
+    <select id="selectByUsername" resultType="EmployeeAccount">
         select 
             id as empAccountId,
             name,
