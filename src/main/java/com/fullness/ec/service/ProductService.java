@@ -35,4 +35,9 @@ public class ProductService implements SomeService{
         productRepository.insert(product);
         productCategoryRepository.insert(productCategory);
     }
+
+    public void updateProduct(ProductForm productForm, byte[] imageByte){
+        Product product = ProductConverter.convertToEntity(productForm, imageByte);
+        productRepository.update(product);
+    }
 }

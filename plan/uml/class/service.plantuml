@@ -19,7 +19,7 @@ package service{
 		+ getProductList():List<Product>
 		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
 		+ getProductByProductId(productId:Integer)Product
-		+ updateProduct(formProduct:FormProduct):void
+		+ updateProduct(product:Product):void
 		+ deleteProduct(productId:Integer):void
 		+ selectProductByPage(pageable: Pageable):page<Product>
 	}
