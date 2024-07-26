@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.form.ProductForm;
@@ -46,7 +47,9 @@ public class RegisterProductController {
         return "redirect:complete";
     }
     @GetMapping("complete")
-    public String complete(){
+    public String complete(@ModelAttribute("productForm") ProductForm productForm, SessionStatus sessionStatus, Model model){
+        model.addAttribute("productName", productForm.getProductName());
+        sessionStatus.isComplete();
         return "product/register/complete";
     }
 }

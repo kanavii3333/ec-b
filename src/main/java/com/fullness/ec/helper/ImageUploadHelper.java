@@ -14,6 +14,7 @@ public class ImageUploadHelper {
         } catch (IOException e){
             throw new RuntimeException("画像ファイルをBase64エンコード時のエラー",e);
         }
+        data.append("data:"+file.getContentType()+";base64,");
         data.append(base64);
         return data.toString();
     }
