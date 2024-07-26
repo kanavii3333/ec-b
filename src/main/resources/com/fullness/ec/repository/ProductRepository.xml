@@ -51,9 +51,34 @@
         from 
             product p
         where
+            p.delete_flag = 0
+        and
+            p.name = #{productName}
+    </select>
+    <select id="selectByProductId" resultMap="prodResult">
+        select 
+            p.id as productId,
+            p.name as productName,
+            p.price as price,
+            p.image_url as imageUrl 
+            pc.id as productCategoryId
+            pc.name as productCategoryName
+            ps.id as productStockId
+            ps.quantity as quantity
+        from 
+            product p
+        join 
+            product_category pc
+        on
+            p.product_category_id = pc.id
+        join
+            product_stock ps
+        on  
+            p.id = ps.product_id
+        where
             delete_flag = 0
         and
-            name = #{productName}
+            p.id = #{productId}
     </select>
 
     <select id="selectByPage" resultMap="prodResult" >
