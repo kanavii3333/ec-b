@@ -17,5 +17,5 @@ public interface ProductRepository {
     public Product selectByName(String productName);
     public Product selectByCategoryId(Integer categoryId);
     public List<Product> selectAll();  
-    List<Product> selectByPage(@Param("pageable")Pageable pageable);
+    public List<Product> selectByPage(@Param("pageable")Pageable pageable, @Param("productCategoryId")Integer productCategoryId);
 }

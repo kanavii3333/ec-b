@@ -53,6 +53,25 @@
         and
             name = #{productName}
     </select>
+    <select id="selectByPage" resultMap="prodResult" >
+        select 
+            p.id as productId,
+            p.name as productName,
+            p.price as price,
+            p.image_url as imageUrl 
+        from 
+            product p
+        <if test="productCategoryId != null">
+            where
+            p.product_category_id = #{productCategoryId}
+        </if>
+        order by 
+            p.id
+        limit 
+            #{pageable.pageSize}
+        offset 
+            #{pageable.offset}
+  </select>  
     <insert id="insert" parameterType="Product">
         <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
             select nextval('product_id_seq')
@@ -65,5 +84,4 @@
     <update id="updateDeleteFlag" parameterType="Product">
         update product set delete_flag = 1 where id = #{productId}
     </update>
-
 </mapper>
