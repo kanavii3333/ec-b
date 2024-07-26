@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -36,7 +37,7 @@ public class UpdateProductController {
     @Autowired ProductServiceImpl productService; 
     @Autowired ProductCategoryServiceImpl productCategoryService;
     @GetMapping("input")
-    public String input(@ModelAttribute("productId")Integer productId,Model model){
+    public String input(@RequestParam("productId")Integer productId,Model model){
         model.addAttribute("product",productService.getProductByProductId(productId));
         model.addAttribute("productCategory",productCategoryService.selectAll());
         return "update/input";
