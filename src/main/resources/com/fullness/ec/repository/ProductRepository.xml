@@ -17,7 +17,7 @@
             <result property="quantity" column="quantity" />
         </association>
     </resultMap>
-    <select id="selectAll" resultType="Product">
+    <select id="selectAll" resultType="Product" resultMap="prodResult">
         select 
             p.id as productId,
             p.name as productName,
@@ -39,14 +39,17 @@
             p.id = ps.product_id
         where
             delete_flag = 0
-        
-
-
     </select>
-    <insert id="insert" parameterType="com.fullness.ec.entity.ProductCategory">
-        <selectKey keyProperty="product_category_id" resultType="Integer" order="BEFORE">
-            select nextval('category_id_seq')
+    <insert id="insert" parameterType="com.fullness.ec.entity.Product">
+        <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+            select nextval('product_id_seq')
         </selectKey>
-            insert into product_category values(#{productCategoryId}, #{productCategoryName})
+            insert into product_category values(#{productId}, #{productName}, #{productPrice}, #{imageUrl}, #{productCategoryId}, 0)
     </insert>
+    <update id="update" parameterType="Item">
+        update product set name = #{productName}, price = #{productPrice}, image_url =#{imageUrl}, category_id = #{productCategoryId} where id = #{productId}
+    </update>
+    <delete id="delete" parameterType="Integer">
+        delete from product where id = #{productId}
+    </delete>
 </mapper>
