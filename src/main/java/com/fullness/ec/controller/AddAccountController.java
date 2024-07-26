@@ -62,7 +62,7 @@
 
 // Employee employee = null;
 // for (Employee emp : employeeService.getEmployeeList()) {
-// if (emp.getId().equals(employeeForm.getId())) {
+// if (emp.getEmpId().equals(employeeForm.getId())) {
 // employee = emp;
 // break;
 // }
@@ -78,11 +78,13 @@
 // public String execute(@ModelAttribute("employeeForm") EmployeeForm
 // employeeForm,
 // RedirectAttributes redirectAttributes) {
+// employeeService.addAccount(EmployeeConverter.converterFormEmpAccountToEmployee(employeeForm));
 // redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
 // return "redirect:/registeraccount/complete";
 // }
 
 // @GetMapping("complete")
+
 // public String complete(@ModelAttribute("employeeForm") EmployeeForm
 // employeeForm, SessionStatus sessionStatus) {
 // System.out.println("employeeForm:" + employeeForm);
