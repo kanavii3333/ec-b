@@ -11,7 +11,6 @@ import com.fullness.ec.service.EmployeeService;
 @RequestMapping
 public class AccountLoginController {
 
-    @Autowired EmployeeService employeeService;
     @GetMapping("loginEmployee")
     public String form(){
         return "login";

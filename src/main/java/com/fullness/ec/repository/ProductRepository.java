@@ -9,12 +9,13 @@ import com.fullness.ec.entity.Product;
 import com.fullness.ec.form.ProductForm;
 
 @Mapper
-public interface ProductRepository {
-    public void insert(Product product);
-	public void	updateDeleteFlag(Integer productId);
-    public void update(Product product);
-    public Product selectByProductId(@Param("productId")Integer productId);
-    public Product selectByName(@Param("productName")String productName);
-    public List<Product> selectAll();  
-    public List<Product> selectByPage(@Param("pageable")Pageable pageable, @Param("productCategoryId")Integer productCategoryId);
+ public interface ProductRepository {
+     void insert(Product product);
+	 void	updateDeleteFlag(Integer productId);
+     void update(Product product);
+     Product selectByProductId(@Param("productId")Integer productId);
+     Product selectByName(@Param("productName")String productName);
+     List<Product> selectAll();
+     Integer countAll();  
+     List<Product> selectByPage(@Param("pageable")Pageable pageable, @Param("productCategoryId")Integer productCategoryId);
 }

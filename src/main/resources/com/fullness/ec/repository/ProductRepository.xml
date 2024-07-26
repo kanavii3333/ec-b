@@ -80,7 +80,9 @@
         and
             p.id = #{productId}
     </select>
-
+    <select id="countAll" resultType="Integer">
+        select count(*) from product
+    </select>
     <select id="selectByPage" resultMap="prodResult" >
         select 
             p.id as productId,
