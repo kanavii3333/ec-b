@@ -5,12 +5,12 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fullness.ec.entity.EmpAccount;
+import com.fullness.ec.entity.EmployeeAccount;
 
 public class EmployeeUserDetails implements UserDetails {
-    private final EmpAccount employee;
+    private final EmployeeAccount employee;
     private final Collection<GrantedAuthority> authorities;
-    public EmployeeUserDetails(EmpAccount employee, Collection<GrantedAuthority> authorities){
+    public EmployeeUserDetails(EmployeeAccount employee, Collection<GrantedAuthority> authorities){
         this.employee=employee;
         this.authorities=authorities;
     }
