@@ -16,6 +16,6 @@ import com.fullness.ec.form.ProductForm;
      Product selectByProductId(@Param("productId")Integer productId);
      Product selectByName(@Param("productName")String productName);
      List<Product> selectAll();
-     Integer countAll();  
-     List<Product> selectByPage(@Param("pageable")Pageable pageable, @Param("productCategoryId")Integer productCategoryId);
+     Integer countAll(@Param("productCategoryId")Integer productCategoryId);  
+     List<Product> selectByPage(Pageable pageable, Integer productCategoryId);
 }

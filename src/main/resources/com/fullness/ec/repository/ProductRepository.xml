@@ -17,13 +17,6 @@
             <result property="quantity" column="quantity" />
         </association>
     </resultMap>
-
-    <resultMap type="Product" id="SimpleProduct">
-        <id property="productId" column="id" />
-        <result property="productName" column="productName" />
-        <result property="price" column="price" />
-        <result property="imageUrl" column="imageUrl" />
-    </resultMap>
     
     <select id="selectAll" resultMap="prodResult">
         select 
@@ -49,18 +42,18 @@
             delete_flag = 0
     </select>
 
-    <select id="selectByName" resultMap="SimpleProduct">
+    <select id="selectByName" resultMap="prodResult">
         select 
-            id as productId,
-            name as productName,
-            price as price,
-            image_url as imageUrl 
+            p.id as productId,
+            p.name as productName,
+            p.price as price,
+            p.image_url as imageUrl 
         from 
-            product
+            product p
         where
-            delete_flag = 0
+            p.delete_flag = 0
         and
-            name = #{productName}
+            p.name = #{productName}
     </select>
     <select id="selectByProductId" resultMap="prodResult">
         select 
@@ -88,7 +81,14 @@
             p.id = #{productId}
     </select>
     <select id="countAll" resultType="Integer">
-        select count(*) from product
+        select 
+            count(*) 
+        from
+            product
+        <if test="productCategoryId != null">
+            where
+            product_category_id = #{productCategoryId}
+        </if>
     </select>
     <select id="selectByPage" resultMap="prodResult" >
         select 
@@ -98,16 +98,16 @@
             p.image_url as imageUrl 
         from 
             product p
-        <if test="productCategoryId != null">
+        <if test="param2 != null">
             where
-            p.product_category_id = #{productCategoryId}
+            p.product_category_id = #{param2}
         </if>
         order by 
             p.id
         limit 
-            #{pageable.pageSize}
+            #{param1.pageSize}
         offset 
-            #{pageable.offset}
+            #{param1.offset}
     </select>  
 
     <insert id="insert" parameterType="Product">

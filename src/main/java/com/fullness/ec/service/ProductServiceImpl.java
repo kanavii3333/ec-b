@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> selectProductByPage(Pageable pageable, Integer productCategoryId) {
-        Integer total = productRepository.countAll();
+        Integer total = productRepository.countAll(productCategoryId);
       List<Product> products;
       if (total > 0){
         products = productRepository.selectByPage(pageable, productCategoryId);
