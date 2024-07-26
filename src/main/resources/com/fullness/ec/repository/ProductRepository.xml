@@ -23,10 +23,10 @@
             p.id as productId,
             p.name as productName,
             p.price as price,
-            p.image_url as imageUrl 
-            pc.id as productCategoryId
-            pc.name as productCategoryName
-            ps.id as productStockId
+            p.image_url as imageUrl,
+            pc.id as productCategoryId,
+            pc.name as productCategoryName,
+            ps.id as productStockId,
             ps.quantity as quantity
         from 
             product p
@@ -60,10 +60,10 @@
             p.id as productId,
             p.name as productName,
             p.price as price,
-            p.image_url as imageUrl 
-            pc.id as productCategoryId
-            pc.name as productCategoryName
-            ps.id as productStockId
+            p.image_url as imageUrl,
+            pc.id as productCategoryId,
+            pc.name as productCategoryName,
+            ps.id as productStockId,
             ps.quantity as quantity
         from 
             product p
