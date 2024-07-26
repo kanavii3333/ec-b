@@ -30,7 +30,7 @@ public class SearchProductController {
 
     @GetMapping("productlist")
     public String searchList(@PageableDefault(page=0,size=5)Pageable pageable, Model model) {
-        Page<Product> products = service.selectProductByPage(pageable);
+        Page<Product> products = null;//service.selectProductByPage(pageable);
         model.addAttribute("pageUrl", "/product/productlist?");
         model.addAttribute("products",products); 
         model.addAttribute("next",pageable.getPageNumber()+2);
