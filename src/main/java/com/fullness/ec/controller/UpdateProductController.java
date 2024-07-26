@@ -1,59 +1,80 @@
-package com.fullness.ec.controller;
+// package com.fullness.ec.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+// import java.util.List;
 
-import com.fullness.ec.form.ProductForm;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.ui.Model;
+// import org.springframework.validation.BindingResult;
+// import org.springframework.validation.annotation.Validated;
+// import org.springframework.web.bind.annotation.GetMapping;
+// import org.springframework.web.bind.annotation.ModelAttribute;
+// import org.springframework.web.bind.annotation.PostMapping;
+// import org.springframework.web.bind.annotation.RequestMapping;
+// import org.springframework.web.bind.annotation.SessionAttributes;
+// import org.springframework.web.bind.support.SessionStatus;
+// import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@SessionAttributes({"productForm","categoryList"})
-@RequestMapping("admin/updateproduct")
-@Controller
-public class UpdateProductController {
+// import com.fullness.ec.entity.ProductCategory;
+// import com.fullness.ec.form.ProductForm;
+// import com.fullness.ec.helper.ImageUploadHelper;
+// import com.fullness.ec.helper.ProductConverter;
+// import com.fullness.ec.service.ProductCategoryService;
+// import com.fullness.ec.service.ProductService;
+
+// @SessionAttributes({"productForm","categoryList"})
+// @RequestMapping("admin/updateproduct")
+// @Controller
+// public class UpdateProductController {
     
-    // @ModelAttribute("productForm")
-    // public productForm setupForm(){
-    //     return new ProductForm();
-    // }
-    // @Autowired ProductFormValidator validator;
-    // @InitBinder("productForm")
-    // public void initBinder(WebDataBinder binder){
-    //     binder.addValidators(validator);
-    // }
-    // @Autowired ProductService productService; 
-    // @Autowired ProductCategoryService productCategoryService;
-    // @PostMapping("input")
-    // public String input(Model model){
-    //     model.addattridute("product",productService.getProductById());//←のメソッドに選択した商品のIdを入れる
-    //     model.addattridute("productCategory",productCategoryService.selectAll());
-    //     return "input";
-    // }
-    
-    @PostMapping("confirm")
-	public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()) return"input";
-        model.addAttribute("productForm",productForm);
-        return "confirm";
-    }
-    @PostMapping("execute")
-    public String execute(@ModelAttribute("productForm") ProductForm productForm,RedirectAttributes redirectAttributes){
-       redirectAttributes.addFlashAttribute("productForm",productForm);
-       return "redirect:comlete";
-    }
+//     @ModelAttribute("productForm")
+//     public ProductForm setupForm(){
+//         return new ProductForm();
+//     }
 
-    @GetMapping("complete")
-    public String complete(@ModelAttribute("productForm") ProductForm productForm,SessionStatus sessionStatus){
-        sessionStatus.setComplete();
-        return "complete";
-    }
+//     @Autowired ProductService productService; 
+//     @Autowired ProductCategoryService productCategoryService;
+//     @GetMapping("input")
+//     public String input(Model model){
+//         model.addAttribute("product",productService.updateProduct(null, null));
+//         model.addAttribute("productCategory",productCategoryService.selectAll());
+//         return "input";
+//     }
+    
+//     @PostMapping("confirm")
+// 	public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult, Model model){
+//          List<ProductCategory> categoryList = productCategoryService.selectAll();
+//         for(ProductCategory category:categoryList){
+//             if(category.getProductCategoryId()==productForm.getCategoryId()) {
+//                 ProductCategory productCategory = new ProductCategory();
+//                 productCategory.setProductCategoryId(category.getProductCategoryId());
+//                 productCategory.setProductCategoryName(category.getProductCategoryName());
+//                 model.addAttribute("productCategoryName", category.getProductCategoryName());
+//                 break;
+//             }
+//         }
+//         model.addAttribute("productForm",productForm);
+//         model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+//         return "confirm";
+//     }
+//     @PostMapping("execute")
+//     public String execute(
+//         @ModelAttribute("productForm") ProductForm productForm, 
+//         @ModelAttribute("productCategory") ProductCategory productCategory, 
+//         @ModelAttribute("imageByte") byte[] imageByte,
+//         RedirectAttributes redirectAttributes
+//         ){
+//             productService.addProduct(productForm, productCategory, imageByte);
+//             redirectAttributes.addFlashAttribute("productForm",productForm);
+//             return "redirect:comlete";
+//     }
+
+//     @GetMapping("complete")
+//     public String complete(@ModelAttribute("productForm") ProductForm productForm,SessionStatus sessionStatus,Model model){
+//         model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+//         sessionStatus.setComplete();
+//         return "complete";
+//     }
 	
 
-}
+// }
