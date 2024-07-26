@@ -243,3 +243,27 @@ Caused by: org.postgresql.util.PSQLException: FATAL: ???[?U?["fullness_ec"??p?X?
 	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81) ~[spring-jdbc-6.1.6.jar:6.1.6]
 	... 82 common frames omitted
 
+2024-07-26T09:14:32.509+09:00  INFO 6296 --- [restartedMain] com.fullness.ec.Application              : Starting Application using Java 17.0.11 with PID 6296 (C:\Users\fullness\Desktop\work\javaReview\ec-b\build\classes\java\main started by fullness in C:\Users\fullness\Desktop\work\javaReview\ec-b)
+2024-07-26T09:14:32.514+09:00  INFO 6296 --- [restartedMain] com.fullness.ec.Application              : No active profile set, falling back to 1 default profile: "default"
+2024-07-26T09:14:32.616+09:00  INFO 6296 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-07-26T09:14:32.617+09:00  INFO 6296 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-07-26T09:14:34.147+09:00  INFO 6296 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2024-07-26T09:14:34.199+09:00  INFO 6296 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 0 JDBC repository interfaces.
+2024-07-26T09:14:35.500+09:00  INFO 6296 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-26T09:14:35.522+09:00  INFO 6296 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-26T09:14:35.523+09:00  INFO 6296 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-07-26T09:14:35.594+09:00  INFO 6296 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-26T09:14:35.595+09:00  INFO 6296 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2976 ms
+2024-07-26T09:14:37.427+09:00  INFO 6296 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-07-26T09:14:37.575+09:00  INFO 6296 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6d910ef8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42ebc543, org.springframework.security.web.context.SecurityContextHolderFilter@639328a0, org.springframework.security.web.header.HeaderWriterFilter@14c950f3, org.springframework.web.filter.CorsFilter@1f7dd083, org.springframework.security.web.csrf.CsrfFilter@30557609, org.springframework.security.web.authentication.logout.LogoutFilter@42f30658, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@19e67250, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c6c3140, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2745d884, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@63e95751, org.springframework.security.web.access.ExceptionTranslationFilter@2d6913d1, org.springframework.security.web.access.intercept.AuthorizationFilter@6549439a]
+2024-07-26T09:14:37.601+09:00  WARN 6296 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Mvc [pattern='/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-07-26T09:14:37.602+09:00  INFO 6296 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/public/**']
+2024-07-26T09:14:38.392+09:00  INFO 6296 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-26T09:14:38.622+09:00  INFO 6296 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4242479e
+2024-07-26T09:14:38.625+09:00  INFO 6296 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-26T09:14:38.916+09:00  INFO 6296 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-07-26T09:14:39.046+09:00  INFO 6296 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-07-26T09:14:39.063+09:00  INFO 6296 --- [restartedMain] com.fullness.ec.Application              : Started Application in 7.106 seconds (process running for 8.047)
+2024-07-26T09:14:41.089+09:00  INFO 6296 --- [RMI TCP Connection(2)-127.0.0.1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-26T09:14:41.091+09:00  INFO 6296 --- [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-26T09:14:41.093+09:00  INFO 6296 --- [RMI TCP Connection(2)-127.0.0.1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
