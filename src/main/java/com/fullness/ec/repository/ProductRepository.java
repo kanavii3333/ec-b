@@ -14,7 +14,7 @@ public interface ProductRepository {
 	public void	updateDeleteFlag(Integer productId);
     public void update(Product product);
     public Product selectByProductId(Integer productId);
-    public Product selectByName(String productName);
+    public Product selectByName(@Param("productName")String productName);
     public Product selectByCategoryId(Integer categoryId);
     public List<Product> selectAll();  
     public List<Product> selectByPage(@Param("pageable")Pageable pageable, @Param("productCategoryId")Integer productCategoryId);
