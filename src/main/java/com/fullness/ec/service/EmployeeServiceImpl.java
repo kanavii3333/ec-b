@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fullness.ec.entity.Employee;
 import com.fullness.ec.entity.EmployeeAccount;
+
 import com.fullness.ec.form.EmployeeForm;
 import com.fullness.ec.helper.EmployeeConverter;
 
@@ -21,6 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void addAccount(EmployeeForm employeeForm) {
+
         EmployeeAccount employeeAccount = EmployeeConverter.converterFormEmpAccountToEmployee(employeeForm);
         employeeRepository.insert(employeeAccount);
     }
