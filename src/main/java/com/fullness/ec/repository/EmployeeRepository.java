@@ -1,5 +1,7 @@
 package com.fullness.ec.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.fullness.ec.entity.EmployeeAccount;
@@ -10,4 +12,8 @@ public interface EmployeeRepository {
     public Employee selectByNameAndPassward(String name, String password);
 
     public EmployeeAccount selectByUsername(String username);
+
+    public void insert(EmployeeAccount employeeAccount);
+
+    public List<Employee> selectAllEmployee();
 }
