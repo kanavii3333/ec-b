@@ -1,12 +1,12 @@
 @startuml
 title サービス層のクラス図
 package service{
-	class CustomerService implements SomeService{
+	class CustomerService implements CustomerServiceImpl{
 		+ addCustomer(formCustomer:FormCustomer):void
 		+ customerLogin(mailAddress:String, password:String):boolean
 	}
 	
-	class OrderService implements SomeService{
+	class OrderService implements OrderServiceImpl{
 		+ buyProduct(productId:Integer,numberId:Integer):void
 		+ cancelOrder(orderId:Integer):void
 		+ getOrderList(customerId:Integer):List<FormOrder>
@@ -14,7 +14,7 @@ package service{
 		+ orderStatusUpdate(orderStatusId:Integer):void
 	}
 	
-	class ProductService implements SomeService{
+	class ProductService implements ProductServiceImpl{
 		+ addProduct(formProduct:FormProduct):void
 		+ getProductList():List<Product>
 		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
@@ -25,13 +25,13 @@ package service{
 	}
 
 
-	class EmployeeService implements SomeService{
+	class EmployeeService implements EmployeeServiceImpl{
 		+ addAccount(formEmployeeAccount:FormEmployeeAccount):void
 		+ employeeLogin(name:String,password:String):boolean
 		+ getEmployeeList():List<FormEmployee>
 	}
 	
-	class ProductCategoryService implements SomeService{
+	class ProductCategoryService implements ProductCategoryServiceImpl{
 		+ addCategory(formCartegory:FormCategory):void
 		+ selectAll():List<FormCategory>
 	}	

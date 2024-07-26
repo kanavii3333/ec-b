@@ -18,12 +18,6 @@ db -> repository2--:List<Product>
 repository2 -> service1--:List<Product>
 service1 -> controller--:page<Product>
 
-controller -> service1++:getProductList()
-service1 -> repository2++:selectAll()
-repository2 -> db++:SQL(SELECT)
-repository2<- db--:List<Product> 
-service1 <- repository2--:List<Product>
-controller <- service1--:List<ProductForm>
 controller -> service++:selectAll()
 service -> repository1++:selectAll()
 repository1 -> db++:SQL(SELECT)
