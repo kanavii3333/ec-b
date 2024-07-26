@@ -43,7 +43,7 @@
                     <form
                         th:action="@{/updateproduct/input}"
                         method="get">
-                        <input type="hidden" name="productId" value="${p.productId}">
+                        <input type="hidden" name="productId" th:value="${p.productId}">
                         <button type="submit" class="btn btn-warning">更新</button>
                     </form>
                 </td> 
@@ -51,7 +51,7 @@
                     <form
                         th:action="@{/deleteproduct/confirm}"
                         method="post">
-                        <input type="hidden" name="productId" value="${p.productId}">
+                        <input type="hidden" name="productId" th:value="${p.productId}">
                         <button type="submit" class="btn btn-danger">削除</button>
                     </form>
                 </td>
