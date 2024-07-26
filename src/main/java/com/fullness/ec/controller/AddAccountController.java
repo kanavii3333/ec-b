@@ -78,7 +78,6 @@
 // public String execute(@ModelAttribute("employeeForm") EmployeeForm
 // employeeForm,
 // RedirectAttributes redirectAttributes) {
-// employeeService.addAccount(EmployeeConverter.convertFormEmpAccountToEmpAccount(employeeForm));
 // redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
 // return "redirect:/registeraccount/complete";
 // }
@@ -88,5 +87,6 @@
 // employeeForm, SessionStatus sessionStatus) {
 // System.out.println("employeeForm:" + employeeForm);
 // sessionStatus.setComplete();
+// return "registeraccount/complete";
 // }
 // }
