@@ -2,11 +2,10 @@
 
 title 担当者アカウントログアウト機能のシーケンス図
 actor "担当者" as user
-participant "loginControlle" as controller
 participant "SecurityConfig" as config
 participant "MenuControlle" as controller1
-user-> controller:logout()
-controller -> config++:securityFilterChain(HttpSecurity http)
+
+user -> config++:/auth POST(username, password)
 config -> config:ログインユーザー情報\nを破棄
 config --> user--:ログイン前メニュー画面に\nリダイレクト
 user -> controller1++:menu()
