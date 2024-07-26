@@ -17,6 +17,7 @@
             <result property="quantity" column="quantity" />
         </association>
     </resultMap>
+    
     <select id="selectAll" resultMap="prodResult">
         select 
             p.id as productId,
@@ -40,6 +41,7 @@
         where
             delete_flag = 0
     </select>
+
     <select id="selectByName" resultMap="prodResult">
         select 
             p.id as productId,
@@ -53,6 +55,7 @@
         and
             name = #{productName}
     </select>
+
     <select id="selectByPage" resultMap="prodResult" >
         select 
             p.id as productId,
@@ -71,17 +74,21 @@
             #{pageable.pageSize}
         offset 
             #{pageable.offset}
-  </select>  
+    </select>  
+
     <insert id="insert" parameterType="Product">
         <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
             select nextval('product_id_seq')
         </selectKey>
             insert into product values(#{id}, #{productName}, #{price}, #{imageUrl}, #{productCategory.productCategoryId}, 0)
     </insert>
+
     <update id="update" parameterType="Product">
         update product set name = #{productName}, price = #{price}, image_url =#{imageUrl}, category_id = #{productCategory.productCategoryId} where id = #{productId}
     </update>
+
     <update id="updateDeleteFlag" parameterType="Product">
         update product set delete_flag = 1 where id = #{productId}
     </update>
+
 </mapper>
