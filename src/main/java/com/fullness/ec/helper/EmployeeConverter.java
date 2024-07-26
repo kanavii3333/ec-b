@@ -14,7 +14,7 @@ public class EmployeeConverter {
     // this.passwordEncoder = passwordEncoder;
     // }
 
-    public static EmployeeAccount converterFormEmpAccountToEmployee(EmployeeForm employeeForm,
+    public static EmployeeAccount convertFormEmpAccountToEmployee(EmployeeForm employeeForm,
             PasswordEncoder passwordEncoder) {
         EmployeeAccount employeeAccount = new EmployeeAccount();
         employeeAccount.setEmpId(employeeForm.getId());
