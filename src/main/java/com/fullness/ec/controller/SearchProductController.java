@@ -15,26 +15,30 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.form.CategoryForm;
-import com.fullness.ec.service.ProductCategoryService;
-import com.fullness.ec.service.ProductService;
-
+import com.fullness.ec.service.ProductCategoryServiceImpl;
+import com.fullness.ec.service.ProductServiceImpl;
 
 @Controller
 @RequestMapping
 @SessionAttributes("categoryList")
 public class SearchProductController {
     @ModelAttribute("categoryForm")
-    public CategoryForm setUpForm(){return new CategoryForm();}
-    @Autowired ProductService service;
-    @Autowired ProductCategoryService categoryService;
+    public CategoryForm setUpForm() {
+        return new CategoryForm();
+    }
+
+    @Autowired
+    ProductServiceImpl service;
+    @Autowired
+    ProductCategoryServiceImpl categoryService;
 
     @GetMapping("productlist")
-    public String searchList(@PageableDefault(page=0,size=5)Pageable pageable, Model model) {
-        Page<Product> products = null;//service.selectProductByPage(pageable);
+    public String searchList(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
+        Page<Product> products = null;// service.selectProductByPage(pageable);
         model.addAttribute("pageUrl", "/product/productlist?");
-        model.addAttribute("products",products); 
-        model.addAttribute("next",pageable.getPageNumber()+2);
-        model.addAttribute("prev",pageable.getPageNumber());
+        model.addAttribute("products", products);
+        model.addAttribute("next", pageable.getPageNumber() + 2);
+        model.addAttribute("prev", pageable.getPageNumber());
         model.addAttribute("categoryList", categoryService.selectAll());
         return "product/productlist";
     }

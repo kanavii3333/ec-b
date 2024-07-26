@@ -9,9 +9,11 @@ import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.repository.ProductCategoryRepository;
 
 @Service
-public class ProductCategoryService {
-    @Autowired ProductCategoryRepository productCategoryRepository;
-    public List<ProductCategory> selectAll(){
+public class ProductCategoryServiceImpl {
+    @Autowired
+    ProductCategoryRepository productCategoryRepository;
+
+    public List<ProductCategory> selectAll() {
         return productCategoryRepository.selectAll();
     }
 }
