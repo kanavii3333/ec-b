@@ -17,7 +17,7 @@
             <result property="quantity" column="quantity" />
         </association>
     </resultMap>
-    <select id="selectAll" resultType="Product" resultMap="prodResult">
+    <select id="selectAll" resultMap="prodResult">
         select 
             p.id as productId,
             p.name as productName,
@@ -40,6 +40,19 @@
         where
             delete_flag = 0
     </select>
+    <select id="selectByName" ParameterType="String" resultMap="prodResult">
+        select 
+            p.id as productId,
+            p.name as productName,
+            p.price as price,
+            p.image_url as imageUrl 
+        from 
+            product p
+        where
+            delete_flag = 0
+        and
+            name = #{productName}
+    </select>
     <insert id="insert" parameterType="Product">
         <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
             select nextval('product_id_seq')
@@ -52,4 +65,5 @@
     <update id="updateDeleteFlag" parameterType="Product">
         update product set delete_flag = 1 where id = #{productId}
     </update>
+
 </mapper>
