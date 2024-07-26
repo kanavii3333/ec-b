@@ -17,6 +17,13 @@
             <result property="quantity" column="quantity" />
         </association>
     </resultMap>
+
+    <resultMap type="Product" id="SimpleProduct">
+        <id property="productId" column="id" />
+        <result property="productName" column="productName" />
+        <result property="price" column="price" />
+        <result property="imageUrl" column="imageUrl" />
+    </resultMap>
     
     <select id="selectAll" resultMap="prodResult">
         select 
@@ -42,18 +49,18 @@
             delete_flag = 0
     </select>
 
-    <select id="selectByName" resultMap="prodResult">
+    <select id="selectByName" resultMap="SimpleProduct">
         select 
-            p.id as productId,
-            p.name as productName,
-            p.price as price,
-            p.image_url as imageUrl 
+            id as productId,
+            name as productName,
+            price as price,
+            image_url as imageUrl 
         from 
-            product p
+            product
         where
-            p.delete_flag = 0
+            delete_flag = 0
         and
-            p.name = #{productName}
+            name = #{productName}
     </select>
     <select id="selectByProductId" resultMap="prodResult">
         select 

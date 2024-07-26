@@ -11,7 +11,7 @@
     <div th:fragment="header" id="header">
         <h3>文具/雑貨販売システム</h3>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <form th:action="@{/logoutEmployee}" method="post">
+            <form th:action="@{'/logoutEmployee'}" method="post">
                 <a href="#">商品情報メンテナンス</a>
                 <a href="#">商品カテゴリ登録</a>
                 <a href="#">アカウント登録</a>
@@ -19,7 +19,7 @@
             </form>
         </div>
         <div th:if="${not #authorization.expression('isAuthenticated()')}">
-            <a href="loginEmployee">ログイン</a>
+            <a href="/loginEmployee">ログイン</a>
         </div>
     </div>
 
