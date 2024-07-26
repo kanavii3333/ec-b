@@ -13,14 +13,14 @@ user -> Controller++:input()
 user <-- Controller--:商品カテゴリ登録入力画面
 ==入力==
 user -> Controller++:confirm()
-Controller -> Form++:商品カテゴリ情報セット\n new FormProduct()
-Controller <-- Form--:FormProduct
+Controller -> Form++:商品カテゴリ情報セット\n new ProductForm()
+Controller <-- Form--:ProductForm
 Controller -> Controller:バリデート
 user <-- Controller--:商品カテゴリ登録確認画面
 ==確認==
 user -> Controller++:execute()
-Controller -> Service++:addCategory(FormCategory)
-Service -> Helper++:convertFormCategoryToEntity(FormCategory)
+Controller -> Service++:addCategory(CategoryForm)
+Service -> Helper++:convertFormCategoryToEntity(CategoryForm)
 Service <- Helper--:ProdCategory
 Service -> Repository++:addCategory(ProdCategory)
 Repository -> DB++:insert(ProdCategory)

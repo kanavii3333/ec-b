@@ -7,8 +7,19 @@ import lombok.Data;
 
 @Data
 public class EmployeeForm {
+
+    private Integer id;
+
+    private String empName;
+
     @NotBlank
     @Min(5)
     @Max(20)
-    private String empName;
+    private String empAccountName;
+
+    @NotBlank
+    @Min(5)
+    @Max(20)
+    private String empAccountPassword;
+
 }
