@@ -104,10 +104,10 @@
     </select>  
 
     <insert id="insert" parameterType="Product">
-        <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
+        <selectKey keyProperty="productId" resultType="Integer" order="BEFORE">
             select nextval('product_id_seq')
         </selectKey>
-            insert into product values(#{id}, #{productName}, #{price}, #{imageUrl}, #{productCategory.productCategoryId}, 0)
+            insert into product values(#{productId}, #{productName}, #{price}, #{imageUrl}, #{productCategory.productCategoryId}, 0)
     </insert>
 
     <update id="update" parameterType="Product">
