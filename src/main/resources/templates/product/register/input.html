@@ -28,7 +28,7 @@
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
                         <select th:field="*{categoryId}">
-                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
+                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${categoryId==category.productCategoryId}">[[${category.productCategoryName}]]</option>
                         </select>
                     </td>
                 </tr>
