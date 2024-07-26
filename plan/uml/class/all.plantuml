@@ -34,17 +34,17 @@ package entity{
     class Department{
     }
 
-    class EmpAccount{
+    class EmployeeAccount{
     }
 }
 
 Customer <--> Order
 Order --> OrderStatus
 Order --> OrderDetail
-Order --> PayMethod
-Product --> ProdStock
-Product --> ProdCategory
-Employee --> EmpAccount
+Order --> PaymentMethod
+Product --> ProductStock
+Product --> ProductCategory
+Employee --> EmployeeAccount
 Employee --> Department
 
 package form{
@@ -99,8 +99,8 @@ OrderConverter --> Order
 OrderConverter --> OrderForm
 ProductConverter --> Product
 ProductConverter --> ProductForm
-EmployeeConverter --> EmpAccount
-EmployeeConverter --> EmpAccountForm
+EmployeeConverter --> EmployeeAccount
+EmployeeConverter --> EmployeeAccountForm
 
 package repository{
     class CustomerRepository{
@@ -160,7 +160,7 @@ OrderRepository --> Order
 OrderDetailRepository --> OrderDetail
 ProductRepository --> Product
 EmployeeRepository --> Employee
-ProductCategoryRepository --> ProdCategory
+ProductCategoryRepository --> ProductCategory
 
 
 package controller{
@@ -177,8 +177,6 @@ package controller{
     class RegisterProductCategoryContoroller{
     }
     class AccountLoginContoroller{
-    }
-    class  AccountLogoutContoroller{
     }
 }
 AddAccountContoroller --> EmployeeService
