@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ProductService {
-    void addProduct(ProductForm ProductForm);
+    void addProduct(ProductForm productForm, byte[] imageByte) ;
 
     List<Product> getProductList();
 
@@ -15,9 +15,9 @@ public interface ProductService {
 
     Product getProductByProductId(Integer productId);
 
-    void updateProduct(Product product);
+    void updateProduct(ProductForm productForm, byte[] imageByte) ;
 
     void deleteProduct(Integer productId);
 
-    Page<Product> selectProductByPage(Pageable pageable);
+    Page<Product> selectProductByPage(Pageable pageable, Integer productCategoryId);
 }

@@ -64,7 +64,7 @@ public class RegisterProductController {
             @ModelAttribute("productForm") ProductForm productForm,
             @ModelAttribute("productCategory") ProductCategory productCategory,
             @ModelAttribute("imageByte") byte[] imageByte) {
-        productService.addProduct(productForm, productCategory, imageByte);
+        productService.addProduct(productForm,imageByte);
         return "redirect:complete";
     }
 
