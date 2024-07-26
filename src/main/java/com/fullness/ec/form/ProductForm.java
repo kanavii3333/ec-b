@@ -2,9 +2,6 @@ package com.fullness.ec.form;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fullness.ec.entity.ProductCategory;
-import com.fullness.ec.entity.ProductStock;
-
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
