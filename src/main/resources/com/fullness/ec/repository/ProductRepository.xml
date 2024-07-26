@@ -6,7 +6,7 @@
 <resultMap type="Product" id="prodResult">
         <id property="productId" column="id" />
         <result property="productName" column="productName" />
-        <result property="productPrice" column="productPrice" />
+        <result property="price" column="price" />
         <result property="imageUrl" column="imageUrl" />
         <association property="productCategory" javaType="ProductCategory">
             <id property="productCategoryId" column="productCategoryId" />
