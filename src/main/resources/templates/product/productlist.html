@@ -12,7 +12,7 @@
         <h1> 商品検索 </h1>
         <table>
           <tr>
-            <form action="/controller/productlist" method="post" th:object="${categoryForm}">
+            <form action="/productlist" method="get" th:object="${categoryForm}">
                 <select th:field="*{productCategoryId}">
                     <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
                 </select>
@@ -22,7 +22,7 @@
             </form>
           </tr>
           <tr>
-            <form action="/controller/registerproduct" method="get">
+            <form action="/registerproduct/input" method="post">
                 <input type="submit" value="商品追加">
             </form>
           </tr>
