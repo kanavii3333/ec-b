@@ -12,8 +12,10 @@ import com.fullness.ec.form.ProductForm;
 public interface ProductRepository {
     public void insert(Product product);
 	public void	updateDeleteFlag(Integer productId);
+    public void update(Product product);
     public Product selectByProductId(Integer productId);
+    public Product selectByName(String productName);
     public Product selectByCategoryId(Integer categoryId);
-    public List<ProductForm> selectAll();  
-    List<Product> selectByPage(@Param("pageable")Pageable pageable);  
+    public List<Product> selectAll();  
+    List<Product> selectByPage(@Param("pageable")Pageable pageable);
 }

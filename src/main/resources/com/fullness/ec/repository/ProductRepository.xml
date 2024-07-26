@@ -40,16 +40,16 @@
         where
             delete_flag = 0
     </select>
-    <insert id="insert" parameterType="com.fullness.ec.entity.Product">
+    <insert id="insert" parameterType="Product">
         <selectKey keyProperty="id" resultType="Integer" order="BEFORE">
             select nextval('product_id_seq')
         </selectKey>
             insert into product_category values(#{productId}, #{productName}, #{productPrice}, #{imageUrl}, #{productCategoryId}, 0)
     </insert>
-    <update id="update" parameterType="Item">
+    <update id="update" parameterType="Product">
         update product set name = #{productName}, price = #{productPrice}, image_url =#{imageUrl}, category_id = #{productCategoryId} where id = #{productId}
     </update>
-    <delete id="delete" parameterType="Integer">
-        delete from product where id = #{productId}
-    </delete>
+    <update id="updateDeleteFlag" parameterType="Product">
+        update product set delete_flag = 1 where id = #{productId}
+    </update>
 </mapper>
