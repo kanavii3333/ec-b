@@ -1,6 +1,7 @@
 package com.fullness.ec.helper;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
+import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.ProductForm;
 
@@ -10,8 +11,9 @@ public class ProductConverter {
         product.setProductName(productForm.getProductName());
         product.setPrice(productForm.getPrice());
         product.setImageUrl(ImageUploadHelper.uploadFile(productForm.getFile().getOriginalFilename(), imageByte));
-        
+        product.setProductCategory(new ProductCategory());
         product.getProductCategory().setProductCategoryId(productForm.getCategoryId());
+        product.setProductStock(new ProductStock());
         product.getProductStock().setQuantity(productForm.getQuantity());
         return product;
     }
