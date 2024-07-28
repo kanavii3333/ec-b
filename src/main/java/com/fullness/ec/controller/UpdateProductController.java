@@ -38,7 +38,7 @@ public class UpdateProductController {
     public String input(@RequestParam("productId")Integer productId,Model model){
         model.addAttribute("product",productServiceImpl.getProductByProductId(productId));
         model.addAttribute("productCategory",productCategoryServiceImpl.selectAll());
-        return "update/input";
+        return "product/update/input";
     }
     
     @PostMapping("confirm")
