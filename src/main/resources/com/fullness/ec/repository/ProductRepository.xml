@@ -4,7 +4,7 @@
 
 <mapper namespace="com.fullness.ec.repository.ProductRepository">
 <resultMap type="Product" id="prodResult">
-        <id property="productId" column="id" />
+        <id property="productId" column="productId" />
         <result property="productName" column="productName" />
         <result property="price" column="price" />
         <result property="imageUrl" column="imageUrl" />
