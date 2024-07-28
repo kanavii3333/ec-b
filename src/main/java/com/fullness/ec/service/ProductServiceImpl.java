@@ -69,6 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getProductByProductId(Integer productId){
-        return null;
+        Product product = productRepository.selectByProductId(productId);
+        return product;
     }
 }
