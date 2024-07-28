@@ -16,11 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.helper.ImageUploadHelper;
-import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
@@ -34,18 +32,18 @@ public class UpdateProductController {
         return new ProductForm();
     }
 
-    @Autowired ProductServiceImpl productService; 
-    @Autowired ProductCategoryServiceImpl productCategoryService;
+    @Autowired ProductServiceImpl productServiceImpl; 
+    @Autowired ProductCategoryServiceImpl productCategoryServiceImpl;
     @GetMapping("input")
     public String input(@RequestParam("productId")Integer productId,Model model){
-        model.addAttribute("product",productService.getProductByProductId(productId));
-        model.addAttribute("productCategory",productCategoryService.selectAll());
+        model.addAttribute("product",productServiceImpl.getProductByProductId(productId));
+        model.addAttribute("productCategory",productCategoryServiceImpl.selectAll());
         return "update/input";
     }
     
     @PostMapping("confirm")
 	public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult, Model model){
-         List<ProductCategory> categoryList = null;//productCategoryService.selectAll();
+         List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
         for(ProductCategory category:categoryList){
             if(category.getProductCategoryId()==productForm.getCategoryId()) {
                 ProductCategory productCategory = new ProductCategory();
@@ -66,7 +64,7 @@ public class UpdateProductController {
         @ModelAttribute("imageByte") byte[] imageByte,
         RedirectAttributes redirectAttributes
         ){
-            productService.addProduct(productForm, imageByte);
+            productServiceImpl.addProduct(productForm, imageByte);
             redirectAttributes.addFlashAttribute("productForm",productForm);
             return "redirect:comlete";
     }
