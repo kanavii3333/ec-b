@@ -81,8 +81,10 @@
             count(*) 
         from
             product
+        where
+            delete_flag = 0
         <if test="productCategoryId != null">
-            where
+            and
             product_category_id = #{productCategoryId}
         </if>
     </select>
@@ -94,9 +96,11 @@
             p.image_url as imageUrl 
         from 
             product p
+        where
+            p.delete_flag = 0
         <if test="param2 != null">
-            where
-            p.product_category_id = #{param2}
+            and
+                p.product_category_id = #{param2}
         </if>
         order by 
             p.id

@@ -27,7 +27,7 @@ import com.fullness.ec.service.ProductServiceImpl;
 
 @Controller
 @RequestMapping("deleteproduct")
-@SessionAttributes({ "product", "imageByte", "productCategory" })
+@SessionAttributes({ "product" })
 public class DeleteProductController {
     @ModelAttribute("productForm")
     public ProductForm setupForm() {
@@ -47,9 +47,7 @@ public class DeleteProductController {
     }
     @PostMapping("execute")
     public String execute(
-        @ModelAttribute("product") ProductForm product, 
-        @ModelAttribute("productCategory") ProductCategory productCategory, 
-        @ModelAttribute("imageByte") byte[] imageByte,
+        @ModelAttribute("product") Product product, 
         RedirectAttributes redirectAttributes
         ){
             productService.deleteProduct(product.getProductId());
@@ -60,6 +58,6 @@ public class DeleteProductController {
     @GetMapping("complete")
     public String complete(@ModelAttribute("product") Product product,SessionStatus sessionStatus,Model model){
         sessionStatus.setComplete();
-        return "complete";
+        return "product/delete/complete";
     }
 }
