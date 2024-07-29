@@ -15,7 +15,7 @@ public interface ProductService {
 
     Product getProductByProductId(Integer productId);
 
-    void updateProduct(ProductForm productForm, byte[] imageByte) ;
+    void updateProduct(Product product);
 
     void deleteProduct(Integer productId);
 

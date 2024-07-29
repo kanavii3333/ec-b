@@ -57,9 +57,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateProduct(ProductForm productForm, byte[] imageByte) {
-        Product product = ProductConverter.convertToEntity(productForm, imageByte);
+    public void updateProduct(Product product) {
         productRepository.update(product);
+        stockRepository.update(product.getProductStock());
     }
 
     @Override
