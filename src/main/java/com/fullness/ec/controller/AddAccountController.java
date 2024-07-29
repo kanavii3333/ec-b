@@ -80,9 +80,22 @@ public class AddAccountController {
 
     @GetMapping("complete")
 
-    public String complete(@ModelAttribute("employeeForm") EmployeeForm employeeForm, SessionStatus sessionStatus) {
+    public String complete(@ModelAttribute("employeeForm") EmployeeForm employeeForm, Model model,
+            SessionStatus sessionStatus) {
         System.out.println("employeeForm:" + employeeForm);
+        // model.addAttribute("employeeName", );
+
+        Employee employee = null;
+        for (Employee emp : employeeService.getEmployeeList()) {
+            if (emp.getEmpId().equals(employeeForm.getId())) {
+                employee = emp;
+                break;
+            }
+        }
+        model.addAttribute("employee", employee);
+        model.addAttribute("employeeAccountName", employeeForm.getEmpAccountName());
         sessionStatus.setComplete();
         return "account/register/complete";
+
     }
 }
