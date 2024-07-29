@@ -50,7 +50,7 @@
                image_url=#{image}
                product_category_id=#{productCategoryId}
             where
-               id=#{id}
+               id=#{productId}
     </update>
 
     <select id="selectByProductId" resultMap="prodResult" parameterType="Integer">
@@ -72,7 +72,7 @@
         on
            p.product_category_id=pc.id
         where
-           p.id=#{id}
+           p.id=#{productId}
         for update
         </select>
         
