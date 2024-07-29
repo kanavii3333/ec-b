@@ -24,4 +24,15 @@ public class ProductConverter {
         productCategory.setProductCategoryName(categoryForm.getProductCategoryName());
         return productCategory;
     }
+
+    public static ProductForm convertToForm(Product product){
+        ProductForm productForm = new ProductForm();
+        productForm.setProductId(product.getProductId());
+        productForm.setProductName(product.getProductName());
+        productForm.setPrice(product.getPrice());
+        productForm.setQuantity(product.getProductStock().getQuantity());
+        productForm.setStockId(product.getProductStock().getProductStockId());
+        productForm.setCategoryId(product.getProductCategory().getProductCategoryId());
+        return productForm;
+    }
 }

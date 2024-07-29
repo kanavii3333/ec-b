@@ -22,19 +22,19 @@
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{quantity}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{productStock.quantity}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
-                        <select th:field="*{categoryId}">
-                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${categoryId==category.productCategoryId}">[[${category.productCategoryName}]]</option>
+                        <select th:field="*{productCategory.productCategoryId}">
+                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${category.productCategoryId==category.productCategoryId}">[[${category.productCategoryName}]]</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
-                    <td style="text-align:left;"><input type="file" th:field="*{file}" accept=".jpg, .jpeg, .png"></td>
+                    <td style="text-align:left;"><input type="file" name="file" th:value="${file}" accept=".jpg, .jpeg, .png"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">画像</td>

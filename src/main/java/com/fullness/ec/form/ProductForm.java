@@ -24,4 +24,5 @@ public class ProductForm {
     @Min(0)
     @Max(1000000)
     private Integer quantity; 
+    private Integer stockId;
 }
