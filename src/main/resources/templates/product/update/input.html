@@ -10,25 +10,25 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品修正（入力）</h1>
-        <form th:action="@{/registerproduct/confirm}" method="post" th:object="${productForm}" enctype="multipart/form-data">
+        <form th:action="@{/registerproduct/confirm}" method="post" th:object="${product}" enctype="multipart/form-data">
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:center;">商品名</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{productName}" value="{product.productName}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{productName}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">単価</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{price}" value="{product.price}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{price}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{quantity}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{productStock.quantity}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
-                        <select th:field="*{categoryId}">
-                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${category.productCategoryId==categoryId}">[[${category.productCategoryName}]]</option>
+                        <select th:field="*{productCategory.productCategoryId}">
+                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${category.productCategoryId==productCategory.productCategoryId}">[[${category.productCategoryName}]]</option>
                         </select>
                     </td>
                 </tr>
