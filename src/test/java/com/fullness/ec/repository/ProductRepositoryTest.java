@@ -43,7 +43,7 @@ public class ProductRepositoryTest {
         product.setProductStock(prodStock);
         productRepository.insert(product);
 
-        assertEquals(25,productRepository.selectAll());
+        assertEquals(25,productRepository.selectAll().size());
     }
 
     @Test
@@ -75,8 +75,8 @@ public class ProductRepositoryTest {
        Product product = productRepository.selectByProductId(1);
        assertEquals("水性ボールペン(黒)", product.getProductName());
        assertEquals(120, product.getPrice());
-       assertEquals(10, product.getProductStock());
-       assertEquals("文房具", product.getProductName());
+       assertEquals(10, product.getProductStock().getQuantity());
+       assertEquals("文房具", product.getProductCategory().getProductCategoryName());
        assertEquals("black_pen_w.jpg", product.getImageUrl());
     };
 
@@ -96,14 +96,14 @@ public class ProductRepositoryTest {
     @Test
     void countAll(){
         Integer countall = productRepository.countAll(1);
-        assertEquals(1, countall);
+        assertEquals(14, countall);
     }
 
     @Test
     void selectByPage(){
         Pageable pageable = PageRequest.of(1, 3);
         List<Product> products= productRepository.selectByPage(pageable, 1);
-        assertEquals(14, products.size());
+        assertEquals(3, products.size());
     }
     
 }
