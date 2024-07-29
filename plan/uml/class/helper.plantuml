@@ -15,6 +15,7 @@ package helper{
     class ProductConverter{
         +convertToEntity(productform:ProductForm):Product
         +convertFormCategoryToEntity(categoryForm:CategoryForm):ProdCategory
+        +convertToForm(product:Product):ProductForm
     }
 
     class EmployeeConverter{
