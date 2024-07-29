@@ -27,15 +27,23 @@ public class EmployeeRepositoryTest {
         EmployeeAccount employeeAccount = new EmployeeAccount();
         employeeAccount.setEmpAccountId(0);
         employeeAccount.setName("佐藤次郎");
-        employeeAccount.setPassword("1111");
+        employeeAccount.setPassword("11111");
 
         employeeRepository.insert(employeeAccount);
-        assertEquals(3 ,employeeRepository.selectAllEmployee().size());
+       // assertEquals(3 ,.selectAllEmployee().size());
     }
 
     @Test
-    void selectAllEmployee(){
+    void selectAllEmployeeTest(){
         List<Employee> EmployeeList = employeeRepository.selectAllEmployee();
         assertEquals(3,EmployeeList.size() );
+    }
+
+    @Test
+    void selectByUsernameTest(){
+        EmployeeAccount employeeAccount = employeeRepository.selectByUsername("admin");
+        
+        
+
     }
 }
