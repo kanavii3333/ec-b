@@ -14,7 +14,7 @@ import com.fullness.ec.form.ProductForm;
 	 void	updateDeleteFlag(Integer productId);
      void update(Product product);
      Product selectByProductId(@Param("productId")Integer productId);
-     Product selectByName(@Param("productName")String productName);
+     Integer selectProductIdByName(@Param("productName")String productName);
      List<Product> selectAll();
      Integer countAll(@Param("productCategoryId")Integer productCategoryId);  
      List<Product> selectByPage(Pageable pageable, Integer productCategoryId);

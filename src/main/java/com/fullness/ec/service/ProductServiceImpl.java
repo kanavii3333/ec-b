@@ -52,8 +52,8 @@ public class ProductServiceImpl implements ProductService {
     public void addProduct(ProductForm productForm, byte[] imageByte) {
         Product product = ProductConverter.convertToEntity(productForm, imageByte);
         productRepository.insert(product);
-        product.getProductStock().setProductId(productRepository.selectByName(product.getProductName()).getProductId());
-        //stockRepository.insert(product.getProductStock());
+        product.getProductStock().setProductId(productRepository.selectProductIdByName(product.getProductName()));
+        stockRepository.insert(product.getProductStock());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Integer productId){
-        
+        productRepository.updateDeleteFlag(productId);
     }
 
     @Override

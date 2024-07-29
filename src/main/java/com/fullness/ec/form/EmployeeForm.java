@@ -10,6 +10,7 @@ public class EmployeeForm {
 
     private Integer id;
 
+    @NotBlank
     private String empName;
 
     @NotBlank

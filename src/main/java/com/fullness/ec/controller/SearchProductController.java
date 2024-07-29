@@ -34,7 +34,9 @@ public class SearchProductController {
 
     @GetMapping("productlist")
     public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
-
+        if(form.getProductCategoryId() == null){
+            form.setProductCategoryId(1);
+        }
         Page<Product> products = service.selectProductByPage(pageable, form.getProductCategoryId());
         model.addAttribute("pageUrl", "/productlist?");
         model.addAttribute("products", products);

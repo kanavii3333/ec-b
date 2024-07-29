@@ -15,18 +15,18 @@
                 <tr>
                     <td style="text-align:center;">社員名</td>
                     <td style="text-align:left;">
-                        <select th:field="*{employeeId}">
+                        <select th:field="*{id}"><!-- これはフォームの中のフィールドと一致させる-->
                             <option th:each="emp : ${employeeList}" th:value="${emp.empId}" th:selected="${employeeId==emp.empId}">[[${emp.empName}]]</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">アカウント名</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{employeeName}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{empAccountName}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">パスワード</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{password}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{empAccountPassword}"></td>
                 </tr>
            
             

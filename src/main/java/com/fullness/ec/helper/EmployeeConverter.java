@@ -14,6 +14,10 @@ public class EmployeeConverter {
         employeeAccount.setEmpId(employeeForm.getId());
         employeeAccount.setName(employeeForm.getEmpAccountName());
         employeeAccount.setPassword(employeeForm.getEmpAccountPassword());
+
+        // employeeAccount.setEmpId(1);
+        // employeeAccount.setName("tate");
+        // employeeAccount.setPassword("tate");
         return employeeAccount;
 
     }
