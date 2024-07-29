@@ -5,7 +5,7 @@ import com.fullness.ec.form.EmployeeForm;
 import java.util.List;
 
 public interface EmployeeService {
-    void addAccount(EmployeeForm EmployeeForm);
+    void addAccount(EmployeeForm employeeForm);
 
     List<Employee> getEmployeeList();
 }
