@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 
 <mapper namespace="com.fullness.ec.repository.ProductRepository">
-<resultMap type="Product" id="prodResult">
+    <resultMap type="Product" id="prodResult">
         <id property="productId" column="productId" />
         <result property="productName" column="productName" />
         <result property="price" column="price" />
@@ -42,54 +42,6 @@
             delete_flag = 0
     </select>
 
-    <update id="update" parameterType="prodResult">
-        update 
-            product set
-               name=#{name},
-               price=#{price},
-               image_url=#{image}
-               product_category_id=#{productCategoryId}
-            where
-               id=#{productId}
-    </update>
-
-    <select id="selectByProductId" resultMap="prodResult" parameterType="Integer">
-        select
-           p.id as productId, 
-           p.name as productName,
-           p.price as price,
-           p.image_url as imageUrl,
-           pc.name as productCategoryName,
-           ps.quantity as quantity
-        from
-           product p
-        join
-           product_stock ps
-        on
-           p.id=ps.product_id
-        join
-           product_category pc
-        on
-           p.product_category_id=pc.id
-        where
-           p.id=#{productId}
-        for update
-        </select>
-        
-
-    <select id="selectByName" resultMap="prodResult">
-        select 
-            p.id as productId,
-            p.name as productName,
-            p.price as price,
-            p.image_url as imageUrl 
-        from 
-            product p
-        where
-            p.delete_flag = 0
-        and
-            p.name = #{productName}
-    </select>
     <select id="selectByProductId" resultMap="prodResult">
         select 
             p.id as productId,
@@ -153,7 +105,7 @@
     </insert>
 
     <update id="update" parameterType="Product">
-        update product set name = #{productName}, price = #{price}, image_url =#{imageUrl}, category_id = #{productCategory.productCategoryId} where id = #{productId}
+        update product set name = #{productName}, price = #{price}, image_url =#{imageUrl}, product_category_id = #{productCategory.productCategoryId} where id = #{productId}
     </update>
 
     <update id="updateDeleteFlag" parameterType="Product">

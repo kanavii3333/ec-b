@@ -22,13 +22,13 @@
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{productStock.quantity}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{quantity}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
-                        <select th:field="*{productCategory.productCategoryId}">
-                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${category.productCategoryId==category.productCategoryId}">[[${category.productCategoryName}]]</option>
+                        <select th:field="*{categoryId}">
+                            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${category.productCategoryId==categoryId}">[[${category.productCategoryName}]]</option>
                         </select>
                     </td>
                 </tr>

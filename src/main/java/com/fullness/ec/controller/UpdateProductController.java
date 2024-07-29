@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.helper.ImageUploadHelper;
+import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
@@ -36,7 +37,7 @@ public class UpdateProductController {
     @Autowired ProductCategoryServiceImpl productCategoryServiceImpl;
     @GetMapping("input")
     public String input(@RequestParam("productId")Integer productId,Model model){
-        model.addAttribute("product",productServiceImpl.getProductByProductId(productId));
+        model.addAttribute("product",ProductConverter.convertToForm(productServiceImpl.getProductByProductId(productId)));
         model.addAttribute("categoryList",productCategoryServiceImpl.selectAll());
         return "product/update/input";
     }
