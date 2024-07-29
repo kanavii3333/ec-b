@@ -42,6 +42,15 @@
             delete_flag = 0
     </select>
 
+    <select id="selectProductIdByName" resultType="Integer">
+        select 
+            id as productId
+        from 
+            product
+        where
+            name = #{productName}
+    </select>
+
     <select id="selectByProductId" resultMap="prodResult">
         select 
             p.id as productId,
