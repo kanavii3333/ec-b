@@ -32,10 +32,10 @@
                 <tr>
                     <td style="text-align:center;">画像</td>
                     <td th:if="${image!=null}">
-                        <img th:src="@{/img/__${image}__}" width="500">
+                        <img th:src="${image}">
                     </td>
                     <td th:if="${image==null}">
-                        <img th:src="@{/img/__${product.imageUrl}__}" width="500">
+                        <img th:src="@{/img/__${product.imageUrl}__}">
                     </td>
                 </tr>
 

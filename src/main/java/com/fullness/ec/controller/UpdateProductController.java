@@ -51,15 +51,13 @@ public class UpdateProductController {
                 break;
             }
         }
+        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(file));
+        model.addAttribute("imageByte", file.getBytes());
+        model.addAttribute("filename",file.getOriginalFilename());
         if(!file.isEmpty()){
-            model.addAttribute("image", ImageUploadHelper.createBase64ImageString(file));
-            model.addAttribute("imageByte", file.getBytes());
-            model.addAttribute("filename",file.getOriginalFilename());
             product.setImageUrl(null);
         } else {
             model.addAttribute("image", null);
-            model.addAttribute("imageByte", null);
-            model.addAttribute("filename",null);
         }
         model.addAttribute("product", product);
         return "product/update/confirm";
@@ -77,13 +75,13 @@ public class UpdateProductController {
                 product.setImageUrl(ImageUploadHelper.uploadFile(filename, imageByte));
             }
             productServiceImpl.updateProduct(product);
-            return "redirect:comlete";
+            return "redirect:/updateproduct/complete";
     }
 
     @GetMapping("complete")
     public String complete(@ModelAttribute("product") Product product,SessionStatus sessionStatus,Model model){
         model.addAttribute("name", product.getProductName());    
         sessionStatus.setComplete();
-        return "complete";
+        return "product/update/complete";
     }
 }
