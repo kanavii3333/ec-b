@@ -24,4 +24,17 @@
         from employee_account
         where name=#{username}
     </select>
-</mapper>
+    
+    <select id="selectAllEmployee" resultType="com.fullness.ec.entity.Employee">
+        select 
+            id as empId 
+            name as empName
+
+         from employee
+    </select>
+
+    <insert id="insert" parameterType="com.fullness.ec.entity.EmployeeAccount"
+        useGeneratedKeys="true" keyProperty="empAccountId">
+        insert into employee_account values(#{name},crypt(#{password},gen_salt('bf')),#{empId})
+    </insert>
+</mapper> 
