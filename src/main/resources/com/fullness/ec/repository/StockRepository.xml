@@ -9,4 +9,12 @@
         </selectKey>
             insert into product_stock values(#{productStockId},#{quantity},#{productId})
     </insert>
+
+    <update id="update" parameterType="ProductStock">
+       update
+           product_stock set
+           quantity=#{quantity},
+       where
+           product_id=#{productId}      
+
 </mapper>

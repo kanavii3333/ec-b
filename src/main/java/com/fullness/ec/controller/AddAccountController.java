@@ -40,7 +40,7 @@ public class AddAccountController {
     public String input(Model model) {
 
         model.addAttribute("employeeList", employeeService.getEmployeeList());
-        return "registeraccount/input";
+        return "account/register/input";
     }
 
     @PostMapping("confirm")
@@ -50,7 +50,7 @@ public class AddAccountController {
         System.out.println("employeeForm:" + employeeForm);
         System.out.println("bindingResult:" + bindingResult);
         if (bindingResult.hasErrors())
-            return "registeraccount/input";
+            return "account/register/input";
 
         Employee employee = null;
         for (Employee emp : employeeService.getEmployeeList()) {
@@ -63,7 +63,7 @@ public class AddAccountController {
 
         model.addAttribute("employee", employee);
         model.addAttribute("employeeForm", employeeForm);
-        return "registeraccount/confirm";
+        return "account/register/confirm";
     }
 
     @PostMapping("execute")
@@ -71,7 +71,7 @@ public class AddAccountController {
             RedirectAttributes redirectAttributes) {
 
         redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
-        return "redirect:/registeraccount/complete";
+        return "redirect:/account/register/complete";
     }
 
     @GetMapping("complete")
@@ -79,6 +79,6 @@ public class AddAccountController {
     public String complete(@ModelAttribute("employeeForm") EmployeeForm employeeForm, SessionStatus sessionStatus) {
         System.out.println("employeeForm:" + employeeForm);
         sessionStatus.setComplete();
-        return "registeraccount/complete";
+        return "account/register/complete";
     }
 }
