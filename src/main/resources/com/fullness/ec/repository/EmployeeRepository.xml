@@ -32,9 +32,23 @@
 
          from employee
     </select>
-
-    <insert id="insert" parameterType="com.fullness.ec.entity.EmployeeAccount"
-        useGeneratedKeys="true" keyProperty="empAccountId">
+<!-- 
+    <insert id="insert" parameterType="com.fullness.ec.entity.EmployeeAccount">
+        <selectKey keyProperty="empAccountId" resultType="Integer" order="BEFORE">
+        select nextval('employee_id_seq')
+        </selectKey>
         insert into employee_account values(#{name},crypt(#{password},gen_salt('bf')),#{empId})
+    </insert> -->
+   <insert id="insert" parameterType="com.fullness.ec.entity.EmployeeAccount">
+        <selectKey keyProperty="empAccountId" resultType="Integer" order="BEFORE">
+            SELECT nextval('employee_id_seq')
+        </selectKey>
+        insert into employee_account (id, name, password,employee_id)
+        values (#{empAccountId}, #{name}, crypt(#{password}, gen_salt('bf')),#{empId})
     </insert>
+
+
+    
+
+    
 </mapper> 

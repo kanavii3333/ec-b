@@ -75,7 +75,7 @@ public class AddAccountController {
             RedirectAttributes redirectAttributes) {
         employeeServiceImpl.addAccount(employeeForm);
         redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
-        return "redirect:/account/register/complete";
+        return "redirect:/registeraccount/complete";
     }
 
     @GetMapping("complete")
