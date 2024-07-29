@@ -13,7 +13,7 @@
     <update id="update" parameterType="ProductStock">
        update
            product_stock set
-           quantity=#{quantity},
+           quantity=#{quantity}
        where
            product_id=#{productId}  
     </update>    

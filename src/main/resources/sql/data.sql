@@ -1,20 +1,27 @@
-drop table if exists employee_account;
-drop table if exists employee;
-drop table if exists department;
-drop table if exists product_category;
-drop table if exists product;
-drop table if exists product_stock;
-drop table if exists order_status;
-drop table if exists orders;
-drop table if exists order_detail;
-drop table if exists customer;
-drop table if exists payment_method
+drop table if exists department CASCADE;
+drop table if exists employee_account CASCADE;
+drop table if exists employee CASCADE;
+drop table if exists product_category CASCADE;
+drop table if exists product CASCADE;
+drop table if exists product_stock CASCADE;
+drop table if exists order_status CASCADE;
+drop table if exists orders CASCADE;
+drop table if exists order_detail CASCADE;
+drop table if exists customer CASCADE;
+drop table if exists payment_method CASCADE;
 
-drop sequence if exists employee_id_seq;
-drop sequence if exists product_category_id_seq;
+drop sequence if exists employee_id_seq CASCADE;
+drop sequence if exists product_category_id_seq CASCADE;
 
 
 create table department(
+  id serial primary key,
+  name varchar(100) not null
+);
+
+-- 支払い方法テーブル
+
+create table payment_method(
   id serial primary key,
   name varchar(100) not null
 );
@@ -104,13 +111,6 @@ create table order_detail(
   product_id integer not null references product(id),
   count integer not null,
   customer_id integer not null references customer(id)
-);
-
--- 支払い方法テーブル
-
-create table payment_method(
-  id serial primary key,
-  name varchar(100) not null
 );
 
 -- department data
