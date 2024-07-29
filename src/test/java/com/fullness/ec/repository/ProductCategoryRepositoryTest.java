@@ -21,10 +21,10 @@ public class ProductCategoryRepositoryTest {
     @Test
     void insertTest(){
         ProductCategory prodCategory =  new ProductCategory();
-        prodCategory.setProductCategoryId(4);
+        // prodCategory.setProductCategoryId(0);
         prodCategory.setProductCategoryName("日用品");
         productCategoryRepository.insert(prodCategory);
-        assertEquals(4, productCategoryRepository.selectAll());
+        assertEquals(4, productCategoryRepository.selectAll().size());
     }
 
     @Test

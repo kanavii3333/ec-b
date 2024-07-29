@@ -11,8 +11,8 @@
         from product_category
     </select>
     <insert id="insert" parameterType="com.fullness.ec.entity.ProductCategory">
-        <selectKey keyProperty="product_category_id" resultType="Integer" order="BEFORE">
-            select nextval('category_id_seq')
+        <selectKey keyProperty="productCategoryId" resultType="Integer" order="BEFORE">
+            select nextval('product_category_id_seq')
         </selectKey>
             insert into product_category values(#{productCategoryId}, #{productCategoryName})
     </insert>
