@@ -52,7 +52,9 @@ public class RegisterProductCategoryController {
     }
 
     @GetMapping("complete")
-    public String complete(@ModelAttribute("categoryForm") CategoryForm categoryForm, SessionStatus sessionStatus) {
+    public String complete(@ModelAttribute("categoryForm") CategoryForm categoryForm, Model model,
+            SessionStatus sessionStatus) {
+        model.addAttribute("categoryName", categoryForm.getProductCategoryName());
         sessionStatus.setComplete();
         return "product/categoryregister/complete";
     }
