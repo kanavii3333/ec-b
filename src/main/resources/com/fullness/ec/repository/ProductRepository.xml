@@ -42,6 +42,41 @@
             delete_flag = 0
     </select>
 
+    <update id="update" parameterType="prodResult">
+        update 
+            product set
+               name=#{name},
+               price=#{price},
+               image_url=#{image}
+               product_category_id=#{productCategoryId}
+            where
+               id=#{id}
+    </update>
+
+    <select id="selectByProductId" resultMap="prodResult" parameterType="Integer">
+        select
+           p.id as productId, 
+           p.name as productName,
+           p.price as price,
+           p.image_url as imageUrl,
+           pc.name as productCategoryName,
+           ps.quantity as quantity
+        from
+           product p
+        join
+           product_stock ps
+        on
+           p.id=ps.product_id
+        join
+           product_category pc
+        on
+           p.product_category_id=pc.id
+        where
+           p.id=#{id}
+        for update
+        </select>
+        
+
     <select id="selectByName" resultMap="prodResult">
         select 
             p.id as productId,
