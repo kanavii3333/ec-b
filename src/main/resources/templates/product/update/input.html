@@ -10,25 +10,41 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品修正（入力）</h1>
-        <form th:action="@{/registerProduct/confirm}" method="post" th:object="${product}" enctype="multipart/form-data">
+        <form th:action="@{/registerproduct/confirm}" method="post" th:object="${productForm}" enctype="multipart/form-data">
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:center;">商品名</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{productName}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{productName}" value="{product.productName}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">単価</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{price}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{price}" value="{product.price}"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
+<<<<<<< HEAD
+                    <td style="text-align:left;"><input type="text" th:field="*{quantity}" value="{product.quantity}"></td>
+=======
                     <td style="text-align:left;"><input type="text" th:field="*{productStock.quantity}"></td>
+>>>>>>> 07ab5e270c1a1e74f7bbf7355d2b261d0b54d776
                 </tr>
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
+<<<<<<< HEAD
+                        <select th:field="*{categoryId}">
+                            <option 
+                                th:each="category : ${categoryList}" 
+                                th:value="${category.productCategoryId}" 
+                                th:selected="${categoryId==category.productCategoryId}"
+                                th:inline="text"
+                            >    
+                                [[${category.productCategoryName}]]
+                            </option>
+=======
                         <select th:field="*{productCategory.productCategoryId}">
                             <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:selected="${category.productCategoryId==category.productCategoryId}">[[${category.productCategoryName}]]</option>
+>>>>>>> 07ab5e270c1a1e74f7bbf7355d2b261d0b54d776
                         </select>
                     </td>
                 </tr>
