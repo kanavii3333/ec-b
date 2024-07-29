@@ -13,12 +13,10 @@
 // import com.fullness.ec.form.CategoryForm;
 // import com.fullness.ec.service.ProductCategoryServiceImpl;
 // import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
 
-// @SessionAttributes
-// @RequestMapping("categoryForm")
+// @SessionAttributes("categoryForm")
+// @RequestMapping("registerproduct")
 // @Controller
 // public class RegisterCategoryProductController {
 // @ModelAttribute("categoryForm")
@@ -31,7 +29,7 @@
 
 // @GetMapping("input")
 // public String input() {
-// return "input";
+// return "product/categoryregister/input";
 // }
 
 // @PostMapping("confirm")
@@ -39,9 +37,9 @@
 // categoryForm, BindingResult bindingResult,
 // Model model) {
 // if (bindingResult.hasErrors())
-// return "input";
+// return "product/categoryregister/input";
 // model.addAttribute("categoryForm", categoryForm);
-// return "confirm";
+// return "product/categoryregister/confirm";
 // }
 
 // @PostMapping("execute")
@@ -49,14 +47,17 @@
 // categoryForm,
 // RedirectAttributes redirectAttributes) {
 
-// return "redirect:/complete";
+// redirectAttributes.addFlashAttribute("categoryForm", categoryForm);
+
+// productCategoryServiceImpl.addCategory(categoryForm);
+// return "redirect:/product/categoryregister/complete";
 // }
 
 // @GetMapping("complete")
 // public String complete(@ModelAttribute("categoryForm") CategoryForm
 // categoryForm, SessionStatus sessionStatus) {
 // sessionStatus.setComplete();
-// return "complete";
+// return "product/categoryregister/complete";
 // }
 
 // }

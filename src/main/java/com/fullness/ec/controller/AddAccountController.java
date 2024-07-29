@@ -17,6 +17,7 @@ import com.fullness.ec.entity.Employee;
 import com.fullness.ec.form.EmployeeForm;
 
 import com.fullness.ec.service.EmployeeService;
+import com.fullness.ec.service.EmployeeServiceImpl;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -35,6 +36,9 @@ public class AddAccountController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    EmployeeServiceImpl employeeServiceImpl;
 
     @GetMapping("input")
     public String input(Model model) {
@@ -69,7 +73,7 @@ public class AddAccountController {
     @PostMapping("execute")
     public String execute(@ModelAttribute("employeeForm") EmployeeForm employeeForm,
             RedirectAttributes redirectAttributes) {
-
+        employeeServiceImpl.addAccount(employeeForm);
         redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
         return "redirect:/account/register/complete";
     }
