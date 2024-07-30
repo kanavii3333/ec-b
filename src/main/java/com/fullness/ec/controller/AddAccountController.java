@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fullness.ec.entity.Employee;
 
 import com.fullness.ec.form.EmployeeForm;
-
+import com.fullness.ec.form.EmployeeFormValidator;
+import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.service.EmployeeService;
 import com.fullness.ec.service.EmployeeServiceImpl;
 
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 
 @SessionAttributes({ "employeeForm", "employeeList" })
 @RequestMapping("registeraccount")
@@ -40,6 +43,12 @@ public class AddAccountController {
     @Autowired
     EmployeeServiceImpl employeeServiceImpl;
 
+    @Autowired EmployeeFormValidator validator;
+    @InitBinder("employeeForm")
+    public void InitBinder(WebDataBinder binder){
+        binder.addValidators(validator);
+    }
+
     @GetMapping("input")
     public String input(Model model) {
 
@@ -49,30 +58,21 @@ public class AddAccountController {
 
     @PostMapping("confirm")
     public String comfirm(
+            @Validated
             @ModelAttribute("employeeForm") EmployeeForm employeeForm,
-            BindingResult bindingResult, Model model) {
+            BindingResult bindingResult, 
+            RedirectAttributes redirectAttributes,
+            Model model) {
         System.out.println("employeeForm:" + employeeForm);
         System.out.println("bindingResult:" + bindingResult);
-        if (bindingResult.hasErrors())
-            return "account/register/input";
-
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("employeeForm",employeeForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeForm", bindingResult);
+            redirectAttributes.addFlashAttribute("employeeList", employeeService.getEmployeeList());
+            return "redirect:/registeraccount/input";
+        }
         // アカウントが既に存在するかチェック
-        if (employeeService.isAccountExist(employeeForm) && employeeService.isAccountNameExist(employeeForm)) {
-            model.addAttribute("errorMessage", "この社員は既に登録されています");
-            model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
-            model.addAttribute("employeeList", employeeService.getEmployeeList());
-            return "account/register/input";
-        }
-        if (employeeService.isAccountExist(employeeForm)) {
-            model.addAttribute("errorMessage", "この社員は既に登録されています");
-            model.addAttribute("employeeList", employeeService.getEmployeeList());
-            return "account/register/input";
-        }
-        if (employeeService.isAccountNameExist(employeeForm)) {
-            model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
-            model.addAttribute("employeeList", employeeService.getEmployeeList());
-            return "account/register/input";
-        }
+        
         // アカウント名が既に存在するかチェック
         // if (employeeService.isAccountNameExist(employeeForm)) {
         // model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
