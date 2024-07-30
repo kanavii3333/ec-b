@@ -27,6 +27,7 @@ public class ProductForm {
     private MultipartFile file;
 
     private Integer categoryId;
+    private String categoryName;
 
     @NotNull
     @Min(0)
@@ -34,4 +35,6 @@ public class ProductForm {
     private Integer quantity; 
 
     private Integer stockId;
+    
+    private String imageUrl;
 }

@@ -33,6 +33,8 @@ public class ProductConverter {
         productForm.setQuantity(product.getProductStock().getQuantity());
         productForm.setStockId(product.getProductStock().getProductStockId());
         productForm.setCategoryId(product.getProductCategory().getProductCategoryId());
+        productForm.setCategoryName(product.getProductCategory().getProductCategoryName());
+        productForm.setImageUrl(product.getImageUrl());
         return productForm;
     }
 }

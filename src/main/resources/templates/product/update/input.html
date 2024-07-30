@@ -10,7 +10,7 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品修正（入力）</h1>
-        <form th:action="@{/updateproduct/confirm}" method="post" th:object="${product}" enctype="multipart/form-data">
+        <form th:action="@{/updateproduct/confirm}" method="post" th:object="${productForm}" enctype="multipart/form-data">
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:center;">商品名</td>
@@ -22,16 +22,16 @@
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
-                    <td style="text-align:left;"><input type="text" th:field="*{productStock.quantity}"></td>
+                    <td style="text-align:left;"><input type="text" th:field="*{quantity}"></td>
                 </tr>
 
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
-                        <select th:field="*{productCategory.productCategoryId}">
+                        <select th:field="*{categoryId}">
                             <option th:each="category : ${categoryList}"
                                     th:value="${category.productCategoryId}"
-                                    th:selected="${category.productCategoryId == product.productCategory.productCategoryId}">
+                                    th:selected="${category.productCategoryId == productForm.categoryId}">
                                 [[${category.productCategoryName}]]
                             </option>
                         </select>
@@ -40,7 +40,7 @@
     
                 <tr>
                     <td></td>
-                    <td style="text-align:left;"><input type="file" name="file" th:value="${file}" accept=".jpg, .jpeg, .png"></td>
+                    <td style="text-align:left;"><input type="file" name="file" th:value="*{file}" accept=".jpg, .jpeg, .png"></td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">画像</td>

@@ -21,13 +21,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
+import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.helper.ImageUploadHelper;
 import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
-@SessionAttributes({"product","imageByte","filename"})
+@SessionAttributes({"productForm","imageByte","filename"})
 @RequestMapping("updateproduct")
 @Controller
 public class UpdateProductController {
@@ -36,51 +37,64 @@ public class UpdateProductController {
     @Autowired ProductCategoryServiceImpl productCategoryServiceImpl;
     @GetMapping("input")
     public String input(@RequestParam("productId")Integer productId,Model model){
-        Product product = productServiceImpl.getProductByProductId(productId);
-        model.addAttribute("product", product);
+        ProductForm productForm = ProductConverter.convertToForm(productServiceImpl.getProductByProductId(productId));
+        model.addAttribute("productForm", productForm);
         model.addAttribute("categoryList",productCategoryServiceImpl.selectAll());
         return "product/update/input";
     }
 
     @PostMapping("confirm")
-	public String confirm(@ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file, Model model) throws IOException{
+	public String confirm(@ModelAttribute("productForm") ProductForm productForm, Model model) throws IOException{
         List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
         for (ProductCategory category : categoryList) {
-            if (category.getProductCategoryId() == product.getProductCategory().getProductCategoryId()) {
-                product.getProductCategory().setProductCategoryName(category.getProductCategoryName());
+            if (category.getProductCategoryId() == productForm.getCategoryId()) {
+                productForm.setCategoryName(category.getProductCategoryName());
                 break;
             }
         }
-        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(file));
-        model.addAttribute("imageByte", file.getBytes());
-        model.addAttribute("filename",file.getOriginalFilename());
-        if(!file.isEmpty()){
-            product.setImageUrl(null);
+        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+        model.addAttribute("imageByte", productForm.getFile().getBytes());
+        model.addAttribute("filename",productForm.getFile().getOriginalFilename());
+        if(!productForm.getFile().isEmpty()){
+            productForm.setImageUrl(null);
         } else {
             model.addAttribute("image", null);
         }
-        model.addAttribute("product", product);
+        model.addAttribute("productForm", productForm);
         return "product/update/confirm";
     }
     
     @PostMapping("execute")
     public String execute(
-        @ModelAttribute("product") Product product, 
-        @ModelAttribute("productCategory") ProductCategory productCategory, 
+        @ModelAttribute("productForm") ProductForm productForm,  
         @ModelAttribute("imageByte") byte[] imageByte,
         @ModelAttribute("filename") String filename,
         RedirectAttributes redirectAttributes
         ){
-            if(product.getImageUrl()==null){
-                product.setImageUrl(ImageUploadHelper.uploadFile(filename, imageByte));
+            if(productForm.getImageUrl()==null){
+                productForm.setImageUrl(ImageUploadHelper.uploadFile(filename, imageByte));
             }
+            Product product = new Product();
+            product.setProductId(productForm.getProductId());
+            product.setProductName(productForm.getProductName());
+            product.setPrice(productForm.getPrice());
+            ProductCategory productCategory = new ProductCategory();
+            productCategory.setProductCategoryId(productForm.getCategoryId());
+            productCategory.setProductCategoryName(productForm.getCategoryName());
+            product.setProductCategory(productCategory);
+            ProductStock productStock = new ProductStock();
+            productStock.setProductId(productForm.getProductId());
+            productStock.setProductStockId(productForm.getStockId());
+            productStock.setQuantity(productForm.getQuantity());
+            product.setProductStock(productStock);
+            product.setImageUrl(productForm.getImageUrl());
             productServiceImpl.updateProduct(product);
             return "redirect:/updateproduct/complete";
     }
 
     @GetMapping("complete")
-    public String complete(@ModelAttribute("product") Product product,SessionStatus sessionStatus,Model model){
-        model.addAttribute("name", product.getProductName());    
+    public String complete(@ModelAttribute("productForm") ProductForm productForm,SessionStatus sessionStatus,Model model){
+        model.addAttribute("name", productForm.getProductName());    
         sessionStatus.setComplete();
         return "product/update/complete";
     }
