@@ -11,9 +11,9 @@
   <div>
     <h1> 商品検索 </h1>
     <table>
-      <form th:action="@{/productlist}" method="get" th:object="${categoryForm}"></form>
+      <form th:action="@{/productlist}" method="get"></form>
         <tr>
-          <select th:field="*{productCategoryId}">
+          <select th:field="${categoryForm.productCategoryId}">
             <option th:value="${null}">全ての商品</option>
             <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
           </select>
