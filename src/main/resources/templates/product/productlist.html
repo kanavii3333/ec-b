@@ -28,7 +28,8 @@
             </form>
           </tr>
           </table>
-            <table border="1" style="margin: 0 auto;">
+          
+            <table  th:if="!${#lists.isEmpty(products)}" border="1" style="margin: 0 auto;">
                 <tr>
                   <th>商品画像</th>
                   <th>商品名</th>
@@ -59,6 +60,7 @@
                   
                 </tr>
               </table>
+
               <ul class="pagination">
                 <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
                 <li th:class="${products.first} ? 'disabled':''" style="display: inline">
