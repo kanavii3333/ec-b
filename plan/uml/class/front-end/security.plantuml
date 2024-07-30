@@ -1,0 +1,23 @@
+title セキュリティ層のクラス図
+package security{
+
+		class securityConfig{
+			+ webSecurityCustomizer():WebSecurityCustomizer
+			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
+		}
+		class AccountUserDetailsService{
+			loadUserByUsername(String):UserDetails
+			getAuthorities(String):Collection<GrantedAuthority>
+		}
+		class AccountUserDetails{
+			+getAuthorities():Collection<? extends GrantedAuthority>
+			+getPassword():String
+			+getUsername():String
+			+isAccountNonExpired():boolean
+			+isAccountNonLocked():boolean
+			+isCredentialsNonExpired():boolean
+			+isEnabled():boolean
+		}
+	
+}
+@enduml

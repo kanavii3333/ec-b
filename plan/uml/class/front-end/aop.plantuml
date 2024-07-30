@@ -1,0 +1,7 @@
+package aop{
+   class LoggingAroundAdvice {
+        + aroundAdvice(joinPoint: ProceedingJoinPoint): Object
+    }
+
+ 
+}

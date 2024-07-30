@@ -1,0 +1,13 @@
+package config{
+    class Config{
+        + passwordEncoder(): PasswordEncoder
+  
+    }
+
+
+    class WebMvcConfig implements WebMvcConfigurer {
+        + addArgumentResolvers(resolvers: List<HandlerMethodArgumentResolver>): void
+    }
+
+  
+}

@@ -1,0 +1,32 @@
+@startuml
+title repository層のクラス図
+hide empty members
+left to right direction
+
+package repogitory{
+class CustomerRepository{
+        +insert(customer:Customer):void
+        +selectByName(name:String):Customer
+    }
+
+    class OrderRepository{
+        +insert(order:Order):void
+    }
+
+    class ProductRepository{
+        +selectByPage(pageable:Pageable):List<Product>
+    }
+
+    class ProductCategoryRepository{
+        +selectAll():List<ProductCategory>
+    }
+
+    class OrderDetailRepository{
+        +insert(OrderDetail):void
+    }
+    
+    class StockRepository{
+        +updateStock(count:Integer):void
+    }
+}
+@enduml

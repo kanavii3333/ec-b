@@ -44,4 +44,5 @@ package repository{
     	+insert(prodId:Integer, quantity:Integer):void
     	+update(prodId:Integer, quantity:Integer):void
 	}
+}
 @enduml
