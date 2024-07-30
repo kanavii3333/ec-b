@@ -18,5 +18,5 @@ public interface EmployeeRepository {
 
     public List<Employee> selectAllEmployee();
 
-    EmployeeAccount selectByEmpId(Integer empId); // 追加
+    public EmployeeAccount selectByEmpId(Integer empId); // 追加
 }
