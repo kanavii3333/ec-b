@@ -1,0 +1,25 @@
+@startuml
+title service
+hide empty members
+left to right direction
+
+package service{
+    class CustomerService{
+		+getCustomerByUsername(username:String):String
+		+registerCustomer(customer:CustomerForm):void
+    }
+    
+    class OrderService{
+		+makeOrder(OrderForm):void
+		+deleteOrder(orderId:Integer):void
+    }
+    
+    class ProductService{
+		+selectProductByPage(pageable: Pageable):page<Product>
+		+updateProductStock(stock:ProductStock):void
+    }
+
+    class ProductCategoryService{
+		+selectAll():List<CategoryForm>
+    }
+}

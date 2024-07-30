@@ -1,0 +1,183 @@
+@startuml
+title 全体クラス図
+hide empty members
+left to right direction
+
+package entity{
+    class Customer{
+    }
+
+    class Order{
+    }
+
+    class OrderDetail{
+    }
+
+    class OrderStatus{
+    }
+    
+    class PaymentMethod{
+    }
+
+    class Product{
+    }
+
+    class ProductCategory{
+    }
+
+    class ProductStock{
+    }
+}
+
+Customer <--> Order
+Order --> OrderStatus
+Order --> OrderDetail
+Order --> PaymentMethod
+Product --> ProductStock
+Product --> ProductCategory
+
+package form{
+    
+    class CustomerForm{
+    }
+
+    class OrderForm{
+    }
+
+    class ProductForm{
+    }
+    
+    class CustomerFormValidator{
+    }
+    
+    class OrderFormValidator{
+    }
+    
+    class PruductFormValidator{
+    }
+}
+
+package helper{
+    class CustomerConverter{
+    }
+
+    class OrderConverter{
+    }
+
+    class ProductConverter{
+    }
+}
+CustomerConverter --> Customer
+CustomerConverter --> CustomerForm
+OrderConverter --> Order
+OrderConverter --> OrderForm
+ProductConverter --> Product
+ProductConverter --> ProductForm
+
+package repository{
+    class CustomerRepository{
+    }
+
+    class OrderRepository{
+    }
+
+    class ProductRepository{
+    }
+
+    class ProductCategoryRepository{
+    }
+
+    class OrderDetailRepository{
+    }
+    
+    class StockRepository{
+    }
+}
+
+package service{
+    class CustomerService{
+    }
+    
+    class OrderService{
+    }
+    
+    class ProductService{
+    }
+
+    class ProductCategoryService{
+    }
+}
+
+CustomerService --> CustomerConverter
+OrderService --> OrderConverter
+ProductService --> ProductConverter
+
+CustomerService --> CustomerRepository
+OrderService --> OrderRepository
+OrderService --> OrderDetailRepository
+OrderService --> StockRepository
+ProductService --> ProductRepository
+ProductCategoryService --> ProductCategoryRepository
+
+CustomerRepository --> Customer
+OrderRepository --> Order
+OrderDetailRepository --> OrderDetail
+ProductRepository --> Product
+ProductCategoryRepository --> ProductCategory
+
+
+package controller{
+    class CustomerLoginController{
+    }
+    class PurchaseController{
+    }
+    class PurchaseHistoryController{
+    }
+    class SearchProductController{
+    }
+    class CustomerAccountController{
+    }
+}
+CustomerLoginController --> CustomerService
+PurchaseController --> OrderService
+PurchaseHistoryController --> OrderService
+SearchProductController --> ProductService
+
+package aop{
+   class LoggingAroundAdvice {
+   }
+}
+
+package config{
+    class Config{
+    }
+    class WebMvcConfig implements WebMvcConfigurer {
+    }
+}
+
+package security{
+
+		class securityConfig{
+			+ webSecurityCustomizer():WebSecurityCustomizer
+			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
+		}
+		class AccountUserDetailsService{
+			loadUserByUsername(String):UserDetails
+			getAuthorities(String):Collection<GrantedAuthority>
+		}
+		class AccountUserDetails{
+			+getAuthorities():Collection<? extends GrantedAuthority>
+			+getPassword():String
+			+getUsername():String
+			+isAccountNonExpired():boolean
+			+isAccountNonLocked():boolean
+			+isCredentialsNonExpired():boolean
+			+isEnabled():boolean
+		}
+	
+}
+@enduml
+
+
+
+
