@@ -6,16 +6,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.helper.ImageUploadHelper;
 import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
@@ -34,6 +40,11 @@ public class RegisterProductController {
     ProductCategoryServiceImpl productCategoryService;
     @Autowired
     ProductServiceImpl productService;
+    @Autowired ProductFormValidator validator;
+    @InitBinder("productForm")
+    public void InitBinder(WebDataBinder binder){
+        binder.addValidators(validator);
+    }
 
     @GetMapping("input")
     public String input(Model model) {
@@ -43,8 +54,13 @@ public class RegisterProductController {
     }
 
     @PostMapping("confirm")
-    public String confirm(@ModelAttribute("productForm") ProductForm productForm, Model model) throws IOException {
+    public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) throws IOException {
         List<ProductCategory> categoryList = productCategoryService.selectAll();
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("productForm",productForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm", bindingResult);
+            return "redirect:/registerproduct/input";
+        }
         for (ProductCategory category : categoryList) {
             if (category.getProductCategoryId() == productForm.getCategoryId()) {
                 ProductCategory productCategory = new ProductCategory();
@@ -54,6 +70,7 @@ public class RegisterProductController {
                 break;
             }
         }
+       
         model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
         model.addAttribute("imageByte", productForm.getFile().getBytes());
         return "product/register/confirm";

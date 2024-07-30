@@ -26,7 +26,8 @@ public class ProductCategoryRepositoryTest {
         productCategoryRepository.insert(prodCategory);
         assertEquals(4, productCategoryRepository.selectAll().size());
     }
-
+    
+    @Sql("/sql/data.sql")
     @Test
     void selectAllTest(){
         List<ProductCategory> ProductCategories = productCategoryRepository.selectAll();
@@ -34,7 +35,19 @@ public class ProductCategoryRepositoryTest {
 
     }
 
+    @Sql("/sql/data.sql")
+   @Test
+   void countByName(){
+    int count = productCategoryRepository.countByName("雑貨");
+    assertEquals(1, count);
+   }
 
+   @Sql("/sql/data.sql")
+   @Test
+   void countByName1(){
+    int count = productCategoryRepository.countByName("日用品");
+    assertEquals(0, count);
+   }
 
     
 }
