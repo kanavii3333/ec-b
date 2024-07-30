@@ -4,14 +4,9 @@ import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
 
 public interface ProductService {
     void addProduct(ProductForm productForm, byte[] imageByte) ;
-
-    List<Product> getProductList();
-
-    List<ProductForm> getProductListByCategoryId(Integer categoryId);
 
     Product getProductByProductId(Integer productId);
 

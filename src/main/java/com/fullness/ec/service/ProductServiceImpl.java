@@ -24,15 +24,6 @@ public class ProductServiceImpl implements ProductService {
     private StockRepository stockRepository;
 
     @Override
-    public List<Product> getProductList() {
-        return null;
-    }
-    @Override
-    public List<ProductForm> getProductListByCategoryId(Integer categoryId) {
-        return null;
-    }
-
-    @Override
     public Page<Product> selectProductByPage(Pageable pageable, Integer productCategoryId) {
         Integer total = productRepository.countAll(productCategoryId);
       List<Product> products;
