@@ -41,5 +41,22 @@ public class EmployeeServiceTest {
         List<Employee> EmployeeList = employeeService.getEmployeeList();
         assertEquals(3,EmployeeList.size() );
     }
+
+    @Test
+    @Sql("/sql/data.sql")
+    void isAccountExistTest(){
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.setId(1);
+        Boolean boolean1 = employeeService.isAccountExist(employeeForm);
+        assertEquals(true, boolean1);
+    }
+    @Test
+    @Sql("/sql/data.sql")
+    void isAccountExistTest2(){
+        EmployeeForm employeeForm = new EmployeeForm();
+        employeeForm.setId(2);
+        Boolean boolean1 = employeeService.isAccountExist(employeeForm);
+        assertEquals(false, boolean1);
+    }
 }
 

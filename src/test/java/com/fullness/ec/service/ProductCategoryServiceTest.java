@@ -1,6 +1,7 @@
 package com.fullness.ec.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.byteThat;
 
 import java.util.List;
 
@@ -33,5 +34,23 @@ public class ProductCategoryServiceTest {
         List<ProductCategory> ProductCategories = categoryService.selectAll();
         assertEquals(3, ProductCategories.size());
 
+    }
+
+    @Test
+    @Sql("/sql/data.sql")
+    void isCategoryNameDuplicate(){
+        CategoryForm categoryForm = new CategoryForm();
+        categoryForm.setProductCategoryName("雑貨");
+        Boolean boolean1 = categoryService.isCategoryNameDuplicate(categoryForm);
+        assertEquals(true, boolean1);
+    }
+
+    @Test
+    @Sql("/sql/data.sql")
+    void isCategoryNameDuplicate1(){
+        CategoryForm categoryForm = new CategoryForm();
+        categoryForm.setProductCategoryName("日用品");
+        Boolean boolean1 = categoryService.isCategoryNameDuplicate(categoryForm);
+        assertEquals(false, boolean1);
     }
 }

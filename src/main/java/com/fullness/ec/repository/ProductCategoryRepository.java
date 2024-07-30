@@ -11,5 +11,5 @@ public interface ProductCategoryRepository {
 
     public List<ProductCategory> selectAll();
 
-    int countByName(String productCategoryName);
+    public int countByName(String productCategoryName);
 }
