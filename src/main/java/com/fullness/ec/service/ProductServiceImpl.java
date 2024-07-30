@@ -11,11 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fullness.ec.entity.Product;
-import com.fullness.ec.entity.ProductCategory;
-import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.helper.ProductConverter;
-import com.fullness.ec.repository.ProductCategoryRepository;
 import com.fullness.ec.repository.ProductRepository;
 import com.fullness.ec.repository.StockRepository;
 
