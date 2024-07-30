@@ -66,15 +66,30 @@ public class ProductConverterTest {
         assertEquals(1, categoryForm.getProductCategoryId());
         assertEquals("文房具", categoryForm.getProductCategoryName());
     }
+
     @Sql("/sql/data.sql")
     @Test
     void convertToFormTest(){
-        // Product product = new Product();
-        // product.setProductId(1);
-        // product.setProductName("黒ボールペン");
-        // product.setPrice(100);
-        // product.setProductStock(new ProductStock().setQuantity(100));
-        // product.setCategoryId(1);
-        // product.setStockId(1);
+        Product product = new Product();
+        product.setProductId(1);
+        product.setProductName("黒ボールペン");
+        product.setPrice(100);
+        product.setProductCategory(new ProductCategory());
+        product.getProductCategory().setProductCategoryId(1);
+        product.getProductCategory().setProductCategoryName("文房具");
+        product.setProductStock(new ProductStock());
+        product.getProductStock().setQuantity(100);
+        product.getProductStock().setProductStockId(1);
+
+        ProductForm productForm = ProductConverter.convertToForm(product);
+
+        assertNotNull(product);
+        assertEquals(1, productForm.getProductId());
+        assertEquals("黒ボールペン", productForm.getProductName());
+        assertEquals(100, productForm.getPrice());
+        assertEquals(1, productForm.getCategoryId());
+        assertEquals(100, productForm.getQuantity());
+        assertEquals(1, productForm.getStockId());
+
     }
 }

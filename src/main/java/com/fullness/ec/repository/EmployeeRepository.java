@@ -11,7 +11,7 @@ import com.fullness.ec.entity.Employee;
 public interface EmployeeRepository {
     //つかってない
     public Employee selectByNameAndPassward(String name, String password);
-    //つかってない
+    
     public EmployeeAccount selectByUsername(String username);
 
     public void insert(EmployeeAccount employeeAccount);
