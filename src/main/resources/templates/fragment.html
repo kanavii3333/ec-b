@@ -12,10 +12,10 @@
         <h3>文具/雑貨販売システム</h3>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
             <form th:action="@{'/logoutEmployee'}" method="post">
-                <a href="#">商品情報メンテナンス</a>
-                <a href="#">商品カテゴリ登録</a>
+                <a href="/productlist">商品情報メンテナンス</a>
+                <a href="/registerproductcategory/input">商品カテゴリ登録</a>
                 <a href="#">購入履歴検索</a>
-                <a href="#">アカウント登録</a>
+                <a href="/registeraccount/input">アカウント登録</a>
                 <input type="submit" value="ログアウト">
             </form>
         </div>
