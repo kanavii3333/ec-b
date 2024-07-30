@@ -58,7 +58,7 @@ public class AddAccountController {
 
         // アカウントが既に存在するかチェック
         if (employeeService.isAccountExist(employeeForm)) {
-            model.addAttribute("errorMessage", "このアカウントは既に登録されています");
+            model.addAttribute("errorMessage", "この社員は既に登録されています");
             model.addAttribute("employeeList", employeeService.getEmployeeList());
             return "account/register/input";
         }
