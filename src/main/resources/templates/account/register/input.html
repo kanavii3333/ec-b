@@ -10,9 +10,11 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>担当者アカウント登録（入力）</h1>
-        <div th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></div>
-        <div th:if="${errorMessage1}" th:text="${errorMessage1}" style="color:red;"></div>
         <form th:action="@{/registeraccount/confirm}" method="post" th:object="${employeeForm}">
+            <div class="error">
+                <p th:if="${#fields.hasErrors('global')}" th:each="error : ${#fields.errors('global')}" th:text="${error}">
+                </p>
+        </div>
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:center;">社員名</td>
@@ -27,14 +29,25 @@
                     <td style="text-align:left;"><input type="text" th:field="*{empAccountName}"></td>
                 </tr>
                 <tr>
+                    <td colspan="2">
+                        <span class="error" th:if="${#fields.hasErrors('empAccountName')}" th:errors="*{empAccountName}"></span>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align:center;">パスワード</td>
                     <td style="text-align:left;"><input type="text" th:field="*{empAccountPassword}"></td>
                 </tr>
-           
+                <tr>
+                    <td colspan="2">
+                        <span class="error" th:if="${#fields.hasErrors('empAccountPassword')}" th:errors="*{empAccountPassword}"></span>
+                    </td>
+                </tr>
             
             </table>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <a href="/menu">キャンセル</a>
             <input type="submit" value="確認">
+            
         </form>
     </div>
     <div th:replace="fragment::footer"></div>
