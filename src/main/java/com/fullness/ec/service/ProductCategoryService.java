@@ -8,4 +8,6 @@ public interface ProductCategoryService {
     void addCategory(CategoryForm categoryForm);
 
     List<ProductCategory> selectAll();
+
+    boolean isCategoryNameDuplicate(CategoryForm categoryForm); // 追加
 }

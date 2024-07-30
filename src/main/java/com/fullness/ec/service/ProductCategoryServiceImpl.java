@@ -30,4 +30,10 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public List<ProductCategory> selectAll() {
         return productCategoryRepository.selectAll();
     }
+
+    @Override
+    public boolean isCategoryNameDuplicate(CategoryForm categoryForm) {
+        // カテゴリ名の重複チェック
+        return productCategoryRepository.countByName(categoryForm.getProductCategoryName()) > 0;
+    }
 }

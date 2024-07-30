@@ -16,4 +16,11 @@
         </selectKey>
             insert into product_category values(#{productCategoryId}, #{productCategoryName})
     </insert>
+
+     <!-- カテゴリ名の重複チェック -->
+    <select id="countByName" resultType="Integer">
+        SELECT COUNT(*) 
+        FROM product_category 
+        WHERE name = #{productCategoryName}
+    </select>
 </mapper>

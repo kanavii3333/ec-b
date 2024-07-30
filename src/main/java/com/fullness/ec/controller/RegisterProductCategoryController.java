@@ -37,6 +37,12 @@ public class RegisterProductCategoryController {
             Model model) {
         if (bindingResult.hasErrors())
             return "product/categoryregister/input";
+
+        if (productCategoryServiceImpl.isCategoryNameDuplicate(categoryForm)) {
+            model.addAttribute("errorMessage", "このカテゴリ名は既に登録されています。");
+            return "product/categoryregister/input";
+        }
+
         model.addAttribute("categoryForm", categoryForm);
         return "product/categoryregister/confirm";
     }

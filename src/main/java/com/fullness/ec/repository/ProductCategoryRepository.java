@@ -9,5 +9,8 @@ import com.fullness.ec.form.CategoryForm;
 @Mapper
 public interface ProductCategoryRepository {
     public void insert(ProductCategory productCategory);
+
     public List<ProductCategory> selectAll();
+
+    int countByName(String productCategoryName);
 }
