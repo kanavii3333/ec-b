@@ -1,54 +1,90 @@
-// package com.fullness.ec.service;
+package com.fullness.ec.service;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// import org.junit.jupiter.api.Test;
-// import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import org.springframework.test.context.jdbc.Sql;
-// import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.mock.web.MockMultipartFile;
 
-// import com.fullness.ec.entity.Product;
-// import com.fullness.ec.entity.ProductCategory;
-// import com.fullness.ec.entity.ProductStock;
-// import com.fullness.ec.form.ProductForm;
-// import com.fullness.ec.helper.ProductConverter;
-// import com.fullness.ec.repository.ProductRepository;
-// import com.fullness.ec.repository.StockRepository;
+import com.fullness.ec.entity.Product;
+import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.repository.ProductRepository;
 
-// @MybatisTest
-// public class ProductServiceTest {
-//     @Autowired
-//     private ProductRepository productRepository;
-//     @Autowired
-//     private StockRepository stockRepository;
-//     @Sql("/db/data.sql")
-//     @Test
-//     void addProduct(){
-//         ProductCategory productCategory = new ProductCategory();
-//            productCategory.setProductCategoryId(2);
-//            productCategory.setProductCategoryName("雑貨");
-//         ProductStock productStock = new ProductStock();
-//            productStock.setProductId(25);
-//            productStock.setQuantity(20);
-//            productStock.setProductStockId(25);
-//         Product product = new Product();
-//            product.setProductId(25);
-//            product.setProductName("テスト商品");
-//            product.setPrice(2000);
-//            product.setImageUrl("umbrella.jpg");
-//            product.setProductCategory(productCategory);
-//            product.setProductStock(productStock);
-//         Product productTest = productRepository.insert(product);
-//         assertEquals(25,productForm.getProductId());
-//         assertEquals(25,productForm.getProductName());
-//         assertEquals(25,productForm.getPrice());
-//         assertEquals(25,productForm.getFile());
-//         assertEquals(25,productForm.getCategoryId());
-//         assertEquals(25,productForm.get);
+@SpringBootTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class ProductServiceTest {
+    @Autowired
+    ProductService productService;
+    @Autowired
+    ProductRepository productRepository;
 
+    @Sql("/sql/data.sql")
+    @Test
+    void addProductTest() throws IOException{
+        ProductForm productForm = new ProductForm();
+        productForm.setProductId(null);
+        productForm.setProductName("えんぴつ");
+        productForm.setPrice(200);
+        
+        byte[] pngData = {
+            (byte)0x89, (byte)0x50, (byte)0x4E, (byte)0x47, (byte)0x0D, (byte)0x0A, (byte)0x1A, (byte)0x0A, // PNGヘッダー
+        };
 
-//     }
+        // MockMultipartFileの作成
+        MultipartFile file = new MockMultipartFile(
+            "file",                        // フィールド名
+            "example.png",                 // 元のファイル名
+            "image/png",                   // Content-Type
+            pngData                        // PNGファイルのバイトデータ
+        );
 
-// }
+        productForm.setFile(file);
+        productForm.setCategoryId(2);
+        productForm.setStockId(1);
+        productForm.setQuantity(30);
+        productService.addProduct(productForm, file.getBytes());
+
+        assertEquals(26,productRepository.selectAll().size());
+        assertEquals("えんぴつ", productRepository.selectByProductId(26).getProductName());
+        assertEquals(200, productRepository.selectByProductId(26).getPrice());
+        assertEquals(2, productRepository.selectByProductId(26).getProductCategory().getProductCategoryId());
+        assertEquals(30, productRepository.selectByProductId(26).getProductStock().getQuantity());
+    }
+
+    @Sql("/sql/data.sql")
+    @Test
+    void updateProductTest(){
+        Product product = productRepository.selectByProductId(1);
+        product.setProductName("水性ボールペン(黄)");
+        product.setPrice(150);
+        product.getProductCategory().setProductCategoryId(2);
+        product.getProductStock().setQuantity(20);
+        productService.updateProduct(product);
+
+        assertEquals("水性ボールペン(黄)", productRepository.selectByProductId(1).getProductName());
+        assertEquals(150, productRepository.selectByProductId(1).getPrice());
+        assertEquals(2, productRepository.selectByProductId(1).getProductCategory().getProductCategoryId());
+        assertEquals(20, productRepository.selectByProductId(1).getProductStock().getQuantity());
+    }
+
+    @Sql("/sql/data.sql")
+    @Test
+    void deleteProductTest(){
+        productService.deleteProduct(1);
+        assertEquals(24,productRepository.selectAll().size());
+        assertEquals(null,productRepository.selectByProductId(1));
+    }
+
+    @Sql("/sql/data.sql")
+    @Test
+    void getProductByProductIdTest(){
+        productService.getProductByProductId(1);
+        assertEquals(productRepository.selectByProductId(1),productService.getProductByProductId(1));
+    }
+    
+}

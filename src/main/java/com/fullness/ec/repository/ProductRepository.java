@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import com.fullness.ec.entity.Product;
-import com.fullness.ec.form.ProductForm;
 
 @Mapper
  public interface ProductRepository {

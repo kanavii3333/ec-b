@@ -46,11 +46,13 @@ public class ProductRepositoryTest {
         assertEquals(25,productRepository.selectAll().size());
     }
 
+    @Sql("/sql/data.sql")
     @Test
     void updateDeleteFlagTest(){
         productRepository.updateDeleteFlag(1);
     }
 
+    @Sql("/sql/data.sql")
     @Test
     void update(){
         Product product = new Product();
@@ -70,6 +72,7 @@ public class ProductRepositoryTest {
         productRepository.insert(product);
     }
 
+    @Sql("/sql/data.sql")
     @Test
     void selectByProductIdTest(){
        Product product = productRepository.selectByProductId(1);
@@ -80,6 +83,7 @@ public class ProductRepositoryTest {
        assertEquals("black_pen_w.jpg", product.getImageUrl());
     };
 
+    @Sql("/sql/data.sql")
     @Test
     void selectProductIdByNameTest(){
         Integer productId = productRepository.selectProductIdByName("水性ボールペン(黒)");
@@ -87,18 +91,21 @@ public class ProductRepositoryTest {
 
     }
 
+    @Sql("/sql/data.sql")
     @Test
     void selectAll(){
         List<Product>  products = productRepository.selectAll();
-        assertEquals(24, products.size());
+        assertEquals(25, products.size());
     }
 
+    @Sql("/sql/data.sql")
     @Test
     void countAll(){
         Integer countall = productRepository.countAll(1);
         assertEquals(14, countall);
     }
 
+    @Sql("/sql/data.sql")
     @Test
     void selectByPage(){
         Pageable pageable = PageRequest.of(1, 3);
