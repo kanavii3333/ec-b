@@ -1,12 +1,19 @@
 package com.fullness.ec.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.mock.web.MockMultipartFile;
@@ -87,4 +94,13 @@ public class ProductServiceTest {
         assertEquals(productRepository.selectByProductId(1),productService.getProductByProductId(1));
     }
     
+    @Sql("/sql/data.sql")
+    @Test
+    public void testSelectProductByPageWithProducts() {
+        // Arrange
+        Pageable pageable = PageRequest.of(1, 5);
+
+        assertEquals(new PageImpl<>(productRepository.selectByPage(pageable, null),pageable,25), productService.selectProductByPage(pageable, null));
+
+    }
 }

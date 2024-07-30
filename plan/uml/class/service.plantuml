@@ -16,8 +16,6 @@ package service{
 	
 	class ProductServiceImpl implements ProductService{
 		+ addProduct(formProduct:FormProduct):void
-		+ getProductList():List<Product>
-		+ getProductListByCategoryId(categoryId:Integer):List<FormProduct>
 		+ getProductByProductId(productId:Integer)Product
 		+ updateProduct(product:Product):void
 		+ deleteProduct(productId:Integer):void
