@@ -19,4 +19,6 @@ public interface EmployeeRepository {
     public List<Employee> selectAllEmployee();
 
     public EmployeeAccount selectByEmpId(Integer empId); // 追加
+
+    public EmployeeAccount selectByEmpAccountName(String empAccountName); // 追加
 }
