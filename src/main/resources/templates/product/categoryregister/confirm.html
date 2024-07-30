@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品カテゴリ登録（確認）</title>
+    <title>商品カテゴリ登録（確認）画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -19,8 +19,8 @@
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <form th:action="@{execute}" method="post">
             <a href="/menu">キャンセル</a>
-            <a href="/registerproduct/input">戻る
-            <input type="submit" value="確認">
+            <a href="/registerproductcategory/input">戻る
+            <input type="submit" value="登録">
         </form>
     </div>
     <div th:replace="fragment::footer"></div>
