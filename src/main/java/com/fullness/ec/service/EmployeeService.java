@@ -10,4 +10,6 @@ public interface EmployeeService {
     List<Employee> getEmployeeList();
 
     boolean isAccountExist(EmployeeForm employeeForm);
+
+    boolean isAccountNameExist(EmployeeForm employeeForm);
 }

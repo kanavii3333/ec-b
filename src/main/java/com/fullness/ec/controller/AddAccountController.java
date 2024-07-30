@@ -57,11 +57,28 @@ public class AddAccountController {
             return "account/register/input";
 
         // アカウントが既に存在するかチェック
+        if (employeeService.isAccountExist(employeeForm) && employeeService.isAccountNameExist(employeeForm)) {
+            model.addAttribute("errorMessage", "この社員は既に登録されています");
+            model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
+            model.addAttribute("employeeList", employeeService.getEmployeeList());
+            return "account/register/input";
+        }
         if (employeeService.isAccountExist(employeeForm)) {
             model.addAttribute("errorMessage", "この社員は既に登録されています");
             model.addAttribute("employeeList", employeeService.getEmployeeList());
             return "account/register/input";
         }
+        if (employeeService.isAccountNameExist(employeeForm)) {
+            model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
+            model.addAttribute("employeeList", employeeService.getEmployeeList());
+            return "account/register/input";
+        }
+        // アカウント名が既に存在するかチェック
+        // if (employeeService.isAccountNameExist(employeeForm)) {
+        // model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
+        // model.addAttribute("employeeList", employeeService.getEmployeeList());
+        // return "account/register/input";
+        // }
 
         Employee employee = null;
         for (Employee emp : employeeService.getEmployeeList()) {

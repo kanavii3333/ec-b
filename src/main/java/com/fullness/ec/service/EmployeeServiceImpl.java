@@ -41,4 +41,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public boolean isAccountExist(EmployeeForm employeeForm) {
         return employeeRepository.selectByEmpId(employeeForm.getId()) != null;
     }
+
+    @Override
+    public boolean isAccountNameExist(EmployeeForm employeeForm) {
+        return employeeRepository.selectByEmpAccountName(employeeForm.getEmpAccountName()) != null;
+    }
 }

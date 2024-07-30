@@ -54,6 +54,12 @@
     WHERE employee_id = #{empId}
 </select>
 
+ <select id="selectByEmpAccountName" resultType="com.fullness.ec.entity.EmployeeAccount">
+    SELECT id as empAccountId, name, password, employee_id as empId
+    FROM employee_account
+    WHERE name = #{name}
+</select>
+
     
 
     
