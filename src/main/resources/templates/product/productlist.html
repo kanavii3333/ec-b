@@ -11,7 +11,7 @@
   <div>
     <h1> 商品検索 </h1>
     <table>
-      <form th:action="@{/productlist}" method="get"></form>
+      <form th:action="@{/productlist}" method="get">
         <tr>
           <select th:field="${categoryForm.productCategoryId}">
             <option th:value="${null}">全ての商品</option>
