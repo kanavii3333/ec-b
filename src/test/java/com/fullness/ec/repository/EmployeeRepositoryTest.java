@@ -52,4 +52,13 @@ public class EmployeeRepositoryTest {
         //assertEquals("adminの暗号化されたやつ", employeeAccount.getPassword());
         //$2a$10$yznxyLWUhuyVtMthOTqG8.NQy3yQZgNfMLxdgUkeSw95LRANregK2
     }
+
+    @Test
+    void selectByEmpIdTest(){
+        EmployeeAccount employeeAccount = employeeRepository.selectByEmpId(1);
+        assertEquals(1, employeeAccount.getEmpId());
+        assertEquals("admin", employeeAccount.getName());
+        //assertEquals("○○", employeeAccount.getPassword());
+        assertEquals(1, employeeAccount.getEmpAccountId());
+    }
 }
