@@ -17,6 +17,7 @@ import com.fullness.ec.repository.ProductRepository;
 import com.fullness.ec.repository.StockRepository;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
@@ -36,7 +37,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @Transactional
     public void addProduct(ProductForm productForm, byte[] imageByte) {
         Product product = ProductConverter.convertToEntity(productForm, imageByte);
         productRepository.insert(product);
