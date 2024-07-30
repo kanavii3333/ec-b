@@ -68,17 +68,8 @@ public class AddAccountController {
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("employeeForm",employeeForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeForm", bindingResult);
-            redirectAttributes.addFlashAttribute("employeeList", employeeService.getEmployeeList());
             return "redirect:/registeraccount/input";
         }
-        // アカウントが既に存在するかチェック
-        
-        // アカウント名が既に存在するかチェック
-        // if (employeeService.isAccountNameExist(employeeForm)) {
-        // model.addAttribute("errorMessage1", "このアカウント名は既に登録されています");
-        // model.addAttribute("employeeList", employeeService.getEmployeeList());
-        // return "account/register/input";
-        // }
 
         Employee employee = null;
         for (Employee emp : employeeService.getEmployeeList()) {
