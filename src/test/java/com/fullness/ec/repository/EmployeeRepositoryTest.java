@@ -30,7 +30,7 @@ public class EmployeeRepositoryTest {
         employeeAccount.setPassword("11111");
 
         employeeRepository.insert(employeeAccount);
-       // assertEquals(3 ,.selectAllEmployee().size());
+        //目視確認
     }
 
     @Test
@@ -42,8 +42,9 @@ public class EmployeeRepositoryTest {
     @Test
     void selectByUsernameTest(){
         EmployeeAccount employeeAccount = employeeRepository.selectByUsername("admin");
-        
-        
+        assertEquals(1, employeeAccount.getEmpAccountId());
+        assertEquals("admin", employeeAccount.getName());
+        //assertEquals("adminの暗号化されたやつ", employeeAccount.getPassword());
 
     }
 }
