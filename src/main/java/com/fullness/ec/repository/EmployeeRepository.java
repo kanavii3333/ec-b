@@ -9,12 +9,14 @@ import com.fullness.ec.entity.Employee;
 
 @Mapper
 public interface EmployeeRepository {
-    //つかってない
+    // つかってない
     public Employee selectByNameAndPassward(String name, String password);
-    
+
     public EmployeeAccount selectByUsername(String username);
 
     public void insert(EmployeeAccount employeeAccount);
 
     public List<Employee> selectAllEmployee();
+
+    EmployeeAccount selectByEmpId(Integer empId); // 追加
 }

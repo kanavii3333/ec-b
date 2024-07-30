@@ -8,4 +8,6 @@ public interface EmployeeService {
     void addAccount(EmployeeForm employeeForm);
 
     List<Employee> getEmployeeList();
+
+    boolean isAccountExist(EmployeeForm employeeForm);
 }

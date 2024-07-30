@@ -48,6 +48,11 @@
         values (#{empAccountId}, #{name}, crypt(#{password}, gen_salt('bf')),#{empId})
     </insert>
 
+    <select id="selectByEmpId" resultType="com.fullness.ec.entity.EmployeeAccount">
+    SELECT id as empAccountId, name, password, employee_id as empId
+    FROM employee_account
+    WHERE employee_id = #{empId}
+</select>
 
     
 

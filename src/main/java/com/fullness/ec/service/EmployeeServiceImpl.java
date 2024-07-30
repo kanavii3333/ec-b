@@ -36,4 +36,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployeeList() {
         return employeeRepository.selectAllEmployee();
     }
+
+    @Override
+    public boolean isAccountExist(EmployeeForm employeeForm) {
+        return employeeRepository.selectByEmpId(employeeForm.getId()) != null;
+    }
 }

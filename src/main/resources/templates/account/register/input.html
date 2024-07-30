@@ -10,6 +10,7 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>担当者アカウント登録（入力）</h1>
+        <div th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></div>
         <form th:action="@{/registeraccount/confirm}" method="post" th:object="${employeeForm}">
             <table style="margin: 0 auto;">
                 <tr>
