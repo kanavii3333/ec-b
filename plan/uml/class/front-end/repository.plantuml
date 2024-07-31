@@ -7,10 +7,16 @@ package repogitory{
 class CustomerRepository{
         +insert(customer:Customer):void
         +selectByName(name:String):Customer
+        +selectByMailAddress(mail:String):Customer
+        +selectAll():List<Customer>
     }
 
     class OrderRepository{
         +insert(order:Order):void
+        +selectByPage(pageable:Pageable,date:LocalDateTime,customerId:Integer)
+        +selectAllPaymentMethod():List<PaymentMethod>
+        +insertOrderDetail(orderDetail:OrderDetail):void
+        insertOrderStatus(status:String):void
     }
 
     class ProductRepository{
@@ -26,7 +32,12 @@ class CustomerRepository{
     }
     
     class StockRepository{
+        +selectByProductId(productId):ProductStock
         +updateStock(count:Integer):void
+    }
+
+    class OrderStatusRepository{
+        +selectAll():List<OrderStatus>
     }
 }
 @enduml

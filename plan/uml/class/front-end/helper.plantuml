@@ -9,7 +9,7 @@ package helper{
     }
 
     class OrderConverter{
-        +convertToEntity(formOrder:OrderForm):Order
+        +convertToEntity(orderForm:OrderForm,orderDetailFormList:List<OrderDetailForm>):Order
     }
 
     class ProductConverter{
