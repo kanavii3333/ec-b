@@ -52,10 +52,10 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authz->authz.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-        .requestMatchers("/**").permitAll() //全てセキュリティオフ
-        // .requestMatchers("/login").permitAll()
-        // .requestMatchers("/menu","/logout","/session/**").authenticated()
-        // .anyRequest().authenticated()
+        //.requestMatchers("/**").permitAll() //全てセキュリティオフ
+        .requestMatchers("/login","/menu","/img/**").permitAll()
+        .requestMatchers("/logout","/registerproduct/**","/deleteproduct/**","/updateproduct/**","/productlist","/registeraccount/**","/registerproductcategory/**").authenticated()
+        .anyRequest().authenticated()
         );
 
         return http.build();
