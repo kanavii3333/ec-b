@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>担当者アカウント登録（入力）画面</title>
+    <title>アカウント登録（入力）画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
     <div th:replace="fragment::header"></div>
     <div>
-        <h1>担当者アカウント登録（入力）</h1>
+        <h1>アカウント登録（入力）</h1>
         <form th:action="@{/registeraccount/confirm}" method="post" th:object="${employeeForm}">
             <div class="error">
                 <p th:if="${#fields.hasErrors('global')}" th:each="error : ${#fields.errors('global')}" th:text="${error}">
