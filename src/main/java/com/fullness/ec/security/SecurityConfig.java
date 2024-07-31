@@ -45,7 +45,7 @@ public class SecurityConfig {
         // .usernameParameter("mailAddress").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/login").permitAll());
 
         http.formLogin(login->login.loginProcessingUrl("/auth_employee").loginPage("/loginEmployee")
-        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/loginEmployee?error=true").permitAll());
+        .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/loginEmployee").permitAll());
 
         http.logout(logout->logout.logoutUrl("/logoutEmployee").logoutSuccessUrl("/menu").invalidateHttpSession(true)
         .deleteCookies("JSESSONID").clearAuthentication(true).permitAll());
