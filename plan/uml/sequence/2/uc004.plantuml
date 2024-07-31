@@ -1,0 +1,31 @@
+@startuml
+
+title 商品購入のシーケンス図
+actor "顧客" as user
+participant "PurchaseController" as controller
+participant "Order\nService" as service
+participant "Order\nConverter" as helper
+participant "ProductStock\nRepository" as repository1
+participant "Order\nRepository" as repository2
+database "db" as db
+
+== 入力(商品詳細画面)　==
+user -> controller++:productDetail()
+controller -> service++:getStockByProductId(productId:Integer)
+service -> repository1++:selectByProductId(productId)
+repository1 -> db++:SQL(SELECT)
+db -> repository1--:ProductStock
+repository1 -> service--:ProductStock
+service -> controller--:productStock
+controller -> controller:Modelにセット\n(プルダウン用)
+controller -> user--:商品詳細画面
+
+== 確認(購入入力画面) ==
+user -> controller++:AddToCart()
+controller -> controller:SessionAttribute List<OrderForm>に追加
+user <- controller--:リダイレクト
+user -> controller:input()
+
+== UC005へ ==
+
+@enduml

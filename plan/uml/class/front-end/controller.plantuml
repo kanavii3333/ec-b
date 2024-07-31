@@ -21,6 +21,7 @@ package controller{
     }
     class SearchProductController{
         +seachProductByCategory():String
+        +execute():String
         +productDetail():String
     }
     class CustomerAccountController{

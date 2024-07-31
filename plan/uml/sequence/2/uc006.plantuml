@@ -1,0 +1,20 @@
+title 購入キャンセルのシーケンス図
+actor "顧客" as user
+participant "PurchaseController" as controller
+participant "Order\nService" as service
+participant "Order\nConverter" as helper
+participant "ProductStock\nRepository" as repository1
+participant "Order\nRepository" as repository2
+database "db" as db
+
+controller -> user--:入力画面
+
+== ここまでUC005の入力部分 ==
+
+user -> controller++:deleteOrder()
+controller -> controller:SessionAttributeから削除
+user <- controller--:リダイレクト
+
+== UC005へ ==
+user -> controller:input
+

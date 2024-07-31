@@ -1,0 +1,29 @@
+@startuml
+
+title 購入履歴のシーケンス図
+actor "顧客" as user
+participant "PurchaseHistoryController" as controller
+participant "Order\nService" as service
+participant "Order\nConverter" as helper
+participant "ProductStock\nRepository" as repository1
+participant "Order\nRepository" as repository2
+database "db" as db
+
+== 履歴　==
+user -> controller++:history()
+controller -> service++:getyOrderList()
+service -> repository1++:selectAll()
+repository1 -> db++:SQL(SELECT)
+db -> repository1--:List<Order>
+repository1 -> service--:List<Order>
+service -> controller--:List<Order>
+controller -> controller:sessionに保存
+controller -> user--:履歴画面
+
+== 履歴詳細 ==
+user -> controller++:detail()
+controller -> controller:sessionのリストから
+controller -> user--:履歴詳細画面
+
+
+@enduml

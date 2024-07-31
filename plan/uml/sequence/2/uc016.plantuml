@@ -1,0 +1,41 @@
+@startuml
+
+title 購入履歴検索のシーケンス図
+actor "担当者" as user
+participant "UpdateStatusController" as controller
+participant "Order\nService" as service
+participant "OrderConverter" as helper
+participant "OrderStatus\nRepository" as repository1
+participant "Order\nRepository" as repository2
+database "db" as db
+
+== 入力　==
+user -> controller++:input()
+controller -> service++:getyOrderStatusList()
+service -> repository1++:selectAll()
+repository1 -> db++:SQL(SELECT)
+db -> repository1--:List<OrderStatus>
+repository1 -> service--:List<OrderStatus>
+service -> controller--:List<OrderStatus>
+controller -> controller:Modelに保存
+
+controller -> user--:入力画面
+
+== 確認 ==
+user -> controller++:confirm()
+controller -> user--:確認画面
+
+== 完了 ==
+user -> controller++:execute()
+controller -> service++:updateStatus(orderForm:OrderForm)
+service -> helper++:convertToEntity(orderForm:OrderForm)
+service <- helper--:Order
+service -> repository2++:updateStatus(order:Order)
+repository2 -> db++:SQL(UPDATE)
+repository2 <- db--:void
+service <- repository2--:void
+controller <- service--:void
+user <- controller--:リダイレクト
+user -> controller++:complete()
+controller -> user--:確認画面
+@enduml

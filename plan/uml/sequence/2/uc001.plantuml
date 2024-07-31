@@ -1,0 +1,41 @@
+@startuml
+
+title UC001(顧客アカウント登録機能)のシーケンス図
+actor "担当者" as user
+participant "CustomerAccountController" as controller
+participant "CustomerService" as service
+participant "CustomerForm" as form
+participant "CustomerFormValidator" as validator
+participant "CustomerConverter" as helper
+participant "CustomerRepository" as repository
+database "db" as db
+ == 入力 ==
+user -> controller++:input()
+controller -> user--:入力画面
+user -> user:アカウント入力 
+ == 確認 ==
+user -> controller++:confirm()
+controller -> form++:フォームに代入
+form -> controller--:CustomerForm
+controller -> validator++:バリデート
+validator -> repository++:selectByMailAddress
+repository -> db++:SQL(SELECT)
+repository <- db--:Customer
+validator <- repository--:Customer
+controller <- validator--
+controller -> user--:確認画面
+ == 完了 ==
+user -> controller++:execute()
+controller -> service++:addAccount\n(customerForm:CustomerForm)
+service -> helper++:convertToEntity\n(customerForm:CustomerForm)
+helper -> service--:Customer
+service -> repository++:insert(Customer)
+repository -> db++:SQL(INSERT)
+db -> repository--:void
+repository -> service--:void
+service -> controller--:void
+controller -> user--:リダイレクト
+user -> controller++:complete()
+controller -> controller:セッション破棄
+controller -> user--:完了画面
+@enduml

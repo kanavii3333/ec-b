@@ -1,6 +1,6 @@
 @startuml
 
-title カテゴリ別商品検索のシーケンス図
+title 商品検索のシーケンス図
 actor "担当者" as user
 participant "SearchProductController" as controller
 participant "ProductCategory\nService" as service
@@ -13,7 +13,7 @@ database "db" as db
 user -> controller++:input()
 controller -> service1++:selectProductByPage(pageable: Pageable)
 service1 -> repository2++:selectByPage(pageable:Pageable)
-repository2 -> db++:SQL(SELECT(count)
+repository2 -> db++:SQL(SELECT(count))
 db -> repository2--:List<Product>
 repository2 -> service1--:List<Product>
 service1 -> controller--:page<Product>

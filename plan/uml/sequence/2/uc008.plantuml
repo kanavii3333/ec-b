@@ -1,0 +1,14 @@
+@startuml
+
+title 担当者アカウントログアウト機能のシーケンス図
+actor "顧客" as user
+participant "SecurityConfig" as config
+participant "CustomerLoginControlle" as controller
+
+user -> config++:/auth POST(username, password)
+config -> config:ログインユーザー情報\nを破棄
+config --> user--:リダイレクト
+user -> controller++:top()
+controller -> user--:トップ画面
+
+@enduml

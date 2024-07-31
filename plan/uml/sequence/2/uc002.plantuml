@@ -1,0 +1,28 @@
+@startuml
+title 顧客アカウントログイン
+actor user
+participant "CustomerLoginController" as controller
+participant "SecurityConfig" as security
+participant "Customer\nDetailsService" as service
+participant "Customer\nRepository" as repository
+participant "Customer\nUserDetails" as details
+database DB as db
+
+user -> controller++:login()
+controller -> user--:ログイン画面
+user -> security++:/auth POST(username, password)
+security -> service++:loadUserByUsername\n(username)
+service -> repository++:selectByUsername\n(username)
+repository -> db++:SELECT文
+db --> repository--:Customer
+repository --> service--:Customer
+service -> details++:new
+details --> service--:CustomerUserDetails
+service -> security--:CustomerUserDetails
+security -> security:認証
+security -> security:セッションに格納
+security --> user--:トップ画面（前にいたページ？）
+user -> controller++:
+controller -> user--:
+
+@enduml

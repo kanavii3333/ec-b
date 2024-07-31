@@ -1,0 +1,30 @@
+@startuml
+
+title 購入履歴検索のシーケンス図
+actor "担当者" as user
+participant "SearchPurchaseHistoryController" as controller
+participant "Order\nService" as service
+participant "Customer\nRepository" as repository1
+participant "Order\nRepository" as repository2
+database "db" as db
+==表示==
+user -> controller++:input()
+controller -> service++:selectPurchaseHistoryByPage(pageable:Pageable,date:LocalDateTime,customerId:Integer)
+service -> repository2++:selectByPage(pageable:Pageable,date:LocalDateTime,customerId:Integer)
+repository2 -> db++:SQL(SELECT(count))
+db -> repository2--:List<Product>
+repository2 -> service--:List<Product>
+service -> controller--:page<Product>
+
+controller -> service++:selectAll()
+service -> repository1++:selectAll()
+repository1 -> db++:SQL(SELECT)
+db -> repository1--:List<ProductCategory>
+repository1 -> service--:List<ProductCategory>
+service -> controller--:List<ProductCategory>
+controller -> controller:Modelにセット\n(プルダウン用)
+controller -> user--:カテゴリ別商品検索入力画面
+
+
+
+@enduml
