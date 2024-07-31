@@ -40,9 +40,11 @@ public class RegisterProductController {
     ProductCategoryServiceImpl productCategoryService;
     @Autowired
     ProductServiceImpl productService;
-    @Autowired ProductFormValidator validator;
+    @Autowired
+    ProductFormValidator validator;
+
     @InitBinder("productForm")
-    public void InitBinder(WebDataBinder binder){
+    public void InitBinder(WebDataBinder binder) {
         binder.addValidators(validator);
     }
 
@@ -54,11 +56,13 @@ public class RegisterProductController {
     }
 
     @PostMapping("confirm")
-    public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) throws IOException {
+    public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm,
+            BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws IOException {
         List<ProductCategory> categoryList = productCategoryService.selectAll();
-        if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("productForm",productForm);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm", bindingResult);
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("productForm", productForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm",
+                    bindingResult);
             return "redirect:/registerproduct/input";
         }
         for (ProductCategory category : categoryList) {
@@ -70,18 +74,37 @@ public class RegisterProductController {
                 break;
             }
         }
-       
+
         model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
         model.addAttribute("imageByte", productForm.getFile().getBytes());
         return "product/register/confirm";
     }
+
+    // @GetMapping("confirm")
+    // public String confirmGet(@ModelAttribute("productForm") ProductForm
+    // productForm, Model model) {
+    // List<ProductCategory> categoryList = productCategoryService.selectAll();
+    // ProductCategory productCategory = null;
+    // for (ProductCategory category : categoryList) {
+    // if (category.getProductCategoryId() == productForm.getCategoryId()) {
+    // productCategory = category;
+    // break;
+    // }
+    // }
+    // model.addAttribute("productCategory", productCategory);
+    // model.addAttribute("image",
+    // ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+    // model.addAttribute("productForm", productForm);
+    // model.addAttribute("error", "不正な操作です");
+    // return "product/register/confirm";
+    // }
 
     @PostMapping("execute")
     public String execute(
             @ModelAttribute("productForm") ProductForm productForm,
             @ModelAttribute("productCategory") ProductCategory productCategory,
             @ModelAttribute("imageByte") byte[] imageByte) {
-        productService.addProduct(productForm,imageByte);
+        productService.addProduct(productForm, imageByte);
         return "redirect:complete";
     }
 
@@ -92,4 +115,5 @@ public class RegisterProductController {
         sessionStatus.setComplete();
         return "product/register/complete";
     }
+
 }
