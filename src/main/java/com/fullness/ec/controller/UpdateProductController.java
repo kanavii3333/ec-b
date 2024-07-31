@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.helper.ImageUploadHelper;
 import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
@@ -35,6 +38,12 @@ public class UpdateProductController {
     
     @Autowired ProductServiceImpl productServiceImpl; 
     @Autowired ProductCategoryServiceImpl productCategoryServiceImpl;
+
+    @Autowired ProductFormValidator validator;
+    @InitBinder("productForm")
+    public void InitBinder(WebDataBinder binder){
+        binder.addValidators(validator);
+    }
     @GetMapping("input")
     public String input(@RequestParam("productId")Integer productId,Model model){
         ProductForm productForm = ProductConverter.convertToForm(productServiceImpl.getProductByProductId(productId));
@@ -44,8 +53,13 @@ public class UpdateProductController {
     }
 
     @PostMapping("confirm")
-	public String confirm(@ModelAttribute("productForm") ProductForm productForm, Model model) throws IOException{
+	public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) throws IOException{
         List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("productForm",productForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm", bindingResult);
+            return "redirect:/registerproduct/input";
+        }
         for (ProductCategory category : categoryList) {
             if (category.getProductCategoryId() == productForm.getCategoryId()) {
                 productForm.setCategoryName(category.getProductCategoryName());

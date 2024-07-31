@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新商品登録（完了）</title>
+    <title>新商品登録（完了）画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
     <div th:replace="fragment::header"></div>
     <div>
         <h1>新商品登録（完了）</h1>
-        <div th:inline="text">[[${productName}]]を登録しました。</div>
+        <div th:inline="text">商品名 [[${productName}]]を登録しました。</div>
         <table style="margin: 0 auto;">
             <tr>
                 <td style="text-align:center;">
