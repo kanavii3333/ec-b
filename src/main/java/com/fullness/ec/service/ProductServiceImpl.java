@@ -57,6 +57,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public boolean isProductExist(ProductForm productForm){
+      Integer result = productRepository.selectProductIdByName(productForm.getProductName()); 
+      if(result == null){
+        return false;
+      }
+
+      return productRepository.selectProductIdByName(productForm.getProductName()) > 0;
+    }
+
+    @Override
     public Product getProductByProductId(Integer productId){
         Product product = productRepository.selectByProductId(productId);
         return product;
