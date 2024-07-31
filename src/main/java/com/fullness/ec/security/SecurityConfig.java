@@ -48,8 +48,8 @@ public class SecurityConfig {
         // .usernameParameter("mailAddress").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/login").permitAll());
 
         http.formLogin(login -> login.loginProcessingUrl("/auth_employee").loginPage("/loginEmployee")
-                .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/menu", true)
-                .failureUrl("/loginEmployee?error=true").permitAll());
+                .usernameParameter("username").passwordParameter("password").defaultSuccessUrl("/menu", true)// ここにtrueを付けました。
+                .failureUrl("/loginEmployee?error=true").permitAll());// ここに?error=trueを付けました
 
         http.logout(logout -> logout.logoutUrl("/logoutEmployee").logoutSuccessUrl("/menu").invalidateHttpSession(true)
                 .deleteCookies("JSESSONID").clearAuthentication(true).permitAll());
