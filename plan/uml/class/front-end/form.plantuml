@@ -14,17 +14,25 @@ package form{
         -customerMailAdress:String
         -customerUserName: String
         -customerPassword: String
-        -customerRegisterDate: String
+        -customerRegisterDate: ZonedDateTime
     }
 
     class OrderForm{
         -orderId: Integer
         -orderDate: String
         -amountTotal: Integer
-        -count: Integer
-        -orderStatus: String
-        -payMethod: String
-        -customerName: String
+        -orderStatusId: Integer
+        -paymentMethodId: Integer
+        -customerId: Integer
+    }
+
+    class OrderDetailForm{
+      -orderDetailId:Integer
+      -orderId:Integer
+      -productId:Integer
+      -count:Integer
+      -customerId:Integer
+      -stock:Integer
     }
 
     class ProductForm{

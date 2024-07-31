@@ -33,9 +33,11 @@ public class RegisterProductCategoryController {
     @Autowired
     ProductCategoryServiceImpl productCategoryServiceImpl;
 
-    @Autowired CategoryFormValidator validator;
+    @Autowired
+    CategoryFormValidator validator;
+
     @InitBinder("categoryForm")
-    public void InitBinder(WebDataBinder binder){
+    public void InitBinder(WebDataBinder binder) {
         binder.addValidators(validator);
     }
 
@@ -45,16 +47,24 @@ public class RegisterProductCategoryController {
     }
 
     @PostMapping("confirm")
-    public String confirm(@Validated @ModelAttribute("categoryForm") CategoryForm categoryForm, BindingResult bindingResult,
-    RedirectAttributes redirectAttributes,Model model) {
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("categoryForm",categoryForm);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.categoryForm", bindingResult);
+    public String confirm(@Validated @ModelAttribute("categoryForm") CategoryForm categoryForm,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("categoryForm", categoryForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.categoryForm",
+                    bindingResult);
             return "redirect:/registerproductcategory/input";
         }
         model.addAttribute("categoryForm", categoryForm);
         return "product/categoryregister/confirm";
     }
+
+    // @GetMapping("confirm")
+    // public String confirmGet(Model model) {
+    // model.addAttribute("error", "不正な操作です");
+    // return "product/categoryregister/confirm";
+    // }
 
     @PostMapping("execute")
     public String execute(@ModelAttribute("categoryForm") CategoryForm categoryForm,
