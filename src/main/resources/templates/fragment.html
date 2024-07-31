@@ -9,7 +9,7 @@
 
 <body>
     <div th:fragment="header" id="header">
-        <h3>文具/雑貨販売システム</h3>
+        <h3><a href="/menu">文具/雑貨販売システム</a></h3>
         <div th:if="${#authorization.expression('isAuthenticated()')}">
             <form th:action="@{'/logoutEmployee'}" method="post">
                 <a href="/productlist">商品情報メンテナンス</a>
