@@ -87,20 +87,11 @@ public class AddAccountController {
         return "account/register/confirm";
     }
 
-    @GetMapping("confirm")
-    public String confirmGet(@ModelAttribute("employeeForm") EmployeeForm employeeForm, Model model) {
-        Employee employee = null;
-        for (Employee emp : employeeService.getEmployeeList()) {
-            if (emp.getEmpId().equals(employeeForm.getId())) {
-                employee = emp;
-                break;
-            }
-        }
-        model.addAttribute("employee", employee);
-        model.addAttribute("employeeForm", employeeForm);
-        model.addAttribute("error", "不正な操作です");
-        return "account/register/confirm";
-    }
+    // @GetMapping("confirm")
+    // public String confirmGet(RedirectAttributes redirectAttributes) {
+
+    // return "redirect:/registeraccount/error";
+    // }
 
     @PostMapping("execute")
     public String execute(@ModelAttribute("employeeForm") EmployeeForm employeeForm,
