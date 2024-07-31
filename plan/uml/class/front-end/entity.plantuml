@@ -14,12 +14,12 @@ package entity{
         -customerMailAdress:String
         -customerUserName: String
         -customerPassword: String
-        -customerRegisterDate: String
+        -customerRegisterDate: ZonedDateTime
     }
 
     class Order{
         -orderId: Integer
-        -orderDate: String
+        -orderDate: ZonedDateTime
         -amountTotal: Integer
         -orderDetail: OrderDetail
         -orderStatus: OrderStatus

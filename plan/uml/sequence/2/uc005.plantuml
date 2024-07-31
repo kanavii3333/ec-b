@@ -11,46 +11,47 @@ database "db" as db
 
 == 入力　==
 user -> controller++:input()
-controller -> service++:getStockByOrderForm(orderForm:OrderForm)
+controller -> service++:getStockByOrderDetailForm(orderDetailForm:OrderDetailForm)
 loop orderFormの更新 list全てに適用
 	service -> repository1++:selectByProductId(productId)
 	repository1 -> db++:SQL(SELECT)
 	db -> repository1--:ProductStock
 	repository1 -> service--:ProductStock
 end
-service -> controller--:productStock
+service -> controller--:void
 controller -> user--:入力画面
 
 == 確認 ==
 user -> controller++:confirm()
-controller -> service++:getPayMethodList()
-service -> repository2++:selectAll()
+controller -> service++:getPaymentMethodList()
+service -> repository2++:selectAllPaymentMethod()
 repository2 -> db++:SQL(SELECT)
-repository2 <- db--:List<PayMethod>
-service <- repository2--:List<PayMethod>
-controller <- service--:List<PayMethod>
+repository2 <- db--:List<PaymentMethod>
+service <- repository2--:List<PaymentMethod>
+controller <- service--:List<PaymentMethod>
 controller -> controller:Modelに追加
 controller -> user--:確認画面
 
 == 完了 ==
 user -> controller++:execute()
 controller -> service++:registerOrder(orderForm:OrderForm)
+service -> helper++:convertToEntity(orderForm:OrderForm)
+service <- helper--:Order
+service -> repository2++:insertOrder(order:Order)
+repository2 -> db++:SQL(insert)
+repository2 <- db--:void
+service <- repository2--:void
 loop
-	service -> helper++:convertToEntity(orderForm:OrderForm)
-	service <- helper--:Order
-	service -> repository2++:insertOrder(order:Order)
-	repository2 -> db++:SQL(insert)
-	repository2 <- db--:void
-	service <- repository2--:void
 	service -> repository2++:insertOrderDetail(orderDetail:OrderDetail)
 	repository2 -> db++:SQL(insert)
 	repository2 <- db--:void
 	service <- repository2--:void
-	service -> repository2++:insertOrderStatus(status:String)
-	repository2 -> db++:SQL(insert)
-	repository2 <- db--:void
-	service <- repository2--:void
 end
+service -> repository2++:insertOrderStatus(status:String)
+repository2 -> db++:SQL(insert)
+repository2 <- db--:void
+service <- repository2--:void
+
 controller <- service--:void
 user <- controller--:リダイレクト
 user -> controller++:complete()

@@ -5,13 +5,19 @@ left to right direction
 
 package service{
     class CustomerService{
-		+getCustomerByUsername(username:String):String
+    +selectAll():List<Customer>
+		+getCustomerByMailAddress(address:String):Customer
 		+registerCustomer(customer:CustomerForm):void
     }
     
     class OrderService{
-		+makeOrder(OrderForm):void
-		+deleteOrder(orderId:Integer):void
+		+registerOrder(OrderForm,List<OrderDetailForm>):void
+		+deleteOrder():void
+    +updateStatus(OrderForm):void
+    +getOrderStatusList():List<orderStatus>
+    +getOrderList():List<Order>
+    +getStockByOrderForm(orderForm:OrderForm)
+    +getPayMethodList():List<PaymentMethod>
     }
     
     class ProductService{
