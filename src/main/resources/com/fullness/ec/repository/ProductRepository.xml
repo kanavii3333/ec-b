@@ -50,6 +50,8 @@
             product
         where
             name = #{productName}
+        and
+            delete_flag = 0
         FOR UPDATE
     </select>
 
