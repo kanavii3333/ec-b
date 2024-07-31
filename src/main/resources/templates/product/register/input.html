@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新商品登録（入力）</title>
+    <title>新商品登録（入力）画面</title>
 
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
@@ -62,7 +62,7 @@
             
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <a href="/menu">キャンセル</a>
-            <input type="submit" value="確認">
+            <input type="submit" value="完了">
             
         </form>
         

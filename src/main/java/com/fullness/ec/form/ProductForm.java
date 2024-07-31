@@ -19,7 +19,7 @@ public class ProductForm {
     private Integer productId;
 
     @NotBlank
-    @Length(min=2,max=20)
+    @Length(min=5,max=20, message = "{length.productName}")
     @Pattern(regexp = "^[a-zA-Z0-9\\u4E00-\\u9FAF\\u3040-\\u309F\\u30A0-\\u30FF]+$", message = "{pattern.name}")
     private String productName;
 
