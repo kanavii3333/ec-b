@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品修正（入力）</title>
+    <title>商品修正（入力）画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -11,20 +11,37 @@
     <div>
         <h1>商品修正（入力）</h1>
         <form th:action="@{/updateproduct/confirm}" method="post" th:object="${productForm}" enctype="multipart/form-data">
+            <div class="error">
+                <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
+            </div>
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:center;">商品名</td>
                     <td style="text-align:left;"><input type="text" th:field="*{productName}"></td>
                 </tr>
                 <tr>
+                    <td colspan="2">
+                        <span class="error" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></span>
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align:center;">単価</td>
                     <td style="text-align:left;"><input type="text" th:field="*{price}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span class="error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align:center;">在庫数</td>
                     <td style="text-align:left;"><input type="text" th:field="*{quantity}"></td>
                 </tr>
-
+                <tr>
+                    <td colspan="2">
+                        <span class="error" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span>
+                    </td>
+                </tr>
                 <tr>
                     <td style="text-align:center;">商品カテゴリ</td>
                     <td style="text-align:left;">
