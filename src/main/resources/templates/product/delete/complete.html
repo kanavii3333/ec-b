@@ -10,11 +10,11 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品削除（完了）</h1>
-        <div th:inline="text">[[${product.productName}]]を削除しました。</div>
+        <div th:inline="text">商品名 [[${product.productName}]] を削除しました。</div>
         <table style="margin: 0 auto;">
             <tr>
                 <td style="text-align:center;">
-                    <form th:action="@{/logoutEmployee}" method="post">
+                    <form th:action="@{/menu}" method="get">
                         <input type="submit" value="業務終了">
                     </form>
                 </td>
