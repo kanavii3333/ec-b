@@ -43,9 +43,11 @@ public class AddAccountController {
     @Autowired
     EmployeeServiceImpl employeeServiceImpl;
 
-    @Autowired EmployeeFormValidator validator;
+    @Autowired
+    EmployeeFormValidator validator;
+
     @InitBinder("employeeForm")
-    public void InitBinder(WebDataBinder binder){
+    public void InitBinder(WebDataBinder binder) {
         binder.addValidators(validator);
     }
 
@@ -58,16 +60,16 @@ public class AddAccountController {
 
     @PostMapping("confirm")
     public String comfirm(
-            @Validated
-            @ModelAttribute("employeeForm") EmployeeForm employeeForm,
-            BindingResult bindingResult, 
+            @Validated @ModelAttribute("employeeForm") EmployeeForm employeeForm,
+            BindingResult bindingResult,
             RedirectAttributes redirectAttributes,
             Model model) {
         System.out.println("employeeForm:" + employeeForm);
         System.out.println("bindingResult:" + bindingResult);
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute("employeeForm",employeeForm);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeForm", bindingResult);
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeForm",
+                    bindingResult);
             return "redirect:/registeraccount/input";
         }
 
@@ -82,6 +84,21 @@ public class AddAccountController {
 
         model.addAttribute("employee", employee);
         model.addAttribute("employeeForm", employeeForm);
+        return "account/register/confirm";
+    }
+
+    @GetMapping("confirm")
+    public String confirmGet(@ModelAttribute("employeeForm") EmployeeForm employeeForm, Model model) {
+        Employee employee = null;
+        for (Employee emp : employeeService.getEmployeeList()) {
+            if (emp.getEmpId().equals(employeeForm.getId())) {
+                employee = emp;
+                break;
+            }
+        }
+        model.addAttribute("employee", employee);
+        model.addAttribute("employeeForm", employeeForm);
+        model.addAttribute("error", "不正な操作です");
         return "account/register/confirm";
     }
 
