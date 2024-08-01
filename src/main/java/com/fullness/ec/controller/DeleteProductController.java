@@ -13,7 +13,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.entity.Product;
-import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
@@ -21,9 +20,9 @@ import com.fullness.ec.service.ProductServiceImpl;
 @RequestMapping("deleteproduct")
 @SessionAttributes({ "product" })
 public class DeleteProductController {
-    @ModelAttribute("productForm")
-    public ProductForm setupForm() {
-        return new ProductForm();
+    @ModelAttribute("product")
+    public Product setupForm() {
+        return new Product();
     }
 
     @Autowired
@@ -49,6 +48,7 @@ public class DeleteProductController {
 
     @GetMapping("complete")
     public String complete(@ModelAttribute("product") Product product,SessionStatus sessionStatus,Model model){
+        if(product.getProductId()==null) return "redirect:/menu";
         sessionStatus.setComplete();
         return "product/delete/complete";
     }
