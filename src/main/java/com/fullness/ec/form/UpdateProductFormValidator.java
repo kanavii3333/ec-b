@@ -24,6 +24,13 @@ public class UpdateProductFormValidator implements Validator{
             errors.reject("com.fullness.ec.ProductForm.message4");
         }
 
+        if(!updateProductForm.getFile().getContentType().equals("image/jpg")
+        && !updateProductForm.getFile().getContentType().equals("image/jpeg")
+        && !updateProductForm.getFile().getContentType().equals("image/png")
+        ){
+            errors.reject("com.fullness.ec.ProductForm.message7");
+        }
+
         if (updateProductForm.getCategoryId() == 1){
             if(updateProductForm.getPrice() > 5000 || updateProductForm.getPrice() < 30) {
             errors.reject("com.fullness.ec.ProductForm.message1");
