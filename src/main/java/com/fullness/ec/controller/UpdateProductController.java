@@ -84,6 +84,27 @@ public class UpdateProductController {
         model.addAttribute("productForm", productForm);
         return "product/update/confirm";
     }
+
+    @GetMapping("confirm")
+    public String confirmGet(@ModelAttribute("productForm") ProductForm productForm, Model model) throws IOException{
+        List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
+        for (ProductCategory category : categoryList) {
+            if (category.getProductCategoryId() == productForm.getCategoryId()) {
+                productForm.setCategoryName(category.getProductCategoryName());
+                break;
+            }
+        }
+        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+        model.addAttribute("imageByte", productForm.getFile().getBytes());
+        model.addAttribute("filename",productForm.getFile().getOriginalFilename());
+        if(!productForm.getFile().isEmpty()){
+            productForm.setImageUrl(null);
+        } else {
+            model.addAttribute("image", null);
+        }
+        model.addAttribute("productForm", productForm);
+        return "product/update/confirm";
+    }
     
     @PostMapping("execute")
     public String execute(
