@@ -59,11 +59,12 @@ public class RegisterProductCategoryController {
         return "product/categoryregister/confirm";
     }
 
-    // @GetMapping("confirm")
-    // public String confirmGet(Model model) {
-    // model.addAttribute("error", "不正な操作です");
-    // return "product/categoryregister/confirm";
-    // }
+    @GetMapping("confirm")
+    public String confirmGet(@ModelAttribute("categoryForm") CategoryForm categoryForm,
+            Model model) {
+        model.addAttribute("categoryForm", categoryForm);
+        return "product/categoryregister/confirm";
+    }
 
     @PostMapping("execute")
     public String execute(@ModelAttribute("categoryForm") CategoryForm categoryForm,
