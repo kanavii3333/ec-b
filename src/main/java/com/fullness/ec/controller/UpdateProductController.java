@@ -86,7 +86,7 @@ public class UpdateProductController {
     }
 
     @GetMapping("confirm")
-    public String confirmGet(@ModelAttribute("productForm") ProductForm productForm, Model model) throws IOException{
+    public String confirmGet(@ModelAttribute("updateProductForm") UpdateProductForm productForm, Model model) throws IOException{
         List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
         for (ProductCategory category : categoryList) {
             if (category.getProductCategoryId() == productForm.getCategoryId()) {
@@ -102,7 +102,7 @@ public class UpdateProductController {
         } else {
             model.addAttribute("image", null);
         }
-        model.addAttribute("productForm", productForm);
+        model.addAttribute("updateProductForm", productForm);
         return "product/update/confirm";
     }
     
