@@ -17,7 +17,7 @@ import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
 @Controller
-@RequestMapping("deleteproduct")
+@RequestMapping("admin/deleteproduct")
 @SessionAttributes({ "product" })
 public class DeleteProductController {
     @ModelAttribute("product")

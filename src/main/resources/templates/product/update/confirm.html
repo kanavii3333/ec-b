@@ -31,10 +31,10 @@
 
                 <tr>
                     <td style="text-align:center;">画像</td>
-                    <td th:if="${image!=null}">
-                        <img th:src="${image}" class="image-size">
+                    <td th:if="${updateProductForm.image!=null}">
+                        <img th:src="*{image}" class="image-size">
                     </td>
-                    <td th:if="${image==null}">
+                    <td th:if="${updateProductForm.image==null}">
                         <img th:src="@{/img/__${updateProductForm.imageUrl}__}" class="image-size">
                     </td>
                 </tr>

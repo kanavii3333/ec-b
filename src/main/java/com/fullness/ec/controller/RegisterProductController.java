@@ -26,7 +26,7 @@ import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
 @Controller
-@RequestMapping("registerproduct")
+@RequestMapping("admin/registerproduct")
 @SessionAttributes({ "productForm", "imageByte", "productCategory" })
 public class RegisterProductController {
     @ModelAttribute("productForm")
@@ -73,28 +73,15 @@ public class RegisterProductController {
                 break;
             }
         }
-
-        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+        productForm.setImage(ImageUploadHelper.createBase64ImageString(productForm.getFile()));
         model.addAttribute("imageByte", productForm.getFile().getBytes());
         return "product/register/confirm";
     }
 
     @GetMapping("confirm")
     public String confirmGet(@ModelAttribute("productForm") ProductForm productForm,
-            RedirectAttributes redirectAttributes, Model model) throws IOException {
-        List<ProductCategory> categoryList = productCategoryService.selectAll();
-        for (ProductCategory category : categoryList) {
-            if (category.getProductCategoryId() == productForm.getCategoryId()) {
-                ProductCategory productCategory = new ProductCategory();
-                productCategory.setProductCategoryId(category.getProductCategoryId());
-                productCategory.setProductCategoryName(category.getProductCategoryName());
-                model.addAttribute("productCategory", productCategory);
-                break;
-            }
-        }
+            Model model) throws IOException {
 
-        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
-        model.addAttribute("imageByte", productForm.getFile().getBytes());
         return "product/register/confirm";
     }
 

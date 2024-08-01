@@ -22,9 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
-import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.UpdateProductForm;
-import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.form.UpdateProductFormValidator;
 import com.fullness.ec.helper.ImageUploadHelper;
 import com.fullness.ec.helper.ProductConverter;
@@ -32,7 +30,7 @@ import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
 @SessionAttributes({"updateProductForm","imageByte","filename"})
-@RequestMapping("updateproduct")
+@RequestMapping("admin/updateproduct")
 @Controller
 public class UpdateProductController {
     @ModelAttribute("updateProductForm")
@@ -74,13 +72,13 @@ public class UpdateProductController {
                 break;
             }
         }
-        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(updateProductForm.getFile()));
+        updateProductForm.setImage(ImageUploadHelper.createBase64ImageString(updateProductForm.getFile()));
         model.addAttribute("imageByte", updateProductForm.getFile().getBytes());
         model.addAttribute("filename",updateProductForm.getFile().getOriginalFilename());
         if(!updateProductForm.getFile().isEmpty()){
             updateProductForm.setImageUrl(null);
         } else {
-            model.addAttribute("image", null);
+            updateProductForm.setImage(null);
         }
         model.addAttribute("updateProductForm", updateProductForm);
         return "product/update/confirm";
@@ -88,22 +86,7 @@ public class UpdateProductController {
 
     @GetMapping("confirm")
     public String confirmGet(@ModelAttribute("updateProductForm") UpdateProductForm productForm, Model model) throws IOException{
-        List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
-        for (ProductCategory category : categoryList) {
-            if (category.getProductCategoryId() == productForm.getCategoryId()) {
-                productForm.setCategoryName(category.getProductCategoryName());
-                break;
-            }
-        }
-        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
-        model.addAttribute("imageByte", productForm.getFile().getBytes());
-        model.addAttribute("filename",productForm.getFile().getOriginalFilename());
-        if(!productForm.getFile().isEmpty()){
-            productForm.setImageUrl(null);
-        } else {
-            model.addAttribute("image", null);
-        }
-        model.addAttribute("updateProductForm", productForm);
+        
         return "product/update/confirm";
     }
     
