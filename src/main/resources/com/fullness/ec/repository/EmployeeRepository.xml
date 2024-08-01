@@ -45,7 +45,7 @@
             SELECT nextval('employee_id_seq')
         </selectKey>
         insert into employee_account (id, name, password,employee_id)
-        values (#{empAccountId}, #{name}, crypt(#{password}, gen_salt('bf')),#{empId})
+        values (#{empAccountId}, #{name}, #{password},#{empId})
     </insert>
 
     <select id="selectByEmpId" resultType="com.fullness.ec.entity.EmployeeAccount">
