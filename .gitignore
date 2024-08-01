@@ -38,4 +38,4 @@ out/
 
 *.log
 
-src/main/resources/static/img/*
+src/main/webapp/img/*
