@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 
 @SessionAttributes({ "employeeForm", "employeeList" })
-@RequestMapping("registeraccount")
+@RequestMapping("admin/registeraccount")
 @Controller
 public class AddAccountController {
 

@@ -32,7 +32,7 @@ public class SearchProductController {
     @Autowired
     ProductCategoryServiceImpl categoryService;
 
-    @GetMapping("productlist")
+    @GetMapping("admin/productlist")
     public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, 
     Model model, HttpSession session) {
         //商品一覧遷移したときにセッションを破棄する

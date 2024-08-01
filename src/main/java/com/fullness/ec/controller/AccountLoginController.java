@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping
+@RequestMapping("admin")
 public class AccountLoginController {
 
     @GetMapping("loginEmployee")

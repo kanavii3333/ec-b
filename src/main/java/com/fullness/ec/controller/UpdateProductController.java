@@ -22,9 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
-import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.UpdateProductForm;
-import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.form.UpdateProductFormValidator;
 import com.fullness.ec.helper.ImageUploadHelper;
 import com.fullness.ec.helper.ProductConverter;
@@ -32,7 +30,7 @@ import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
 @SessionAttributes({"updateProductForm","imageByte","filename"})
-@RequestMapping("updateproduct")
+@RequestMapping("admin/updateproduct")
 @Controller
 public class UpdateProductController {
     @ModelAttribute("updateProductForm")

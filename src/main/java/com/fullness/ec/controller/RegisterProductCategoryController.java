@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @SessionAttributes("categoryForm")
-@RequestMapping("registerproductcategory")
+@RequestMapping("admin/registerproductcategory")
 @Controller
 public class RegisterProductCategoryController {
     @ModelAttribute("categoryForm")

@@ -1,7 +1,5 @@
 package com.fullness.ec.helper;
 
-import org.springframework.stereotype.Component;
-
 import com.fullness.ec.entity.EmployeeAccount;
 import com.fullness.ec.form.EmployeeForm;
 
