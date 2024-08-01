@@ -10,7 +10,7 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品修正（入力）</h1>
-        <form th:action="@{/updateproduct/confirm}" method="post" th:object="${productForm}" enctype="multipart/form-data">
+        <form th:action="@{/updateproduct/confirm}" method="post" th:object="${updateProductForm}" enctype="multipart/form-data">
             <div class="error">
                 <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
             </div>
@@ -48,7 +48,7 @@
                         <select th:field="*{categoryId}">
                             <option th:each="category : ${categoryList}"
                                     th:value="${category.productCategoryId}"
-                                    th:selected="${category.productCategoryId == productForm.categoryId}">
+                                    th:selected="${category.productCategoryId == updateProductForm.categoryId}">
                                 [[${category.productCategoryName}]]
                             </option>
                         </select>

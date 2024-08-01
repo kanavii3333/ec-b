@@ -11,7 +11,7 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品修正（確認）</h1>
-            <table style="margin: 0 auto;" th:object="${productForm}">
+            <table style="margin: 0 auto;" th:object="${updateProductForm}">
                 <tr>
                     <td style="text-align:center;">商品名</td>
                     <td style="text-align:left;" th:text="*{productName}"></td>
@@ -35,7 +35,7 @@
                         <img th:src="${image}" class="image-size">
                     </td>
                     <td th:if="${image==null}">
-                        <img th:src="@{/img/__${productForm.imageUrl}__}" class="image-size">
+                        <img th:src="@{/img/__${updateProductForm.imageUrl}__}" class="image-size">
                     </td>
                 </tr>
 

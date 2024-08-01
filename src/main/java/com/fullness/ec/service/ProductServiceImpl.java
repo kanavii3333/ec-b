@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.form.UpdateProductForm;
 import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.repository.ProductRepository;
 import com.fullness.ec.repository.StockRepository;
@@ -64,6 +65,17 @@ public class ProductServiceImpl implements ProductService {
       }
 
       return productRepository.selectProductIdByName(productForm.getProductName()) > 0;
+    }
+
+    @Override
+    public boolean isUpdateProductExist(UpdateProductForm productForm){
+      Integer result = productRepository.selectProductIdByName(productForm.getProductName()); 
+      if(result == productForm.getProductId()){
+        return false;
+      }
+
+      return true;
+      
     }
 
     @Override

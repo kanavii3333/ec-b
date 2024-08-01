@@ -4,6 +4,7 @@ import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.form.UpdateProductForm;
 
 public class ProductConverter {
     public static Product convertToEntity(ProductForm productForm, byte[] imageByte){
@@ -25,8 +26,8 @@ public class ProductConverter {
         return productCategory;
     }
 
-    public static ProductForm convertToForm(Product product){
-        ProductForm productForm = new ProductForm();
+    public static UpdateProductForm convertToForm(Product product){
+        UpdateProductForm productForm = new UpdateProductForm();
         productForm.setProductId(product.getProductId());
         productForm.setProductName(product.getProductName());
         productForm.setPrice(product.getPrice());

@@ -13,30 +13,34 @@ public class UpdateProductFormValidator implements Validator{
     ProductServiceImpl productService;
     @Override
     public boolean supports(Class<?> clazz) {
-    return ProductForm.class.isAssignableFrom(clazz);
+    return UpdateProductForm.class.isAssignableFrom(clazz);
     }
     @Override
     public void validate(Object target, Errors errors) {
-        ProductForm productForm = (ProductForm) target;
-        if (productForm.getPrice() == null || productForm.getProductName() == null) return;
+        UpdateProductForm updateProductForm = (UpdateProductForm) target;
+        if (updateProductForm.getPrice() == null || updateProductForm.getProductName() == null) return;
 
-        if (productForm.getCategoryId() == 1){
-            if(productForm.getPrice() > 5000 || productForm.getPrice() < 30) {
+        if(productService.isUpdateProductExist(updateProductForm)){
+            errors.reject("com.fullness.ec.ProductForm.message4");
+        }
+
+        if (updateProductForm.getCategoryId() == 1){
+            if(updateProductForm.getPrice() > 5000 || updateProductForm.getPrice() < 30) {
             errors.reject("com.fullness.ec.ProductForm.message1");
             }  
         }
-        else if (productForm.getCategoryId() == 2){
-            if(productForm.getPrice() > 10000 || productForm.getPrice() < 100) {
+        else if (updateProductForm.getCategoryId() == 2){
+            if(updateProductForm.getPrice() > 10000 || updateProductForm.getPrice() < 100) {
             errors.reject("com.fullness.ec.ProductForm.message2");
             }  
         }
-        else if (productForm.getCategoryId() == 3){
-            if(productForm.getPrice() > 30000 || productForm.getPrice() < 300) {
+        else if (updateProductForm.getCategoryId() == 3){
+            if(updateProductForm.getPrice() > 30000 || updateProductForm.getPrice() < 300) {
             errors.reject("com.fullness.ec.ProductForm.message3");
             }  
         }
-        else if (productForm.getCategoryId() > 3){
-            if(productForm.getPrice() > 999999999) {
+        else if (updateProductForm.getCategoryId() > 3){
+            if(updateProductForm.getPrice() > 999999999) {
                 errors.reject("com.fullness.ec.ProductForm.message5");
                 }  
         }

@@ -17,6 +17,7 @@ import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.form.UpdateProductForm;
 import com.fullness.ec.repository.ProductRepository;
 
 @SpringBootTest
@@ -81,7 +82,7 @@ public class ProductConverterTest {
         product.getProductStock().setQuantity(100);
         product.getProductStock().setProductStockId(1);
 
-        ProductForm productForm = ProductConverter.convertToForm(product);
+        UpdateProductForm productForm = ProductConverter.convertToForm(product);
 
         assertNotNull(product);
         assertEquals(1, productForm.getProductId());
