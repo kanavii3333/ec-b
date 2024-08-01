@@ -27,6 +27,7 @@ public class UpdateProductFormValidator implements Validator{
         if(!updateProductForm.getFile().getContentType().equals("image/jpg")
         && !updateProductForm.getFile().getContentType().equals("image/jpeg")
         && !updateProductForm.getFile().getContentType().equals("image/png")
+        && !updateProductForm.getFile().isEmpty()
         ){
             errors.reject("com.fullness.ec.ProductForm.message7");
         }

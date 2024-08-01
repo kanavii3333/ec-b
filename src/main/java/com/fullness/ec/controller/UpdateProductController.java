@@ -65,6 +65,7 @@ public class UpdateProductController {
         List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
         if(bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.updateProductForm", bindingResult);
+            updateProductForm.setFile(null);
             return "redirect:/updateproduct/input?productId="+updateProductForm.getProductId();
         }
         for (ProductCategory category : categoryList) {
