@@ -40,4 +40,5 @@ public class UpdateProductForm {
     private Integer stockId;
     
     private String imageUrl;
+    private String image;
 }

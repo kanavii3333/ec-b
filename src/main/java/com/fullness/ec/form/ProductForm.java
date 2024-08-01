@@ -40,4 +40,5 @@ public class ProductForm {
     private Integer stockId;
     
     private String imageUrl;
+    private String image;
 }
