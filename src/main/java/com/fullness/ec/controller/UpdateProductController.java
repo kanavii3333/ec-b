@@ -24,8 +24,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.entity.ProductStock;
+import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.form.ProductFormValidator;
+import com.fullness.ec.form.UpdateProductFormValidator;
 import com.fullness.ec.helper.ImageUploadHelper;
 import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
@@ -35,30 +37,38 @@ import com.fullness.ec.service.ProductServiceImpl;
 @RequestMapping("updateproduct")
 @Controller
 public class UpdateProductController {
-    
+    @ModelAttribute("productForm")
+    public ProductForm setupForm() {
+        return new ProductForm();
+    }
     @Autowired ProductServiceImpl productServiceImpl; 
     @Autowired ProductCategoryServiceImpl productCategoryServiceImpl;
 
-    @Autowired ProductFormValidator validator;
+    @Autowired UpdateProductFormValidator validator;
     @InitBinder("productForm")
     public void InitBinder(WebDataBinder binder){
         binder.addValidators(validator);
     }
     @GetMapping("input")
-    public String input(@RequestParam("productId")Integer productId,Model model){
-        ProductForm productForm = ProductConverter.convertToForm(productServiceImpl.getProductByProductId(productId));
-        model.addAttribute("productForm", productForm);
-        model.addAttribute("categoryList",productCategoryServiceImpl.selectAll());
-        return "product/update/input";
+    public String input(@RequestParam(name = "productId", required = false)Integer productId, Model model){
+            Object error = model.getAttribute("org.springframework.validation.BindingResult.productForm");
+            if(error == null){
+                ProductForm productForm = ProductConverter.convertToForm(productServiceImpl.getProductByProductId(productId));
+                model.addAttribute("productForm", productForm);
+                return "product/update/input";
+            }
+           
+            model.addAttribute("categoryList",productCategoryServiceImpl.selectAll());
+            return "product/update/input";
+        
     }
 
     @PostMapping("confirm")
 	public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm, BindingResult bindingResult,RedirectAttributes redirectAttributes, Model model) throws IOException{
         List<ProductCategory> categoryList = productCategoryServiceImpl.selectAll();
         if(bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("productForm",productForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm", bindingResult);
-            return "redirect:/registerproduct/input";
+            return "redirect:/updateproduct/input";
         }
         for (ProductCategory category : categoryList) {
             if (category.getProductCategoryId() == productForm.getCategoryId()) {
