@@ -52,7 +52,7 @@
         <td>
           <form
               th:action="@{/deleteproduct/confirm}"
-              method="post">
+              method="get">
               <input type="hidden" name="productId" th:value="${p.productId}">
               <button type="submit" class="btn btn-danger">削除</button>
           </form>

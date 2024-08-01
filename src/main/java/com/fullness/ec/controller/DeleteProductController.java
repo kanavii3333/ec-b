@@ -30,7 +30,7 @@ public class DeleteProductController {
     @Autowired
     ProductServiceImpl productService;
 
-    @PostMapping("confirm")
+    @GetMapping("confirm")
 	public String confirm(@ModelAttribute("productId")Integer productId, BindingResult bindingResult, Model model){
         Product product = productService.getProductByProductId(productId);
         model.addAttribute("product",product);

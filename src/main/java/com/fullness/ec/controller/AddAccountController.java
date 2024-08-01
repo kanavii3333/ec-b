@@ -86,6 +86,24 @@ public class AddAccountController {
         return "account/register/confirm";
     }
 
+    @GetMapping("confirm")
+    public String comfirmGet(
+            @ModelAttribute("employeeForm") EmployeeForm employeeForm,
+            Model model) {
+        Employee employee = null;
+        for (Employee emp : employeeService.getEmployeeList()) {
+            if (emp.getEmpId().equals(employeeForm.getId())) {
+                employee = emp;
+                break;
+            }
+
+        }
+
+        model.addAttribute("employee", employee);
+        model.addAttribute("employeeForm", employeeForm);
+        return "account/register/confirm";
+    }
+
     // @GetMapping("confirm")
     // public String confirmGet(RedirectAttributes redirectAttributes) {
 

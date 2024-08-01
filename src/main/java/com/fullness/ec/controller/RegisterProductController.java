@@ -79,6 +79,25 @@ public class RegisterProductController {
         return "product/register/confirm";
     }
 
+    @GetMapping("confirm")
+    public String confirmGet(@ModelAttribute("productForm") ProductForm productForm,
+            RedirectAttributes redirectAttributes, Model model) throws IOException {
+        List<ProductCategory> categoryList = productCategoryService.selectAll();
+        for (ProductCategory category : categoryList) {
+            if (category.getProductCategoryId() == productForm.getCategoryId()) {
+                ProductCategory productCategory = new ProductCategory();
+                productCategory.setProductCategoryId(category.getProductCategoryId());
+                productCategory.setProductCategoryName(category.getProductCategoryName());
+                model.addAttribute("productCategory", productCategory);
+                break;
+            }
+        }
+
+        model.addAttribute("image", ImageUploadHelper.createBase64ImageString(productForm.getFile()));
+        model.addAttribute("imageByte", productForm.getFile().getBytes());
+        return "product/register/confirm";
+    }
+
     // @GetMapping("confirm")
     // public String confirmGet(@ModelAttribute("productForm") ProductForm
     // productForm, Model model) {
