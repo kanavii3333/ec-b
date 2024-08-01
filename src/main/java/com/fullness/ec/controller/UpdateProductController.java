@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.entity.Product;
@@ -117,6 +115,7 @@ public class UpdateProductController {
 
     @GetMapping("complete")
     public String complete(@ModelAttribute("productForm") ProductForm productForm,SessionStatus sessionStatus,Model model){
+        if(productForm.getProductId()==null) return "redirect:/menu";
         model.addAttribute("name", productForm.getProductName());    
         sessionStatus.setComplete();
         return "product/update/complete";

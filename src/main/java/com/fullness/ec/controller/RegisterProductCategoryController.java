@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.CategoryFormValidator;
-import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 
 import org.springframework.web.bind.WebDataBinder;
@@ -79,6 +78,7 @@ public class RegisterProductCategoryController {
     @GetMapping("complete")
     public String complete(@ModelAttribute("categoryForm") CategoryForm categoryForm, Model model,
             SessionStatus sessionStatus) {
+        if(categoryForm.getProductCategoryName()==null) return "redirect:/menu";
         model.addAttribute("categoryName", categoryForm.getProductCategoryName());
         sessionStatus.setComplete();
         return "product/categoryregister/complete";

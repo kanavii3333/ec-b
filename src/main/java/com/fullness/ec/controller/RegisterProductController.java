@@ -18,12 +18,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductCategory;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.helper.ImageUploadHelper;
-import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
@@ -112,6 +110,7 @@ public class RegisterProductController {
     @GetMapping("complete")
     public String complete(@ModelAttribute("productForm") ProductForm productForm, SessionStatus sessionStatus,
             Model model) {
+        if(productForm.getProductName()==null) return "redirect:/menu";
         model.addAttribute("productName", productForm.getProductName());
         sessionStatus.setComplete();
         return "product/register/complete";
