@@ -32,7 +32,7 @@
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <form th:action="@{execute}" method="post">
             <a href="/menu">キャンセル</a>
-            <a href="/registeraccount/input">戻る
+            <a href="javascript:history.back()">戻る</a>
             <input type="submit" value="完了">
         </form>
     </div>
