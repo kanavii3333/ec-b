@@ -25,7 +25,7 @@ public class ImageUploadHelper {
 
     public static String uploadFile(String filename, byte[] imageByte){
         String uuidFileName = UUID.randomUUID().toString()+filename;
-        String filepath = new File("src/main/resources/static/img").getAbsolutePath()+File.separator+uuidFileName;
+        String filepath = new File("src/main/webapp/img").getAbsolutePath()+File.separator+uuidFileName;
         FileOutputStream fos = null;
         try{
             fos = new FileOutputStream(filepath);
