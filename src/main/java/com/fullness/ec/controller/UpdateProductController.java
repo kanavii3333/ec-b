@@ -55,7 +55,6 @@ public class UpdateProductController {
             if(error == null){
                 ProductForm productForm = ProductConverter.convertToForm(productServiceImpl.getProductByProductId(productId));
                 model.addAttribute("productForm", productForm);
-                return "product/update/input";
             }
            
             model.addAttribute("categoryList",productCategoryServiceImpl.selectAll());
