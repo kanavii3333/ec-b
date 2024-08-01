@@ -11,7 +11,7 @@
   <div>
     <h1> 商品検索 </h1>
     <table>
-      <form th:action="@{/productlist}" method="get">
+      <form th:action="@{/admin/productlist}" method="get">
         <tr>
           <select th:field="${categoryForm.productCategoryId}">
             <option th:value="${null}">全ての商品</option>
@@ -23,7 +23,7 @@
         </tr>
       </form>
       <tr>
-        <form th:action="@{/registerproduct/input}" method="get">
+        <form th:action="@{/admin/registerproduct/input}" method="get">
             <input type="submit" value="商品追加">
         </form>
       </tr>
@@ -43,7 +43,7 @@
         <td th:text="${#numbers.formatInteger(p.price, 3, 'COMMA')} + '円'"></td>
         <td>
           <form
-              th:action="@{/updateproduct/input}"
+              th:action="@{/admin/updateproduct/input}"
               method="get">
               <input type="hidden" name="productId" th:value="${p.productId}">
               <button type="submit" class="btn btn-warning">更新</button>
@@ -51,7 +51,7 @@
         </td> 
         <td>
           <form
-              th:action="@{/deleteproduct/confirm}"
+              th:action="@{/admin/deleteproduct/confirm}"
               method="get">
               <input type="hidden" name="productId" th:value="${p.productId}">
               <button type="submit" class="btn btn-danger">削除</button>
