@@ -62,7 +62,7 @@
 
     <p th:if="${products.getContent().size()==0}" style="text-align:center;">該当する商品情報がありません</p>
 
-    <ul class="pagination">
+    <ul th:if="${products.getTotalPages()>1}" class="pagination">
       <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
       <li th:class="${products.first} ? 'disabled':''" style="display: inline">
         <span th:if="${products.first}">最初</span>
