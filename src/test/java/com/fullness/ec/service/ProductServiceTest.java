@@ -17,6 +17,7 @@ import org.springframework.mock.web.MockMultipartFile;
 
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.form.ProductForm;
+import com.fullness.ec.form.UpdateProductForm;
 import com.fullness.ec.repository.ProductRepository;
 
 @SpringBootTest
@@ -106,5 +107,13 @@ public class ProductServiceTest {
         ProductForm productForm = new ProductForm();
         productForm.setProductName("水性ボールペン(黒)");
         assertEquals(true, productService.isProductExist(productForm));
+    }
+    @Sql("/sql/data.sql")
+    @Test
+    public void isUpdateProductExistTest() {
+        UpdateProductForm productForm = new UpdateProductForm();
+        productForm.setProductName("水性ボールペン(黒)");
+        productForm.setProductId(1);
+        assertEquals(false, productService.isUpdateProductExist(productForm));
     }
 }
