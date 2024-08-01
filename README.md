@@ -29,7 +29,7 @@
 [アカウント登録(入力)画面](http://localhost:8080/admin/registeraccount/input)|RegisterAccountController|[input](resources/templates/registeraccount/input.html)
 [アカウント登録(確認)画面](http://localhost:8080/admin/registeraccount/confirm)|RegisterAccountController|[confirm](resources/templates/registeraccount/confirm.html)
 [アカウント登録(完了)画面](http://localhost:8080/admin/registeraccount/complete)|RegisterAccountController|[complete](resources/templates/registeraccount/complete.html)
-[商品検索画面](http://localhost:8080/admin/product/productlist)|SearchProductController|[Post](resources/templates/product/productlist.html)
+[商品検索画面](http://localhost:8080/admin/productlist)|SearchProductController|[Post](resources/templates/product/productlist.html)
 [商品削除(確認)画面](http://localhost:8080/admin/deleteproduct/confirm)|DeleteProductController|[confirm](resources/templates/deleteproduct/confirm.html)
 [商品削除(完了)画面](http://localhost:8080/admin/deleteproduct/complete)|DeleteProductController|[complete](resources/templates/deleteproduct/complete.html)
 [商品修正(入力)画面](http://localhost:8080/admin/updateproduct/input)|UpdateProductController|[input](resources/templates/updateproduct/input.html)
