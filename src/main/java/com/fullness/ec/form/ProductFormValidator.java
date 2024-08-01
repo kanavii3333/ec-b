@@ -20,12 +20,20 @@ public class ProductFormValidator implements Validator{
         ProductForm productForm = (ProductForm) target;
         if (productForm.getPrice() == null || productForm.getProductName() == null) return;
 
+        if(productForm.getFile().isEmpty()){
+            errors.reject("com.fullness.ec.ProductForm.message6");
+        }else if(
+            !productForm.getFile().getContentType().equals("image/jpg")
+            && !productForm.getFile().getContentType().equals("image/jpeg")
+            && !productForm.getFile().getContentType().equals("image/png")
+        ){
+            errors.reject("com.fullness.ec.ProductForm.message7");
+        }
+
         if(productService.isProductExist(productForm)){
             errors.reject("com.fullness.ec.ProductForm.message4");
         }
-        if(productForm.getFile().isEmpty()){
-            errors.reject("com.fullness.ec.ProductForm.message6");
-        }
+        
         if (productForm.getCategoryId() == 1){
             if(productForm.getPrice() > 5000 || productForm.getPrice() < 30) {
             errors.reject("com.fullness.ec.ProductForm.message1");
