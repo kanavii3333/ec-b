@@ -37,5 +37,6 @@ out/
 .vscode/
 
 *.log
+*.log.*.gz
 
 src/main/webapp/img/*
