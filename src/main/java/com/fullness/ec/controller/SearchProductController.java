@@ -16,6 +16,8 @@ import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 import com.fullness.ec.service.ProductServiceImpl;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping
 @SessionAttributes({"categoryForm","products"})
@@ -31,8 +33,19 @@ public class SearchProductController {
     ProductCategoryServiceImpl categoryService;
 
     @GetMapping("productlist")
-    public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
-        
+    public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, 
+    Model model, HttpSession session) {
+        //商品一覧遷移したときにセッションを破棄する
+        session.removeAttribute("employeeForm");
+        session.removeAttribute("employeeList");
+        session.removeAttribute("product");
+        session.removeAttribute("categoryForm");
+        session.removeAttribute("productForm");
+        session.removeAttribute("imageByte");
+        session.removeAttribute("productCategory");
+        session.removeAttribute("products");
+        session.removeAttribute("filename");
+
         Page<Product> products = service.selectProductByPage(pageable, form.getProductCategoryId());
         model.addAttribute("pageUrl", "/productlist?");
         model.addAttribute("products", products);
