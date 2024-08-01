@@ -59,6 +59,7 @@ public class RegisterProductController {
     public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm,
             BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws IOException {
         List<ProductCategory> categoryList = productCategoryService.selectAll();
+        
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("productForm", productForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm",

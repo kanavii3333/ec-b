@@ -23,6 +23,9 @@ public class ProductFormValidator implements Validator{
         if(productService.isProductExist(productForm)){
             errors.reject("com.fullness.ec.ProductForm.message4");
         }
+        if(productForm.getFile().isEmpty()){
+            errors.reject("com.fullness.ec.ProductForm.message6");
+        }
         if (productForm.getCategoryId() == 1){
             if(productForm.getPrice() > 5000 || productForm.getPrice() < 30) {
             errors.reject("com.fullness.ec.ProductForm.message1");
