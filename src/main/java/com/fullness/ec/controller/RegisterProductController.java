@@ -110,7 +110,7 @@ public class RegisterProductController {
     @GetMapping("complete")
     public String complete(@ModelAttribute("productForm") ProductForm productForm, SessionStatus sessionStatus,
             Model model) {
-        if(productForm.getProductId()==null) return "redirect:/menu";
+        if(productForm.getProductName()==null) return "redirect:/menu";
         model.addAttribute("productName", productForm.getProductName());
         sessionStatus.setComplete();
         return "product/register/complete";
