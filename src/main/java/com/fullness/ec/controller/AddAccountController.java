@@ -16,7 +16,6 @@ import com.fullness.ec.entity.Employee;
 
 import com.fullness.ec.form.EmployeeForm;
 import com.fullness.ec.form.EmployeeFormValidator;
-import com.fullness.ec.form.ProductFormValidator;
 import com.fullness.ec.service.EmployeeService;
 import com.fullness.ec.service.EmployeeServiceImpl;
 
@@ -107,16 +106,17 @@ public class AddAccountController {
             SessionStatus sessionStatus) {
         System.out.println("employeeForm:" + employeeForm);
         // model.addAttribute("employeeName", );
-
+        if(employeeForm.getId()==null) return "redirect:/menu";
         Employee employee = null;
         for (Employee emp : employeeService.getEmployeeList()) {
             if (emp.getEmpId().equals(employeeForm.getId())) {
                 employee = emp;
+                model.addAttribute("employeeName", employee.getEmpName());
+                model.addAttribute("employeeAccountName", employeeForm.getEmpAccountName());
                 break;
             }
         }
-        model.addAttribute("employee", employee);
-        model.addAttribute("employeeAccountName", employeeForm.getEmpAccountName());
+        
         sessionStatus.setComplete();
         return "account/register/complete";
 
