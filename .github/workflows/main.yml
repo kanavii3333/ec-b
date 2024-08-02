@@ -61,8 +61,7 @@ jobs:
           distribution: 'temurin'
           java-version: 17
       - name: Test with Gradle
-        run: |
-         chmod +x gradlew && ./gradlew test
+        run: chmod +x gradlew && ./gradlew test
       - name: save test reports as artifact
         uses: actions/upload-artifact@v2
         if: always()
