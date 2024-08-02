@@ -39,4 +39,4 @@ out/
 *.log
 *.log.*.gz
 
-#src/main/webapp/img/*
+src/main/webapp/img/*
