@@ -16,6 +16,7 @@ class CustomerRepository{
         +selectAllPaymentMethod():List<PaymentMethod>
         +insertOrderDetail(orderDetail:OrderDetail):void
         +insertOrderStatus(status:String):void
+        +selectByUsername(String):List<Order>
     }
 
     class ProductRepository{
