@@ -139,7 +139,7 @@ insert into order_status(name) values('注文済み');
 insert into order_status(name) values('入金済み');
 insert into order_status(name) values('配送中');
 insert into order_status(name) values('完了');
- 
+ 　　　
 
 insert into payment_method(name) values('現金');
 
