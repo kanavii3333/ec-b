@@ -25,3 +25,24 @@ div{
 .image-size {
     width: 100px;
 }
+
+#headerC{
+    width:100%;
+    top:0;
+    padding-bottom: 10px;
+}
+
+#footerC{
+    width:100%;
+    bottom:0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#footerC li::before{
+    content: ">> "
+}
+
+#footerC li{
+    text-align: left;
+}

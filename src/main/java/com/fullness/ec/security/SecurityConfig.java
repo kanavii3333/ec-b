@@ -51,16 +51,16 @@ public class SecurityConfig {
 
         http.formLogin(login -> login
                 .loginProcessingUrl("/auth_employee")
-                .loginPage("/loginEmployee")
+                .loginPage("/admin/loginEmployee")
                 .usernameParameter("username")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/menu", true)// ここにtrueを付けました。
-                .failureUrl("/loginEmployee?error=true")// ここに?error=trueを付けました
+                .defaultSuccessUrl("/admin/menu", true)// ここにtrueを付けました。
+                .failureUrl("/admin/loginEmployee?error=true")// ここに?error=trueを付けました
                 .permitAll());
 
         http.logout(logout -> logout
-                .logoutUrl("/logoutEmployee")
-                .logoutSuccessUrl("/menu")
+                .logoutUrl("/admin/logoutEmployee")
+                .logoutSuccessUrl("/admin/menu")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSONID")
                 .clearAuthentication(true)
@@ -73,9 +73,9 @@ public class SecurityConfig {
                 .atCommonLocations())
                 .permitAll()
                 // .requestMatchers("/**").permitAll() //全てセキュリティオフ
-                .requestMatchers("/login", "/menu", "/img/**").permitAll()
-                .requestMatchers("/logout", "/registerproduct/**", "/deleteproduct/**", "/updateproduct/**",
-                        "/productlist", "/registeraccount/**", "/registerproductcategory/**")
+                .requestMatchers("/admin/login", "/admin/menu", "/img/**").permitAll()
+                .requestMatchers("/logout", "/admin/registerproduct/**", "/admin/deleteproduct/**", "/admin/updateproduct/**",
+                        "/admin/productlist", "/admin/registeraccount/**", "/admin/registerproductcategory/**")
                 .authenticated()
                 .anyRequest().authenticated());
 
