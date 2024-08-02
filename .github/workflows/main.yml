@@ -75,7 +75,7 @@ jobs:
         if: always()
         with:
           name: build-artifact
-          path: build/libs/ec-0.0.1-SNAPSHOT.jar
+          path: build/libs/fullness-ec-0.0.1-SNAPSHOT.jar
   deploy:
     needs: build
     runs-on: ubuntu-latest
