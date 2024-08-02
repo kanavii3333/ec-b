@@ -5,14 +5,14 @@ actor "顧客" as user
 participant "PurchaseController" as controller
 participant "Order\nService" as service
 participant "Order\nConverter" as helper
-participant "ProductStock\nRepository" as repository1
+participant "Stock\nRepository" as repository1
 participant "Order\nRepository" as repository2
 database "db" as db
 
 == 入力　==
 user -> controller++:input()
 controller -> service++:getStockByOrderDetailForm(orderDetailForm:OrderDetailForm)
-loop orderFormの更新 list全てに適用
+loop orderDetailFormの更新 list全てに適用
 	service -> repository1++:selectByProductId(productId)
 	repository1 -> db++:SQL(SELECT)
 	db -> repository1--:ProductStock
@@ -34,10 +34,10 @@ controller -> user--:確認画面
 
 == 完了 ==
 user -> controller++:execute()
-controller -> service++:registerOrder(orderForm:OrderForm)
+controller -> service++:registerOrder(OrderForm,List<OrderDetailForm>)
 service -> helper++:convertToEntity(orderForm:OrderForm)
 service <- helper--:Order
-service -> repository2++:insertOrder(order:Order)
+service -> repository2++:insert(order:Order)
 repository2 -> db++:SQL(insert)
 repository2 <- db--:void
 service <- repository2--:void

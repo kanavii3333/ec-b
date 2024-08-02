@@ -1,15 +1,15 @@
 title セキュリティ層のクラス図
 package security{
 
-		class securityConfig{
+		class CustomerSecurityConfig{
 			+ webSecurityCustomizer():WebSecurityCustomizer
 			+ securityFilterChain(HttpSecurity http):SecurityFilterChain
 		}
-		class AccountUserDetailsService{
-			loadUserByUsername(String):UserDetails
-			getAuthorities(String):Collection<GrantedAuthority>
+		class CustomerUserDetailsService{
+			+loadUserByUsername(String):UserDetails
+			+getAuthorities(String):Collection<GrantedAuthority>
 		}
-		class AccountUserDetails{
+		class CustomerUserDetails{
 			+getAuthorities():Collection<? extends GrantedAuthority>
 			+getPassword():String
 			+getUsername():String
