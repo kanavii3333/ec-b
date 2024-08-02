@@ -26,9 +26,9 @@ public class ImageUploadHelper {
     public static String uploadFile(String filename, byte[] imageByte){
         String uuidFileName = UUID.randomUUID().toString()+filename;
         String filepath = new File("src/main/webapp/img").getAbsolutePath()+File.separator+uuidFileName;
-        if (System.getProperty("os.name").contains("Linux")) {
-            filepath = "/home/ubuntu/sboot/webapp/img" + File.separator + uuidFileName;
-        }  
+        // if (System.getProperty("os.name").contains("Linux")) {
+        //     filepath = "/home/ubuntu/sboot/webapp/img" + File.separator + uuidFileName;
+        // }  
         FileOutputStream fos = null;
         try{
             fos = new FileOutputStream(filepath);
