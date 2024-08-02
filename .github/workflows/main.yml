@@ -44,7 +44,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_DB: fullness_ec
+          POSTGRES_DB: fullness-ec
           POSTGRES_USER: fullness_ec
           POSTGRES_PASSWORD: fullness_ec
         options: >-
@@ -61,7 +61,8 @@ jobs:
           distribution: 'temurin'
           java-version: 17
       - name: Test with Gradle
-        run: chmod +x gradlew && ./gradlew test
+        run: |
+         chmod +x gradlew && ./gradlew test
       - name: save test reports as artifact
         uses: actions/upload-artifact@v2
         if: always()
