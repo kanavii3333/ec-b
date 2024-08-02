@@ -53,7 +53,7 @@ public class RegisterProductCategoryController {
             redirectAttributes.addFlashAttribute("categoryForm", categoryForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.categoryForm",
                     bindingResult);
-            return "redirect:/registerproductcategory/input";
+            return "redirect:/admin/registerproductcategory/input";
         }
         model.addAttribute("categoryForm", categoryForm);
         return "product/categoryregister/confirm";
@@ -73,13 +73,14 @@ public class RegisterProductCategoryController {
         redirectAttributes.addFlashAttribute("categoryForm", categoryForm);
 
         productCategoryServiceImpl.addCategory(categoryForm);
-        return "redirect:/registerproductcategory/complete";
+        return "redirect:/admin/registerproductcategory/complete";
     }
 
     @GetMapping("complete")
     public String complete(@ModelAttribute("categoryForm") CategoryForm categoryForm, Model model,
             SessionStatus sessionStatus) {
-        if(categoryForm.getProductCategoryName()==null) return "redirect:/menu";
+        if (categoryForm.getProductCategoryName() == null)
+            return "redirect:/admin/menu";
         model.addAttribute("categoryName", categoryForm.getProductCategoryName());
         sessionStatus.setComplete();
         return "product/categoryregister/complete";

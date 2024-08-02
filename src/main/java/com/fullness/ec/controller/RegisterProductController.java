@@ -57,12 +57,12 @@ public class RegisterProductController {
     public String confirm(@Validated @ModelAttribute("productForm") ProductForm productForm,
             BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) throws IOException {
         List<ProductCategory> categoryList = productCategoryService.selectAll();
-        
+
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("productForm", productForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productForm",
                     bindingResult);
-            return "redirect:/registerproduct/input";
+            return "redirect:/admin/registerproduct/input";
         }
         for (ProductCategory category : categoryList) {
             if (category.getProductCategoryId() == productForm.getCategoryId()) {
@@ -116,7 +116,8 @@ public class RegisterProductController {
     @GetMapping("complete")
     public String complete(@ModelAttribute("productForm") ProductForm productForm, SessionStatus sessionStatus,
             Model model) {
-        if(productForm.getProductName()==null) return "redirect:/menu";
+        if (productForm.getProductName() == null)
+            return "redirect:/admin/menu";
         model.addAttribute("productName", productForm.getProductName());
         sessionStatus.setComplete();
         return "product/register/complete";

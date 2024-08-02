@@ -20,67 +20,69 @@ import com.fullness.ec.repository.StockRepository;
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
-    @Autowired
-    private ProductRepository productRepository;
-    @Autowired
-    private StockRepository stockRepository;
+  @Autowired
+  private ProductRepository productRepository;
+  @Autowired
+  private StockRepository stockRepository;
 
-    @Override
-    public Page<Product> selectProductByPage(Pageable pageable, Integer productCategoryId) {
-        Integer total = productRepository.countAll(productCategoryId);
-      List<Product> products;
-      if (total > 0){
-        products = productRepository.selectByPage(pageable, productCategoryId);
-      }else{
-        products = Collections.emptyList(); 
-      }
-      return new PageImpl<>(products , pageable , total);
+  @Override
+  public Page<Product> selectProductByPage(Pageable pageable, Integer productCategoryId) {
+    Integer total = productRepository.countAll(productCategoryId);
+    List<Product> products;
+    if (total > 0) {
+      products = productRepository.selectByPage(pageable, productCategoryId);
+    } else {
+      products = Collections.emptyList();
+    }
+    return new PageImpl<>(products, pageable, total);
+  }
+
+  @Override
+  public void addProduct(ProductForm productForm, byte[] imageByte) {
+    Product product = ProductConverter.convertToEntity(productForm, imageByte);
+    productRepository.insert(product);
+    product.getProductStock().setProductId(productRepository.selectProductIdByName(product.getProductName()));
+    stockRepository.insert(product.getProductStock());
+  }
+
+  @Override
+  public void updateProduct(Product product) {
+    productRepository.update(product);
+    product.getProductStock().setProductId(product.getProductId());
+    stockRepository.update(product.getProductStock());
+  }
+
+  @Override
+  public void deleteProduct(Integer productId) {
+    productRepository.updateDeleteFlag(productId);
+  }
+
+  @Override
+  public boolean isProductExist(ProductForm productForm) {
+    Integer result = productRepository.selectProductIdByName(productForm.getProductName());
+    if (result == null) {
+      return false;
     }
 
-    @Override
-    public void addProduct(ProductForm productForm, byte[] imageByte) {
-        Product product = ProductConverter.convertToEntity(productForm, imageByte);
-        productRepository.insert(product);
-        product.getProductStock().setProductId(productRepository.selectProductIdByName(product.getProductName()));
-        stockRepository.insert(product.getProductStock());
+    return productRepository.selectProductIdByName(productForm.getProductName()) > 0;
+  }
+
+  @Override
+  public boolean isUpdateProductExist(UpdateProductForm productForm) {
+    Integer result = productRepository.selectProductIdByName(productForm.getProductName());
+    if (result == productForm.getProductId()) {
+      return false;
     }
-
-    @Override
-    public void updateProduct(Product product) {
-        productRepository.update(product);
-        product.getProductStock().setProductId(product.getProductId());
-        stockRepository.update(product.getProductStock());
+    if (result == null) {
+      return false;
     }
+    return true;
 
-    @Override
-    public void deleteProduct(Integer productId){
-        productRepository.updateDeleteFlag(productId);
-    }
+  }
 
-    @Override
-    public boolean isProductExist(ProductForm productForm){
-      Integer result = productRepository.selectProductIdByName(productForm.getProductName()); 
-      if(result == null){
-        return false;
-      }
-
-      return productRepository.selectProductIdByName(productForm.getProductName()) > 0;
-    }
-
-    @Override
-    public boolean isUpdateProductExist(UpdateProductForm productForm){
-      Integer result = productRepository.selectProductIdByName(productForm.getProductName()); 
-      if(result == productForm.getProductId()){
-        return false;
-      }
-
-      return true;
-      
-    }
-
-    @Override
-    public Product getProductByProductId(Integer productId){
-        Product product = productRepository.selectByProductId(productId);
-        return product;
-    }
+  @Override
+  public Product getProductByProductId(Integer productId) {
+    Product product = productRepository.selectByProductId(productId);
+    return product;
+  }
 }
