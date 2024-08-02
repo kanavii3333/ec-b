@@ -10,7 +10,7 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>商品修正（入力）</h1>
-        <form th:action="@{/updateproduct/confirm}" method="post" th:object="${updateProductForm}" enctype="multipart/form-data">
+        <form th:action="@{/admin/updateproduct/confirm}" method="post" th:object="${updateProductForm}" enctype="multipart/form-data">
             <div class="error">
                 <p th:each="error : ${#fields.errors('global')}" th:text="${error}"></p>
             </div>
@@ -66,7 +66,7 @@
             </table>
             <input type="hidden" th:value="*{productId}"/>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <a href="/menu">キャンセル</a>
+            <a href="/admin/menu">キャンセル</a>
             <input type="submit" value="確認">
         </form>
     </div>
