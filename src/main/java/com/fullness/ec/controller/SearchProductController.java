@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping
-@SessionAttributes({"categoryForm","products"})
+@SessionAttributes({ "categoryForm", "products" })
 public class SearchProductController {
     @ModelAttribute("categoryForm")
     public CategoryForm setUpForm() {
@@ -33,9 +33,10 @@ public class SearchProductController {
     ProductCategoryServiceImpl categoryService;
 
     @GetMapping("admin/productlist")
-    public String searchList(@ModelAttribute("categoryForm") CategoryForm form, @PageableDefault(page = 0, size = 5) Pageable pageable, 
-    Model model, HttpSession session) {
-        //商品一覧遷移したときにセッションを破棄する
+    public String searchList(@ModelAttribute("categoryForm") CategoryForm form,
+            @PageableDefault(page = 0, size = 5) Pageable pageable,
+            Model model, HttpSession session) {
+        // 商品一覧遷移したときにセッションを破棄する
         session.removeAttribute("employeeForm");
         session.removeAttribute("employeeList");
         session.removeAttribute("product");
@@ -47,7 +48,7 @@ public class SearchProductController {
         session.removeAttribute("filename");
 
         Page<Product> products = service.selectProductByPage(pageable, form.getProductCategoryId());
-        model.addAttribute("pageUrl", "/productlist?");
+        model.addAttribute("pageUrl", "/admin/productlist?");
         model.addAttribute("products", products);
         model.addAttribute("next", pageable.getPageNumber() + 2);
         model.addAttribute("prev", pageable.getPageNumber());

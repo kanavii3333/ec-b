@@ -69,7 +69,7 @@ public class AddAccountController {
             redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.employeeForm",
                     bindingResult);
-            return "redirect:/registeraccount/input";
+            return "redirect:/admin/registeraccount/input";
         }
 
         Employee employee = null;
@@ -107,7 +107,7 @@ public class AddAccountController {
     // @GetMapping("confirm")
     // public String confirmGet(RedirectAttributes redirectAttributes) {
 
-    // return "redirect:/registeraccount/error";
+    // return "redirect:/admin/registeraccount/error";
     // }
 
     @PostMapping("execute")
@@ -115,7 +115,7 @@ public class AddAccountController {
             RedirectAttributes redirectAttributes) {
         employeeServiceImpl.addAccount(employeeForm);
         redirectAttributes.addFlashAttribute("employeeForm", employeeForm);
-        return "redirect:/registeraccount/complete";
+        return "redirect:/admin/registeraccount/complete";
     }
 
     @GetMapping("complete")
@@ -124,7 +124,8 @@ public class AddAccountController {
             SessionStatus sessionStatus) {
         System.out.println("employeeForm:" + employeeForm);
         // model.addAttribute("employeeName", );
-        if(employeeForm.getId()==null) return "redirect:/menu";
+        if (employeeForm.getId() == null)
+            return "redirect:/admin/menu";
         Employee employee = null;
         for (Employee emp : employeeService.getEmployeeList()) {
             if (emp.getEmpId().equals(employeeForm.getId())) {
@@ -134,7 +135,7 @@ public class AddAccountController {
                 break;
             }
         }
-        
+
         sessionStatus.setComplete();
         return "account/register/complete";
 

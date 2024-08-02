@@ -31,24 +31,25 @@ public class DeleteProductController {
     ProductServiceImpl productService;
 
     @GetMapping("confirm")
-	public String confirm(@ModelAttribute("productId")Integer productId, BindingResult bindingResult, Model model){
+    public String confirm(@ModelAttribute("productId") Integer productId, BindingResult bindingResult, Model model) {
         Product product = productService.getProductByProductId(productId);
-        model.addAttribute("product",product);
+        model.addAttribute("product", product);
         return "product/delete/confirm";
     }
+
     @PostMapping("execute")
     public String execute(
-        @ModelAttribute("product") Product product, 
-        RedirectAttributes redirectAttributes
-        ){
-            productService.deleteProduct(product.getProductId());
-            redirectAttributes.addFlashAttribute("product",product);
-            return "redirect:complete";
+            @ModelAttribute("product") Product product,
+            RedirectAttributes redirectAttributes) {
+        productService.deleteProduct(product.getProductId());
+        redirectAttributes.addFlashAttribute("product", product);
+        return "redirect:complete";
     }
 
     @GetMapping("complete")
-    public String complete(@ModelAttribute("product") Product product,SessionStatus sessionStatus,Model model){
-        if(product.getProductId()==null) return "redirect:/menu";
+    public String complete(@ModelAttribute("product") Product product, SessionStatus sessionStatus, Model model) {
+        if (product.getProductId() == null)
+            return "redirect:/admin/menu";
         sessionStatus.setComplete();
         return "product/delete/complete";
     }
