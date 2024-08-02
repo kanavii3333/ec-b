@@ -3,7 +3,7 @@
 title 担当者アカウントログアウト機能のシーケンス図
 actor "顧客" as user
 participant "SecurityConfig" as config
-participant "CustomerLoginControlle" as controller
+participant "CustomerLoginController" as controller
 
 user -> config++:/auth POST(username, password)
 config -> config:ログインユーザー情報\nを破棄
