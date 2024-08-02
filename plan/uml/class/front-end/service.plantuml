@@ -19,6 +19,7 @@ package service{
 	    +getStockByProductId(productId:Integer):ProductStock
 	    +getStockByOrderDetailForm(orderDetailForm:OrderDetailForm):ProductStock
 	    +getPaymentMethodList():List<PaymentMethod>
+	    +selectPurchaseHistoryByPage(pageable:Pageable,date:LocalDateTime,customerId:Integer):page<Order>
 	   }
     
     class ProductService{
