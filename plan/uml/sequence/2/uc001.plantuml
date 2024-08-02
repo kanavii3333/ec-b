@@ -18,7 +18,7 @@ user -> controller++:confirm()
 controller -> form++:フォームに代入
 form -> controller--:CustomerForm
 controller -> validator++:バリデート
-validator -> repository++:selectByMailAddress
+validator -> repository++:selectByMailAddress(String)
 repository -> db++:SQL(SELECT)
 repository <- db--:Customer
 validator <- repository--:Customer

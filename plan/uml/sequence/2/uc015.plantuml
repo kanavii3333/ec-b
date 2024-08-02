@@ -5,7 +5,7 @@ actor "担当者" as user
 participant "SearchPurchaseHistoryController" as controller
 participant "CustomerServide" as service1
 participant "Order\nService" as service2
-participant "Customer\nRepository" as repository1
+participant "ProductCategory\nRepository" as repository1
 participant "Order\nRepository" as repository2
 database "db" as db
 ==表示==

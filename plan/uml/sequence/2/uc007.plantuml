@@ -21,7 +21,7 @@ controller -> controller:sessionに保存
 controller -> user--:履歴画面
 
 == 履歴詳細 ==
-user -> controller++:detail()
+user -> controller++:detailHistory()
 controller -> controller:sessionのリストから
 controller -> user--:履歴詳細画面
 

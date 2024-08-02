@@ -5,7 +5,7 @@ left to right direction
 
 package service{
     class CustomerService{
-    +selectAll():List<Customer>
+    	+selectAll():List<Customer>
 		+getCustomerByMailAddress(address:String):Customer
 		+registerCustomer(customer:CustomerForm):void
     }
@@ -13,12 +13,14 @@ package service{
     class OrderService{
 		+registerOrder(OrderForm,List<OrderDetailForm>):void
 		+deleteOrder():void
-    +updateStatus(OrderForm):void
-    +getOrderStatusList():List<orderStatus>
-    +getOrderList():List<Order>
-    +getStockByOrderForm(orderForm:OrderForm)
-    +getPayMethodList():List<PaymentMethod>
-    }
+	    +updateStatus(OrderForm):void
+	    +getOrderStatusList():List<orderStatus>
+	    +getOrderList():List<Order>
+	    +getStockByProductId(productId:Integer):ProductStock
+	    +getStockByOrderDetailForm(orderDetailForm:OrderDetailForm):ProductStock
+	    +getPaymentMethodList():List<PaymentMethod>
+	    +selectPurchaseHistoryByPage(pageable:Pageable,date:LocalDateTime,customerId:Integer):page<Order>
+	   }
     
     class ProductService{
 		+selectProductByPage(pageable: Pageable):page<Product>
