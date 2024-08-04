@@ -55,7 +55,7 @@ create table product_category(
 
 create table product(
   id serial primary key,
-  name varchar(20) not null,
+  name varchar(100) not null,
   price integer not null,
   image_url varchar(200) not null,
   product_category_id integer not null references product_category(id),
