@@ -4,81 +4,111 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.firewall.DefaultHttpFirewall;
 
 import jakarta.servlet.DispatcherType;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfig {
-    @Autowired
-    private EmployeeUserDetailsService service;
-    @Autowired
-    private PasswordEncoder encoder;
+  
+  @Bean
+  public PasswordEncoder encoder() {
+      return new BCryptPasswordEncoder();
+  }
+
+  @Configuration
+  @Order(2)
+  public static class BackendConfigrationAdapter{
 
     @Autowired
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(service).passwordEncoder(encoder);
-    }
+    private EmployeeUserDetailsService backendUserDetailsService;
 
-//     @Bean
-//     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService,
-//             PasswordEncoder passwordEncoderencoder) {
-//         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-//         authenticationProvider.setUserDetailsService(service);
-//         authenticationProvider.setPasswordEncoder(encoder);
-//         return new ProviderManager(authenticationProvider);
-//     }
-
-    @Bean
-    public WebSecurityCustomizer webCustomizer() {
-        DefaultHttpFirewall firewall = new DefaultHttpFirewall();
-        return (web) -> web.httpFirewall(firewall).ignoring().requestMatchers("/public/**");
+    @Autowired
+    public void authenticationManager(AuthenticationManagerBuilder builder, PasswordEncoder encoder) throws Exception {
+      builder.userDetailsService(backendUserDetailsService).passwordEncoder(encoder);
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        // http.formLogin(login->login.loginProcessingUrl("/auth_customer").loginPage("/loginCustomer")
-        // .usernameParameter("mailAddress").passwordParameter("password").defaultSuccessUrl("/menu").failureUrl("/login").permitAll());
-
-        http.formLogin(login -> login
-                .loginProcessingUrl("/auth_employee")
-                .loginPage("/admin/loginEmployee")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/admin/menu", true)// ここにtrueを付けました。
-                .failureUrl("/admin/loginEmployee?error=true")// ここに?error=trueを付けました
-                .permitAll());
-
-        http.logout(logout -> logout
-                .logoutUrl("/admin/logoutEmployee")
-                .logoutSuccessUrl("/admin/menu")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSONID")
-                .clearAuthentication(true)
-                .permitAll());
-
-        http.authorizeHttpRequests(authz -> authz
-                .dispatcherTypeMatchers(DispatcherType.ERROR)
-                .permitAll()
-                .requestMatchers(PathRequest.toStaticResources()
-                .atCommonLocations())
-                .permitAll()
-                // .requestMatchers("/**").permitAll() //全てセキュリティオフ
-                .requestMatchers("/admin/login", "/admin/menu", "/img/**").permitAll()
-                .requestMatchers("/logout", "/admin/registerproduct/**", "/admin/deleteproduct/**", "/admin/updateproduct/**",
-                        "/admin/productlist", "/admin/registeraccount/**", "/admin/registerproductcategory/**")
-                .authenticated()
-                .anyRequest().authenticated());
-
-        return http.build();
+    public SecurityFilterChain backendSecurityFilterChain(HttpSecurity http) throws Exception {
+      http.securityMatcher("/admin/**")
+          .authorizeHttpRequests(authz -> authz
+          .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll() // エラー画面は認証対象外
+          .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // 静的リソースは認証対象外
+          .requestMatchers("/admin/login","/admin/menu").permitAll() // ログイン画面は認証対象外
+          .requestMatchers("/admin/**").hasRole("ADMIN") // 認証対象
+          .anyRequest()
+          .authenticated() // その他は認証対象
+      );
+      http.formLogin(login -> login
+          .loginProcessingUrl("/admin/auth") // 認証処理を起動するURL
+          .loginPage("/admin/login") // ログイン認証画面のURL
+          .usernameParameter("username") // 認証リクエストのユーザパラメータのキー名の指定
+          .passwordParameter("password") // 認証リクエストのパスワードパスワードのキー名の指定
+          .defaultSuccessUrl("/admin/menu") // ログイン成功時のURL
+          .failureUrl("/admin/login") // ログイン失敗時のURL
+          .permitAll() // ログイン画面は認証対象外
+      );
+      http.logout(logout -> logout
+          .logoutUrl("/admin/logout") // ログアウト処理をするURL
+          .logoutSuccessUrl("/admin/login/before") // ログアウト成功時のURL
+          .invalidateHttpSession(true) // ログアウト時はセッションを破棄する
+          .deleteCookies("JSESSIONID") // ログアウト時はクッキーを削除する
+          .clearAuthentication(true) // ログアウト時は認証情報をクリアする
+          .permitAll());
+      return http.build();
     }
+
+    
+  }
+
+  @Configuration
+  @Order(1)
+  public static class FrontendConfigrationAdapter{
+
+    @Autowired
+    private CustomerUserDetailsService frontendUserDetailsService;
+
+    @Autowired
+    public void authenticationManager(AuthenticationManagerBuilder builder, PasswordEncoder encoder) throws Exception {
+      builder.userDetailsService(frontendUserDetailsService).passwordEncoder(encoder);
+    }
+
+    @Bean
+    public SecurityFilterChain frontendSecurityFilterChain(HttpSecurity http) throws Exception {
+      http.securityMatcher("/customer/**")
+          .authorizeHttpRequests(authz -> authz
+          .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll() // エラー画面は認証対象外
+          .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // 静的リソースは認証対象外
+          .requestMatchers("/customer/login","/customer/top").permitAll() // ログイン画面は認証対象外
+          .requestMatchers("/customer/**").hasRole("CUSTOMER")
+          .anyRequest()
+          .authenticated() // その他は認証対象
+      );
+      http.formLogin(login -> login
+          .loginProcessingUrl("/customer/auth") // 認証処理を起動するURL
+          .loginPage("/customer/login") // ログイン認証画面のURL
+          .usernameParameter("mailAddress") // 認証リクエストのユーザパラメータのキー名の指定
+          .passwordParameter("password") // 認証リクエストのパスワードパスワードのキー名の指定
+          .defaultSuccessUrl("/customer/top") // ログイン成功時のURL
+          .failureUrl("/customer/login") // ログイン失敗時のURL
+          .permitAll() // ログイン画面は認証対象外
+      );
+      http.logout(logout -> logout
+          .logoutUrl("/customer/logout") // ログアウト処理をするURL
+          .logoutSuccessUrl("/customer/login") // ログアウト成功時のURL
+          .invalidateHttpSession(true) // ログアウト時はセッションを破棄する
+          .deleteCookies("JSESSIONID") // ログアウト時はクッキーを削除する
+          .clearAuthentication(true) // ログアウト時は認証情報をクリアする
+          .permitAll());
+      return http.build();
+    }
+  }
 }

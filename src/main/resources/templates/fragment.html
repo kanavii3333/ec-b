@@ -10,8 +10,9 @@
 <body>
     <div th:fragment="header" id="header">
         <h3><a href="/admin/menu">文具/雑貨販売システム</a></h3>
-        <div th:if="${#authorization.expression('isAuthenticated()')}">
-            <form th:action="@{'/admin/logoutEmployee'}" method="post">
+        <!-- <div th:if="${#authorization.expression('isAuthenticated()')}"> -->
+        <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+            <form th:action="@{'/admin/logout'}" method="post">
                 <a href="/admin/productlist">商品情報メンテナンス</a>
                 <a href="/admin/registerproductcategory/input">商品カテゴリ登録</a>
                 <a href="#">購入履歴検索</a>
@@ -19,8 +20,9 @@
                 <input type="submit" value="ログアウト">
             </form>
         </div>
-        <div th:if="${not #authorization.expression('isAuthenticated()')}">
-            <a href="/admin/loginEmployee">ログイン</a>
+        <!-- <div th:if="${not #authorization.expression('isAuthenticated()')}"> -->
+        <div th:if="${not #authorization.expression('hasAuthority(''ADMIN'')')}">
+            <a href="/admin/login">ログイン</a>
         </div>
     </div>
 

@@ -17,7 +17,7 @@ public class EmployeeUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         EmployeeAccount employee = repository.selectByUsername(username);
         if(employee==null) throw new UsernameNotFoundException("ユーザーが存在しません");
-        return new EmployeeUserDetails(employee, AuthorityUtils.createAuthorityList("Employee")) {
+        return new EmployeeUserDetails(employee, AuthorityUtils.createAuthorityList("ADMIN")) {
         };
     }
     

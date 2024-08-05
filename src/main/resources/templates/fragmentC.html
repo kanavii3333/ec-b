@@ -15,7 +15,7 @@
         <div style="background-color: green; color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
             <!-- 左側部分 -->
             <div style="display: flex; align-items: center; flex-grow: 1; min-width: 0;">
-                <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;">
+                <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
                 <form action="" method="get" style="display: flex; flex-grow: 1; margin: 0; width: 100%; min-width: 0; align-items: center;">
                     <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         🖊文具/雑貨販売フロント
@@ -25,10 +25,16 @@
             </div>
             <!-- 右側部分 -->
             <div style="display: flex; align-items: center; flex-shrink: 0;">
-                <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;">
+                <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
                 <a href="#" style="color: white; margin-right: 10px;">🛒</a>
-                <a href="#" style="color: white; margin-right: 10px;">アカウント登録</a>
-                <a href="#" style="color: white;">ログイン</a>
+                <div th:if="${not #authorization.expression('hasAuthority(''CUSTOMER'')')}">
+                    <a href="#" style="color: white; margin-right: 10px;">アカウント登録</a>
+                    <a href="#" style="color: white;">ログイン</a>
+                </div>
+                <div th:if="${#authorization.expression('hasAuthority(''CUSTOMER'')')}">
+                    <a href="#" style="color: rgb(224, 217, 217); margin-right: 10px;">購入履歴</a>
+                    <a href="/customer/logout" style="color: white;" th:text="'ログアウト (' + ${#authentication.principal.username} + ')'"></a>
+                </div>
             </div>
         </div>
         <!-- カルーセル部分 -->
@@ -51,7 +57,7 @@
                 <ul style="list-style-type: none; padding: 0; margin: 0;">
                     <li><a href="/admin/menu" style="color: white; text-decoration: none;">トップ</a></li>
                     <li><a href="/admin/registeraccount" style="color: white; text-decoration: none;">社員アカウント登録</a></li>
-                    <li><a href="/admin/loginEmployee" style="color: white; text-decoration: none;">ログイン</a></li>
+                    <li><a href="/admin/login" style="color: white; text-decoration: none;">ログイン</a></li>
                     <li><a href="/admin/productlist" style="color: white; text-decoration: none;">商品メンテナンス</a></li>
                     <li><a href="/admin/registerproductcategory" style="color: white; text-decoration: none;">商品カテゴリ管理</a></li>
                 </ul>
