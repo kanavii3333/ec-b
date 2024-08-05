@@ -1,10 +1,8 @@
 
-@Controller
-public class ProductDetailController {
+// @Controller
+// public class ProductDetailController {
 
+// public Product detail(Integer productId){
 
-    public Product detail(Integer productId){
-        
-
-    }
-}
+// }
+// }
