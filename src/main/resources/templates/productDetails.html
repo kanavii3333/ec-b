@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳細画面</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<style>
+  
+</style>
+<body>
+   
+
+  <div th:replace="fragmentC::headerC"></div>
+
+  <div>
+    <p><span th:text="${product.name}"></span></p>
+<table>
+   <tr> 
+        <td>
+            <p><span th:text="${product.price}"></span></p>円
+        </td>
+    </tr>
+    <tr>
+        <td>
+            数量
+        </td>
+    </tr>
+   
+    <tr>
+        <td>
+            <select id = "quantities" name="quantity">
+                <option th:each="num : ${quantities}"
+                    th:value="${num}"
+                    th:text="${num}"
+                    th:selected="${num == quantity}">
+                </option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="カートに入れる">
+        </td>
+    </tr>
+</table>
+
+    <p><span th:text="${product.prouctStock().quantity}"></span></p>
+</div>
+
+
+  <div th:replace="fragmentC::footerC"></div>
+</body>
+</html>

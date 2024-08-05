@@ -183,23 +183,7 @@
       <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${products.totalPages}__}">最後</a>
     </li>
 </ul>
-    <!-- <table  th:if="${products.getContent().size()>0}"  border="1"  style="margin: 0 auto;">
-
     
-        <td class="border">
-          <div th:each="product : ${products}" class="product-card">
-            <img th:src="@{/img/__${product.imageUrl}__}" alt="商品画像">
-            <div class="content">
-                <p th:text="${product.productName}" style="font-size: 1.1rem; margin-bottom: 10px;">商品名</p>
-                <p th:text="'¥' + ${product.price}" style="font-size: 1.1rem; color: #28a745; margin-bottom: 10px;">価格</p>
-                <a th:href="@{/product/detail/{id}(id=${product.productId})}" 
-                  style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">
-                  詳細
-                </a>
-            </div>
-          </div>
-        </td>
-    </table> -->
 
     <p th:if="${products.getContent().size()==0}" style="text-align:center;">選択したカテゴリの商品はありませんでした</p>
 
