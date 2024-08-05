@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -6,59 +6,69 @@
     <title>カテゴリ別商品検索画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+<style>
+  /* table{
+    width: 75%;
+  } */
+  .border{
+    border:1px solid black;
+    padding:20px;
+    text-align: center; 
+  }
+
+  .padding{
+    padding-right: 550px;
+  }
+
+  .body{
+    
+    background-color: #7bbe34;
+  }
+</style>
 <body>
-  <div th:replace="fragment::header"></div>
+
+  <div th:replace="fragmentC::headerC"></div>
+  
   <div>
     <h1> カテゴリ別商品検索画面 </h1>
-    <table>
-      <form th:action="@{/admin/productlist}" method="get">
-        <tr>
+    <table class="body">
+      <form th:action="@{/productlist}" method="get">
+        <td class="padding">
             商品検索
-        </tr>
-        <tr>
+        </td>
+        <td>
           <select th:field="${categoryForm.productCategoryId}">
-            <option th:value="${null}">全ての商品</option>
+            <option th:value="${null}">全商品</option>
             <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
           </select>
-        </tr>
-        <tr>
+        </td>
+        <td>
           <input type="submit" value="検索">  
-        </tr>
+        </td>
       </form>
     </table>
 
-    <table  th:if="${products.getContent().size()>0}" border="1" style="margin: 0 auto;">
-      <tr>
-        <th>商品画像</th>
-        <th>商品名</th>
-        <th>単価</th>
-        <th>修正</th>
-        <th>削除</th>
-      </tr>
-      <tr th:each="p : ${products}">
-        <td><img th:src="@{/img/__${p.imageUrl}__}" width="100"></td>
-        <td th:text="${p.productName}"></td>
-        <td th:text="${#numbers.formatInteger(p.price, 3, 'COMMA')} + '円'"></td>
-        <td>
-          <form
-              th:action="@{/admin/updateproduct/input}"
-              method="get">
-              <input type="hidden" name="productId" th:value="${p.productId}">
-              <button type="submit" class="btn btn-warning">更新</button>
-          </form>
-        </td> 
-        <td>
-          <form
-              th:action="@{/admin/deleteproduct/confirm}"
-              method="get">
-              <input type="hidden" name="productId" th:value="${p.productId}">
-              <button type="submit" class="btn btn-danger">削除</button>
-          </form>
-        </td>         
-      </tr>
+    
+    
+    <table  th:if="${products.getContent().size()>0}"  border="1"  style="margin: 0 auto;">
+
+    
+        <td class="border">
+          <div th:each="product : ${products}" class="product-card">
+            <img th:src="@{/img/__${product.imageUrl}__}" alt="商品画像">
+            <div class="content">
+                <p th:text="${product.productName}" style="font-size: 1.1rem; margin-bottom: 10px;">商品名</p>
+                <p th:text="'¥' + ${product.price}" style="font-size: 1.1rem; color: #28a745; margin-bottom: 10px;">価格</p>
+                <a th:href="@{/product/detail/{id}(id=${product.productId})}" 
+                  style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">
+                  詳細
+                </a>
+            </div>
+          </div>
+        </td>
     </table>
 
-    <p th:if="${products.getContent().size()==0}" style="text-align:center;">該当する商品情報がありません</p>
+    <p th:if="${products.getContent().size()==0}" style="text-align:center;">選択したカテゴリの商品はありませんでした</p>
 
     <ul th:if="${products.getTotalPages()>1}" class="pagination">
       <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
@@ -92,6 +102,6 @@
       </li>
     </ul>
   </div>
-  <div th:replace="fragment::footer"></div>
+  <div th:replace="fragmentC::footerC"></div>
 </body>
-</html>
+</html> -->
