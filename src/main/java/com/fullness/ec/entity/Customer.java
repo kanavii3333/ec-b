@@ -1,5 +1,6 @@
 package com.fullness.ec.entity;
 
+import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 
 import lombok.Data;
@@ -15,5 +16,5 @@ public class Customer {
     private String mailAddress;
     private String username;
     private String password;
-    private ZonedDateTime registeredDate;
+    private Timestamp registeredDate;
 }
