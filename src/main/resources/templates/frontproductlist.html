@@ -6,92 +6,204 @@
     <title>カテゴリ別商品検索画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
+<style>
+  /* table{
+    width: 75%;
+  } */
+  /* .border{
+    border:1px solid black;
+    padding:20px;
+    text-align: center; 
+  }
+
+  .padding{
+    padding-right: 550px;
+  }
+
+  .body{
+    
+    background-color: #7bbe34;
+  } */
+
+
+
+
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .product-card {
+            flex: 1 1 calc(25% - 20px); /* PC: 4列 */
+            max-width: calc(25% - 20px); /* 最大幅を設定 */
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            background-color: white;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            min-height: 350px; /* 高さを固定 */
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px; /* 画像の高さを固定 */
+            object-fit: cover; /* 画像のトリミング */
+        }
+
+        .product-card .content {
+            padding: 15px;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 1200px) {
+            .product-card {
+                flex: 1 1 calc(25% - 20px); /* PC: 4列 */
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .product-card {
+                flex: 1 1 calc(33.333% - 20px); /* タブレット: 3列 */
+                max-width: calc(33.333% - 20px); /* 最大幅を設定 */
+            }
+        }
+
+        @media (max-width: 767px) {
+            .product-card {
+                flex: 1 1 100%; /* スマホ: 1列 */
+                max-width: 100%; /* 最大幅を設定 */
+            }
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination li a, .pagination li span {
+            display: block;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: black;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .pagination .active span {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .pagination .disabled span {
+            color: #6c757d;
+        }
+</style>
 <body>
-  <div th:replace="fragment::header"></div>
+
+  <div th:replace="fragmentC::headerC"></div>
+  
   <div>
     <h1> カテゴリ別商品検索画面 </h1>
-    <table>
-      <form th:action="@{/admin/productlist}" method="get">
-        <tr>
+    <table class="body">
+      <form th:action="@{/customer/searchproduct}" method="get">
+        <td class="padding">
             商品検索
-        </tr>
-        <tr>
+        </td>
+        <td>
           <select th:field="${categoryForm.productCategoryId}">
-            <option th:value="${null}">全ての商品</option>
+            <option th:value="${null}">全商品</option>
             <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
           </select>
-        </tr>
-        <tr>
+        </td>
+        <td>
           <input type="submit" value="検索">  
-        </tr>
+        </td>
       </form>
     </table>
 
-    <table  th:if="${products.getContent().size()>0}" border="1" style="margin: 0 auto;">
-      <tr>
-        <th>商品画像</th>
-        <th>商品名</th>
-        <th>単価</th>
-        <th>修正</th>
-        <th>削除</th>
-      </tr>
-      <tr th:each="p : ${products}">
-        <td><img th:src="@{/img/__${p.imageUrl}__}" width="100"></td>
-        <td th:text="${p.productName}"></td>
-        <td th:text="${#numbers.formatInteger(p.price, 3, 'COMMA')} + '円'"></td>
-        <td>
-          <form
-              th:action="@{/admin/updateproduct/input}"
-              method="get">
-              <input type="hidden" name="productId" th:value="${p.productId}">
-              <button type="submit" class="btn btn-warning">更新</button>
-          </form>
-        </td> 
-        <td>
-          <form
-              th:action="@{/admin/deleteproduct/confirm}"
-              method="get">
-              <input type="hidden" name="productId" th:value="${p.productId}">
-              <button type="submit" class="btn btn-danger">削除</button>
-          </form>
-        </td>         
-      </tr>
-    </table>
-
-    <p th:if="${products.getContent().size()==0}" style="text-align:center;">該当する商品情報がありません</p>
-
-    <ul th:if="${products.getTotalPages()>1}" class="pagination">
-      <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
-      <li th:class="${products.first} ? 'disabled':''" style="display: inline">
+    
+    <div style="max-width: 1200px; margin: 20px auto; padding: 0 15px;">
+      <h1 style="margin-bottom: 20px; font-size: 2rem;">商品一覧</h1>
+      <div class="product-list">
+          <!-- 商品カード -->
+          <div th:each="product : ${products}" class="product-card">
+              <img th:src="@{/img/__${product.imageUrl}__}" alt="商品画像">
+              <div class="content">
+                  <h5 th:text="${product.productName}" style="font-size: 1.25rem; margin-bottom: 10px;">商品名</h5>
+                  <p th:text="'¥' + ${product.price}" style="font-size: 1.1rem; color: #28a745; margin-bottom: 10px;">価格</p>
+                  <a th:href="@{/product/detail/{id}(id=${product.productId})}" 
+                     style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">
+                     詳細を見る
+                  </a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <ul th:if="${products.getTotalPages()>1}" class="pagination">
+    <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
+    <li th:class="${products.first} ? 'disabled':''">
         <span th:if="${products.first}">最初</span>
         <a th:if="${not products.first}" th:href="@{__${pageUrl}__page=0}">最初</a>
-      </li>
-      <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
-      <li th:class="${products.first} ? 'disabled':''" style="display: inline">
+    </li>
+    <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
+    <li th:class="${products.first} ? 'disabled':''">
         <span th:if="${products.first}">前へ</span>
         <a th:if="${not products.first}" th:href="@{__${pageUrl}__page=__${prev}__}">前へ</a>
-      </li>
-      <!-- ページ毎のリンクを表示 現在のページの場合はリンクを非活性化にし現在のページ以外はリンクを有効にする-->
-      <li 
-        th:each="i : ${#numbers.sequence(0, products.totalPages-1)}"
-        th:class="(${i}==${products.number})? 'active' : ''"
-        style="display: inline">
-        <span th:if="${i}==${products.number}" th:text="${i+1}">1</span>
-        <a th:if="${i}!=${products.number}" th:href="@{__${pageUrl}__page=__${i+1}__}">
-        <span th:text="${i+1}">1</span></a>
-      </li>
-      <!-- 最後のページの場合はリンクを非活性化にし最後のページ目以外はリンクを有効にする -->
-      <li th:class="${products.last} ? 'disabled':''" style="display: inline">
-        <span th:if="${products.last}">次へ</span>
-        <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${next}__}">次へ</a>
-      </li>
-      <!-- 最後のページの場合はリンクを非活性化にし最後のページ目以外はリンクを有効にする -->
-      <li th:class="${products.last} ? 'disabled':''" style="display: inline">
-        <span th:if="${products.last}">最後</span>
-        <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${products.totalPages}__}">最後</a>
-      </li>
-    </ul>
-  </div>
-  <div th:replace="fragment::footer"></div>
+    </li>
+    <!-- ページ毎のリンクを表示 現在のページの場合はリンクを非活性化にし現在のページ以外はリンクを有効にする-->
+    <li 
+      th:each="i : ${#numbers.sequence(0, products.totalPages-1)}"
+      th:class="(${i}==${products.number})? 'active' : ''">
+      <span th:if="${i}==${products.number}" th:text="${i+1}">1</span>
+      <a th:if="${i}!=${products.number}" th:href="@{__${pageUrl}__page=__${i+1}__}">
+      <span th:text="${i+1}">1</span></a>
+    </li>
+    <!-- 最後のページの場合はリンクを非活性化にし最後のページ目以外はリンクを有効にする -->
+    <li th:class="${products.last} ? 'disabled':''">
+      <span th:if="${products.last}">次へ</span>
+      <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${next}__}">次へ</a>
+    </li>
+    <!-- 最後のページの場合はリンクを非活性化にし最後のページ目以外はリンクを有効にする -->
+    <li th:class="${products.last} ? 'disabled':''">
+      <span th:if="${products.last}">最後</span>
+      <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${products.totalPages}__}">最後</a>
+    </li>
+</ul>
+    <!-- <table  th:if="${products.getContent().size()>0}"  border="1"  style="margin: 0 auto;">
+
+    
+        <td class="border">
+          <div th:each="product : ${products}" class="product-card">
+            <img th:src="@{/img/__${product.imageUrl}__}" alt="商品画像">
+            <div class="content">
+                <p th:text="${product.productName}" style="font-size: 1.1rem; margin-bottom: 10px;">商品名</p>
+                <p th:text="'¥' + ${product.price}" style="font-size: 1.1rem; color: #28a745; margin-bottom: 10px;">価格</p>
+                <a th:href="@{/product/detail/{id}(id=${product.productId})}" 
+                  style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">
+                  詳細
+                </a>
+            </div>
+          </div>
+        </td>
+    </table> -->
+
+    <p th:if="${products.getContent().size()==0}" style="text-align:center;">選択したカテゴリの商品はありませんでした</p>
+
+
+  <div th:replace="fragmentC::footerC"></div>
 </body>
 </html>
