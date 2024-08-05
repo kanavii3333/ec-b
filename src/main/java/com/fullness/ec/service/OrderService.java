@@ -24,7 +24,7 @@ public interface OrderService {
 
     // List<OrderStatusRepository> getOrderStatusList();
 
-    List<Order> getOrderList(String mailAddress);
+    List<Order> getOrderList();
 
     ProductStock getStockByProductId(Integer productId);
 
