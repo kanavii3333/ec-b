@@ -37,6 +37,10 @@ user -> controller++:execute()
 controller -> service++:registerOrder(OrderForm,List<OrderDetailForm>)
 service -> helper++:convertToEntity(orderForm:OrderForm)
 service <- helper--:Order
+service -> repository1++:update(produckStock:ProductStock)
+repository1 -> db++ :SQL(update)
+repository1 <- db -- :void
+service <- repository1 -- :void
 service -> repository2++:insert(order:Order)
 repository2 -> db++:SQL(insert)
 repository2 <- db--:void
