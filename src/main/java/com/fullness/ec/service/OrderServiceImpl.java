@@ -6,7 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.fullness.ec.entity.Customer;
 import com.fullness.ec.entity.Order;
 import com.fullness.ec.entity.OrderDetail;
 import com.fullness.ec.entity.OrderStatus;
@@ -67,8 +70,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrderList(String mailAddress) {
-        return orderRepository.selectByUsername(mailAddress);
+    public List<Order> getOrderList() {
+        Integer userId = ((Customer)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getCustomerId();
+        return orderRepository.selectByPage(PageRequest.of(0, 5),null,userId);
     }
 
     // @Override
