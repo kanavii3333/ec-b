@@ -1,0 +1,102 @@
+name: cicd
+on:
+  push:
+    branches:
+      - '*'
+env:
+  EC2_USER: 'ubuntu'
+  EC2_HOST: 35.72.89.237  
+  SRC_PATH: 'build/libs/*.jar'
+  DEST_DIR: '/home/ubuntu'
+  APP_NAME: 'sboot'
+  AWS_EC2_PRIVATE_KEY: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEogIBAAKCAQEAscOAFNu0RiFlwTMrdjK6IzUr/56dhhbB+2GJ7M0pGq7GeNSE
+    qenPyts1URHi+7cnxO4kYF5lhuNbo70AvvwVPU9F7vUUeMeJ7ZgRIgqb+rcNG/So
+    31sq4XhLwvRv4+bLFQbsWH+3eWYcv7/JG9IO675jMLbZqZL+8qwT0NAcvlH2/fE0
+    vPR7jhmuV/aAr1j1r/gSWksj9fAzXnd498F0dhc8IhvQMwMgnMciwJRV1FnwC2Ej
+    MIcIJD5E/sUZ53+F1EAEaVjAbIqsb+GQNo8n748ZvGjPEB2d2uMkt982tKIrO+iQ
+    vyvCQWl9aU7UTYtqlKBcjFPpcJdVtkLap3B7WQIDAQABAoIBAHGqotGzkthtLpWV
+    VKsl0KQGsfWnxO4iyzMksX77yNbI/xvwOEw1t6rs9HC8UTnHaeSgqh38/kp8QvK2
+    Pi3hHuuvLvaXO9nnLakBXaM4yXhNaFKB5SG9N/Qoablld85wm1b8sE/+iqFTy/pI
+    dh4V+XiAqwhRQ2kNF3ywz5LsIBUJXvKEPqxhCgYcR2QJW3EfvhIKZqt6eKIeGI28
+    zaCiizI6k1qI0RsPl6c2R3r8SBJOgZ5EW7HmY9dQc1naSPRCRnPbJ8IDe9dAhMzU
+    mm/ksUqtRuxhq7VWHbUzuH0RtMjS6fCcfT6dt0K2xIA0V4MCXlWh2w6QNnnmhrGy
+    znl1YSkCgYEA4gi3zsXDpgGUJrTUzTOP+gt89iqPZotBjG93q1IR7aqe62fTjdBZ
+    Mz6fMk5radVAU1yu6KndrRMUrU45JD69sJEb1FvGcVhWAetGdsMBwTU3u4b9sPJ7
+    7XWIjhEi49Nq26n/SU46qPqFbW3IAgq1eMaWXHcOdyIloku+MkUoj2cCgYEAyVSN
+    djxk7bJPOYO6LsVHv281VG0Cz2816ValnYANwFxG6LXoQP5KRQBV9aSb0vJEjuI+
+    S0AqCRAV5LJbcA3T4vtptZ+RH+nkqdmYvvBQV3J/PLjBoair5ZJw7K8zjvB3OtO2
+    vB1XcruxbKL0WxeontVnvlMACv3pDZgt4r8vpz8CgYBQNXfEUDlVN0ozUggRqTJ2
+    MI1vbTrl0JS6GPQGP2FNTTaHophXwo9kt9wWJe3H6HyjGEiZF24qdJLpzNBKJFl7
+    xoJxoP+SSR58H9kpW5nLze6xBP4RRHrlkMecYkhXQDazLGgCw1fdjsi6RDKtRs+O
+    xCmnNjhT3jIsnWQowpHaEQKBgH4yudl7UeiM9IwgvfvDPY4Jr2wUSMat9yUkYvuu
+    4O/K58fG/qZ+vx8xbrBjVimMIt1Ng663saGsq4yHIDnE8SQ+Y6ytMNLIUcUF2HEX
+    QcUOyCLPzNAAYn+so4w45iCbKqF9Q/X2jnIkpLpsCq9uzQuCyVzLuiMptYQH9/tB
+    zCURAoGAE85z5+Fw4jSV4K2dJe9JzRUpOpoj0zOFH0ms3DhkH9cTuvFK8n4Ydz/U
+    wt3VtB/WMqTpdd/iJYNFuH3wvZzBqQB/m8WyShOZClDSUWzjMn8/7t6Q5qpjpmOr
+    DRPZcKaWFg+BKRSDN63/+IjxedHI4TFHsxV8hjwyYVtMZ/sUQZs=
+    -----END RSA PRIVATE KEY----- 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_DB: fullness_ec
+          POSTGRES_USER: fullness_ec
+          POSTGRES_PASSWORD: fullness_ec
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: 17
+      - name: Test with Gradle
+        run: chmod +x gradlew && ./gradlew test
+      - name: save test reports as artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: test-reports
+          path: build/reports/tests/test
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: save build artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: build-artifact
+          path: build/libs/fullness-ec-0.0.1-SNAPSHOT.jar
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Build Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifact
+        path: build/libs
+    - name: Deploy to EC2 by SCP
+      env:
+        PRIVATE_KEY: ${{ env.AWS_EC2_PRIVATE_KEY }}        
+      run: |
+        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+        ssh -t -o StrictHostKeyChecking=no -i private_key ${EC2_USER}@${EC2_HOST} "sudo mkdir -p ${DEST_DIR}/${APP_NAME} && sudo chmod -R 777 ${DEST_DIR}/${APP_NAME}"
+        scp -i private_key build/libs/fullness-ec-0.0.1-SNAPSHOT.jar ${EC2_USER}@${EC2_HOST}:${DEST_DIR}/${APP_NAME}/app.jar
+    - name: SSH EC2 Setup and Deploy
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ env.EC2_HOST }}
+        username: ${{ env.EC2_USER }}
+        key: ${{ env.AWS_EC2_PRIVATE_KEY }}        
+        envs: APP_NAME
+        script: sudo systemctl restart $APP_NAME

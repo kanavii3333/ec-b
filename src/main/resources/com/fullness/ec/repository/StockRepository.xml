@@ -16,6 +16,15 @@
            quantity=#{quantity}
        where
            product_id=#{productId}  
-    </update>    
+    </update>
 
+    <select id="selectQuantityByProductId" parameterType="ProductStock">
+        select
+            *
+        from
+            product_stock
+        where
+            product_id
+        FOR UPDATE
+    </select>
 </mapper>

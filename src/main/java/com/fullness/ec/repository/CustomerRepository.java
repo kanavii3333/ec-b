@@ -1,10 +1,14 @@
 package com.fullness.ec.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.fullness.ec.entity.Customer;
 
 @Mapper
 public interface CustomerRepository {
-    public Customer selectByMailAddress(String MailAddress);
+    void insert(Customer customer);
+    Customer selectByMailAddress(String mailAddress);
+    List<Customer> selectAll();
 }

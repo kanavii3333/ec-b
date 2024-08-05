@@ -3,6 +3,8 @@ package com.fullness.ec.service;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.form.UpdateProductForm;
 import com.fullness.ec.entity.Product;
+import com.fullness.ec.entity.ProductStock;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -20,4 +22,6 @@ public interface ProductService {
     boolean isUpdateProductExist(UpdateProductForm updateProductForm);
 
     Page<Product> selectProductByPage(Pageable pageable, Integer productCategoryId);
+
+    void updateProductStock(ProductStock stock);
 }

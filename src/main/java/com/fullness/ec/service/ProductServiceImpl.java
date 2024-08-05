@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fullness.ec.entity.Product;
+import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.form.UpdateProductForm;
 import com.fullness.ec.helper.ProductConverter;
@@ -85,4 +86,9 @@ public class ProductServiceImpl implements ProductService {
     Product product = productRepository.selectByProductId(productId);
     return product;
   }
+
+  @Override
+  public void updateProductStock(ProductStock stock){
+    stockRepository.update(stock);
+  };
 }

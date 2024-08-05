@@ -6,13 +6,12 @@ actor "担当者" as user
 participant "SearchProductController" as controller
 participant "ProductCategory\nService" as service
 participant "Product\nService" as service1
-participant "Product\nConverter" as helper
 participant "ProductCategory\nRepository" as repository1
 participant "Product\nRepository" as repository2
 database "db" as db
 ==表示==
 user -> controller++:input()
-controller -> service1++:selectProductByPage(pageable: Pageable,categoryId:Integer)
+controller -> service1++:selectProductByPage\n(pageable: Pageable,categoryId:Integer)
 service1 -> repository2++:selectByPage(pageable:Pageable,categoryId:Integer)
 repository2 -> db++:SQL(SELECT(count))
 db -> repository2--:List<Product>

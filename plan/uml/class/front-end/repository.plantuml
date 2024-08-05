@@ -6,7 +6,7 @@ left to right direction
 package repogitory{
 class CustomerRepository{
         +insert(customer:Customer):void
-        +selectByMailAddress(mail:String):Customer
+        +selectByMailAddress(mailAddress:String):Customer
         +selectAll():List<Customer>
     }
 
@@ -16,6 +16,7 @@ class CustomerRepository{
         +selectAllPaymentMethod():List<PaymentMethod>
         +insertOrderDetail(orderDetail:OrderDetail):void
         +insertOrderStatus(status:String):void
+        +selectByUsername(String):List<Order>
     }
 
     class ProductRepository{

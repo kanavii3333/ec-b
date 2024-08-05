@@ -4,9 +4,7 @@ title 商品購入のシーケンス図
 actor "顧客" as user
 participant "PurchaseController" as controller
 participant "Order\nService" as service
-participant "Order\nConverter" as helper
-participant "ProductStock\nRepository" as repository1
-participant "Order\nRepository" as repository2
+participant "Stock\nRepository" as repository1
 database "db" as db
 
 == 入力(商品詳細画面)　==

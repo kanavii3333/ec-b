@@ -21,7 +21,7 @@ details --> service--:CustomerUserDetails
 service -> security--:CustomerUserDetails
 security -> security:認証
 security -> security:セッションに格納
-security --> user--:トップ画面（前にいたページ？）
+security --> user--:トップ画面
 user -> controller++:
 controller -> user--:
 

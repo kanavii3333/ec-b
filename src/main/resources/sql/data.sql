@@ -55,7 +55,7 @@ create table product_category(
 
 create table product(
   id serial primary key,
-  name varchar(20) not null,
+  name varchar(100) not null,
   price integer not null,
   image_url varchar(200) not null,
   product_category_id integer not null references product_category(id),
@@ -113,12 +113,12 @@ create table order_detail(
   customer_id integer not null references customer(id)
 );
 
--- department data
+
 insert into department(name) values('開発部');
 insert into department(name) values('商品企画部');
 insert into department(name) values('営業部');
 
--- employee data
+
 insert into employee(name,name_kana,department_id) values('高橋太郎','タカハシ',1);
 insert into employee(name,name_kana,department_id) values('田中花子','タナカ',1);
 insert into employee(name,name_kana,department_id) values('佐藤次郎','サトウ',1);
@@ -129,21 +129,21 @@ insert into employee(name,name_kana,department_id) values('佐藤次郎','サト
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 INSERT INTO employee_account(name,password,employee_id) VALUES ('admin', crypt('admin', gen_salt('bf')),1);
 
--- product_category data
+
 insert into product_category(name) values('文房具');
 insert into product_category(name) values('雑貨');
 insert into product_category(name) values('パソコン周辺機器');
 
--- order_status data
+
 insert into order_status(name) values('注文済み');
 insert into order_status(name) values('入金済み');
 insert into order_status(name) values('配送中');
 insert into order_status(name) values('完了');
 
--- payment_method data
+
 insert into payment_method(name) values('現金');
 
--- product data
+
 insert into product values(nextval('product_id_seq'),'水性ボールペン(黒)',120,'black_pen_w.jpg',1,0);
 insert into product values(nextval('product_id_seq'),'水性ボールペン(赤)',120,'red_pen_w.jpg',1,0);
 insert into product values(nextval('product_id_seq'),'水性ボールペン(青)',120,'blue_pen_w.jpg',1,0);
@@ -170,7 +170,7 @@ insert into product values(nextval('product_id_seq'),'有線ゲーミングマ�
 insert into product values(nextval('product_id_seq'),'USB有線式キーボード',1400,'keybord.jpg',3,0);
 insert into product values(nextval('product_id_seq'),'無線式キーボード',1900,'keybord_wireless.jpg',3,0);
 
--- product_stock
+
 insert into product_stock values(nextval('product_stock_id_seq'),10,1);
 insert into product_stock values(nextval('product_stock_id_seq'),20,2);
 insert into product_stock values(nextval('product_stock_id_seq'),30,3);
