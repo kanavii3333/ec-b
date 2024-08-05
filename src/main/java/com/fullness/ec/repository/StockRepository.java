@@ -10,7 +10,5 @@ public interface StockRepository {
 
     public void update(ProductStock productStock);
 
-    public ProductStock selectQuantityByProductId(Integer productId);
-
     public ProductStock selectByProductId(Integer productId);
 }

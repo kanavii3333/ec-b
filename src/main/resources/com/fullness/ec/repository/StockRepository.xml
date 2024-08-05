@@ -18,13 +18,13 @@
            product_id=#{productId}  
     </update>
 
-    <select id="selectQuantityByProductId" parameterType="ProductStock">
+    <select id="selectByProductId" parameterType="Integer" resultType="ProductStock">
         select
-            *
+            id as productStockId, quantity, product_id as productId
         from
             product_stock
         where
-            product_id
+            product_id = #{param_1}
         FOR UPDATE
     </select>
 </mapper>

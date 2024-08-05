@@ -195,7 +195,6 @@ insert into product_stock values(nextval('product_stock_id_seq'),210,21);
 insert into product_stock values(nextval('product_stock_id_seq'),220,22);
 insert into product_stock values(nextval('product_stock_id_seq'),230,23);
 insert into product_stock values(nextval('product_stock_id_seq'),240,24);
-insert into product_stock values(nextval('product_stock_id_seq'),250,25);
 
 insert into customer values(nextval('customer_id_seq'),'田中太郎','タナカタロウ','千葉県市川市伊勢宿1234',null,'00-1111-2222','tanaka@email.jp','tarotanaka',crypt('passtanaka', gen_salt('bf')),'1999-01-08 04:05:06 -8:00');
 insert into customer values(nextval('customer_id_seq'),'佐藤次郎','ササトウジロウ','埼玉県さいたま市南9999',null,'00-2222-3333','jiro@email.jp','jirosato',crypt('passsato', gen_salt('bf')),'2000-01-08 04:05:08 -8:00');
