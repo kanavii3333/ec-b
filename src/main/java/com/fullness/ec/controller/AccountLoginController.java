@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("admin")
 public class AccountLoginController {
 
-    @GetMapping("loginEmployee")
+    @GetMapping("login")
     public String form(){
         return "login";
     }
@@ -33,7 +33,7 @@ public class AccountLoginController {
         return "menu";
     }
 
-    @GetMapping("logoutEmployee")
+    @GetMapping("logout")
     public String logout() {
         return "redirect:menu";
     }

@@ -43,6 +43,20 @@
 [商品カテゴリ登録(完了)画面](http://localhost:8080/admin/registerproductcategory/complete)|RegisterProductCategoryController|[complete](resources/templates/registerproductcategory/complete.html)
 
 
+フロントエンド
+[トップ画面](http://localhost:8080/top)|Controller|[top](resources/templates/front/top.html)
+[顧客ログイン画面](http://localhost:8080/login)|Controller|[login](resources/templates/front/login.html)
+[顧客アカウント登録(入力)画面](http://localhost:8080/registeraccount/input)|Controller|[input](resources/templates/front/resisteraccount/input.html)
+[顧客アカウント登録(確認)画面](http://localhost:8080/registeraccount/confirm)|Controller|[confirm](resources/templates/front/resisteraccount/confirm.html)
+[顧客アカウント登録(完了)画面](http://localhost:8080/registeraccount/complete)|Controller|[complete](resources/templates/front/resisteraccount/conplete.html)
+[カテゴリ商品検索画面](http://localhost:8080/productlist)|Controller|[Post](resources/templates/front/product/productlist.html)
+[商品詳細画面](http://localhost:8080/productDetails)|Controller|[Post](resources/templates/front/product/productdetails.html)
+[購入(入力)画面](http://localhost:8080/purchase/input)|Controller|[input](resources/templates/front/purchase/input.html)
+[購入(確認)画面](http://localhost:8080/purchase/confirm)|Controller|[confirm](resources/templates/front/purchase/confirm.html)
+[購入(完了)画面](http://localhost:8080/purchase/complete)|Controller|[complete](resources/templates/front/purchase/conplete.html)
+[購入履歴一覧画面](http://localhost:8080/purchaseHistory)|Controller|[Post](resources/templates/purchase/purchasehistory.html)
+[購入履歴詳細画面](http://localhost:8080/purchaseHistorydetails)|Controller|[Post](resources/templates/purchase/purchaseHistorydetails.html)
+
 
 ## コーディング規約
 

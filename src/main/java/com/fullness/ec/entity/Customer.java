@@ -6,15 +6,14 @@ import lombok.Data;
 
 @Data
 public class Customer {
-    
-   private Integer customerId; 
-   private Integer customerName; 
-   private String  customerNameKana; 
-   private String  customerAddress1; 
-   private String  customerAddress2; 
-   private String  customerPhoneNumber; 
-   private String  customerMailAdress;
-   private String  customerUserName; 
-   private String  customerPassword; 
-   private ZonedDateTime customerRegisterDate; 
+    private Integer customerId;
+    private String customerName;
+    private String customerNameKana;
+    private String address1;
+    private String address2;
+    private String phone;
+    private String mailAddress;
+    private String username;
+    private String password;
+    private ZonedDateTime registeredDate;
 }
