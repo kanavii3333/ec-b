@@ -1,5 +1,6 @@
 package com.fullness.ec.entity;
 
+import java.sql.Timestamp;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -10,9 +11,9 @@ import lombok.Data;
 @Data
 public class Order {
        private Integer orderId; 
-       private ZonedDateTime orderDate; 
+       private Timestamp orderDate; 
        private Integer amountTotal; 
-       private List<OrderDetailForm> orderDetailFormList; 
+       private List<OrderDetail> orderDetailList; 
        private OrderStatus orderStatus; 
        private PaymentMethod payMethod; 
        private Integer customerId; 
