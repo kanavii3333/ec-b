@@ -11,4 +11,5 @@
         from order_status
         FOR UPDATE
     </select>
+
 </mapper>

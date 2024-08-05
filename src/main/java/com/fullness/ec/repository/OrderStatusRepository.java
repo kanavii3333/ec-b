@@ -9,4 +9,5 @@ import com.fullness.ec.entity.OrderStatus;
 @Mapper
 public interface OrderStatusRepository {
     List<OrderStatus> selectAll();
+    
 }

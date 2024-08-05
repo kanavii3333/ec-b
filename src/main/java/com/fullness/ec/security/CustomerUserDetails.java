@@ -50,4 +50,11 @@ public class CustomerUserDetails implements UserDetails {
         return true;
     }
     
+    public String getCustomerName(){
+        return customer.getCustomerName();
+    }
+
+    public Integer getCustomerId(){
+        return customer.getCustomerId();
+    }
 }

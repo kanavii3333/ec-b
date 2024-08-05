@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.fullness.ec.repository.OrderRepository">
+    <resultMap type="Order" id="orderResult">
+        <id property="orderId" column="orderId" />
+        <result property="orderDate" column="orderDate" />
+        <result property="amountTotal" column="amountTotal" />
+        <result property="customerId" column="customerId" />
+        <association property="orderStatus" javaType="OrderStatus">
+            <id property="orderStatusId" column="orderStatusId" />
+            <result property="orderStatusName" column="orderStatusName" />
+        </association>
+        <association property="payMethod" javaType="PaymentMethod">
+            <id property="payMethodId" column="payMethodId" />
+            <result property="payMethodName" column="payMethodName" />
+        </association>
+        <collection property="orderDetailList" ofType="OrderDetail">
+            <id property="orderDetailId" column="orderDetailId" />
+            <result property="count" column="count" />
+            <result property="productId" column="productId" />
+            <result property="customerId" column="detailCustomerId" />
+            <result property="orderId" column="detailOrderId" />
+        </collection>
+    </resultMap>
+    
+    <select id="selectByPage" resultMap="orderResult">
+        select 
+            o.id as orderId,
+            o.order_date as orderDate,
+            o.amount_total as amountTotal,
+            o.customer_id as customerId,
+            os.id as orderStatusId,
+            os.name as orderStatusName,
+            pm.id as payMethodId,
+            pm.name as payMethodName,
+            od.id as orderDetailId,
+            od.count,
+            od.product_id as productId,
+            od.customer_id as detailCustomerId,
+            od.order_id as detailOrderId
+        from 
+            orders o
+        left outer join 
+            order_detail od
+        on
+            o.id = od.order_id
+        join
+            order_status os
+        on  
+            o.order_status_id = os.id
+        join
+            payment_method pm
+        on
+            o.payment_method_id = pm.id
+        where
+            1=1
+            <if test="param2 != null">
+                and
+                    o.order_date = #{param2}
+            </if>
+            <if test="param3 != null">
+                and
+                    od.customer_id = #{param3}
+            </if>
+        order by 
+            o.id
+        limit 
+            #{param1.pageSize}
+        offset 
+            #{param1.offset}
+    </select>
+
+    <select id="selectAllPaymentMethod" resultType="PaymentMethod">
+        select id as payMethodId, name as payMethodName from payment_method
+    </select>
+
+    <insert id="insert" parameterType="Order">
+        <selectKey keyProperty="orderId" resultType="Integer" order="BEFORE">
+            select nextval('orders_id_seq')
+        </selectKey>
+            insert into orders values(#{orderId}, #{orderDate}, #{amountTotal}, #{customerId}, #{orderStatus.orderStatusId}, #{payMethod.payMethodId})
+    </insert>
+
+    <update id="updateOrderStatus" parameterType="Integer">
+        update orders set order_status_id = #{param1} where id = #{param2}
+    </update>
+
+    <select id="countOrder" parameterType="Integer" resultType="Integer">
+        select count(*) from orders where id = #{param1} 
+    </select>
+</mapper>

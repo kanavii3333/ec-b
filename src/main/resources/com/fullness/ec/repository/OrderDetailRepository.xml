@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<mapper namespace="com.fullness.ec.repository.OrderDetailRepository">
+    <insert id="insert" parameterType="OrderDetail">
+        <selectKey keyProperty="orderDetailId" resultType="Integer" order="BEFORE">
+            select nextval('order_detail_id_seq')
+        </selectKey>
+            insert into order_detail values(#{orderDetailId},#{orderId},#{productId},#{count},#{customerId})
+    </insert>
+
+</mapper>

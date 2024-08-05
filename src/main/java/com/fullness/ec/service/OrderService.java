@@ -3,8 +3,9 @@ package com.fullness.ec.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.fullness.ec.entity.Order;
 import com.fullness.ec.entity.OrderStatus;
@@ -24,7 +25,7 @@ public interface OrderService {
 
     // List<OrderStatusRepository> getOrderStatusList();
 
-    List<Order> getOrderList();
+    Page<Order> getOrderList(Pageable pageable);
 
     ProductStock getStockByProductId(Integer productId);
 
