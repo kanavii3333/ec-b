@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カテゴリ別商品検索画面</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+  <div th:replace="fragment::header"></div>
+  <div>
+    <h1> カテゴリ別商品検索画面 </h1>
+    <table>
+      <form th:action="@{/admin/productlist}" method="get">
+        <tr>
+            商品検索
+        </tr>
+        <tr>
+          <select th:field="${categoryForm.productCategoryId}">
+            <option th:value="${null}">全ての商品</option>
+            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
+          </select>
+        </tr>
+        <tr>
+          <input type="submit" value="検索">  
+        </tr>
+      </form>
+    </table>
+
+    <table  th:if="${products.getContent().size()>0}" border="1" style="margin: 0 auto;">
+      <tr>
+        <th>商品画像</th>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>修正</th>
+        <th>削除</th>
+      </tr>
+      <tr th:each="p : ${products}">
+        <td><img th:src="@{/img/__${p.imageUrl}__}" width="100"></td>
+        <td th:text="${p.productName}"></td>
+        <td th:text="${#numbers.formatInteger(p.price, 3, 'COMMA')} + '円'"></td>
+        <td>
+          <form
+              th:action="@{/admin/updateproduct/input}"
+              method="get">
+              <input type="hidden" name="productId" th:value="${p.productId}">
+              <button type="submit" class="btn btn-warning">更新</button>
+          </form>
+        </td> 
+        <td>
+          <form
+              th:action="@{/admin/deleteproduct/confirm}"
+              method="get">
+              <input type="hidden" name="productId" th:value="${p.productId}">
+              <button type="submit" class="btn btn-danger">削除</button>
+          </form>
+        </td>         
+      </tr>
+    </table>
+
+    <p th:if="${products.getContent().size()==0}" style="text-align:center;">該当する商品情報がありません</p>
+
+    <ul th:if="${products.getTotalPages()>1}" class="pagination">
+      <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
+      <li th:class="${products.first} ? 'disabled':''" style="display: inline">
+        <span th:if="${products.first}">最初</span>
+        <a th:if="${not products.first}" th:href="@{__${pageUrl}__page=0}">最初</a>
+      </li>
+      <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
+      <li th:class="${products.first} ? 'disabled':''" style="display: inline">
+        <span th:if="${products.first}">前へ</span>
+        <a th:if="${not products.first}" th:href="@{__${pageUrl}__page=__${prev}__}">前へ</a>
+      </li>
+      <!-- ページ毎のリンクを表示 現在のページの場合はリンクを非活性化にし現在のページ以外はリンクを有効にする-->
+      <li 
+        th:each="i : ${#numbers.sequence(0, products.totalPages-1)}"
+        th:class="(${i}==${products.number})? 'active' : ''"
+        style="display: inline">
+        <span th:if="${i}==${products.number}" th:text="${i+1}">1</span>
+        <a th:if="${i}!=${products.number}" th:href="@{__${pageUrl}__page=__${i+1}__}">
+        <span th:text="${i+1}">1</span></a>
+      </li>
+      <!-- 最後のページの場合はリンクを非活性化にし最後のページ目以外はリンクを有効にする -->
+      <li th:class="${products.last} ? 'disabled':''" style="display: inline">
+        <span th:if="${products.last}">次へ</span>
+        <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${next}__}">次へ</a>
+      </li>
+      <!-- 最後のページの場合はリンクを非活性化にし最後のページ目以外はリンクを有効にする -->
+      <li th:class="${products.last} ? 'disabled':''" style="display: inline">
+        <span th:if="${products.last}">最後</span>
+        <a th:if="${not products.last}" th:href="@{__${pageUrl}__page=__${products.totalPages}__}">最後</a>
+      </li>
+    </ul>
+  </div>
+  <div th:replace="fragment::footer"></div>
+</body>
+</html>
