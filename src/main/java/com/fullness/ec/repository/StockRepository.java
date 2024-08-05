@@ -8,4 +8,5 @@ import com.fullness.ec.entity.ProductStock;
 public interface StockRepository {
     public void insert(ProductStock productStock);
     public void update(ProductStock productStock);
+    public ProductStock selectQuantityByProductId(Integer productId);
 }
