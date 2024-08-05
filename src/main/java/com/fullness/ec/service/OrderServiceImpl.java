@@ -4,8 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -14,6 +15,7 @@ import com.fullness.ec.entity.Order;
 import com.fullness.ec.entity.OrderDetail;
 import com.fullness.ec.entity.OrderStatus;
 import com.fullness.ec.entity.PaymentMethod;
+import com.fullness.ec.entity.Product;
 import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.OrderDetailForm;
 import com.fullness.ec.form.OrderForm;
@@ -21,6 +23,8 @@ import com.fullness.ec.helper.OrderConverter;
 import com.fullness.ec.repository.OrderRepository;
 import com.fullness.ec.repository.OrderStatusRepository;
 import com.fullness.ec.repository.StockRepository;
+import com.fullness.ec.security.CustomerUserDetails;
+import java.util.Collections;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -70,9 +74,16 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getOrderList() {
-        Integer userId = ((Customer)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getCustomerId();
-        return orderRepository.selectByPage(PageRequest.of(0, 5),null,userId);
+    public Page<Order> getOrderList(Pageable pageable) {
+        Integer userId = ((CustomerUserDetails)(SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getCustomerId();
+        Integer total = orderRepository.countOrder(userId);
+        List<Order> orders;
+        if (total > 0) {
+            orders = orderRepository.selectByPage(pageable,null,userId);
+        } else {
+            orders = Collections.emptyList();
+        }
+        return new PageImpl<>(orders, pageable, total);
     }
 
     // @Override
@@ -86,6 +97,7 @@ public class OrderServiceImpl implements OrderService {
     // public List<OrderStatus> getOrderStatusList() {
     // // return orderStatusRepository.selectAll();
     // }
+
 
     @Override
     public void updateStatus(OrderForm orderForm) {

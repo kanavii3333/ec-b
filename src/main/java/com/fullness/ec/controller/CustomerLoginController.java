@@ -48,6 +48,6 @@ public class CustomerLoginController {
 
     @GetMapping("logout")
     public String logout() {
-        return "redirect:menu";
+        return "redirect:/customer/login";
     }
 }

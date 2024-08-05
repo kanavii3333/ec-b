@@ -29,11 +29,11 @@
                 <a href="#" style="color: white; margin-right: 10px;">🛒</a>
                 <div th:if="${not #authorization.expression('hasAuthority(''CUSTOMER'')')}">
                     <a href="#" style="color: white; margin-right: 10px;">アカウント登録</a>
-                    <a href="#" style="color: white;">ログイン</a>
+                    <a href="/customer/login" style="color: white;">ログイン</a>
                 </div>
                 <div th:if="${#authorization.expression('hasAuthority(''CUSTOMER'')')}">
                     <a href="#" style="color: rgb(224, 217, 217); margin-right: 10px;">購入履歴</a>
-                    <a href="/customer/logout" style="color: white;" th:text="'ログアウト (' + ${#authentication.principal.username} + ')'"></a>
+                    <a href="/customer/logout" style="color: white;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
                 </div>
             </div>
         </div>
