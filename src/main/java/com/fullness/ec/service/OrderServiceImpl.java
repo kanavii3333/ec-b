@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fullness.ec.entity.Customer;
 import com.fullness.ec.entity.Order;
@@ -26,6 +28,8 @@ import com.fullness.ec.repository.StockRepository;
 import com.fullness.ec.security.CustomerUserDetails;
 import java.util.Collections;
 
+@Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
