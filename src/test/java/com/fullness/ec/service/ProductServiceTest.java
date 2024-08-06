@@ -25,9 +25,11 @@ import com.fullness.ec.repository.ProductRepository;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ProductServiceTest {
     @Autowired
-    ProductService productService;
+    ProductServiceImpl productService;
     @Autowired
     ProductRepository productRepository;
+    @ Autowired 
+    OrderServiceImpl orderServiceImpl;
 
     @Sql("/sql/data.sql")
     @Test
@@ -127,7 +129,7 @@ public class ProductServiceTest {
         productStock.setQuantity(15);
         productService.updateProductStock(productStock);
 
-        Product product=productService.getProductByProductId(1);
-        assertEquals(15, product.getProductStock().getQuantity());
+        ProductStock productStock2=orderServiceImpl.getStockByProductId(1);
+        assertEquals(15, productStock2.getQuantity());
     }
 }

@@ -38,6 +38,10 @@ public class CustomerServiceImpl implements CustomerService{
         //    CustomerAccount customerAccount = CustomerConverter.converterCustomerFormAccountToEmployee(customer);
         //    customerAccount.setPassword(passwordEncoder.encode(customerAccount.getPassword()));
         //    customerRepository.insert(customerAccount);
+    }
+
+    public List<Customer> getCustomerList() {
+        return customerRepository.selectAll();
     };
     
 }

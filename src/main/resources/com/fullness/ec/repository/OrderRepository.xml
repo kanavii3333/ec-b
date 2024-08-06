@@ -8,6 +8,8 @@
         <result property="orderDate" column="orderDate" />
         <result property="amountTotal" column="amountTotal" />
         <result property="customerId" column="customerId" />
+        <result property="customerName" column="customerName" />
+        <result property="username" column="username" />
         <association property="orderStatus" javaType="OrderStatus">
             <id property="orderStatusId" column="orderStatusId" />
             <result property="orderStatusName" column="orderStatusName" />
@@ -35,6 +37,8 @@
             o.order_date as orderDate,
             o.amount_total as amountTotal,
             o.customer_id as customerId,
+            c.name as customerName,
+            c.username as username,
             os.id as orderStatusId,
             os.name as orderStatusName,
             pm.id as payMethodId,
@@ -64,15 +68,19 @@
             product p
         on
             od.product_id = p.id
+        join
+            customer c
+        on
+            o.customer_id = c.id
         where
             1=1
-            <if test="param2 != null">
+            <if test="date != null">
                 and
-                    o.order_date = #{param2}
+                    o.order_date = #{date}
             </if>
-            <if test="param3 != null">
+            <if test="id != null">
                 and
-                    od.customer_id = #{param3}
+                    o.customer_id = #{id}
             </if>
         order by 
             o.id
@@ -98,6 +106,56 @@
     </update>
 
     <select id="countOrder" parameterType="Integer" resultType="Integer">
-        select count(*) from orders where id = #{param1} 
+        select count(*) from orders 
+        <if test="param1 != null">
+            where customer_id = #{param1}
+        </if>
+    </select>
+
+    <select id="selectById" resultMap="orderResult">
+        select 
+            o.id as orderId,
+            o.order_date as orderDate,
+            o.amount_total as amountTotal,
+            o.customer_id as customerId,
+            c.name as customerName,
+            c.username as username,
+            os.id as orderStatusId,
+            os.name as orderStatusName,
+            pm.id as payMethodId,
+            pm.name as payMethodName,
+            od.id as orderDetailId,
+            od.count as count,
+            od.product_id as productId,
+            p.name as productName,
+            p.price as price,
+            od.customer_id as detailCustomerId,
+            od.order_id as detailOrderId
+        from 
+            orders o
+        left outer join 
+            order_detail od
+        on
+            o.id = od.order_id
+        join
+            order_status os
+        on  
+            o.order_status_id = os.id
+        join
+            payment_method pm
+        on
+            o.payment_method_id = pm.id
+        join 
+            product p
+        on
+            od.product_id = p.id
+        join
+            customer c
+        on
+            o.customer_id = c.id
+        where
+            o.id = #{param1}
+        order by 
+            o.id
     </select>
 </mapper>

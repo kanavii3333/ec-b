@@ -204,4 +204,4 @@ insert into orders values(nextval('orders_id_seq'),'2024-08-01 09:05:08 -8:00',1
 
 insert into order_detail values(nextval('order_detail_id_seq'),1,1,5,1);
 insert into order_detail values(nextval('order_detail_id_seq'),1,2,10,1);
-insert into order_detail values(nextval('order_detail_id_seq'),2,3,6,1);
+insert into order_detail values(nextval('order_detail_id_seq'),2,3,6,2);
