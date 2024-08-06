@@ -67,4 +67,17 @@ public class EmployeeRepositoryTest {
         assertEquals(1, employeeAccount.getEmpAccountId());
     }
 
+    @Sql("/sql/data.sql")
+    @Test
+    void selectByEmpAccountNameTest() {
+        EmployeeAccount employeeAccount = employeeRepository.selectByEmpAccountName("admin");
+
+        assertEquals(1, employeeAccount.getEmpAccountId());
+        assertEquals("admin", employeeAccount.getName());
+        assertEquals(1, employeeAccount.getEmpId());
+        // プレーンテキストのパスワードと暗号化されたパスワードの一致を確認
+        assertTrue(passwordEncoder.matches("admin", employeeAccount.getPassword()));
+
+    }
+
 }
