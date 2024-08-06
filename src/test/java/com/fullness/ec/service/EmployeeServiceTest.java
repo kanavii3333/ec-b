@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fullness.ec.entity.Employee;
-import com.fullness.ec.entity.EmployeeAccount;
+
 import com.fullness.ec.form.EmployeeForm;
 import com.fullness.ec.repository.EmployeeRepository;
 
