@@ -19,7 +19,7 @@ import com.fullness.ec.service.ProductServiceImpl;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("customer")
+@RequestMapping
 @SessionAttributes({ "categoryForm", "products" })
 
 public class FrontSerchProductController {
@@ -34,7 +34,7 @@ public class FrontSerchProductController {
     @Autowired
     ProductCategoryServiceImpl categoryService;
 
-    @GetMapping("searchproduct")
+    @GetMapping("customer/searchproduct")
     public String input(@ModelAttribute("categoryForm") CategoryForm form,
             @PageableDefault(page = 0, size = 12) Pageable pageable,
             Model model, HttpSession session) {
@@ -51,7 +51,7 @@ public class FrontSerchProductController {
 
         Page<Product> products = service.selectProductByPage(pageable,
                 form.getProductCategoryId());
-        model.addAttribute("pageUrl", "/customer/searchproduct?");
+        model.addAttribute("pageUrl", "customer/searchproduct?");
         model.addAttribute("products", products);
         model.addAttribute("next", pageable.getPageNumber() + 2);
         model.addAttribute("prev", pageable.getPageNumber());
