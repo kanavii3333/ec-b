@@ -57,6 +57,7 @@
     .left-text {
         text-align: left; /* テーブルセル内で左寄せ */
     }
+    
         
 
 
@@ -65,13 +66,19 @@
    
 
   <div th:replace="fragmentC::headerC"></div>
-
+<div style="width: 500px;">
   <table class="left">
     <tr><td><h2><span th:text="${product.productName}"></span></h2></td></tr>
   </table>
+
   <table class="center">
     <tr><td><img th:src="@{/img/__${product.imageUrl}__}"  class="image-size" ></td></tr>
  </table>
+</div>
+
+
+
+<div style="width: 500px;float: left;" >
 <div class="table-container">
 <table class="container">
    <tr class="left-text"> 
@@ -83,13 +90,13 @@
     
     
     <tr>
-        <td><p class="align-left">数量</p><br>
+        <td><p class="align-left">数量</p>
             <select id = "quantities" name="quantity"  class="large-select">
                
                 <option th:each="num : ${quantities}"
                     th:value="${num}"
                     th:text="${num}"
-                    th:selected="${num == quantity}">
+                    th:selected="${num == 0}">
                 </option>
             </select>
         </td>
@@ -103,6 +110,7 @@
 
     <!-- <p><span th:text="${product.productStock.quantity}"></span></p> -->
 </table>
+</div>
 </div>
 
 

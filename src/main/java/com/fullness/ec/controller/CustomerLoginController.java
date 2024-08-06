@@ -41,7 +41,7 @@ public class CustomerLoginController {
         session.removeAttribute("filename");
 
         Page<Product> products = service.selectProductByPage(pageable, null);
-        model.addAttribute("pageUrl", "/customer/searchproduct?");
+        model.addAttribute("pageUrl", "/customer/top?");
         model.addAttribute("products", products);
         model.addAttribute("next", pageable.getPageNumber() + 2);
         model.addAttribute("prev", pageable.getPageNumber());
