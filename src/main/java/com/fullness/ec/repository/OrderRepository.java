@@ -12,10 +12,14 @@ import com.fullness.ec.entity.PaymentMethod;
 
 @Mapper
 public interface OrderRepository {
-    void insert(Order order);
-    List<Order> selectByPage(Pageable pageable,Timestamp date,Integer customerId);
-    List<PaymentMethod> selectAllPaymentMethod(); 
-    void updateOrderStatus(Integer orderStatusId,Integer orderId);
+    void insert(Order order);//
+
+    List<Order> selectByPage(Pageable pageable, Timestamp date, Integer customerId);//
+
+    List<PaymentMethod> selectAllPaymentMethod(); //
+
+    void updateOrderStatus(Integer orderStatusId, Integer orderId);//
+
     Integer countOrder(Integer userId);
 
 }

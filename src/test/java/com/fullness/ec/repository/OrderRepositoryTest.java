@@ -19,24 +19,26 @@ import java.sql.Timestamp;
 
 @SpringBootTest
 public class OrderRepositoryTest {
-    @Autowired OrderRepository repository;
-    
+    @Autowired
+    OrderRepository repository;
+
     @Sql("/sql/data2.sql")
     @Test
-    void selectByPageTest(){
-        assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null, null).size());
-        //assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null, null).get(0));
+    void selectByPageTest() {
+        assertEquals(2, repository.selectByPage(PageRequest.of(0, 100), null, null).size());
+        // assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null,
+        // null).get(0));
     }
 
     @Sql("/sql/data2.sql")
     @Test
-    void selectAllPaymentMethodTest(){
-        assertEquals(1,repository.selectAllPaymentMethod().size());
+    void selectAllPaymentMethodTest() {
+        assertEquals(1, repository.selectAllPaymentMethod().size());
     }
 
     @Sql("/sql/data2.sql")
     @Test
-    void insertTest(){
+    void insertTest() {
         Order order = new Order();
         order.setOrderId(null);
         order.setOrderDate(Timestamp.from(ZonedDateTime.now().toInstant()));
@@ -49,13 +51,24 @@ public class OrderRepositoryTest {
         method.setPayMethodId(1);
         order.setPayMethod(method);
         repository.insert(order);
-        assertEquals(3,repository.selectByPage(PageRequest.of(0,100),null,null).size());
+        assertEquals(2, repository.selectByPage(PageRequest.of(0, 100), null, null).size());
     }
 
     @Sql("/sql/data2.sql")
     @Test
-    void updateOrderStatusTest(){
+    void updateOrderStatusTest() {
         repository.updateOrderStatus(2, 1);
-        assertEquals(2,repository.selectByPage(PageRequest.of(0,100),null,null).get(0).getOrderStatus().getOrderStatusId());
+        assertEquals(2,
+                repository.selectByPage(PageRequest.of(0, 100), null, null).get(0).getOrderStatus().getOrderStatusId());
     }
+
+    // Integer countOrder(Integer userId);
+
+    @Sql("/sql/data2.sql")
+    @Test
+    void countOrderTest() {
+        Integer countall = repository.countOrder(1);
+        assertEquals(1, countall);
+    }
+
 }
