@@ -24,25 +24,23 @@ public class ProductDetailController {
         return new Product();
     }
 
-@Autowired
-ProductServiceImpl productService;
+    @Autowired
+    ProductServiceImpl productService;
 
-@GetMapping("productDetails")
-public String detail(Integer productId, Model model) {
-Product product = productService.getProductByProductId(productId);
-Integer quantity = product.getProductStock().getQuantity();
-int sum = 0;
-List<Integer> quantities = new ArrayList<>();
-for (int i = 0; i <= quantity; i++) {
-sum += i;
-quantities.add(sum);
+    @GetMapping("productDetails")
+    public String detail(@ModelAttribute("productId") Integer productId, Model model) {
+        Product product = productService.getProductByProductId(productId);
+        Integer quantity = product.getProductStock().getQuantity();
+        List<Integer> quantities = new ArrayList<>();
+        for (int i = 0; i <= quantity; i++) {
+            quantities.add(i);
 
-}
-model.addAttribute("product", product);
-model.addAttribute("quantities", quantities);
-model.addAttribute("quantity", quantity);
-return "productDetails";
+        }
+        model.addAttribute("product", product);
+        model.addAttribute("quantities", quantities);
+        model.addAttribute("quantity", quantity);
+        return "productDetails";
 
-}
+    }
 
 }
