@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品検索画面</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+  <div th:replace="fragmentC::headerC"></div>
+  <div>
+    <h1> 購入履歴詳細 </h1>
+    
+    <table border="1" style="margin: 0 auto;border-collapse: collapse;width: 60%;">
+      <tr>
+        <th>注文ID</th>
+        <th>注文日時</th>
+        <th>支払い方法</th>
+        <th>合計金額</th>
+      </tr>
+      <tr>
+        <td th:text="${order.orderId}"></td>
+        <td
+            th:text="${#dates.format(order.orderDate, 'yyyy年MM月dd日(EEE)ahh時mm分ss秒') }">
+        </td>
+        <td th:text="${order.payMethod.payMethodName}">
+        </td>
+        <td th:text="${#numbers.formatInteger(order.amountTotal, 3, 'COMMA')} + '円'"></td>
+      </tr>
+    </table>
+
+    <h2>注文明細</h2>
+
+    <table border="1" style="margin: 0 auto;border-collapse: collapse;width: 60%;">
+        <tr>
+          <th>ID</th>
+          <th>商品名</th>
+          <th>価格</th>
+          <th>個数</th>
+        </tr>
+        <tr th:each="detail:${order.orderDetailList}">
+          <td th:text="${detail.orderDetailId}"></td>
+          <td th:text="${detail.product.productName}"></td>
+          <td th:text="${#numbers.formatInteger(detail.product.price, 3, 'COMMA')} + '円'"></td>
+          <td th:text="${detail.count}"></td>
+        </tr>
+      </table>
+      <form th:action="@{/customer/history/list}" method="get"><input type="submit" value="戻る"></form>
+  <div th:replace="fragmentC::footerC"></div>
+</body>
+</html>

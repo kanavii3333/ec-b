@@ -7,7 +7,7 @@
         <selectKey keyProperty="orderDetailId" resultType="Integer" order="BEFORE">
             select nextval('order_detail_id_seq')
         </selectKey>
-            insert into order_detail values(#{orderDetailId},#{orderId},#{productId},#{count},#{customerId})
+            insert into order_detail values(#{orderDetailId},#{orderId},#{product.productId},#{count},#{customerId})
     </insert>
 
 </mapper>

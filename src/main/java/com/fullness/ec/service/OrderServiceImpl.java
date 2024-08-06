@@ -41,8 +41,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     StockRepository stockRepository;
 
-    // @Autowired
-    // OrderConverter orderConverter;
 
     @Override
     public ProductStock getStockByProductId(Integer productId) {
