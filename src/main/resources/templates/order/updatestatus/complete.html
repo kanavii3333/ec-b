@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品検索画面</title>
+    <title>注文ステータス変更（完了）画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
   <div th:replace="fragment::header"></div>
   <div>
-    <h1> 購入履歴一覧 </h1>
+    <h1> 注文ステータス変更（完了） </h1>
     <form th:action="@{/admin/updatestatus/execute}" method="post">
         <table border="1" style="margin: 0 auto;border-collapse: collapse;width: 80%;">
         <tr>
             <th>購入日時</th>
             <th>顧客アカウント名（氏名）</th>
             <th>注文内容</th>
-            <th>現ステータス</th>
-            <th>変更ステータス</th>
+            <th>ステータス</th>
         </tr>
         <tr>
             <td th:text="${#dates.format(order.orderDate, 'yyyy年M月d日 HH:mm') }"></td>
@@ -33,8 +32,6 @@
             </td>
         </tr>
         </table>
-        <a href="/admin/history">購入履歴検索に戻る</a>
-        <input type="submit" value="登録">
     </form>
     <a href="/admin/menu">メニューに戻る</a>
   </div>

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品検索画面</title>
+    <title>商品ステータス更新（入力）画面</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
   <div th:replace="fragment::header"></div>
   <div>
-    <h1> 購入履歴一覧 </h1>
+    <h1> 商品ステータス更新（入力） </h1>
     <form th:action="@{/admin/updatestatus/confirm}" method="post">
         <table border="1" style="margin: 0 auto;border-collapse: collapse;width: 80%;">
         <tr>

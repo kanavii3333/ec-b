@@ -38,8 +38,11 @@ public class UpdateOrderStatusController {
     }
 
     @PostMapping("execute")
-    public String execute(@ModelAttribute("order")Order order, @RequestParam("statusId")Integer statusId){
+    public String execute(@ModelAttribute("statusList")List<OrderStatus> statusList, @ModelAttribute("order")Order order, @RequestParam("statusId")Integer statusId){
         order.getOrderStatus().setOrderStatusId(statusId);
+        for(OrderStatus status : statusList){
+            if(status.getOrderStatusId()==statusId) order.getOrderStatus().setOrderStatusName(status.getOrderStatusName());;
+        }
         service.updateStatus(order);
         return "redirect:/admin/updatestatus/complete";
     }

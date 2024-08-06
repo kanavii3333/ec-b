@@ -12,28 +12,29 @@
 <body>
     <div th:fragment="headerC" id="headerC" style="flex-wrap: nowrap; overflow: hidden;">
         <!-- ヘッダー部分 -->
-        <div style="background-color: green; color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px;">
+        <div style="background-color: green; color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px;text-decoration: none;">
             <!-- 左側部分 -->
             <div style="display: flex; align-items: center; flex-grow: 1; min-width: 0;">
                 <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
                 <form action="" method="get" style="display: flex; flex-grow: 1; margin: 0; width: 100%; min-width: 0; align-items: center;">
                     <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                        🖊文具/雑貨販売フロント
+                        <a href="/customer/top" style="color: white; margin-right: 10px;text-decoration: none;">🖊文具/雑貨販売フロント</a>
                     </div>
-                    <input type="text" name="productName" placeholder="商品検索" style="flex-grow: 1; margin-left: 10px;min-width: 20px;">
+                    <a href="/customer/serarchproduct" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">商品検索</a>
+                    <!-- <input type="text" name="productName" placeholder="商品検索" style="flex-grow: 1; margin-left: 10px;min-width: 20px;"> -->
                 </form>
             </div>
             <!-- 右側部分 -->
             <div style="display: flex; align-items: center; flex-shrink: 0;">
                 <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
-                <a href="#" style="color: white; margin-right: 10px;">🛒</a>
+                <a href="/customer/purchase/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
                 <div th:if="${not #authorization.expression('hasAuthority(''CUSTOMER'')')}">
-                    <a href="#" style="color: white; margin-right: 10px;">アカウント登録</a>
-                    <a href="/customer/login" style="color: white;">ログイン</a>
+                    <a href="#" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
+                    <a href="/customer/login" style="color: rgb(220, 220, 220);text-decoration: none;">ログイン</a>
                 </div>
                 <div th:if="${#authorization.expression('hasAuthority(''CUSTOMER'')')}">
-                    <a href="/customer/history/list" style="color: rgb(224, 217, 217); margin-right: 10px;">購入履歴</a>
-                    <a href="/customer/logout" style="color: white;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
+                    <a href="/customer/history/list" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">購入履歴</a>
+                    <a href="/customer/logout" style="color: rgb(220, 220, 220);text-decoration: none;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
                 </div>
             </div>
         </div>
