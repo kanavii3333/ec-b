@@ -51,7 +51,7 @@ public class FrontSerchProductController {
 
         Page<Product> products = service.selectProductByPage(pageable,
                 form.getProductCategoryId());
-        model.addAttribute("pageUrl", "customer/searchproduct?");
+        model.addAttribute("pageUrl", "/customer/searchproduct?");
         model.addAttribute("products", products);
         model.addAttribute("next", pageable.getPageNumber() + 2);
         model.addAttribute("prev", pageable.getPageNumber());
