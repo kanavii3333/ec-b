@@ -7,7 +7,41 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <style>
-  
+/* テーブルを右上に固定 */
+.table-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px; /* 必要に応じて調整 */
+    border: 1px solid #0b0a0a; /* 枠線のスタイル */
+    border-radius: 4px; /* 角の丸み */
+    padding: 10px; /* 内部の余白 */
+    background-color: #fff; /* 背景色 */
+}
+
+/* テーブルのスタイル */
+table.container {
+    border-collapse: collapse;
+    width: auto;
+}
+
+table.container td {
+    border: none; /* セルの枠線を非表示 */
+    padding: 8px; /* セル内の余白 */
+}
+
+/* スマホ向けのメディアクエリ */
+@media (max-width: 600px) {
+    .table-container {
+        margin: 10px; /* スマホ向けにマージンを調整 */
+        padding: 8px; /* 内部の余白を少し減らす */
+    }
+
+    table.container td {
+        padding: 6px; /* セルのパディングを調整 */
+    }
+}
+
 </style>
 <body>
    
@@ -16,7 +50,9 @@
 
   <div>
     <p><span th:text="${product.name}"></span></p>
-<table>
+
+<div class="table-container">
+<table class="container">
    <tr> 
         <td>
             <p><span th:text="${product.price}"></span></p>円
@@ -44,10 +80,12 @@
             <input type="submit" value="カートに入れる">
         </td>
     </tr>
-</table>
+
 
     <p><span th:text="${product.prouctStock().quantity}"></span></p>
+</table>
 </div>
+
 
 
   <div th:replace="fragmentC::footerC"></div>
