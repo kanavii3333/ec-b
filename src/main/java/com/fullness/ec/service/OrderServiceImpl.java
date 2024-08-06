@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 import com.fullness.ec.entity.Customer;
 import com.fullness.ec.entity.Order;
@@ -26,6 +27,7 @@ import com.fullness.ec.repository.StockRepository;
 import com.fullness.ec.security.CustomerUserDetails;
 import java.util.Collections;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -37,8 +39,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     StockRepository stockRepository;
 
-    @Autowired
-    OrderConverter orderConverter;
 
     @Override
     public ProductStock getStockByProductId(Integer productId) {

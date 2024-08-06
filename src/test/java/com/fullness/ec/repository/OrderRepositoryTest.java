@@ -25,6 +25,7 @@ public class OrderRepositoryTest {
     @Test
     void selectByPageTest(){
         assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null, null).size());
+        //assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null, null).get(0));
     }
 
     @Sql("/sql/data2.sql")

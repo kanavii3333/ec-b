@@ -8,13 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fullness.ec.entity.Order;
 import com.fullness.ec.repository.OrderRepository;
-import com.fullness.ec.service.OrderService;
+import com.fullness.ec.service.OrderServiceImpl;
 import com.fullness.ec.service.ProductService;
 
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer/history")
 public class SearchPurchaseHistoryController {
-    @Autowired OrderService service;
+    @Autowired OrderServiceImpl service;
     @Autowired ProductService productService;
     @GetMapping("/list")
     public String histry(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model){
@@ -35,9 +36,11 @@ public class SearchPurchaseHistoryController {
         return "/order/history/purchaselist";
     }
 
-    @GetMapping("/detail")
-    public String detail(@ModelAttribute("order")Order order, Model model){
-        model.addAttribute("order", order);
+    @PostMapping("/detail")
+    public String detail(@ModelAttribute("orders")Page<Order> orders ,@RequestParam("orderId")Integer orderId, Model model){
+        for(Order order:orders){
+            if(orderId==order.getOrderId()) model.addAttribute("order", order);
+        }
         return "/order/history/detail";
     }
 }

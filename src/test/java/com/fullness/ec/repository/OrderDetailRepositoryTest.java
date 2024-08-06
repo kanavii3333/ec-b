@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fullness.ec.entity.OrderDetail;
+import com.fullness.ec.entity.Product;
 
 @SpringBootTest
 public class OrderDetailRepositoryTest {
@@ -22,7 +23,9 @@ public class OrderDetailRepositoryTest {
         orderDetail.setCount(100);
         orderDetail.setCustomerId(1);
         orderDetail.setOrderId(1);
-        orderDetail.setProductId(1);
+        Product product = new Product();
+        product.setProductId(1);
+        orderDetail.setProduct(product);
         repository.insert(orderDetail);
         assertEquals(100, orderRepository.selectByPage(PageRequest.of(0, 3),null,1).get(0).getOrderDetailList().get(2).getCount());
     }

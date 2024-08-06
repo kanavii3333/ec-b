@@ -2,6 +2,10 @@ div{
     text-align: center;
 }
 
+th{padding: 10px;}
+
+td{padding: 10px;}
+
 .error{
     color:red;
 }
@@ -12,6 +16,7 @@ div{
     text-align:center;
     border-bottom:2px solid black;
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #footer{
@@ -21,6 +26,7 @@ div{
     border-top:2px solid black;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 10px;
 }
 .image-size {
     width: 100px;
@@ -30,6 +36,7 @@ div{
     width:100%;
     top:0;
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #footerC{
@@ -37,6 +44,7 @@ div{
     bottom:0;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-top: 10px;
 }
 
 #footerC li::before{
