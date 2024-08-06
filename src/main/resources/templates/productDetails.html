@@ -7,40 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <style>
-/* テーブルを右上に固定 */
-.table-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin: 20px; /* 必要に応じて調整 */
-    border: 1px solid #0b0a0a; /* 枠線のスタイル */
-    border-radius: 4px; /* 角の丸み */
-    padding: 10px; /* 内部の余白 */
-    background-color: #fff; /* 背景色 */
-}
 
-/* テーブルのスタイル */
-table.container {
-    border-collapse: collapse;
-    width: auto;
-}
-
-table.container td {
-    border: none; /* セルの枠線を非表示 */
-    padding: 8px; /* セル内の余白 */
-}
-
-/* スマホ向けのメディアクエリ */
-@media (max-width: 600px) {
-    .table-container {
-        margin: 10px; /* スマホ向けにマージンを調整 */
-        padding: 8px; /* 内部の余白を少し減らす */
-    }
-
-    table.container td {
-        padding: 6px; /* セルのパディングを調整 */
-    }
-}
 
 </style>
 <body>
@@ -50,6 +17,8 @@ table.container td {
 
   <div>
     <p><span th:text="${product.productName}"></span></p>
+
+    <img th:src="@{/img/__${product.imageUrl}__}"  class="image-size">
 
 <div class="table-container">
 <table class="container">
@@ -82,7 +51,7 @@ table.container td {
     </tr>
 
 
-    <p><span th:text="${product.productStock.quantity}"></span></p>
+    <!-- <p><span th:text="${product.productStock.quantity}"></span></p> -->
 </table>
 </div>
 
