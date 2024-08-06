@@ -27,6 +27,7 @@ import com.fullness.ec.repository.OrderStatusRepository;
 import com.fullness.ec.repository.StockRepository;
 import com.fullness.ec.security.CustomerUserDetails;
 import java.util.Collections;
+import java.sql.Timestamp;
 
 @Service
 @Transactional
@@ -88,6 +89,17 @@ public class OrderServiceImpl implements OrderService {
         return new PageImpl<>(orders, pageable, total);
     }
 
+    public Page<Order> getOrderListForAdmin(Pageable pageable,Timestamp date,Integer customerId) {
+        Integer total = orderRepository.countOrder(customerId);
+        List<Order> orders;
+        if (total > 0) {
+            orders = orderRepository.selectByPage(pageable,date,customerId);
+        } else {
+            orders = Collections.emptyList();
+        }
+        return new PageImpl<>(orders, pageable, total);
+    }
+
     // @Override
     // public Page<Order> selectPurchaseHistoryByPage(Pageable pageable,
     // LocalDateTime date, Integer customerId) {
@@ -102,15 +114,22 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public void updateStatus(OrderForm orderForm) {
-        // orderConverter.convertToEntity(OrderForm orderForm);
-        // orderRepository.updateStatus(Order order);
+    public void updateStatus(Order order) {
+        orderRepository.updateOrderStatus(order.getOrderId(),order.getOrderStatus().getOrderStatusId());
 
     }
 
     @Override
     public void deleteOrder() {
 
+    }
+
+    public List<OrderStatus> getAllStatus() {
+        return orderStatusRepository.selectAll();
+    }
+
+    public Order getOrderById(Integer orderId) {
+        return orderRepository.selectById(orderId);
     }
 
 }

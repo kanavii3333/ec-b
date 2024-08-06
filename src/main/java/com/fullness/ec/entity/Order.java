@@ -16,5 +16,7 @@ public class Order {
        private List<OrderDetail> orderDetailList; 
        private OrderStatus orderStatus; 
        private PaymentMethod payMethod; 
-       private Integer customerId; 
+       private Integer customerId;
+       private String customerName;
+       private String username; 
 }

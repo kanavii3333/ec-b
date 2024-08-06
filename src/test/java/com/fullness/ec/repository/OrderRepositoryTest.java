@@ -25,6 +25,7 @@ public class OrderRepositoryTest {
     @Test
     void selectByPageTest(){
         assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null, null).size());
+        assertEquals(1,repository.selectByPage(PageRequest.of(0,100), null, 1).size());
         //assertEquals(2,repository.selectByPage(PageRequest.of(0,100), null, null).get(0));
     }
 
@@ -49,7 +50,7 @@ public class OrderRepositoryTest {
         method.setPayMethodId(1);
         order.setPayMethod(method);
         repository.insert(order);
-        assertEquals(3,repository.selectByPage(PageRequest.of(0,100),null,null).size());
+        assertEquals(2,repository.countOrder(2));
     }
 
     @Sql("/sql/data2.sql")

@@ -21,7 +21,7 @@ public interface OrderService {
 
     void deleteOrder();
 
-    void updateStatus(OrderForm orderForm);
+    void updateStatus(Order order);
 
     // List<OrderStatusRepository> getOrderStatusList();
 
