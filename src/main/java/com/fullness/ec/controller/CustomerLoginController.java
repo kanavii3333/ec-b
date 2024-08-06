@@ -18,15 +18,18 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @RequestMapping("customer")
 public class CustomerLoginController {
-    @Autowired ProductService service;
+    @Autowired
+    ProductService service;
+
     @GetMapping("login")
-    public String form(){
+    public String form() {
         return "loginCustomer";
     }
 
     @GetMapping("top")
-    public String login(HttpSession session,SessionStatus sessionStatus,@PageableDefault(page=0,size=12) Pageable pageable, Model model){
-        //メニュー遷移したときにセッションを破棄する
+    public String login(HttpSession session, SessionStatus sessionStatus,
+            @PageableDefault(page = 0, size = 12) Pageable pageable, Model model) {
+        // メニュー遷移したときにセッションを破棄する
         session.removeAttribute("employeeForm");
         session.removeAttribute("employeeList");
         session.removeAttribute("product");
@@ -38,11 +41,11 @@ public class CustomerLoginController {
         session.removeAttribute("filename");
 
         Page<Product> products = service.selectProductByPage(pageable, null);
-        model.addAttribute("pageUrl", "/customer/top?");
+        model.addAttribute("pageUrl", "/customer/searchproduct?");
         model.addAttribute("products", products);
         model.addAttribute("next", pageable.getPageNumber() + 2);
         model.addAttribute("prev", pageable.getPageNumber());
-         //sessionStatus.setComplete();
+        // sessionStatus.setComplete();
         return "top";
     }
 
