@@ -134,10 +134,18 @@
                 <div class="content">
                     <h5 th:text="${product.productName}" style="font-size: 1.25rem; margin-bottom: 10px;">商品名</h5>
                     <p th:text="'¥' + ${product.price}" style="font-size: 1.1rem; color: #28a745; margin-bottom: 10px;">価格</p>
-                    <a th:href="@{/product/detail/{id}(id=${product.productId})}" 
+
+                    <form
+                    th:action="@{/customer/productDetails}"
+                    method="get">
+                    <input type="hidden" name="productId" th:value="${product.productId}">
+                    <button type="submit" class="btn btn-warning">詳細をみる</button>
+                </form>
+  
+                    <!-- <a th:href="@{/customer/productDetails/{id}(id=${product.productId})}" 
                        style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">
                        詳細を見る
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>

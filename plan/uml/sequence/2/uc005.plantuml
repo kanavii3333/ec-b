@@ -14,7 +14,7 @@ user -> controller++:input()
 controller -> service++:getStockByOrderDetailForm(orderDetailForm:OrderDetailForm)
 loop orderDetailFormの更新 list全てに適用
 	service -> repository1++:selectByProductId(productId)
-	repository1 -> db++:SQL(SELECT)
+	repository1 -> db++:SQL(SELECT)  レコードロック
 	db -> repository1--:ProductStock
 	repository1 -> service--:ProductStock
 end

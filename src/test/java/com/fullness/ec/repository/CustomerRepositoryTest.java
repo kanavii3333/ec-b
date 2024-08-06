@@ -14,16 +14,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fullness.ec.entity.Customer;
-import com.fullness.ec.entity.ProductCategory;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class CustomerRepositoryTest {
     @Autowired
     CustomerRepository repository;
+
     @Sql("/sql/data2.sql")
     @Test
-    void insertTest(){
+    void insertTest() {
         Customer customer = new Customer();
         customer.setCustomerId(null);
         customer.setCustomerName("後藤三郎");
@@ -35,26 +35,26 @@ public class CustomerRepositoryTest {
         customer.setUsername("goto");
         customer.setPassword("passgoto");
         customer.setRegisteredDate(Timestamp.from(ZonedDateTime.now().toInstant()));
-        
+
         repository.insert(customer);
         assertEquals("goto", repository.selectByMailAddress("goto@example.com").getUsername());
     }
-    
+
     @Sql("/sql/data2.sql")
     @Test
-    void selectAllTest(){
+    void selectAllTest() {
         List<Customer> customers = repository.selectAll();
         assertEquals(2, customers.size());
 
     }
 
     @Sql("/sql/data2.sql")
-   @Test
-   void selectByMailAddressTest(){
-    Customer user1 = repository.selectByMailAddress("tanaka@email.jp");
-    Customer user2 = repository.selectByMailAddress("");
-    assertEquals("田中太郎", user1.getCustomerName());
-    assertNull(user2);
-   }
+    @Test
+    void selectByMailAddressTest() {
+        Customer user1 = repository.selectByMailAddress("tanaka@email.jp");
+        Customer user2 = repository.selectByMailAddress("");
+        assertEquals("田中太郎", user1.getCustomerName());
+        assertNull(user2);
+    }
 
 }

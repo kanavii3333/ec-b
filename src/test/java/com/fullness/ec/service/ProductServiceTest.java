@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.mock.web.MockMultipartFile;
 
 import com.fullness.ec.entity.Product;
+import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.ProductForm;
 import com.fullness.ec.form.UpdateProductForm;
 import com.fullness.ec.repository.ProductRepository;
@@ -24,9 +25,11 @@ import com.fullness.ec.repository.ProductRepository;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ProductServiceTest {
     @Autowired
-    ProductService productService;
+    ProductServiceImpl productService;
     @Autowired
     ProductRepository productRepository;
+    @ Autowired 
+    OrderServiceImpl orderServiceImpl;
 
     @Sql("/sql/data.sql")
     @Test
@@ -115,5 +118,18 @@ public class ProductServiceTest {
         productForm.setProductName("水性ボールペン(黒)");
         productForm.setProductId(1);
         assertEquals(false, productService.isUpdateProductExist(productForm));
+    }
+
+    @Sql("/sql/data2.sql")
+    @Test
+    void updateProductStockTest(){
+        ProductStock productStock = new ProductStock();
+        productStock.setProductId(1);
+        productStock.setProductStockId(1);
+        productStock.setQuantity(15);
+        productService.updateProductStock(productStock);
+
+        ProductStock productStock2=orderServiceImpl.getStockByProductId(1);
+        assertEquals(15, productStock2.getQuantity());
     }
 }

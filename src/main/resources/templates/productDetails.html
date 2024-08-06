@@ -7,40 +7,58 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <style>
-/* テーブルを右上に固定 */
-.table-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin: 20px; /* 必要に応じて調整 */
-    border: 1px solid #0b0a0a; /* 枠線のスタイル */
-    border-radius: 4px; /* 角の丸み */
-    padding: 10px; /* 内部の余白 */
-    background-color: #fff; /* 背景色 */
-}
+    /* .container{
+        position: relative;
+        top: -150px;
+        left: 1100px;
+    }  */
+  
 
-/* テーブルのスタイル */
-table.container {
-    border-collapse: collapse;
-    width: auto;
-}
-
-table.container td {
-    border: none; /* セルの枠線を非表示 */
-    padding: 8px; /* セル内の余白 */
-}
-
-/* スマホ向けのメディアクエリ */
-@media (max-width: 600px) {
-    .table-container {
-        margin: 10px; /* スマホ向けにマージンを調整 */
-        padding: 8px; /* 内部の余白を少し減らす */
+    .container{
+        position: absolute;
+            top: 60px;
+            right: 50px;
+            border: 5px solid rgb(61, 45, 47); /* テーブルの可愛い枠線 */
+            border-radius: 15px; /* 角を丸くする */
+            padding: 20px; /* 内側の余白を追加 */
+            width: 25%; 
+            height: 80px; 
+    }
+    .image-size{
+        width: 200px;
+      height: 200px;
+    }
+    .left{
+        margin-left: 100px;
+    }
+    .center{
+        margin-left: 300px;
     }
 
-    table.container td {
-        padding: 6px; /* セルのパディングを調整 */
+    .cute-font {
+            font-family: "MS Pゴシック",sans-serif;
+            font-size: 24px; /* フォントサイズを大きく */
+            color: #1f191c; 
+        }
+    
+       
+        .large-select {
+            width: 200px; /* プルダウンの幅を大きく */
+            height: 30px; /* プルダウンの高さを大きく */
+        }
+        .cart{
+            width: 200px; /* プルダウンの幅を大きく */
+            height: 30px; /* プルダウンの高さを大きく */
+
+        }
+        .align-left {
+        text-align: left; /* テーブルセル内で左寄せ */
     }
-}
+    .left-text {
+        text-align: left; /* テーブルセル内で左寄せ */
+    }
+        
+
 
 </style>
 <body>
@@ -48,25 +66,26 @@ table.container td {
 
   <div th:replace="fragmentC::headerC"></div>
 
-  <div>
-    <p><span th:text="${product.productName}"></span></p>
-
+  <table class="left">
+    <tr><td><h2><span th:text="${product.productName}"></span></h2></td></tr>
+  </table>
+  <table class="center">
+    <tr><td><img th:src="@{/img/__${product.imageUrl}__}"  class="image-size" ></td></tr>
+ </table>
 <div class="table-container">
 <table class="container">
-   <tr> 
+   <tr class="left-text"> 
         <td>
-            <p><span th:text="${product.price}"></span></p>円
+            <p class="cute-font"><span th:text="${product.price}"></span>円</p>
         </td>
     </tr>
+    
+    
+    
     <tr>
-        <td>
-            数量
-        </td>
-    </tr>
-   
-    <tr>
-        <td>
-            <select id = "quantities" name="quantity">
+        <td><p class="align-left">数量</p><br>
+            <select id = "quantities" name="quantity"  class="large-select">
+               
                 <option th:each="num : ${quantities}"
                     th:value="${num}"
                     th:text="${num}"
@@ -77,12 +96,12 @@ table.container td {
     </tr>
     <tr>
         <td>
-            <input type="submit" value="カートに入れる">
+            <input type="submit" class="cart" value="カートに入れる">
         </td>
     </tr>
 
 
-    <p><span th:text="${product.productStock.quantity}"></span></p>
+    <!-- <p><span th:text="${product.productStock.quantity}"></span></p> -->
 </table>
 </div>
 
