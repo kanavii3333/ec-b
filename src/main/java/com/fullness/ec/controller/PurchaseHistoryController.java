@@ -23,7 +23,7 @@ import java.util.List;
 @SessionAttributes("orders")
 @Controller
 @RequestMapping("/customer/history")
-public class SearchPurchaseHistoryController {
+public class PurchaseHistoryController {
     @Autowired OrderServiceImpl service;
     @Autowired ProductService productService;
     @GetMapping("/list")

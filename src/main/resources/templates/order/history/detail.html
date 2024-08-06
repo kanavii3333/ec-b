@@ -45,7 +45,8 @@
           <td th:text="${detail.count}"></td>
         </tr>
       </table>
-      <form th:action="@{/customer/history/list}" method="get"><input type="submit" value="戻る"></form>
+      <br>
+      <form th:action="@{/customer/history/list}" method="get"><input type="submit" value="戻る" style="color: white; background-color: #007bff;border: 2px solid transparent;border-radius: 5px;width:50%"></form>
   <div th:replace="fragmentC::footerC"></div>
 </body>
 </html>
