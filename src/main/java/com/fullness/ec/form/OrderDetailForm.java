@@ -7,7 +7,9 @@ public class OrderDetailForm {
    private Integer orderDetailId;
    private Integer orderId;
    private Integer productId;
-   private Integer count;
+   private String productName;
+   private Integer price;
+   private Integer count; //買いたい個数
    private Integer customerId;
    private Integer stock;
 }

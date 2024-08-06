@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品詳細画面</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<style>
+/* テーブルを右上に固定 */
+.table-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px; /* 必要に応じて調整 */
+    border: 1px solid #0b0a0a; /* 枠線のスタイル */
+    border-radius: 4px; /* 角の丸み */
+    padding: 10px; /* 内部の余白 */
+    background-color: #fff; /* 背景色 */
+}
+
+/* テーブルのスタイル */
+table.container {
+    border-collapse: collapse;
+    width: auto;
+}
+
+table.container td {
+    border: none; /* セルの枠線を非表示 */
+    padding: 8px; /* セル内の余白 */
+}
+
+/* スマホ向けのメディアクエリ */
+@media (max-width: 600px) {
+    .table-container {
+        margin: 10px; /* スマホ向けにマージンを調整 */
+        padding: 8px; /* 内部の余白を少し減らす */
+    }
+
+    table.container td {
+        padding: 6px; /* セルのパディングを調整 */
+    }
+}
+
+</style>
+<body>
+   
+
+  <div th:replace="fragmentC::headerC"></div>
+
+  <div>
+    <p><span th:text="${product.name}"></span></p>
+
+<div class="table-container">
+<table class="container">
+   <tr> 
+        <td>
+            <p><span th:text="${product.price}"></span></p>円
+        </td>
+    </tr>
+    <tr>
+        <td>
+            数量
+        </td>
+    </tr>
+   
+    <tr>
+        <td>
+            <select id = "quantities" name="quantity">
+                <option th:each="num : ${quantities}"
+                    th:value="${num}"
+                    th:text="${num}"
+                    th:selected="${num == quantity}">
+                </option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="カートに入れる">
+        </td>
+    </tr>
+
+
+    <p><span th:text="${product.prouctStock().quantity}"></span></p>
+</table>
+</div>
+
+
+
+  <div th:replace="fragmentC::footerC"></div>
+</body>
+</html>
