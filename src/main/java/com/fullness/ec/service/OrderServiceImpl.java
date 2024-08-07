@@ -52,10 +52,10 @@ public class OrderServiceImpl implements OrderService {
         return productStock;
     }
 
-    @Override
-    public void getStockByOrderDetailForm(OrderDetailForm orderDetailForm) {
-        stockRepository.selectByProductId(orderDetailForm.getProductId());
-    }
+    // @Override
+    // public void getStockByOrderDetailForm(OrderDetailForm orderDetailForm) {
+    //     stockRepository.selectByProductId(orderDetailForm.getProductId());
+    // }
 
     @Override
     public List<PaymentMethod> getPaymentMethodList() {
@@ -91,7 +91,8 @@ public class OrderServiceImpl implements OrderService {
         }
         return new PageImpl<>(orders, pageable, total);
     }
-
+    
+    @Override
     public Page<Order> getOrderListForAdmin(Pageable pageable,Timestamp date,Integer customerId) {
         Integer total = orderRepository.countOrder(customerId);
         List<Order> orders;
