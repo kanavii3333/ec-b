@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,11 +28,11 @@
             <div style="display: flex; align-items: center; flex-shrink: 0;">
                 <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
                 <a href="/customer/purchaseproduct/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
-                <div th:if="${#authentication==null or #authorization.expression('hasAuthority(''CUSTOMER'')')}">
+                <div sec:authorize="!hasRole('CUSTOMER')">
                     <a href="#" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
                     <a href="/customer/login" style="color: rgb(220, 220, 220);text-decoration: none;">ログイン</a>
                 </div>
-                <div th:if="${#authentication!=null and #authorization.expression('hasAuthority(''CUSTOMER'')')}">
+                <div sec:authorize="hasRole('CUSTOMER')">
                     <a href="/customer/history/list" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">購入履歴</a>
                     <a href="/customer/logout" style="color: rgb(220, 220, 220);text-decoration: none;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
                 </div>
