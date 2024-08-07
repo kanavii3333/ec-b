@@ -71,11 +71,17 @@ public class OrderServiceImpl implements OrderService {
 
         Integer generatedKey = order.getOrderId();
 
+        ProductStock productStock;
         for (OrderDetail orderDetail : order.getOrderDetailList()) {
             orderDetail.setCustomerId(orderForm.getCustomerId());
             orderDetail.setOrderId(generatedKey);
             orderDetailRepository.insert(orderDetail);
+            productStock = stockRepository.selectByProductId(orderDetail.getProduct().getProductId());
+            productStock.setQuantity(productStock.getQuantity() - orderDetail.getCount());
+            stockRepository.update(productStock);
         }
+        
+        stockRepository.update(null);
 
     }
 
