@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fullness.ec.entity.Customer;
 import com.fullness.ec.entity.EmployeeAccount;
 import com.fullness.ec.form.CustomerForm;
+import com.fullness.ec.helper.CustomerConverter;
 import com.fullness.ec.helper.EmployeeConverter;
 import com.fullness.ec.repository.CustomerRepository;
 
@@ -34,10 +35,10 @@ public class CustomerServiceImpl implements CustomerService{
     };
 
     @Override
-    public void registerCustomer(CustomerForm customer){
-        //    CustomerAccount customerAccount = CustomerConverter.converterCustomerFormAccountToEmployee(customer);
-        //    customerAccount.setPassword(passwordEncoder.encode(customerAccount.getPassword()));
-        //    customerRepository.insert(customerAccount);
+    public void registerCustomer(CustomerForm customerForm){
+           Customer customer = CustomerConverter.convertToEntity(customerForm);
+           customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+           customerRepository.insert(customer);
     }
 
     public List<Customer> getCustomerList() {
