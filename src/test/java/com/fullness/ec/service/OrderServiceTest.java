@@ -4,17 +4,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import java.time.ZonedDateTime;
+import java.sql.Timestamp;
+import org.assertj.core.api.ZonedDateTimeAssert;
+import org.checkerframework.checker.units.qual.Time;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-
-
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.jdbc.Sql;
 
 import com.fullness.ec.entity.PaymentMethod;
 import com.fullness.ec.entity.ProductStock;
-
+import com.fullness.ec.form.OrderDetailForm;
+import com.fullness.ec.repository.OrderRepository;
 import com.fullness.ec.repository.ProductRepository;
 
 @SpringBootTest
@@ -33,6 +39,12 @@ public class OrderServiceTest {
 
     @Test
     @Sql("/sql/data2.sql")
+    void getStockByOrderDetailFormTest(){
+        
+    }
+
+    @Test
+    @Sql("/sql/data2.sql")
     void getPaymentMethodListTest(){
         List<PaymentMethod> payment=orderService.getPaymentMethodList();
         assertEquals(1, payment.size());
@@ -41,9 +53,15 @@ public class OrderServiceTest {
     // @Sql("/sql/data2.sql")
     // void getOrderListTest(){
     //     Pageable pageable = PageRequest.of(1, 1);
-
-    //     assertEquals(new PageImpl<>(productRepository.selectByPage(pageable, null),pageable,25), orderService.getOrderList(pageable));
+    //     orderService.getOrderList(pageable);
     // }
 
+    // @Test
+    // @Sql("/sql/data2.sql")
+    // void getOrderListForAdminTest(){
+    //     Pageable pageable = PageRequest.of(1, 25);
+    //     // Timestamp date=
+    //     assertEquals(new PageImpl<>(OrderRepository.countOrder(1), orderService.getOrderListForAdmin(pageable,Timestamp.from(ZonedDateTime.now().toInstant()),1));
+    // }
 
 }
