@@ -7,19 +7,18 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import jakarta.servlet.http.HttpSession;
 
-
 @Controller
 @RequestMapping("admin")
 public class AccountLoginController {
 
     @GetMapping("login")
-    public String form(){
+    public String form() {
         return "login";
     }
 
     @GetMapping("menu")
-    public String login(HttpSession session,SessionStatus sessionStatus){
-        //メニュー遷移したときにセッションを破棄する
+    public String login(HttpSession session, SessionStatus sessionStatus) {
+        // メニュー遷移したときにセッションを破棄する
         session.removeAttribute("employeeForm");
         session.removeAttribute("employeeList");
         session.removeAttribute("product");
@@ -29,12 +28,12 @@ public class AccountLoginController {
         session.removeAttribute("productCategory");
         session.removeAttribute("products");
         session.removeAttribute("filename");
-         //sessionStatus.setComplete();
+        // sessionStatus.setComplete();
         return "menu";
     }
 
     @GetMapping("logout")
     public String logout() {
-        return "redirect:menu";
+        return "redirect:/admin/menu";
     }
 }
