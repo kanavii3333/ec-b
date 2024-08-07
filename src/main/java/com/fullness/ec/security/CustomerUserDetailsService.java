@@ -17,7 +17,7 @@ public class CustomerUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String address) throws UsernameNotFoundException {
         Customer customer = repository.selectByMailAddress(address);
         if(customer==null) throw new UsernameNotFoundException("ユーザーが存在しません");
-        return new CustomerUserDetails(customer, AuthorityUtils.createAuthorityList("CUSTOMER")) {
+        return new CustomerUserDetails(customer, AuthorityUtils.createAuthorityList("ROLE_CUSTOMER")) {
         };
     }
     
