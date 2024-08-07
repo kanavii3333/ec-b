@@ -21,6 +21,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
     public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
-        resolvers.add(new CustomExceptionHundler());
+        //resolvers.add(new CustomExceptionHundler());
     }
 }

@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-    <div th:replace="fragment::header"></div>
+    <div th:replace="fragmentC::headerC"></div>
     <div>
         <h1>アカウント登録</h1>
         <form th:action="@{/customer/registercustomer/confirm}" method="post" th:object="${customerForm}">
@@ -97,6 +97,6 @@
             
         </form>
     </div>
-    <div th:replace="fragment::footer"></div>
+    <div th:replace="fragmentC::footerC"></div>
 </body>
 </html>
