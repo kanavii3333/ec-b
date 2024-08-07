@@ -12,7 +12,7 @@ package repository{
 
     class OrderRepository{
         +insert(order:Order):void
-        +selectByDateOrUserName(date:String,userName:String)
+        +selectByDateOrUsername(date:String,userName:String)
     }
 
     class ProductRepository{

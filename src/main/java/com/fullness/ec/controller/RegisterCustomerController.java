@@ -22,6 +22,8 @@ import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.CustomerForm;
 import com.fullness.ec.form.CustomerFormValidator;
 import com.fullness.ec.form.OrderDetailFormValidator;
+import com.fullness.ec.form.UpdateProductForm;
+import com.fullness.ec.helper.ProductConverter;
 import com.fullness.ec.service.CustomerServiceImpl;
 
 @SessionAttributes("customerForm")
@@ -43,8 +45,13 @@ public class RegisterCustomerController {
     @Autowired CustomerServiceImpl service;
 
     @GetMapping("input")
-    public String input(){
-        return "/customer/register/input";
+    public String input(@ModelAttribute("customerForm") CustomerForm customerForm, Model model){
+         Object error = model.getAttribute("org.springframework.validation.BindingResult.customerForm");
+         if (error == null) {
+            model.addAttribute("customerForm", customerForm);
+        }
+
+        return "customer/register/input";
     }
 
     @PostMapping("confirm")
@@ -58,12 +65,12 @@ public class RegisterCustomerController {
             return "redirect:/customer/registercustomer/input";
         }
         model.addAttribute("customerForm", customerForm);
-        return "/customer/register/confirm";
+        return "customer/register/confirm";
     }
 
     @GetMapping("confirm")
     public String confirmGet() {
-                return "/customer/register/confirm";
+                return "customer/register/confirm";
     }
 
     @GetMapping("execute")
@@ -79,6 +86,6 @@ public class RegisterCustomerController {
         if (customerForm.getCustomerName() == null)
             return "redirect:/admin/menu";
         sessionStatus.setComplete();
-        return "/customer/register/complete";
+        return "customer/register/complete";
     }
 }

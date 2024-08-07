@@ -14,7 +14,7 @@ public class CustomerConverter {
         customer.setAddress2(customerForm.getCustomerAddress2());
         customer.setPhone(customerForm.getCustomerPhoneNumber());
         customer.setMailAddress(customerForm.getCustomerMailAdress());
-        customer.setUsername(customerForm.getCustomerUserName());
+        customer.setUsername(customerForm.getCustomerUsername());
         customer.setPassword(customerForm.getCustomerPassword());
         customer.setRegisteredDate(Timestamp.from(customerForm.getCustomerRegisterDate().toInstant()));
         return customer;
