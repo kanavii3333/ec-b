@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>顧客アカウント登録(完了)画面</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+
+</head>
+<body>
+    <div th:replace="fragmentC::headerC"></div>
+    <div>
+    <h1>アカウント登録（完了）</h1>
+
+    <br>
+    <p>登録が完了しました。</p>
+    <br>
+
+
+    <table style="margin: 0 auto;">
+        <tr>
+            <td style="width:210px;">
+                <form th:action="@{/customer/top}" method="get">
+                    <input type="submit" value="トップに戻る" style="color: white; background-color: #007bff;border: 2px solid transparent;border-radius: 5px;width:200px;height:30px;">
+                </form>
+            </td>
+            <td style="width:210px;">
+                <form th:action="@{/customer/login}" method="get">
+                    <input type="submit" value="ログイン" style="color: white; background-color: #007bff;border: 2px solid transparent;border-radius: 5px;width:200px;height:30px;">
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+    <div th:replace="fragmentC::footerC"></div>
+</body>
+</html>
