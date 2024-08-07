@@ -11,17 +11,18 @@
     <div th:fragment="header" id="header">
         <h3><a href="/admin/menu">文具/雑貨販売システム</a></h3>
         <!-- <div th:if="${#authorization.expression('isAuthenticated()')}"> -->
-        <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}">
+        <!-- <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')')}"> -->
+        <div sec:authorize="hasRole('ADMIN')">
             <form th:action="@{'/admin/logout'}" method="post">
                 <a href="/admin/productlist">商品情報メンテナンス</a>
                 <a href="/admin/registerproductcategory/input">商品カテゴリ登録</a>
                 <a href="/admin/history">購入履歴検索</a>
                 <a href="/admin/registeraccount/input">アカウント登録</a>
-                <input type="submit" value="ログアウト">
+                <input type="submit" value="ログアウト"s>
             </form>
         </div>
         <!-- <div th:if="${not #authorization.expression('isAuthenticated()')}"> -->
-        <div th:if="${not #authorization.expression('hasAuthority(''ADMIN'')')}">
+        <div sec:authorize="!hasRole('ADMIN')">
             <a href="/admin/login">ログイン</a>
         </div>
     </div>
