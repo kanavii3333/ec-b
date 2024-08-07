@@ -22,6 +22,7 @@ import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.OrderDetailForm;
 import com.fullness.ec.form.OrderForm;
 import com.fullness.ec.helper.OrderConverter;
+import com.fullness.ec.repository.OrderDetailRepository;
 import com.fullness.ec.repository.OrderRepository;
 import com.fullness.ec.repository.OrderStatusRepository;
 import com.fullness.ec.repository.StockRepository;
@@ -40,8 +41,10 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository;
 
     @Autowired
-    StockRepository stockRepository;
+    OrderDetailRepository orderDetailRepository;
 
+    @Autowired
+    StockRepository stockRepository;
 
     @Override
     public ProductStock getStockByProductId(Integer productId) {
@@ -62,17 +65,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void registerOrder(List<OrderDetailForm> orderDetailForm, OrderForm orderForm) {
-        // Order order = orderConverter.convertToEntity(orderForm);
+        Order order = OrderConverter.convertToEntity(orderForm,orderDetailForm);
 
-        // orderRepository.insert(order);
+        orderRepository.insert(order);
 
-        // for (OrderDetailForm orderDetailFormList : orderDetailForm) {
-        // OrderDetail orderDetail =
-        // orderConverter.convertToEntity(orderDetailFormList);
-        // orderRepository.insertOrderDetail(orderDetail);
-        // }
+        Integer generatedKey = order.getOrderId();
 
-        // orderRepository.insertOrderStatus(String status);
+        for (OrderDetail orderDetail : order.getOrderDetailList()) {
+            orderDetail.setCustomerId(orderForm.getCustomerId());
+            orderDetail.setOrderId(generatedKey);
+            orderDetailRepository.insert(orderDetail);
+        }
 
     }
 

@@ -15,10 +15,14 @@
         <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}" class="error">
             <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
         </div>
-        <form th:action="@{/front/purchaseproduct/confirm}" method="post" th:object="${orderDetailFormList}">
-            <form th:action="@{/front/productllist}" method="get" th:object="${orderDetailFormList}"></form>
-                <input type="button" value="買い物を続ける" >
-            
+
+        <form id="continueShoppingForm" th:action="@{/customer/searchproduct}" method="get">
+            <input type="hidden" id="ContinueShoppingData" name="orderDetailFormList" />
+            <input type="submit" value="買い物を続ける" onclick="submitContinueForm()" />
+        </form>
+
+        <form id="mainForm" th:action="@{/customer/purchaseproduct/confirm}" method="post">
+        
              <table  style="margin: 0 auto;" border="1">
                 <tr>
                     <th>商品名</th>
@@ -30,25 +34,41 @@
                     <td th:text="${od.productName}"></td>
                     <td th:text="${#numbers.formatInteger(od.price, 3, 'COMMA')} + '円'"></td>
                         <td>
-                            <select th:field="*{count}">
-                                <option th:each="i : ${#numbers.sequence(1, ${quantity})}" th:value="${od.count}" th:text="${i}"></option>
+                            <select name="countBuy[]">
+                                <option th:each="i : ${#numbers.sequence(1, od.stock)}" th:value="${i}" th:text="${i}" th:selected="${i == od.count}"></option>
                             </select>
                         </td>
-                    <td>
-                      <form
-                          th:action="@{/front/purchaseproduct/delete}"
-                          method="get">
-                          <input type="hidden" name="orderDetailForm" th:value="${od}">
-                          <button type="submit" class="btn btn-danger">削除</button>
-                      </form>
-                    </td>         
+                        <td>
+                            <button type="button" class="btn btn-danger" th:attr="onclick='deleteProduct(' + ${od.productId} + ')'">削除</button>
+                        </td>    
                   </tr>
                 </table>
             
             <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
-                </form>
+
             <input type="submit" value="購入確認へ">
         </form>
+        <form id="deleteForm" th:action="@{/customer/purchaseproduct/delete}" method="get" style="display: none;">
+            <input type="hidden" name="productId" id="deleteProductId">
+        </form>
+        <script>
+            document.getElementById('mainForm').addEventListener('submit', function() {
+                var data = JSON.stringify(/* データ取得のロジック */);
+                document.getElementById('hiddenData').value = data;
+            });
+
+            document.getElementById('continueShoppingForm').addEventListener('submit', function() {
+                var data = JSON.stringify(/* データ取得のロジック */);
+                document.getElementById('continueShoppingData').value = data;
+            });
+
+            function deleteProduct(productId) {
+                if (confirm('本当に削除しますか？')) {
+                    document.getElementById('deleteProductId').value = productId;
+                    document.getElementById('deleteForm').submit();
+                }
+            }
+        </script>
     </div>
     
     <div th:replace="fragmentC::footerC"></div>
