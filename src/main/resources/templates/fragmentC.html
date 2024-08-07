@@ -27,12 +27,12 @@
             <!-- 右側部分 -->
             <div style="display: flex; align-items: center; flex-shrink: 0;">
                 <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
-                <a href="/customer/purchase/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
-                <div th:if="${not #authorization.expression('hasAuthority(''CUSTOMER'')')}">
+                <a href="/customer/purchaseproduct/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
+                <div th:if="${#authentication==null or #authorization.expression('hasAuthority(''CUSTOMER'')')}">
                     <a href="#" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
                     <a href="/customer/login" style="color: rgb(220, 220, 220);text-decoration: none;">ログイン</a>
                 </div>
-                <div th:if="${#authorization.expression('hasAuthority(''CUSTOMER'')')}">
+                <div th:if="${#authentication!=null and #authorization.expression('hasAuthority(''CUSTOMER'')')}">
                     <a href="/customer/history/list" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">購入履歴</a>
                     <a href="/customer/logout" style="color: rgb(220, 220, 220);text-decoration: none;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
                 </div>
