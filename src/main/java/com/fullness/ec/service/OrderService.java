@@ -14,6 +14,7 @@ import com.fullness.ec.entity.ProductStock;
 import com.fullness.ec.form.OrderDetailForm;
 import com.fullness.ec.form.OrderForm;
 import com.fullness.ec.repository.OrderStatusRepository;
+import java.sql.Timestamp;
 
 public interface OrderService {
 
@@ -38,6 +39,6 @@ public interface OrderService {
     // Page<Order> selectPurchaseHistoryByPage(Pageable pageable, LocalDateTime
     // date, Integer customerId);
 
-    void getStockByOrderDetailForm(OrderDetailForm orderDetailForm);
-
+    // void getStockByOrderDetailForm(OrderDetailForm orderDetailForm);
+    Page<Order> getOrderListForAdmin(Pageable pageable,Timestamp date,Integer customerId);
 }

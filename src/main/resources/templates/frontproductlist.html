@@ -24,10 +24,20 @@
     
     background-color: #7bbe34;
   } */
+        /* .fullness{
+          width: 100%;
+        /* ボックスの幅にパディングやボーダーを含める */
+/* 
+        } */
+   
 
-
-
-
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
         .product-list {
             display: flex;
             flex-wrap: wrap;
@@ -112,9 +122,9 @@
             color: #6c757d;
         }
 </style>
-<body>
+<body style="background-color: white; color: black; font-family: Arial, sans-serif; margin: 0; padding: 0;">
 
-  <div th:replace="fragmentC::headerC"></div>
+  <div th:replace="fragmentC::headerC" class="fullness"></div>
   
   <div>
     <h1> カテゴリ別商品検索画面 </h1>
