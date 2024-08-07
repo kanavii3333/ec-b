@@ -46,7 +46,7 @@ public class SecurityConfig {
               .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll() // エラー画面は認証対象外
               .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // 静的リソースは認証対象外
               .requestMatchers("/admin/login", "/admin/menu").permitAll() // ログイン画面は認証対象外
-              .requestMatchers("/admin/**").hasAnyAuthority("ADMIN") // 認証対象
+              .requestMatchers("/admin/**").hasRole("ADMIN") // 認証対象
               .anyRequest()
               .authenticated() // その他は認証対象
           );
@@ -101,7 +101,7 @@ public class SecurityConfig {
               .requestMatchers("/customer/login", "/customer/top", "/customer/productDetails",
                   "/customer/searchproduct")
               .permitAll() // ログイン画面は認証対象外
-              .requestMatchers("/customer/**").hasAuthority("CUSTOMER")
+              .requestMatchers("/customer/**").hasRole("CUSTOMER")
               .anyRequest()
               .authenticated() // その他は認証対象
           );
