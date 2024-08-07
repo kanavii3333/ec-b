@@ -26,7 +26,7 @@ public class CustomerConverterTest {
         customerForm.setCustomerAddress2("aaa");
         customerForm.setCustomerPhoneNumber("00-0000-0000");
         customerForm.setCustomerMailAdress("aaa@email");
-        customerForm.setCustomerUserName("sato1");
+        customerForm.setCustomerUsername("sato1");
         customerForm.setCustomerPassword("sato1");
         ZonedDateTime specificDate = ZonedDateTime.of(2024, 8, 6, 12, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
         customerForm.setCustomerRegisterDate(specificDate);

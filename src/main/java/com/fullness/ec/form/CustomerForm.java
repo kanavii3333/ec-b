@@ -41,9 +41,9 @@ public class CustomerForm {
    private String customerMailAdress;
 
    @NotBlank
-   @Length(min=5,max=20, message = "{length.customerUserName}")
-   @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "{pattern.customerUserName}")
-   private String customerUserName; 
+   @Length(min=5,max=20, message = "{length.customerUsername}")
+   @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "{pattern.customerUsername}")
+   private String customerUsername; 
 
    @NotBlank
    @Length(min=5,max=20, message = "{length.customerPassword}")

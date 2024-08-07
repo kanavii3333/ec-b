@@ -12,7 +12,7 @@ package form{
         -customerAddress2: String
         -customerPhoneNumber: String
         -customerMailAdress:String
-        -customerUserName: String
+        -customerUsername: String
         -customerPassword: String
         -customerRegisterDate: String
     }
