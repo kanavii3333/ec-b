@@ -11,47 +11,49 @@
     <div>
         <h1>アカウント登録(確認)</h1>
         <form th:action="@{/customer/registercustomer/confirm}" method="post" th:object="${CustomerForm}">
-            <div class="error">
-                <p th:if="${#fields.hasErrors('global')}" th:each="error : ${#fields.errors('global')}" th:text="${error}">
-                </p>
-            </div>
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:left;width:20%;">氏名</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerName}" style="width:90%;">
+                    <td style="text-align:left;width:20%;" th:text="*{customerName}" >
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:left;width:20%;">氏名カナ</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerNameKana}" style="width:90%;">
+                    <td style="text-align:left;width:20%;" th:text="*{customerNameKana}">
                     </td>
                 </tr>
 
                 <tr>
                     <td style="text-align:left;width:20%;">住所１</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerAddress1}" style="width:90%;">                    </td>
+                    <td style="text-align:left;width:20%;" th:text="*{customerAddress1}">                    
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align:left;width:20%;">住所２</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerAddress2}" style="width:90%;">                    </td>
+                    <td style="text-align:left;width:20%;" th:text="*{customerAddress2}">
+                    </td>
                 </tr>
 
                 <tr>
                     <td style="text-align:left;width:20%;">電話番号</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerPhoneNumber}" style="width:90%;">                    </td>
+                    <td style="text-align:left;width:20%;" th:text="*{customerPhoneNumber}">
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align:left;width:20%;">メールアドレス</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerMailAdress}" style="width:90%;">                    </td>
+                    <td style="text-align:left;width:20%;" th:text="*{customerMailAdress}">
+                    </td>
                 </tr>
 
                 <tr>
                     <td style="text-align:left;">アカウント名</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerUsername}" style="width:90%;">                    </td>
+                    <td style="text-align:left;width:20%;" th:text="*{customerUsername}">
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align:left;">パスワード</td>
-                    <td style="text-align:left;width:20%;" th:text="*{customerPassword}" style="width:90%;">                    </td>
+                    <td style="text-align:left;width:20%;" th:text="*{customerPassword}">
+                    </td>
                 </tr>
 
             
