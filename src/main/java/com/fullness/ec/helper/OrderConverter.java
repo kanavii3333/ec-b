@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.fullness.ec.entity.Order;
 import com.fullness.ec.entity.OrderDetail;
+import com.fullness.ec.entity.OrderStatus;
 import com.fullness.ec.entity.PaymentMethod;
 import com.fullness.ec.entity.Product;
 import com.fullness.ec.form.OrderDetailForm;
@@ -28,6 +29,8 @@ public class OrderConverter {
                     orderDetail.setProduct(product);
                     orderDetailList.add(orderDetail);
                 }
+            order.setOrderStatus(new OrderStatus());
+            order.getOrderStatus().setOrderStatusId(orderForm.getOrderStatusId());
             order.setOrderDetailList(orderDetailList);
             order.setPayMethod(new PaymentMethod());
             order.getPayMethod().setPayMethodId(orderForm.getPaymentMethodId());

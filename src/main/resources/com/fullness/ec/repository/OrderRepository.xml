@@ -94,7 +94,7 @@
         select id as payMethodId, name as payMethodName from payment_method
     </select>
 
-    <insert id="insert" parameterType="Order">
+    <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
         <selectKey keyProperty="orderId" resultType="Integer" order="BEFORE">
             select nextval('orders_id_seq')
         </selectKey>

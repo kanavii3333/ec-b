@@ -15,9 +15,10 @@
         <div th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] != null}" class="error">
             <span th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}"></span>
         </div>
-        <form th:action="@{/front/purchaseproduct/confirm}" method="post" th:object="${orderDetailFormList}">
-            <form th:action="@{/front/productllist}" method="get" th:object="${orderDetailFormList}"></form>
-                <input type="button" value="買い物を続ける" >
+        <form th:action="@{/customer/searchproduct}" method="get">
+            <input type="submit" value="買い物を続ける">
+        </form>
+        <form th:action="@{/customer/purchaseproduct/execute}" method="post" th:object="${orderDetailFormList}">
             
              <table  style="margin: 0 auto;" border="1">
                 <tr>
@@ -31,12 +32,29 @@
                     <td th:text="${od.count}"></td>
                   </tr>
                 </table>
-                <h2>合計：</h2>
+            <h2>合計：<a th:text="${sum}"></a></h2>
+            <br>
+            <h2>支払方法</h2>
+            <br>
+
+            <select name="paymentMethod">
+                <option th:each="paymentMethod : ${paymentMethods}" th:id="paymentMethod" th:name="paymentMethod" th:value="${paymentMethod.payMethodId}">[[${paymentMethod.payMethodName}]]</option>
+            </select>
             
             <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/> -->
-                </form>
-            <input type="submit" value="購入確認へ">
-        </form>
+
+            <p>
+                
+                <a>
+                    <input type="submit" value="購入確認へ">
+                    </form>
+                    <a>
+                        <form th:action="@{/customer/purchaseproduct/input}" method="get">
+                            <input type="submit" value="戻る">
+                        </form>
+                    </a>
+                </a>
+            </p>
     </div>
     
     <div th:replace="fragmentC::footerC"></div>
