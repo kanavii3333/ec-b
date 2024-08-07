@@ -93,6 +93,11 @@
         .pagination .disabled span {
             color: #6c757d;
         }
+
+        .image_size{
+            width: 10px;
+        }
+
     </style>
 </head>
 <body style="background-color: white; color: black; font-family: Arial, sans-serif; margin: 0; padding: 0;">
@@ -130,7 +135,7 @@
         <div class="product-list">
             <!-- 商品カード -->
             <div th:each="product : ${products}" class="product-card">
-                <img th:src="@{/img/__${product.imageUrl}__}" alt="商品画像">
+                <img th:src="@{/img/__${product.imageUrl}__}" alt="商品画像" style="width: 220px;height: 220px;" >
                 <div class="content">
                     <h5 th:text="${product.productName}" style="font-size: 1.25rem; margin-bottom: 10px;">商品名</h5>
                     <p th:text="'¥' + ${product.price}" style="font-size: 1.1rem; color: #28a745; margin-bottom: 10px;">価格</p>
