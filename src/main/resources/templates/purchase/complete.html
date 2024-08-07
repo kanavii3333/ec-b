@@ -16,16 +16,22 @@
     <p>購入が完了しました。</p>
     <br>
 
-    <a>
-        <form th:action="@{/customer/history/list}" method="get">
-            <input type="submit" value="購入履歴を見る">
-        </form>
-    </a>
-    <a>
-        <form th:action="@{/customer/top}" method="get">
-            <input type="submit" value="トップに戻る">
-        </form>
-    </a>
+
+    <table style="margin: 0 auto;">
+        <tr>
+            <td style="width:210px;">
+                <form th:action="@{/customer/history/list}" method="get">
+                    <input type="submit" value="購入履歴を見る" style="color: white; background-color: #007bff;border: 2px solid transparent;border-radius: 5px;width:200px;height:30px;">
+                </form>
+            </td>
+            <td style="width:210px;">
+                <form th:action="@{/customer/top}" method="get">
+                    <input type="submit" value="トップに戻る" style="color: white; background-color: #007bff;border: 2px solid transparent;border-radius: 5px;width:200px;height:30px;">
+                </form>
+            </td>
+            
+        </tr>
+    </table>
 
 </div>
     <div th:replace="fragmentC::footerC"></div>
