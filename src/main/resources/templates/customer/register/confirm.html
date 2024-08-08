@@ -10,7 +10,7 @@
     <div th:replace="fragment::header"></div>
     <div>
         <h1>アカウント登録(確認)</h1>
-        <form th:action="@{/customer/registercustomer/confirm}" method="post" th:object="${CustomerForm}">
+        <form th:action="@{/customer/registercustomer/execute}" method="get" th:object="${customerForm}">
             <table style="margin: 0 auto;">
                 <tr>
                     <td style="text-align:left;width:20%;">氏名</td>
