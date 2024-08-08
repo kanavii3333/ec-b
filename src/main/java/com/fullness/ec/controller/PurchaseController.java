@@ -115,14 +115,11 @@ public class PurchaseController {
     @GetMapping("confirm")
     public String confirmGet(@ModelAttribute("orderDetailFormList")List<OrderDetailForm> orderDetailFormList,
             Model model) {
-        Integer sum = 0;
-        for(OrderDetailForm od : orderDetailFormList){
-            sum = sum + (od.getPrice() * od.getCount());
-        }
-                
-        model.addAttribute("sum", sum);
-        model.addAttribute("orderDetailFormList", orderDetailFormList);
-        return "purchase/confirm";
+                if (orderDetailFormList.isEmpty()){                
+                    return "redirect:/customer/top";
+                }else{
+        return "redirect:/customer/purchaseproduct/input";
+                }
     }
 
     @PostMapping("execute")
