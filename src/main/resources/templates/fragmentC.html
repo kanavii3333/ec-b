@@ -30,7 +30,7 @@
                     <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
                     <a href="/customer/purchaseproduct/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
                     <div sec:authorize="!hasRole('CUSTOMER')">
-                        <a href="#" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
+                        <a href="/customer/registercustomer/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
                         <a href="/customer/login" style="color: rgb(220, 220, 220);text-decoration: none;">ログイン</a>
                     </div>
                     <div sec:authorize="hasRole('CUSTOMER')">
@@ -40,7 +40,7 @@
                 </div>
             </form>
         </div>
-        <!-- カルーセル部分 -->
+
     </div>
     <div th:fragment="footerC" id="footerC" style="background-color: green; color: white; padding: 10px;">
         <div style="display: flex; align-items: flex-start;">

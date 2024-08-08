@@ -38,16 +38,6 @@ public class FrontSerchProductController {
     public String input(@ModelAttribute("categoryForm") CategoryForm form,
             @PageableDefault(page = 0, size = 12) Pageable pageable,
             Model model, HttpSession session) {
-        // 商品一覧遷移したときにセッションを破棄する
-        session.removeAttribute("employeeForm");
-        session.removeAttribute("employeeList");
-        session.removeAttribute("product");
-        session.removeAttribute("categoryForm");
-        session.removeAttribute("productForm");
-        session.removeAttribute("imageByte");
-        session.removeAttribute("productCategory");
-        session.removeAttribute("products");
-        session.removeAttribute("filename");
 
         Page<Product> products = service.selectProductByPage(pageable,
                 form.getProductCategoryId());

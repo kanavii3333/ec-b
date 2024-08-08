@@ -126,28 +126,30 @@
 
   <div th:replace="fragmentC::headerC" class="fullness"></div>
   
-  <div>
     <h1> カテゴリ別商品検索画面 </h1>
-    <table class="body">
-      <form th:action="@{/customer/searchproduct}" method="get">
-        <td class="padding">
-            商品検索
-        </td>
-        <td>
-          <select th:field="${categoryForm.productCategoryId}">
-            <option th:value="${null}">全商品</option>
-            <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}">[[${category.productCategoryName}]]</option>
-          </select>
-        </td>
-        <td>
-          <input type="submit" value="検索">  
-        </td>
-      </form>
-    </table>
-
     
     <div style="max-width: 1200px; margin: 20px auto; padding: 0 15px;">
       
+
+
+      <div style="background-color: green; color: white; display: flex; justify-content: space-between; align-items: center; padding: 10px;text-decoration: none;margin-bottom: 10px;">
+        <!-- 左側部分 -->
+        <div style="display: flex; align-items: center; flex-grow: 1; min-width: 0;">
+          商品検索
+        </div>
+        <!-- 右側部分 -->
+        <form th:action="@{/customer/searchproduct}" method="get">
+            <div style="display: flex; align-items: center; flex-shrink: 0;">
+                <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
+                <select th:field="${categoryForm.productCategoryId}">
+                  <option th:value="${null}">全商品</option>
+                  <option th:each="category : ${categoryList}" th:value="${category.productCategoryId}" th:text="${category.productCategoryName}"></option>
+                </select>
+                <input type="submit" value="検索" style="border: none;text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">  
+            </div>
+        </form>
+      </div>
+
       <div class="product-list">
           <!-- 商品カード -->
           <div th:each="product : ${products}" class="product-card">
@@ -159,7 +161,7 @@
                   th:action="@{/customer/productDetails}"
                   method="get">
                   <input type="hidden" name="productId" th:value="${product.productId}">
-                  <button type="submit" class="btn btn-warning">詳細</button>
+                  <button type="submit" class="btn btn-warning" style="border: none;text-decoration: none; color: white; background-color: #007bff; padding: 10px 15px; border-radius: 5px;">詳細</button>
               </form>
 
                   <!-- <a th:href="@{/customer/productDetail/{id}(id=${product.productId})}" 
@@ -169,6 +171,7 @@
               </div>
           </div>
       </div>
+    </div>
   </div>
   <ul th:if="${products.getTotalPages()>1}" class="pagination">
     <!-- 最初のページの場合はリンクを非活性化にし2ページ目以降はリンクを有効にする -->
