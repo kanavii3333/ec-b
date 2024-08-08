@@ -25,18 +25,20 @@
                 </form>
             </div>
             <!-- 右側部分 -->
-            <div style="display: flex; align-items: center; flex-shrink: 0;">
-                <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
-                <a href="/customer/purchaseproduct/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
-                <div sec:authorize="!hasRole('CUSTOMER')">
-                    <a href="#" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
-                    <a href="/customer/login" style="color: rgb(220, 220, 220);text-decoration: none;">ログイン</a>
+            <form th:action="@{/customer/logout}" method="post" name="logout"><form th:action="@{/customer/logout}" method="post" name="logout"></form>
+                <div style="display: flex; align-items: center; flex-shrink: 0;">
+                    <!-- <img src="a.jpeg" style="margin-right: 10px; max-height: 50px;"> -->
+                    <a href="/customer/purchaseproduct/input" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">🛒</a>
+                    <div sec:authorize="!hasRole('CUSTOMER')">
+                        <a href="#" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">アカウント登録</a>
+                        <a href="/customer/login" style="color: rgb(220, 220, 220);text-decoration: none;">ログイン</a>
+                    </div>
+                    <div sec:authorize="hasRole('CUSTOMER')">
+                        <a href="/customer/history/list" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">購入履歴</a>
+                        <a href="javascript:logout.submit()" style="color: rgb(220, 220, 220);text-decoration: none;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
+                    </div>
                 </div>
-                <div sec:authorize="hasRole('CUSTOMER')">
-                    <a href="/customer/history/list" style="color: rgb(220, 220, 220); margin-right: 10px;text-decoration: none;">購入履歴</a>
-                    <a href="/customer/logout" style="color: rgb(220, 220, 220);text-decoration: none;" th:text="'ログアウト (' + ${(#authentication.principal instanceof T(com.fullness.ec.security.CustomerUserDetails) ? #authentication.principal.customerName : '')} + 'さま)'"></a>
-                </div>
-            </div>
+            </form>
         </div>
         <!-- カルーセル部分 -->
     </div>
@@ -57,7 +59,7 @@
                 <div style="font-weight: bold;">|バックエンド</div>
                 <ul style="list-style-type: none; padding: 0; margin: 0;">
                     <li><a href="/admin/menu" style="color: white; text-decoration: none;">トップ</a></li>
-                    <li><a href="/admin/registeraccount" style="color: white; text-decoration: none;">社員アカウント登録</a></li>
+                    <li><a href="/admin/registercustomer" style="color: white; text-decoration: none;">社員アカウント登録</a></li>
                     <li><a href="/admin/login" style="color: white; text-decoration: none;">ログイン</a></li>
                     <li><a href="/admin/productlist" style="color: white; text-decoration: none;">商品メンテナンス</a></li>
                     <li><a href="/admin/registerproductcategory" style="color: white; text-decoration: none;">商品カテゴリ管理</a></li>
