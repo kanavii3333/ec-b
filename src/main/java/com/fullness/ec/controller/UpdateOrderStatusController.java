@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.entity.Order;
 import com.fullness.ec.entity.OrderStatus;
 import com.fullness.ec.service.OrderServiceImpl;
+
+import jakarta.servlet.http.HttpSession;
+
 import java.util.List;
 
-@SessionAttributes({ "order", "statusList" })
+@SessionAttributes({ "order", "statusList", "status"})
 @Controller
 @RequestMapping("/admin/updatestatus")
 public class UpdateOrderStatusController {
@@ -47,9 +51,14 @@ public class UpdateOrderStatusController {
         return "/order/updatestatus/confirm";
     }
 
+    @GetMapping("confirm")
+    public String confirm() {
+        return "/order/updatestatus/confirm";
+    }
+
     @PostMapping("execute")
     public String execute(@ModelAttribute("statusList") List<OrderStatus> statusList,
-            @ModelAttribute("order") Order order, @RequestParam("statusId") Integer statusId) {
+            @ModelAttribute("order") Order order, @RequestParam("statusId") Integer statusId, RedirectAttributes redirectAttributes) {
         order.getOrderStatus().setOrderStatusId(statusId);
         for (OrderStatus status : statusList) {
             if (status.getOrderStatusId() == statusId)
@@ -57,11 +66,14 @@ public class UpdateOrderStatusController {
             ;
         }
         service.updateStatus(order);
+
         return "redirect:/admin/updatestatus/complete";
     }
 
     @GetMapping("complete")
-    public String complete(@ModelAttribute("order") Order order, SessionStatus sessionStatus, Model model) {
+    public String complete(HttpSession session, SessionStatus sessionStatus, Model model) {
+        if(session.getAttribute("order")==null) return "redirect:/admin/menu";
+        Order order = (Order) session.getAttribute("order");
         model.addAttribute("order", order);
         sessionStatus.setComplete();
         return "/order/updatestatus/complete";
