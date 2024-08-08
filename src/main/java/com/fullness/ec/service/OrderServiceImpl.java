@@ -73,16 +73,15 @@ public class OrderServiceImpl implements OrderService {
 
         ProductStock productStock;
         for (OrderDetail orderDetail : order.getOrderDetailList()) {
-            orderDetail.setCustomerId(orderForm.getCustomerId());
+            productStock = stockRepository.selectByProductId(orderDetail.getProduct().getProductId());
+            if(productStock.getQuantity() - orderDetail.getCount() > 0){
+                orderDetail.setCustomerId(orderForm.getCustomerId());
             orderDetail.setOrderId(generatedKey);
             orderDetailRepository.insert(orderDetail);
-            productStock = stockRepository.selectByProductId(orderDetail.getProduct().getProductId());
             productStock.setQuantity(productStock.getQuantity() - orderDetail.getCount());
             stockRepository.update(productStock);
+            }    
         }
-        
-        stockRepository.update(null);
-
     }
 
     @Override
