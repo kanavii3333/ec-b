@@ -18,16 +18,15 @@ public class CustomerForm {
 
    @NotBlank
    @Length(min=2,max=20, message = "{length.customerNameKana}")
-   @Pattern(regexp = "^[ァ-ヶー]+$", message = "{pattern.customerNameKana}")
+   @Pattern(regexp = "^[ァ-ヶー ]+$", message = "{pattern.customerNameKana}")
    private String customerNameKana; 
 
    @NotBlank
    @Length(min=0,max=100, message = "{length.customerAddress}")
-   @Pattern(regexp = "^[A-Za-z0-9！＂＃＄％＆＇（）＊＋，−．／：；＜＝＞？＠［＼］＾＿｀｛｜｝〜Ａ-Ｚａ-ｚ０-９ぁ-ゖァ-ヶ一-龯]+$", message = "{pattern.customerAddress}")
+   @Pattern(regexp = "^[A-Za-z0-9!\"#$%&'()*+,-./:;<=>?@\\[\\]^_`{|}~ぁ-ゖァ-ヶ一-龯]+$", message = "{pattern.customerAddress}")
    private String customerAddress1; 
 
    @Length(min=0,max=100, message = "{length.customerAddress}")
-   @Pattern(regexp = "^[A-Za-z0-9！＂＃＄％＆＇（）＊＋，−．／：；＜＝＞？＠［＼］＾＿｀｛｜｝〜Ａ-Ｚａ-ｚ０-９ぁ-ゖァ-ヶ一-龯]+$", message = "{pattern.customerAddress}")
    private String customerAddress2; 
 
    @NotBlank
