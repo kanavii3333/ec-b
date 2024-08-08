@@ -89,22 +89,32 @@
     <form  th:action="@{/customer/purchaseproduct/input}" method="get" th:object="${orderDetailForm}">
     
     <tr>
-        <td><p class="align-left">数量</p>
-            <select id = "quantities" name="quantity"  class="large-select" th:field="*{count}">
-               
-                <option th:each="num : ${quantities}"
-                    th:value="${num}"
-                    th:text="${num}"
-                    th:selected="${num == 1}">
-                </option>
-            </select>
-        </td>
-    </tr>
-    <tr>
+
         <td>
-            <input type="submit" class="cart" value="カートに入れる">
+            
+            <div th:if="${#lists.size(quantities) == 0}">
+                <h2 class="error">在庫なし</h2>
+            </div>
+            <div th:unless="${#lists.size(quantities) == 0}">
+                <p class="align-left">数量</p>
+                <select id="quantities" name="quantity" class="large-select" th:field="*{count}">
+                    <option th:each="num : ${quantities}"
+                            th:value="${num}"
+                            th:text="${num}"
+                            th:selected="${num == 1}">
+                    </option>
+                </select>
+            </div>
         </td>
     </tr>
+    <div th:unless="${#lists.size(quantities) == 0}">
+        <tr>
+            
+            <td>
+                <input type="submit" class="cart" value="カートに入れる">
+            </td>
+        </tr>
+    </div>
 
 
     <!-- <p><span th:text="${product.productStock.quantity}"></span></p> -->
