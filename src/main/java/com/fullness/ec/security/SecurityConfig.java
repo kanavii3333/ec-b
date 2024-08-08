@@ -99,7 +99,7 @@ public class SecurityConfig {
               .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll() // エラー画面は認証対象外
               .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll() // 静的リソースは認証対象外
               .requestMatchers("/customer/login", "/customer/top", "/customer/productDetails",
-                  "/customer/searchproduct","/customer/registercustomer/**")
+                  "/customer/searchproduct","/customer/registercustomer/**","/customer/purchaseproduct/input")
               .permitAll() // ログイン画面は認証対象外
               .requestMatchers("/customer/**").hasRole("CUSTOMER")
               .anyRequest()
