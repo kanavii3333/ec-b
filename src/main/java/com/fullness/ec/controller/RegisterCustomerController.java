@@ -45,12 +45,7 @@ public class RegisterCustomerController {
     @Autowired CustomerServiceImpl service;
 
     @GetMapping("input")
-    public String input(@ModelAttribute("customerForm") CustomerForm customerForm, Model model){
-         Object error = model.getAttribute("org.springframework.validation.BindingResult.customerForm");
-         if (error == null) {
-            model.addAttribute("customerForm", customerForm);
-        }
-
+    public String input(){
         return "customer/register/input";
     }
 
@@ -59,9 +54,8 @@ public class RegisterCustomerController {
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes, Model model){
         if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customerForm",bindingResult);
             redirectAttributes.addFlashAttribute("customerForm", customerForm);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.customerForm",
-                     bindingResult);
             return "redirect:/customer/registercustomer/input";
         }
         model.addAttribute("customerForm", customerForm);

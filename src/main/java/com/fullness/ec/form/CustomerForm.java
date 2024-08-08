@@ -13,7 +13,7 @@ import lombok.Data;
 public class CustomerForm {
    @NotBlank
    @Length(min=2,max=20, message = "{length.customerName}")
-   @Pattern(regexp = "^[a-zA-Z0-9()\u4E00-\u9FAF\u3040-\u309F\u30A0-\u30FF]+$", message = "{pattern.customerName}")
+   @Pattern(regexp = "^[a-zA-Z0-9()\u4E00-\u9FAF\u3040-\u309F\u30A0-\u30FF ]+$", message = "{pattern.customerName}")
    private String customerName; 
 
    @NotBlank
