@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fullness.ec.form.CategoryForm;
 import com.fullness.ec.form.CategoryFormValidator;
+import com.fullness.ec.form.GroupOrder;
 import com.fullness.ec.service.ProductCategoryServiceImpl;
 
 import org.springframework.web.bind.WebDataBinder;
@@ -46,7 +47,7 @@ public class RegisterProductCategoryController {
     }
 
     @PostMapping("confirm")
-    public String confirm(@Validated @ModelAttribute("categoryForm") CategoryForm categoryForm,
+    public String confirm(@Validated(GroupOrder.class) @ModelAttribute("categoryForm") CategoryForm categoryForm,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
