@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download Build Artifact
-      uses: actions/download-artifact@v
+      uses: actions/download-artifact@v3
       with:
         name: build-artifact
         path: build/libs
