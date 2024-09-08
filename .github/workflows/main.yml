@@ -63,7 +63,7 @@ jobs:
       - name: Test with Gradle
         run: chmod +x gradlew && ./gradlew test
       - name: save test reports as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: test-reports
@@ -71,7 +71,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: save build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: build-artifact
@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download Build Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: build-artifact
         path: build/libs
