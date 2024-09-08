@@ -5,7 +5,7 @@ on:
       - '*'
 env:
   EC2_USER: 'ubuntu'
-  EC2_HOST: 35.72.89.237  
+  EC2_HOST: 18.178.38.110 
   SRC_PATH: 'build/libs/*.jar'
   DEST_DIR: '/home/ubuntu'
   APP_NAME: 'sboot'
