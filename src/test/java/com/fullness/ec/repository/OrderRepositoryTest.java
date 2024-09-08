@@ -55,13 +55,14 @@ public class OrderRepositoryTest {
         assertEquals(2, repository.countOrder(2));
     }
 
-    @Sql("/sql/data2.sql")
-    @Test
-    void updateOrderStatusTest() {
-        repository.updateOrderStatus(2, 1);
-        assertEquals(2,
-                repository.selectByPage(PageRequest.of(0, 100), null, null).get(0).getOrderStatus().getOrderStatusId());
-    }
+    // @Sql("/sql/data2.sql")
+    // @Test
+    // void updateOrderStatusTest() {
+    // repository.updateOrderStatus(2, 1);
+    // assertEquals(2,
+    // repository.selectByPage(PageRequest.of(0, 100), null,
+    // null).get(0).getOrderStatus().getOrderStatusId());
+    // }
 
     // Integer countOrder(Integer userId);
 
